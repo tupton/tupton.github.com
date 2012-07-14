@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-14T16:40:09-05:00</updated>
+  <updated>2012-07-14T16:49:29-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Thomas Upton]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[just a test]]></title>
+    <link href="http://tupton.github.com/2012/07/14/just-a-test.html"/>
+    <updated>2012-07-14T16:45:00-05:00</updated>
+    <id>http://tupton.github.com/2012/07/14/just-a-test</id>
+    <content type="html"><![CDATA[<p>This is just a test.</p>
+]]></content>
+  </entry>
   
 </feed>
