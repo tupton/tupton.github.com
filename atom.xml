@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-14T16:49:29-05:00</updated>
+  <updated>2012-07-15T14:53:28-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[just a test]]></title>
-    <link href="http://tupton.github.com/2012/07/14/just-a-test.html"/>
+    <link href="http://tupton.github.com/blog/2012/07/just-a-test/"/>
     <updated>2012-07-14T16:45:00-05:00</updated>
-    <id>http://tupton.github.com/2012/07/14/just-a-test</id>
+    <id>http://tupton.github.com/blog/2012/07/just-a-test</id>
     <content type="html"><![CDATA[<p>This is just a test.</p>
 ]]></content>
   </entry>
