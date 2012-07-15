@@ -1,4 +1,5 @@
 body > footer {
+  display: none;
   @extend .sans;
   font-size: .8em;
   color: $footer-color;
