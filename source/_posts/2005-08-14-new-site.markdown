@@ -1,0 +1,12 @@
+---
+date: '2005-08-14 23:26:00'
+layout: post
+slug: new-site
+status: publish
+title: New Site
+wordpress_id: '39'
+categories:
+- Personal
+---
+
+I have moved my blog to [a new site](http://fiveuptons.com/thomas/blog/).  I'm not sure how long Blogger keeps URLs that are no longer published to, but [http://uptonianthoughts.blogspot.com/](http://uptonianthoughts.blogspot.com/) will remain up as long as possible.  Please change your bookmarks and feed readers accordingly.

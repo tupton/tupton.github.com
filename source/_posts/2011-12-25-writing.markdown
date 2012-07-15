@@ -1,0 +1,23 @@
+---
+date: '2011-12-25 23:19:21'
+layout: post
+slug: writing
+status: publish
+title: Writing
+wordpress_id: '677'
+categories:
+- Articles
+- Writing
+---
+
+I recently started using [Byword][] on OS X and [Elements][] on iOS for my writing in general. Both apps are [Markdown][] editors that, in conjunction with Dropbox, let me write from nearly anywhere.
+
+[byword]: http://bywordapp.com/
+[elements]: http://www.secondgearsoftware.com/elements/
+[markdown]: http://daringfireball.net/projects/markdown/
+
+I write my blog posts in Markdown, but the format is useful for almost any kind of writing. Any application that can read plain text can read Markdown for those times that you need to keep it simple, or you can convert to HTML for when you want or need to make it a bit more presentable.
+
+I love using Byword in its fullscreen and paragraph focus view. It's a great way to minimize distractions with enough context to let you properly proofread your writing. The Markdown to HTML preview is a keyboard shortcut away, and saving to a folder in Dropbox means that I can access my files anywhere.
+
+Elements requires a Dropbox account to work, so I specified the same folder that I save documents from Byword into. Et voilà, I can edit or add to a blog post or any other writing on my iPhone or iPad. Elements has a great Markdown preview, too, and it's distraction-free (from other apps) by nature of being an iOS app.

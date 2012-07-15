@@ -1,0 +1,20 @@
+---
+date: '2006-12-16 23:42:22'
+layout: post
+slug: textmate
+status: publish
+title: TextMate
+wordpress_id: '92'
+categories:
+- Software
+---
+
+[![TextMate Logo](http://thomas.fiveuptons.com/blog/wp-content/uploads/2006/12/textmate_logo.png)](http://macromates.com/)
+
+I first heard about [TextMate](http://macromates.com/) quite some time ago from various Mac-related blogs.  I was always intrigued by the fact that it received so much high praise, but I didn't know if I wanted to spend ~$50 on a text editor.
+
+Then, I started watching the TextMate [screencasts](http://macromates.com/screencasts) that are provided on the website, and I was hooked.  How could an application be so thorough?  And I thought [vim](http://www.viemu.com/vi-vim-cheat-sheet.gif) had a lot of keyboard usage.
+
+As I became more and more intrigued by [MacHeist](http://macheist.com/), I thought that maybe TextMate would be included in the end-of-event bundle, so I held out from purchasing TextMate.  The bundle was announced a few days ago, with some catches, namely that a target of $100,000 raised for charity had to be raised for the license for TextMate to be made available to bundle purchasers.  More importantly, I didn't particularly want any of the other apps in the MacHeist bundle:  I have [Delicious Library](http://www.delicious-monster.com/), I use [NetNewsWire](http://www.newsgator.com/NGOLProduct.aspx?ProdID=NetNewsWire) (and therefore have no interest in NewsFire), and I don't particularly want or need the functionality of any of the other apps in the bundle.  I, of course, read [John Gruber's analysis](http://daringfireball.net/2006/12/iniquities_of_the_selfish) of the monetary happenings at MacHeist, and was a bit miffed.
+
+I decided that I just wanted TextMate.  I downloaded the 30-day trial, watched some more screencasts (including the one on blogging), and I am now writing this blog post in TextMate.  I'm going to buy my license after this article is posted.

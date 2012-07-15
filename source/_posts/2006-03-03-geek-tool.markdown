@@ -1,0 +1,35 @@
+---
+date: '2006-03-03 10:33:00'
+layout: post
+slug: geek-tool
+status: publish
+title: Geek Tool
+wordpress_id: '67'
+categories:
+- Howto
+- Software
+---
+
+[Geek Tool](http://projects.tynsoe.org/en/geektool/) (use [JAW Software's Tiger build](http://www.jaw.it/pages/en/x_misc.html) for OS X 10.4 or later) is a versatile tool to output different shell scripts, text, and images to your desktop.
+
+At first I was just using Geek Tool to output my Crash Reporter log and Console.log to the desktop so I could see if / when Quicksilver crashed silently and what my computer was doing, respectively.  I added System.log to the mix, and left it at that until I found a [rather old article on Mac OS X Hints](http://www.macosxhints.com/article.php?story=20040706234745708) that explained how to use Geek Tool in more depth.
+
+In the Mac OS X Hints article, they mention an [iTunes output](http://www.macosxhints.com/article.php?story=2004070301135736) that displays the currently playing iTunes track.  Even though I have [Quicksilver](http://quicksilver.blacktree.com/) monitor tracks on change, I still need to press a button to see the track info.  This method seemed like an easy, low memory-usage method of always knowing what I was listening to.  Unfortunately, the information in that article left the script a bit buggy, i.e. iTunes would open right back up again as soon as the script is called, there is no output when iTunes is paused, etc.  I edited the script using bits and pieces of my own knowledge and an excellent [Now Playing script](http://www.adiumxtras.com/index.php?a=xtras&xtra_id=1563) for [Adium](http://adiumx.com/).  I put this script in ~/Library/Scripts/Applications/iTunes and called it every ten seconds from Geek Tool using
+
+
+    
+    <code>osascript /path/to/scripts/iTunesName.scpt | iconv -f utf-8 -t ucs-2-internal</code>
+
+
+
+et voilà, the song I am listening to is on my desktop AND I can close iTunes without it opening back up again.  You can get the script I used [here](http://thomas.fiveuptons.com/blog/wp-content/uploads/2008/04/itunesnamescpt.zip)[](http://fiveuptons.com/thomas/iTunesName.scpt.zip).
+
+In addition to the logs and iTunes, I display the output of
+
+
+    
+    <code>ps xm -O %mem</code>
+
+
+
+truncated to just the first five processes, and the `cal` output mentioned in [this Mac OS X Hints article](http://www.macosxhints.com/article.php?story=20040625094428394).  I also display the contents of my Desktop and Download directories on my Powerbook's display when I am at home on my 20" Cinema Display so that I can see what is contained in those folders when I am doing something fullscreen like watching a movie.

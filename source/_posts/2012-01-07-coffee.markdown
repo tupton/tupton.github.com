@@ -1,0 +1,35 @@
+---
+date: '2012-01-07 14:37:42'
+layout: post
+slug: coffee
+status: publish
+title: Coffee
+wordpress_id: '705'
+categories:
+- Drinks
+---
+
+![Coffee](http://farm8.staticflickr.com/7164/6654753833_ab1c242b36_z_d.jpg)
+
+Like [most of the world][coffee-addiction], I love coffee. I usually drink a cup or two a day, and sometimes more. I'm lucky enough to live close to places that sell great coffee: Whole Foods roasts their own coffee, and there are numerous local places with great beans.
+
+[coffee-addiction]: http://www.youtube.com/watch?v=OTVE5iPMKLg
+
+I usually make a full "batch" of coffee in a French press (or *сafetière*), but sometimes that's too much. I know it's considered blasphemous, but I got a Keurig single cup brewer for Christmas, and I absolutely love it. I was apprehensive about Keurig machines until I found out about refillable "K-Cups" that you could fill with your own, delicious coffee. I use the [official Keurig "My K-Cup"][my-k-cup], but that requires that you replace the entire holster mechanism each time. It's not time consuming, but it is a bit annoying.
+
+[my-k-cup]: http://www.amazon.com/gp/product/B000DLB2FI/ref=as_li_ss_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=390957&creativeASIN;=B000DLB2FI
+
+I discovered the [Ekobrew][ekobrew], which is a filter that fits in the existing cup holster. Two of them are on their way to my house from Amazon right now.
+
+[ekobrew]: http://www.amazon.com/ekobrew-Refillable-Keurig-Brewers-1-Count/dp/B0051SU0OW/ref=sr_1_1?ie=UTF8&qid;=1325967276&sr;=8-1
+
+Regardless of how it gets there, coffee from the Keurig is (perhaps surprisingly) pleasant. It's not the best cup of coffee, but it's quick, easy, and clean.
+
+I still use the French press when I need to make a bigger batch of coffee or if I want to relax and enjoy a really great cup. I use the seemingly-ubiquitous Bodum French press and [burr grinder][grinder] and keep the coffee warm in my [Zojirushi carafe][carafe]. Coffee stays *hot* for hours on end, so I can make coffee in the morning and still enjoy it later in the afternoon. How I make coffee just depends on how much I need and what kind of mood I'm in.
+
+[carafe]: http://www.amazon.com/gp/product/B00004S56U/ref=as_li_ss_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=390957&creativeASIN;=B00004S56U
+[grinder]: http://www.amazon.com/gp/product/B0043095WW/ref=as_li_ss_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=390957&creativeASIN;=B0043095WW
+
+One last thing: I also got a small stovetop espresso maker for Christmas, and it is amazing. When I want a treat, I make myself a café Americano: a bit of espresso in a normal-sized coffee cup and filled the rest of the way with hot water. Yum!
+
+*Full disclosure*: I've linked to a number of products on Amazon in this post, and most of them contain my affiliate link. I'll get a small kickback if anything is bought via these links. I will only ever post links to products that I use and love, and that is certainly the case with everything here. I'm passionate about my coffee, and I don't want to mislead anyone. I have not included my affiliate link to the Ekobrew refillable K-Cup because I have not received or used it at this time.

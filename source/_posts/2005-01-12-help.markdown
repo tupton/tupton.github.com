@@ -1,0 +1,17 @@
+---
+date: '2005-01-12 08:36:00'
+layout: post
+slug: help
+status: publish
+title: Help
+wordpress_id: '15'
+categories:
+- Personal
+tags:
+- news
+- world
+---
+
+[The](http://news.bbc.co.uk/2/hi/africa/4166863.stm) [world](http://news.bbc.co.uk/2/hi/asia-pacific/4167087.stm) [is](http://news.bbc.co.uk/2/hi/americas/4165627.stm) [in](http://news.bbc.co.uk/2/hi/south_asia/4167299.stm) [dire](http://news.bbc.co.uk/2/hi/middle_east/4166587.stm) [need](http://news.bbc.co.uk/2/hi/business/4166727.stm).  [Do](http://www.redcross.org/donate/donate.html) [what](https://www.habitat.org/donation/generaldonation/default.aspx) [you](http://www.ifrc.org/helpnow/donate/donate_response.asp) [can](http://www.oxfam.co.uk/) [to](http://www.unicef.org/) [help](http://www.doctorswithoutborders.org/).
+
+All news stories were taken from this morning's [BBC News](http://news.bbc.co.uk/) [RSS feed](http://news.bbc.co.uk/rss/newsonline_world_edition/front_page/rss091.xml).

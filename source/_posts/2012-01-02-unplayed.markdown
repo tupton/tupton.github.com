@@ -1,0 +1,22 @@
+---
+date: '2012-01-02 19:23:21'
+layout: post
+slug: unplayed
+status: publish
+title: Unplayed
+wordpress_id: '684'
+categories:
+- Gaming
+- Webapps
+---
+
+Santa brought me [The Legend of Zelda: Skyward Sword][skyward-sword] for Christmas (thanks Mom!). I've enjoyed playing it, just as I've enjoyed playing video games for nearly my entire life.
+
+[skyward-sword]: http://www.amazon.com/gp/product/B002BSC54I/ref=as_li_tf_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=9325&creativeASIN;=B002BSC54I
+
+In recent years, however, I've abandoned or not fully played all of my video games. I attempted to maintain a Google Docs spreadsheet to keep track of my unplayed games, but it quickly became more neglected than the games themselves.
+
+I recently found out about Shaun Inman's [*Unplayed*][unplayed], and it seemed perfect. It's like a much simpler, lightweight Shelfari for video games. You can now see which games I'm playing (or not playing) at my [*Unplayed* page][my-unplayed]. For now, I'm going back to Skyloft!
+
+[unplayed]: http://www.shauninman.com/archive/2011/04/18/unplayed
+[my-unplayed]: http://www.thomasupton.com/unplayed/

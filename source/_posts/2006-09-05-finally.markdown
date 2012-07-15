@@ -1,0 +1,15 @@
+---
+date: '2006-09-05 16:33:38'
+layout: post
+slug: finally
+status: publish
+title: Finally...
+wordpress_id: '86'
+categories:
+- Personal
+---
+
+After not posting all summer, I am trying to get some more posts written and posted as soon as possible.  I am going to a [presentation and Q&A;](http://blog.pandora.com/pandora/archives/2006/08/blacksburg_va_t.html) with [Pandora.com](http://pandora.com/) founder Tim Westergren tonight; hopefully a post will follow.
+
+I am taking 18 credit hours this semester, but so far I like all my classes, and the workload does not seem like it will become overbearing.  More downtime equals more posting time, so be happy.
+Stay tuned for more posts in the near future...

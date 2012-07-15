@@ -1,0 +1,30 @@
+---
+date: '2005-01-11 13:42:00'
+layout: post
+slug: irony
+status: publish
+title: Irony
+wordpress_id: '13'
+categories:
+- Humor
+- Interesting
+---
+
+This [comment](http://it.slashdot.org/comments.pl?sid=135656&cid=11323441) was written in response to a misinformed linguistic Nazi troll on a recent [Slashdot](http://slashdot.org/) story.
+
+
+> > Not quite ingenious but certainly not ironic.
+
+I'm getting so amazingly tired of Alanis Haters Anonymous getting on everyone's case for not understanding the word "irony," when in fact, ironically, they themselves do not understand it.
+
+[Irony](http://dictionary.reference.com/search?q=irony) [reference.com] is an "incongruity between what might be expected and what actually occurs." When companies use anti-piracy "features" to install Spyware, it's ironic, because no one expects that DRM will be used to install Spyware.
+
+And, while we're at it, it's unexpected (and thus ironic) when you find a black fly in your chardonnay. It's unexpected (and thus ironic) when it rains on your wedding day. Yes, there are some lines in "Ironic" that aren't themselves ironic, but that fact itself makes the song ironic! So members of AHA are screwed both ways: if they complain that the lyrics do not describe irony, they show by their very complaints that the song itself is ironic.
+
+Take that.
+
+Jeremy
+
+
+
+The story about WMP DRM and how it is being used to install spyware on unsuspecting users' machines can be found [here](http://it.slashdot.org/article.pl?sid=05/01/11/163254).

@@ -1,0 +1,14 @@
+---
+date: '2005-01-11 01:02:00'
+layout: post
+slug: im
+status: publish
+title: IM
+wordpress_id: '12'
+categories:
+- Personal
+---
+
+Instant messaging is officially the best way to learn to type.  Of course, having a [beautiful girl](http://www.flickr.com/photos/third/8382347/) with whom you can instant message helps.  You don't want to miss anything just because you are a big nerd.
+
+By the way, I use [iChat AV](http://www.apple.com/ichat/).  For all of you deprived souls still using [Windows](http://www.hallikainen.org/windoze/winrg.swf), at least do your machine the courtesy of running [GAIM](http://gaim.sourceforge.net/), or even [Trillian](http://www.trillian.cc/).  Anything else could be [adware](http://idledreams.net/dmoore/posts/238.aspx).

@@ -1,0 +1,21 @@
+---
+date: '2005-05-26 21:03:00'
+layout: post
+slug: dvorak-day-133
+status: publish
+title: Dvorak, Day 133
+wordpress_id: '24'
+categories:
+- Personal
+tags:
+- dvorak
+- typing
+---
+
+Yeah, I'm [still using it](http://www.dvorak-keyboard.com/).
+
+I have fully adjusted to using Dvorak, and I love it.  My typing speed has increased, I don't look at the keyboard nearly as much, I have much less stress on my wrists and fingers while typing, and I have retained my QWERTY typing speed.
+
+It's quite funny to see people at work struggle with it when they try to show me something on my own computer.  I have a hot key enabled to switch between Dvorak and QWERTY, so it's not a hindrance, but it does make me laugh.  On my Mac I have the layout set so that all commands that use the Command key are mapped to their old keys, so Cmd-C copies and Cmd-V pastes.  However, Windows does not have this option (or at least not one that was visible to me.  Anyone have any tips?), so Ctrl-I and Ctrl-. have to be used, respectively.  It's interesting switching from Windows to OS X and back again, but it keeps me on my toes and I don't mind too much.
+
+I recommend this layout to everyone and anyone who wants to learn to type quickly, properly, and _comfortably_.  If you have two weeks to memorize the new layout (yeah, that means students who just got out of school...), you should at least give it a try.

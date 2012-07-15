@@ -1,0 +1,24 @@
+---
+date: '2012-01-04 22:37:07'
+layout: post
+slug: lessn
+status: publish
+title: Lessn
+wordpress_id: '690'
+categories:
+- Webapps
+---
+
+I recently installed [Lessn][lessn] and then [Lessn More][lessnmore] to take control of my own short links. Lessn is a very simple URL shortener that is hosted on my own domain.
+
+[lessn]: http://shauninman.com/archive/2009/08/17/less_n
+[lessnmore]: http://lessnmore.net/
+
+I registered [upton.in][uptonin] to serve my short links. I chose the ".in" TLD because it's short and common. I do wish there was an ".on" TLD so I could register *upt.on*, but I like the connotation of "in". As [I said on Twitter the other day][uptonin-twitter], it can mean "Internet, inside, come in, infinity, interesting" among other things. 
+
+[uptonin]: http://upton.in/
+[uptonin-twitter]: https://twitter.com/thomasupton/status/154218836722335745
+
+Lessn also integrates nicely with [Mint][mint], which I recently started using. I plan to write more on that shortly.
+
+[mint]: http://haveamint.com/

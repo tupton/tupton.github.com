@@ -1,0 +1,40 @@
+---
+date: '2008-12-23 20:30:47'
+layout: post
+slug: shelfari
+status: publish
+title: Shelfari
+wordpress_id: '229'
+categories:
+- Webapps
+tags:
+- book
+- Design
+- reading
+- website
+---
+
+[caption id="attachment_232" align="alignnone" width="600" caption="My Shelfari profile"]![My Shelfari profile](http://www.thomasupton.com/wp/wp-content/uploads/2008/12/shelfari-profile.png)[/caption]
+
+I recently joined [Shelfari] [], which my dad described to me as [Last.fm] [] for books. Your profile consists of your shelf, to which you can add books that you have read, are currently reading, or plan to read. You can search for any book by title, author, ISBN, and other attributes.
+
+[shelfari]: http://www.shelfari.com/
+[last.fm]: http://www.last.fm/
+
+The site has a slick design that allows easy manipulation of your bookshelf. It even offers an option to import a tab-delimited list from [Delicious Library] []. I only recently joined, but I am impressed with what I see.
+
+[delicious library]: http://www.delicious-monster.com/
+
+Shelfari offers a widget that can be pasted into a blog, but I did not like the restrictions on the styling that it gave me. I searched, and lo and behold, there is already [a WordPress plugin called BookList] [Booklist] that can display certain items on your shelf. I have added this plugin to the bottom of my site, under my Last.fm tracks, where you can see what books I am currently reading.
+
+[booklist]: http://wordpress.org/extend/plugins/booklist/
+
+
+
+**UPDATE:** The BookList plugin seems to be broken, so I have disabled it for now.
+
+
+
+If you [visit my Shelfari profile] [my Shelfari] and decide that you want to join, don't forget to add me as a friend on the site!
+
+[my shelfari]: http://www.shelfari.com/o1517876447

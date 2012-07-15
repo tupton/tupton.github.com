@@ -1,0 +1,41 @@
+---
+date: '2009-01-18 00:00:31'
+layout: post
+slug: tumblr
+status: publish
+title: Tumblr
+wordpress_id: '287'
+categories:
+- Design
+- Personal
+- Webapps
+---
+
+I [recently started using my Tumblr tumblelog] [my tumblr] a lot more.
+
+[my tumblr]: http://thisis.thomasupton.com/
+
+I created my [Tumblr] account some time last year, like everyone else. I linked my [Delicious feed] [delicious] and this blog to it and promptly forgot about it. I recently realized that there are photos that [I favorite on Flickr] [flickr faves], and videos that I [favorite on YouTube] [youtube faves] or [like on Vimeo] [vimeo faves], and quotes that I see on many different web pages, and chats that I have with my friends that I think other friends would enjoy, but I can't share them in one central place and oh my goodness I've just described the entire reason for Tumblr's being.
+
+[tumblr]: http://www.tumblr.com/
+[delicious]: http://delicious.com/third
+[flickr faves]: http://www.flickr.com/photos/third/favorites/
+[youtube faves]: http://www.youtube.com/profile?user=tdmupton&view;=favorites
+[vimeo faves]: http://vimeo.com/user214820/likes
+
+So I added the [Tumblr bookmarklet] [bookmarklet] to my browser's bookmark bar, and now my favorite things that I come across on the web are all located in one place.
+
+[bookmarklet]: http://www.tumblr.com/goodies
+
+One of the greatest features of Tumblr is the fact that each tumblelog is connected. I can favorite a post right from its permalink, and I can [follow] [Merlin Mann] [those] [tim] [who] [Adam Lisagor] I [find] [Scott Simpson] [interesting] [43 Folders].
+
+[merlin mann]: http://www.kungfugrippe.com/
+[tim]: http://behindtherabbit.tumblr.com/
+[adam lisagor]: http://lonelysandwich.com/
+[scott simpson]: http://yourmonkeycalled.com/
+[43 folders]: http://clips.43folders.com/
+
+I spent a lot of time over the past two days tweaking [Danny Garcia's] [Danny Garcia] [LightGrid theme] [LightGrid] to my liking and in the general look and feel of my tumblelog.
+
+[danny garcia]: http://danny-garcia.com/
+[lightgrid]: http://lightgrid.tumblr.com/

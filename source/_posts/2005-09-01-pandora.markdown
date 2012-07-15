@@ -1,0 +1,32 @@
+---
+date: '2005-09-01 01:25:00'
+layout: post
+slug: pandora
+status: publish
+title: Pandora
+wordpress_id: '41'
+categories:
+- Music
+- Software
+- Webapps
+tags:
+- Music
+- pandora
+- radio
+---
+
+I saw a rather cryptic [post from Robert Scoble](http://radio.weblogs.com/0001011/2005/08/28.html#a10979) concerning [Pandora](http://www.pandora.com/) the other day.  I had no idea what it was, whether it was MS related or not, but I decided to check it out.  Scoble normally has some interesting things to link to, whether his critics like to admit it or not.
+
+[![Pandora](http://static.flickr.com/21/39895786_d58f686c78.jpg)](http://pandora.com/)
+
+For the past few years, the Music Genome Project has been listening and sorting thousands upon thousands of tracks of music.  They have eschewed the normal conventions of genre and classification and instead given each song a number of musical attribrutes, including tonality, harmonies, rhythm, and melody.  Pandora is the MGP's gateway to the end user.
+
+Visit [Pandora.com](http://pandora.com/) and you will be greeted by a simplistic web page with an embedded Flash application.  Simply enter the name of a group or song that you enjoy, and sit back.  Pandora searches the MGP database to find similar music to what you have defined.
+
+You can create up to 100 stations, and the first ten hours of listening are totally free.  You don't even need an email address to listen!
+
+Try creating a station from one song, and then add what you think are similar songs to the same station.  Pandora will adapt and start churning out some awesome new music that you have never heard before but will be hopping on iTunes to grab immediately.
+
+I love this concept, and I would like to see a more robust client (instead of a clunky Flash app.  [Ajax](http://del.icio.us/tag/ajax) anyone?) and way more publicity.  Where is all the buzz about these guys?
+
+I'll keep giving Pandora a listen, and perhaps I'll cough up the $36/year fee.  It seems a fair price for an almost endless supply of customized new music.  Plus, the fact that my Mars Volta station played two of my favorite Mars Volta songs, an At The Drive In song from the new compilation, and the bonus track that was not even included on Frances The Mute makes it a keeper in my book already.

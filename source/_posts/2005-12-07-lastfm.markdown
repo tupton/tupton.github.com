@@ -1,0 +1,16 @@
+---
+date: '2005-12-07 12:07:00'
+layout: post
+slug: lastfm
+status: publish
+title: Last.fm
+wordpress_id: '48'
+categories:
+- Music
+- Software
+- Websites
+---
+
+[![](http://www.thomasupton.com/lastfm/recent/)](http://last.fm/user/tupton/)
+
+[Last.fm](http://last.fm/user/tupton/) is a site that keeps track of all the songs that you play, in a media player of your choice.  It's a pretty neat site for personal use, but I wanted to put some information about my recently played tracks on my [main page](http://fiveuptons.com/thomas).  I found [this page](http://www.audioscrobbler.net/wiki/index.php/RecentlyPlayedImageV2) on the [Audioscrobbler wiki](http://www.audioscrobbler.net/wiki/), which is a great help.  You can see the results on my [main page](http://fiveuptons.com/thomas).  Eventually I want to modify the script to output HTML that I can style myself, but I do not know a lick of PHP and I wouldn't know where to start.

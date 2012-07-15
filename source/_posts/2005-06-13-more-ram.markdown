@@ -1,0 +1,18 @@
+---
+date: '2005-06-13 23:49:00'
+layout: post
+slug: more-ram
+status: publish
+title: More RAM
+wordpress_id: '27'
+categories:
+- Hardware
+tags:
+- apple
+- newegg
+- ram
+---
+
+I bought [1GB of RAM](http://www.newegg.com/product/product.asp?item=N82E16820155111) from [newegg.com](http://newegg.com) the other day, and the results it gives me are absolutely amazing.  My Powerbook is so zippy and snappy that I'll have to watch my fingers before they get caught.
+
+Ok, sorry!  But I am excited!  From 512MB to 1.25GB is quite a leap, and I can definitely see an improvement.

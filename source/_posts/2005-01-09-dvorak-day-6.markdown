@@ -1,0 +1,19 @@
+---
+date: '2005-01-09 18:38:00'
+layout: post
+slug: dvorak-day-6
+status: publish
+title: Dvorak, Day 6
+wordpress_id: '6'
+categories:
+- Hardware
+- Personal
+---
+
+What?  A new keyboard layout?  [You heard me](http://www.mwbrooks.com/dvorak/layout.html).
+
+Apparently, it helps reduce the risk of repetitive stress injuries, increases the typing speed, and acts as an amazing security measure against snooping friends. It is also one of the most annoying things to relearn something that has been second nature for over ten years. The consensus in that it takes two weeks to learn.
+
+I have been using it since Monday, January 3, 2005.
+
+Of course, updates on my progress will be posted here.

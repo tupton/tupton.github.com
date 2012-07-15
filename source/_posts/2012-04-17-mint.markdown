@@ -1,0 +1,87 @@
+---
+date: '2012-04-17 18:37:38'
+layout: post
+slug: mint
+status: publish
+title: Mint
+wordpress_id: '746'
+categories:
+- Webapps
+---
+
+![Mint](http://farm8.staticflickr.com/7180/7089520649_0beff76701_o_d.png)
+
+I just started using [Mint][mint] to track statistics on my site. I've been using Google Analytics for a long time, and I will continue to do so, but it is definitely geared more towards sites trying to earn money. Mint seemed to offer a more streamlined and customizable interface for people who just want to look at stats.
+
+[mint]: http://haveamint.com/
+
+Mint is a pluggable, extensible stats system. Mint modules are known as "peppers," and each one provides some small functionality. There is a [default pepper][default] that provides some basic stats functionality like page views, unique visitors, search terms that brought those visitors to your site, and which pages they are looking at. There are a large number of official and community peppers over at the Peppermill that offer much more functionality and statistical views.
+
+[default]: http://www.haveamint.com/peppermill/pepper/4/default/
+
+## Installation
+
+Installing Mint was a breeze. I just followed the simple instructions and I was good to go. If you have unfettered access to your server (via `ssh`) you should have no issues.
+
+### Issues with mod_pagespeed
+
+I did run into a couple strange display issues when I went to view my Mint stats. Each pane took up the maximum width when it was opened. Even though I could view all my stats, the interface didn't look good. After posting in the forum and fruitlessly trying to edit the Mint source code, I disabled [`mod_pagespeed`][mp] on the hunch that my code changes weren't taking effect because `mod_pagespeed` was caching everything. All of a sudden, the Mint interface looked fine, and it turned out that my small tweaks didn't really make much of a difference after all. I still haven't figured out exactly why `mod_pagespeed` was causing issues, but disabling it sure did fix them. If anyone has any insight into this, please let me know.
+
+[mp]: http://code.google.com/speed/page-speed/docs/module.html
+
+## Peppers
+
+I mentioned that Mint is pluggable and extensible. In fact, that is its entire basis: every bit of functionality is provided by modular plugins called peppers. Mint comes with the default pepper that I mentioned before, but there are many more available. I use a number of them.
+
+### [Backup/Restore][backup]
+
+This pepper is self-explanatory: back up and restore your Mint stats. That's it.
+
+### [iPhone][iphone]
+
+The default Mint interface isn't that great for a smaller screen like the iPhone, so this pepper displays an optimized interface when you view Mint on an iPhone.
+
+### [Outbound][outbound]
+
+A lot of analytics apps try to show you where your visitors come from, and that information is important. You might be interested in where your visitors go next, so this pepper shows your most popular outbound links.
+
+### [User Agent 007][user-agent]
+
+This cleverly-named pepper shows a breakdown of your visitors by user agent.
+
+### [Real Estate][real-estate]
+
+This one shows a breakdown of your visitors by the size of their screen.
+
+### [Local Searches][local-search]
+
+If your blogging software has a search mechanism, this pepper shows you what your visitors are searching for. Note that this is different than the search engine queries that bring visitors to your site that the default pepper shows. 
+
+### [Doorbell][doorbell]
+
+When you're viewing your Mint interface, the doorbell pepper provides a some audio feedback when you get a new visitor.
+
+### [Errors][errors]
+
+This pepper shows any error pages that your visitors may have seen, along with the page that was requested that caused that error.
+
+### [Locations][locations]
+
+This pepper provides a breakdown of your visitors by geographic location.
+
+### [Sparks!][sparks]
+
+Sparklines provide a great way to view useful trends in a small space. This combined with the iPhone pepper makes checking visitor trends on the go a snap.
+
+[backup]: http://www.haveamint.com/peppermill/pepper/5/backup_restore/
+[iphone]: http://www.haveamint.com/peppermill/pepper/57/iphone/
+[outbound]: http://www.haveamint.com/peppermill/pepper/60/outbound/
+[user-agent]: http://www.haveamint.com/peppermill/pepper/7/user_agent_007/
+[real-estate]: http://www.haveamint.com/peppermill/pepper/9/real_estate/
+[local-search]: http://www.haveamint.com/peppermill/pepper/6/local_searches/
+[doorbell]: http://www.haveamint.com/peppermill/pepper/45/doorbell/
+[errors]: http://www.haveamint.com/peppermill/pepper/92/errors/
+[locations]: http://www.haveamint.com/peppermill/pepper/29/locations/
+[sparks]: http://www.haveamint.com/peppermill/pepper/67/sparks/
+
+I use both Google analytics and Mint on my site, but I find myself looking at Mint much, much more often. It just offers a better view into the kind of people visiting your site, especially if you're coming from a position of trying to understand what kind of content brings them to your site in the first place. Mint comes highly recommended.

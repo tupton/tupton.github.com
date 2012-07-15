@@ -1,0 +1,20 @@
+---
+date: '2006-01-13 00:17:00'
+layout: post
+slug: front-row
+status: publish
+title: Front Row
+wordpress_id: '59'
+categories:
+- Howto
+- Music
+- Software
+---
+
+[![Front Row](http://static.flickr.com/41/85895390_af60be2216.jpg)](http://www.flickr.com/photos/third/85895390/)
+
+Upgrading to OS X 10.4.4 broke my previous hacked installation of [Front Row](http://www.apple.com/imac/frontrow.html), but it turns out that only a reinstall is needed.
+
+Check out [Andrew Escobar's tutorial](http://www.andrewescobar.com/frontrow) to install it.  It involves a bit of deep-rooted changing (the Bezel Services framework, for one), but it seems to be ok.  I had to log out one final time (bringing the total to three times since starting the install) in order to watch a DVD.  Everything seems to be peachy, as it should.  You are effectively tricking your machine into thinking it has Front Row natively installed.  There is no thrown-together hack; you actually download the install package from Apple and activate it through Escobar's Enabler.
+
+Check it out.  Front Row is a really neat app.
