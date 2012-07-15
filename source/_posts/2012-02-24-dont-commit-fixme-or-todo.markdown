@@ -11,24 +11,26 @@ categories:
 ---
 
 
+<pre>
 <code data-language="php">
-    function getObject($id) {
-        $object = null;
-            
-        // TODO Do we need to validate username?
-        $objects = $this->db->retrieveForUsername($this->username);
-            
-        // FIXME Write `retrieveForIdAndUsername` instead of iterating here
-        foreach ($objects as $o) {
-            if ($o->id() == $id) {
-                $object = $o;
-                break;
-            }
+function getObject($id) {
+    $object = null;
+        
+    // TODO Do we need to validate username?
+    $objects = $this->db->retrieveForUsername($this->username);
+        
+    // FIXME Write `retrieveForIdAndUsername` instead of iterating here
+    foreach ($objects as $o) {
+        if ($o->id() == $id) {
+            $object = $o;
+            break;
         }
-            
-        return $object;
     }
+        
+    return $object;
+}
 </code>
+</pre>
 
 This shouldn't happen. I'm not talking about the comically bad code – it's a contrived example, but it proves the point – but about the little "notes" left by whoever committed this.
 
