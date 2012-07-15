@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Writing | Uptonian Thoughts]]></title>
+  <link href="http://tupton.github.com/blog/categories/writing/atom.xml" rel="self"/>
+  <link href="http://tupton.github.com/"/>
+  <updated>2012-07-15T15:26:31-05:00</updated>
+  <id>http://tupton.github.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Writing]]></title>
+    <link href="http://tupton.github.com/blog/2011/12/writing/"/>
+    <updated>2011-12-25T23:19:21-06:00</updated>
+    <id>http://tupton.github.com/blog/2011/12/writing</id>
+    <content type="html"><![CDATA[<p>I recently started using <a href="http://bywordapp.com/">Byword</a> on OS X and <a href="http://www.secondgearsoftware.com/elements/">Elements</a> on iOS for my writing in general. Both apps are <a href="http://daringfireball.net/projects/markdown/">Markdown</a> editors that, in conjunction with Dropbox, let me write from nearly anywhere.</p>
+
+<p>I write my blog posts in Markdown, but the format is useful for almost any kind of writing. Any application that can read plain text can read Markdown for those times that you need to keep it simple, or you can convert to HTML for when you want or need to make it a bit more presentable.</p>
+
+<p>I love using Byword in its fullscreen and paragraph focus view. It’s a great way to minimize distractions with enough context to let you properly proofread your writing. The Markdown to HTML preview is a keyboard shortcut away, and saving to a folder in Dropbox means that I can access my files anywhere.</p>
+
+<p>Elements requires a Dropbox account to work, so I specified the same folder that I save documents from Byword into. Et voilà, I can edit or add to a blog post or any other writing on my iPhone or iPad. Elements has a great Markdown preview, too, and it’s distraction-free (from other apps) by nature of being an iOS app.</p>
+]]></content>
+  </entry>
+  
+</feed>

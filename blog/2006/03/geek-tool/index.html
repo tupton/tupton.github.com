@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Geek Tool - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="Geek Tool (use JAW Software’s Tiger build for OS X 10.4 or later) is a versatile tool to output different shell scripts, text, and images to your &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tupton.github.com/blog/2006/03/geek-tool/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tupton.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Geek Tool</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-03T10:33:00-06:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://projects.tynsoe.org/en/geektool/">Geek Tool</a> (use <a href="http://www.jaw.it/pages/en/x_misc.html">JAW Software’s Tiger build</a> for OS X 10.4 or later) is a versatile tool to output different shell scripts, text, and images to your desktop.</p>
+
+<p>At first I was just using Geek Tool to output my Crash Reporter log and Console.log to the desktop so I could see if / when Quicksilver crashed silently and what my computer was doing, respectively.  I added System.log to the mix, and left it at that until I found a <a href="http://www.macosxhints.com/article.php?story=20040706234745708">rather old article on Mac OS X Hints</a> that explained how to use Geek Tool in more depth.</p>
+
+<p>In the Mac OS X Hints article, they mention an <a href="http://www.macosxhints.com/article.php?story=2004070301135736">iTunes output</a> that displays the currently playing iTunes track.  Even though I have <a href="http://quicksilver.blacktree.com/">Quicksilver</a> monitor tracks on change, I still need to press a button to see the track info.  This method seemed like an easy, low memory-usage method of always knowing what I was listening to.  Unfortunately, the information in that article left the script a bit buggy, i.e. iTunes would open right back up again as soon as the script is called, there is no output when iTunes is paused, etc.  I edited the script using bits and pieces of my own knowledge and an excellent <a href="http://www.adiumxtras.com/index.php?a=xtras&amp;xtra_id=1563">Now Playing script</a> for <a href="http://adiumx.com/">Adium</a>.  I put this script in ~/Library/Scripts/Applications/iTunes and called it every ten seconds from Geek Tool using</p>
+
+<pre><code>&lt;code&gt;osascript /path/to/scripts/iTunesName.scpt | iconv -f utf-8 -t ucs-2-internal&lt;/code&gt;
+</code></pre>
+
+<p>et voilà, the song I am listening to is on my desktop AND I can close iTunes without it opening back up again.  You can get the script I used <a href="http://thomas.fiveuptons.com/blog/wp-content/uploads/2008/04/itunesnamescpt.zip">here</a>[](http://fiveuptons.com/thomas/iTunesName.scpt.zip).</p>
+
+<p>In addition to the logs and iTunes, I display the output of</p>
+
+<pre><code>&lt;code&gt;ps xm -O %mem&lt;/code&gt;
+</code></pre>
+
+<p>truncated to just the first five processes, and the <code>cal</code> output mentioned in <a href="http://www.macosxhints.com/article.php?story=20040625094428394">this Mac OS X Hints article</a>.  I also display the contents of my Desktop and Download directories on my Powerbook’s display when I am at home on my 20” Cinema Display so that I can see what is contained in those folders when I am doing something fullscreen like watching a movie.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-03T10:33:00-06:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2006</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/howto/'>Howto</a>, <a class='category' href='/blog/categories/software/'>Software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2006/02/5-easy-steps-to-keeping-some-of-your-music-on-your-laptop/" title="Previous Post: 5 Easy Steps To Keeping Some Of Your Music On Your Laptop">&laquo; 5 Easy Steps To Keeping Some Of Your Music On Your Laptop</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2006/03/lastfm-greasemonkey-statistics-overload/" title="Next Post: Last.fm + Greasemonkey = Statistics Overload">Last.fm + Greasemonkey = Statistics Overload &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/just-a-test/">just a test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/reading-my-news/">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/aeropress/">Aeropress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/knowing-the-rules/">Knowing The Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/syntastic/">Syntastic</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("thomasupton", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/thomasupton" class="twitter-follow-button" data-show-count="false">Follow @thomasupton</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

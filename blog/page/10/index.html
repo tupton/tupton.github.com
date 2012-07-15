@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="Last.fm, what would I be without you? A man with a lot more hard drive space, that’s for sure. The amount of music I have come across because of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tupton.github.com/blog/page/10/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tupton.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/03/lastfm-greasemonkey-statistics-overload/">Last.fm + Greasemonkey = Statistics Overload</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-07T20:49:00-06:00" pubdate data-updated="true">Mar 7<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/109460996/"><img src="http://static.flickr.com/38/109460996_12e240678b_o.png" alt="Last.fm GM Scripts In Action" /></a></p>
+
+<p><a href="http://last.fm/">Last.fm</a>, what would I be without you?  A man with a lot more hard drive space, that’s for sure.  The amount of music I have come across because of this amazing social service is staggering.  The official iTunes count is 13837 items, 35.8 days, 56.23GB.  And, thanks to Last.fm, <a href="http://last.fm/user/tupton/">I can track how much of that I actually listen to and enjoy</a>.</p>
+
+<p>That’s the thing.  I can see my charts, and I can see my top artists.  It’s awesome.   It’s not as awesome as some people think it could be, though.  With the help of the increasingly awesome / useful Firefox extension <a href="http://greasemonkey.mozdev.org/">Greasemonkey</a>, I now have access to so many music and listening stats that I could spend hours looking at them… Not that I do that.  The image at the top of the post show’s my <a href="http://www.last.fm/user/aupton/">father’s profile</a> with all the userscripty goodness attached.  Here are the Last.fm Greasemonkey scripts that I use.</p>
+
+<p><a href="http://thomas.fiveuptons.com/gm/">Last.fm Prettifier</a> (<a href="http://www.fiveuptons.com/thomas/gm/lastfmprettifier.user.js">Right-click to install</a>)
+First up, we have my own concoction.  This script changes the links in Last.fm charts to block elements so that they take up the whole row and makes them Audioscrobbler Red (#D20039) on hover.  It’s a simple change, but it’s effective, especially with a wide screen.</p>
+
+<p><a href="http://userscripts.org/scripts/show/2365">Last.fm Percentages</a>
+This displays a percentage next to the number in all Last.fm charts.  It’s useful to see how big a chunk a certain band can take up in terms of your listening habits.  I changed the color to a more neutral grey.  My wish for this script:  Make the weekly percentages out of the total number of songs played that week, not the total number of songs played in the profile.  Also, if there was a way to extend the chart rows to always accomodate this new information, that’d be great.  Sometimes the percentages bleed over into the white of the page when the chart is too narrow.  Shouldn’t there be a way to fix this?</p>
+
+<p><a href="http://userscripts.org/scripts/show/2252">Last.fm User Statistics</a>
+This script inserts a daily / weekly / monthly average of tracks played beneath your total stats on the left side.  I modified this script to change the format of the data.  I’m averaging 68.9 tracks a day after seven months of tracking.  That includes the iPod tracks, too.  I have a life.</p>
+
+<p><a href="http://userscripts.org/scripts/show/3009">Highlight Same Artists</a>
+This awesome script highlights Top 50 artists on other profiles that you share with that particular user.  I changed the CSS to make the highlighted artists AS red and  bold so they stand out a lot more.</p>
+
+<p><a href="http://userscripts.org/scripts/show/1982">Last.fm Chart Changes</a>
+This absolutely incredible script tracks (via a <a href="http://lastfm.indiegigs.co.uk/">server-side script</a>) changes to your charts from week to week.  The relative position to last week is shown to the left of the artist, and appropriate notifications are made for new and stagnant artists.  This script is unbelievable.  Good work, <a href="http://indiegigs.co.uk/">Mr. Wilkinson</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/03/geek-tool/">Geek Tool</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-03T10:33:00-06:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://projects.tynsoe.org/en/geektool/">Geek Tool</a> (use <a href="http://www.jaw.it/pages/en/x_misc.html">JAW Software’s Tiger build</a> for OS X 10.4 or later) is a versatile tool to output different shell scripts, text, and images to your desktop.</p>
+
+<p>At first I was just using Geek Tool to output my Crash Reporter log and Console.log to the desktop so I could see if / when Quicksilver crashed silently and what my computer was doing, respectively.  I added System.log to the mix, and left it at that until I found a <a href="http://www.macosxhints.com/article.php?story=20040706234745708">rather old article on Mac OS X Hints</a> that explained how to use Geek Tool in more depth.</p>
+
+<p>In the Mac OS X Hints article, they mention an <a href="http://www.macosxhints.com/article.php?story=2004070301135736">iTunes output</a> that displays the currently playing iTunes track.  Even though I have <a href="http://quicksilver.blacktree.com/">Quicksilver</a> monitor tracks on change, I still need to press a button to see the track info.  This method seemed like an easy, low memory-usage method of always knowing what I was listening to.  Unfortunately, the information in that article left the script a bit buggy, i.e. iTunes would open right back up again as soon as the script is called, there is no output when iTunes is paused, etc.  I edited the script using bits and pieces of my own knowledge and an excellent <a href="http://www.adiumxtras.com/index.php?a=xtras&amp;xtra_id=1563">Now Playing script</a> for <a href="http://adiumx.com/">Adium</a>.  I put this script in ~/Library/Scripts/Applications/iTunes and called it every ten seconds from Geek Tool using</p>
+
+<pre><code>&lt;code&gt;osascript /path/to/scripts/iTunesName.scpt | iconv -f utf-8 -t ucs-2-internal&lt;/code&gt;
+</code></pre>
+
+<p>et voilà, the song I am listening to is on my desktop AND I can close iTunes without it opening back up again.  You can get the script I used <a href="http://thomas.fiveuptons.com/blog/wp-content/uploads/2008/04/itunesnamescpt.zip">here</a>[](http://fiveuptons.com/thomas/iTunesName.scpt.zip).</p>
+
+<p>In addition to the logs and iTunes, I display the output of</p>
+
+<pre><code>&lt;code&gt;ps xm -O %mem&lt;/code&gt;
+</code></pre>
+
+<p>truncated to just the first five processes, and the <code>cal</code> output mentioned in <a href="http://www.macosxhints.com/article.php?story=20040625094428394">this Mac OS X Hints article</a>.  I also display the contents of my Desktop and Download directories on my Powerbook’s display when I am at home on my 20” Cinema Display so that I can see what is contained in those folders when I am doing something fullscreen like watching a movie.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/02/5-easy-steps-to-keeping-some-of-your-music-on-your-laptop/">5 Easy Steps to Keeping Some of Your Music on Your Laptop</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-06T23:35:00-06:00" pubdate data-updated="true">Feb 6<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last summer, I ran out of room on my Powerbook.  I woke up to a system alert telling me that there was no more room on my boot disk, and that I needed to make room.  I deleted some files to reclaim a few megabytes, but I needed a more permanent solution.  What was taking up all of my 60GB hard drive?  <a href="http://www.last.fm/user/TUpton/">Music</a>.  I ended up buying an internal hardrive and enclosure from <a href="http://www.newegg.com/">Newegg</a>, and it has been amazing.  I moved all my music and movies over to the external drive and have loads (~20GB) of space left on my Powerbook.</p>
+
+<p>There is, however, a drawback.  If I don’t have my hard drive plugged in, then I do not have access to my music.  After some careful consideration, and some prompting from this <a href="http://ask.metafilter.com/mefi/32031">AskMeFi thread</a>, I came up with what I believe to be a solution to keeping some music on my Powerbook while simultaneously keeping a majority of my library on my external drive.  The rest of this post is based on my answer in the AskMeFi thread.</p>
+
+<p>When I unplug my external drive and open iTunes, the Music Library folder is automatically changed to ~/Music/iTunes.  Since the iTunes Library XML file is stored locally, I think iTunes automatically chooses the location of this file as its new music folder when the default is unavailable.  If I connect my external drive and restart iTunes, the folder changes back automatically.  This is the key to this whole method.</p>
+
+<p>Make sure the option to copy music to your iTunes folder and the option to keep your iTunes folder organized are both checked.  This makes it far easier to keep track of what is stored locally as opposed to what is on the external drive.</p>
+
+<p>Move all the music you want on the external drive to a directory on that drive and make that directory your iTunes folder. As I mentioned earlier, when I moved to an external drive, my iTunes library files stayed on my local drive so that when I opened iTunes I still had a listing of all my songs.</p>
+
+<p>Keep / move the music you want on your Powerbook to your internal drive, into ~/Music/iTunes.  You may have to manually tell iTunes the location of the moved music if you already had it on the external, but that’s just a sacrifice that has to be made, I’m afraid. You do this by double clicking a song in iTunes that you just moved, and then you can browse for the new file. I know of no batch method to do this procedure.  Maybe someone can come up with an Applescript that would automatically move the files to a new location <em>and</em> tell iTunes that the file had moved?</p>
+
+<p>Now, when you have your external hard drive plugged in, you’ll be able to play music as usual. When you are not plugged in to your hard drive, all your songs will be listed in the library, but only the songs that you elected to keep on your internal drive will be playable.</p>
+
+<p>If you want to put music on the external drive, make sure you’re plugged in when you rip or add music. If you want music on your Powerbook, make sure you are not plugged in when you rip your music or add it to the library.</p>
+
+<h2 id="drawbacks">Drawbacks</h2>
+
+<p>You have to tell iTunes where that locally placed music is located. That could get tedious if you want to have more than a few albums on your Powerbook’s drive.  Fortunately, iTunes is scriptable, and I’m sure that it cannot be that hard to put something together that automates this task.  Another drawback that goes hand in hand with this one is moving music <em>back</em> to the external drive when you run out of room on your local hard drive or decide that you don’t want it on there anymore.</p>
+
+<p>You have to pay attention to what drive you are adding music when adding. This shouldn’t be too hard though.</p>
+
+<h2 id="advantages">Advantages</h2>
+
+<p>This method is transparent. You shouldn’t have to do anything more than decide what drive you want to put music on.</p>
+
+<p>This is easy. There is no scripting, or advanced wishy-washy computer voodoo, and, besides having to tell iTunes where your moved music is, relatively work-free.</p>
+
+<p>I have, in the course of writing this, realized that I have done this by accident in the past: I added some downloaded tracks without being plugged in to my external hard drive, and I went for weeks before realizing that the music was playing from my internal hard drive (I realized when I started playing music and my hard drive was not turned on.)  This method works, and it works with minimal effort.</p>
+
+<p>Again, if anyone has any information or helpful comments on the state of a script to move the location of iTunes files, the sharing of that information would be greatly appreciated.</p>
+
+<p>And yes, I know that this is not exactly five step by step instructions, but hey, it got your attention didn’t it?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/02/gmail-saved-searches-improvements/">Gmail Saved Searches Improvements</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-02-02T02:07:00-06:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Persistent.info’s <a href="http://persistent.info/archives/2005/03/01/gmail-searches">Gmail Saved Searches</a> (<a href="http://persistent.info/greasemonkey/gmail.user.js">right click to install</a>) is an amazing <a href="http://greasemonkey.mozdev.org/">Greasemonkey</a> script.  It allows you to set up searches that live constantly (via a cookie) in Gmail’s sidebar, and, with the latest version, lets you save your recent searches.  This script also comes with three default searches, including a search for last week’s email.  The thing is, it’s not really a search for Last Week; it just looks at email received in the last seven days.</p>
+
+<p>I decided to fix that.  The following function is close to the end of the script, and my code changes are in emboldened red.</p>
+
+<pre><code>PersistentSearch.prototype.getRunnableQuery = function() {
+  var query = this.query;
+  if (this.isSearchModifier()) {
+    query = query.substring(2);
+  }
+  var today = new Date();
+  var yesterday = new Date(today.getTime() - ONE_DAY);
+  var oneWeekAgo = new Date(today.getTime() - (today.getDay() &lt;span class="warning"&gt;+ 7&lt;/span&gt;) * ONE_DAY);
+  &lt;span class="warning"&gt;var lastSunday = new Date(today.getTime() - (today.getDay() - 1) * ONE_DAY)&lt;/span&gt;;
+  query = query.replace(/:today/g, ":" + getDateString(today));
+  query = query.replace(/:yesterday/g, ":" + getDateString(yesterday));
+  query = query.replace(/:oneweekago/g, ":" + getDateString(oneWeekAgo) &lt;span class="warning"&gt;+ " before:" +
+  getDateString(lastSunday))&lt;/span&gt;;
+  return query;
+}
+</code></pre>
+
+<p>Since Sunday is “0” in the JS Date object, all I had to do was take (today+7) away from the (current time * ONE_DAY) in order to get the earliest Sunday, and take (today-1) from the (current time * ONE_DAY) in order to get this past Sunday.  The extra “1” is there because the <code>before:</code> search operator is exclusive, unlike the <code>after:</code> operator.  All that was left was to modify the inserted search string.  Now, the Last Week search returns all email between the past two Sundays.</p>
+
+<p>The new script is available <a href="http://fiveuptons.com/thomas/gm">here</a> (<a href="http://fiveuptons.com/thomas/gm/gmailsavedsearches.user.js">right click to install</a>.)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/01/instant-messaging-and-accessibility/">Instant Messaging and Accessibility</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-31T14:33:00-06:00" pubdate data-updated="true">Jan 31<span>st</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My Engineering Professionalism (yeah, it’s a fluff class.  We learned how to shake hands last week, and today we went over common coworker annoyances.) professor just said, “I don’t have [an instant messaging program] on my computer because I don’t like all those windows that pop up when you log in to Windows.”  What?!</p>
+
+<p>Even the dreaded AIM program can be told not to start at login, and you can suppress the Welcome window.  <a href="http://gaim.sourceforge.net/">Gaim</a> offers a great alternative, not to mention <a href="http://www.skype.com/">Skype</a>, <a href="http://www.gizmoproject.com/">Gizmo</a>, <a href="http://www.miranda-im.org/">Miranda</a>, and <a href="http://www.google.com/talk/">Google Talk</a>.</p>
+
+<p>This statement just goes to show how easy it is for users to glaze over the available options.  AIM has been so ingrained since elementary school in so many of my classmates (yes, even the ones in EE or CpE) that they don’t know about any alternatives.  Gaim is superior in almost every aspect; file transfer is available and the gaim-vv branch is scheduled to be incorporated in v2.0.  So why isn’t it more popular?</p>
+
+<h2 id="marketing">Marketing</h2>
+
+<p>There are ads for AIM all over the internet, but Gaim is spread by word of mouth alone.  Should Gaim advertise?  No, but the application needs more evangelists, it needs something more.  Maybe something similar to <a href="http://www.spreadfirefox.com/">Spread Firefox</a> could be useful in this respect.  Viral marketing definitely has a place on the internet today.</p>
+
+<h2 id="a-i-m-is-a-ingrained">A-I-M is A-Ingrained</h2>
+
+<p>Like I said above, AIM was the client I used since about the seventh grade.  AOL is what I used to connect to the internet, as did ALL of my friends.  NO ONE knew any other options, and honestly, 7 years ago, there were not too many other options.  How do we get today’s middle schoolers (believe me, they matter) familiar with their options?  Kids don’t care about open source or anything of the sort.  They want to talk to their friends, for free, EASILY.  AIM does that.  Gaim does that, better.  Gaim is just not acquired quite as easily.  Take a look at the <a href="http://gaim.sourceforge.net/">Gaim page</a>.  You have to go to <a href="http://gaim.sourceforge.net/win32/index.php">Windows Port</a> to get the latest Windows stable build, and you have to go to the <a href="http://sourceforge.net/project/showfiles.php?group_id=235&amp;package_id=253&amp;release_id=387865">download page</a> and then choose the correct “package” to download the new (and much improved) 2.0b1, then run it and install it.  With AIM, there is a <a href="http://www.aim.com/">big honking yellow button</a> that exclaims DOWNLOAD NOW! to all visitors.  Again, maybe Spread Gaim would work to better improve this, or perhaps just a redesigned download page.</p>
+
+<h2 id="gaim-is-no-easier-than-aim-and-it-looks-ugly-as-sin">“Gaim is no easier than AIM, and it looks ugly as sin”</h2>
+
+<p>It baffles me as to why no one has stepped forward and made a GUI wrapper for Gaim in the vein of <a href="http://www.adiumx.com/">Adium</a>.  Gaim IS ugly, but that doesn’t change how useful it is.  It DOES change how easily that usefulness can be taken advantage of, especially to first-time users.  No one wants to have to enable a plugin to minimize to the system tray, and no one wants to look up how to change their font.  A new, or even just redesigned, UI, either from the Gaim team or as a third party effort, would go a long way in helping instant messaging.</p>
+
+<p>I have focused a lot on Gaim in this article, but the same goes for any instant messaging progrom.  Sure, Google Talk looks good, and sure, Gizmo is infinitely easier to use, but they are all plagued by one common problem:  no one knows!</p>
+
+<p>On Thursday, when I have the recitation for this class, I’m going to try and mention Gaim to my professor after class.  Hopefully I can change this IM prejudice, one user at a time.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/01/greasemonkey-userscripts/">Greasemonkey Userscripts</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-28T04:31:00-06:00" pubdate data-updated="true">Jan 28<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Update:</strong> These scripts no longer work. Both websites have since refreshed their user interface.</p>
+
+<p>I have made available two <a href="http://greasemonkey.mozdev.org/">Greasemonkey</a> userscripts that I have authored.  They are both based on the <a href="http://www.lifehacker.com/software/geek-to-live/geek-to-live-my-favorite-greasemonkey-user-scripts-143499.php">del.icio.us Prettifier</a>, written by <a href="http://www.lifehacker.com/">Lifehacker</a> editor Gina Trapani.</p>
+
+<p><a href="http://www.flickr.com/photos/third/92012300/"><img src="http://static.flickr.com/11/92012300_b982083616_o.png" alt="Delicious Prettifier" /></a></p>
+
+<p>The <a href="http://www.fiveuptons.com/thomas/gm/deliciousprettifier.user.js">del.icio.us Prettifier</a> (right-click to install if you have Greasemonkey) changes the font, font size, and numerous link colors.  The  bookmarks themselves are highlighted much better than the default style.</p>
+
+<p><a href="http://www.flickr.com/photos/third/92012303/"><img src="http://static.flickr.com/11/92012303_9ad0ef60e7_o.png" alt="Last.fm Prettifier" /></a></p>
+
+<p>The <a href="http://www.fiveuptons.com/thomas/gm/lastfmprettifier.user.js">Last.fm Prettifier</a> (right-click to install Greasemonkey) makes chart links utilize the entire width of the chart, and highlight in Audioscrobbler red on hover.</p>
+
+<p>Enjoy!</p>
+
+<p><a href="http://thomas.fiveuptons.com/gm/">Thomas Upton’s Greasemonkey Userscripts</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/01/itunes-ministore-update/">iTunes MiniStore Update</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-19T23:30:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/88803714/"><img src="http://static.flickr.com/36/88803714_0f3e8ff2a8_o.jpg" alt="iTunes MiniStore" /></a></p>
+
+<p>So I’m a little late on posting this news, but Apple has changed the initial behavior of the <a href="http://docs.info.apple.com/article.html?artnum=303066">iTunes MiniStore</a> to better convey what the new feature does.</p>
+
+<p>While the MiniStore still transmits to Omniture, this change to an opt-in feature makes all the difference in the world.  Thank you, Apple.</p>
+
+<p>A quick response and the right thing… All from a “greedy” corporation.</p>
+
+<p>Previously: <a href="http://fiveuptons.com/thomas/blog/2006/01/itunes-602-mini-store-priv_113708372723751795.html">iTunes 6.0.2 Mini Store Privacy Concerns</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/01/google-music-search-results/">Google Music Search Results</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-19T22:07:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/88778382/"><img src="http://static.flickr.com/30/88778382_5b6e04ecbf.jpg" alt="Google Music Search Results" /></a></p>
+
+<p>I do not know how old this is, but it seems as if Google is now inserting a special header on top of their search results when you query known bands.</p>
+
+<p>I wonder if they are working to expand their <a href="http://video.google.com/">Video Store</a> into a Music Store, too?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/01/digg-vs-slashdot/">Digg vs. Slashdot</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-13T09:24:14-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.kottke.org/">Jason Kottke</a> just posted a <a href="http://www.kottke.org/06/01/digg-vs-slashdot">meaty article</a> comparing the traffic boosts from both <a href="http://www.digg.com/">Digg.com</a> and <a href="http://slashdot.org/">Slashdot.org</a> after an <a href="http://www.kottke.org/plus/50-ways-ipod/">article of his</a> was posted on both sites.</p>
+
+<p>It’s an interesting read for sure, and I especially like the fact that the link was actually months old despite the fact that it was posted as a “new” story on both sites.  It’s also interesting to me that I subscribed to <a href="http://www.kottke.org/">kottke.org</a> a day before the Slashdot posting, for reasons totally unrelated to the iPod article.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/01/front-row/">Front Row</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-13T00:17:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/85895390/"><img src="http://static.flickr.com/41/85895390_af60be2216.jpg" alt="Front Row" /></a></p>
+
+<p>Upgrading to OS X 10.4.4 broke my previous hacked installation of <a href="http://www.apple.com/imac/frontrow.html">Front Row</a>, but it turns out that only a reinstall is needed.</p>
+
+<p>Check out <a href="http://www.andrewescobar.com/frontrow">Andrew Escobar’s tutorial</a> to install it.  It involves a bit of deep-rooted changing (the Bezel Services framework, for one), but it seems to be ok.  I had to log out one final time (bringing the total to three times since starting the install) in order to watch a DVD.  Everything seems to be peachy, as it should.  You are effectively tricking your machine into thinking it has Front Row natively installed.  There is no thrown-together hack; you actually download the install package from Apple and activate it through Escobar’s Enabler.</p>
+
+<p>Check it out.  Front Row is a really neat app.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/11/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/9/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/just-a-test/">just a test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/reading-my-news/">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/aeropress/">Aeropress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/knowing-the-rules/">Knowing The Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/syntastic/">Syntastic</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("thomasupton", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/thomasupton" class="twitter-follow-button" data-show-count="false">Follow @thomasupton</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

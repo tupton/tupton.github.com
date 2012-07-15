@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Personal | Uptonian Thoughts]]></title>
+  <link href="http://tupton.github.com/blog/categories/personal/atom.xml" rel="self"/>
+  <link href="http://tupton.github.com/"/>
+  <updated>2012-07-15T15:26:31-05:00</updated>
+  <id>http://tupton.github.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New Beginnings]]></title>
+    <link href="http://tupton.github.com/blog/2009/02/new-beginnings/"/>
+    <updated>2009-02-25T22:24:10-06:00</updated>
+    <id>http://tupton.github.com/blog/2009/02/new-beginnings</id>
+    <content type="html"><![CDATA[<table>
+  <tbody>
+    <tr>
+      <td>I recently started working at [Mailtrust](http://www.mailtrust.com/ “Business Email Hosting &amp; Webmail Services</td>
+      <td>Mailtrust”) in Blacksburg, VA. Mailtrust is a division of <a href="http://www.rackspace.com/" title="Dedicated Server - Dedicated Server Hosting - Managed Dedicated Server by Rackspace">Rackspace</a>, a company that has been experiencing some astounding growth recently. One of the companies that Rackspace recently acquired is <a href="http://www.slicehost.com/" title="Slicehost - VPS Hosting">Slicehost</a>. Last week, I decided to sign up for Slicehost hosting and move my website to this new server. I also decided to buy a new domain, <strong>thomasupton.com</strong>. I spent the last week or so setting up my server just how I wanted it.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>I followed the excellent <a href="http://articles.slicehost.com/" title="Slicehost Article Repository - VPS setup, servers, Ruby on Rails, Django, PHP, DNS, Slicemanager and more">Slicehost articles</a> in order to get started. Setup is a breeze because you have total control over your server. When I screwed something up shortly after starting the setup process, I simply rebuilt and re-imaged my slice and started over.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The articles for [Ubuntu 8.10](http://www.ubuntu.com/getubuntu/download “Download Ubuntu</td>
+      <td>Ubuntu”) are presented in a useful order and detail how to set up and secure a new slice, install Apache to serve websites, and install MySQL and PHP to start getting things done.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>By far the hardest part of setting all of this up was the migration of my <a href="http://wordpress.org/" title="WordPress › Blog Tool and Publishing Platform">Wordpress</a> installation. I spent a lot of time trying to export a MySQL dump of my existing Wordpress database and import onto my slice. It turns out that <a href="http://en.blog.wordpress.com/2006/06/12/xml-import-export/" title="XML Import / Export « Blog « WordPress.com">Wordpress supports an extended XML-based format for importing and exporting</a> almost every bit of user-created content, including posts, comments, and pages. Existing URL structures are preserved, and author data can be changed to an existing author in the new installation. This was <em>much</em> easier to do than my attempt to directly import a MySQL dump.</p>
+
+<p>After I installed and migrated Wordpress, I decided that I wanted to redesign the look of the site. I wanted an article-centric design that took a minimalist approach to the extreme. What I needed was a skeleton Wordpress template that had useful, semantic markup that was easily customizable. Enter <a href="http://www.plaintxt.org/themes/sandbox/" title="Sandbox plaintxt.org">Sandbox</a>. After activating the theme, designing a layout purely in CSS was extremely easy, thanks in large part to the clear and concise HTML markup. I’m still tweaking the design here and there, and I want to add a dedicated Archives page, but I’m really happy with how the site has turned out so far.</p>
+
+<p>As I mentioned a couple of weeks ago, my interest was rekindled in <a href="http://www.tumblr.com/" title="Tumblr">Tumblr</a> after the release of version five. Tumblr supports custom domains, so I’ve moved my tumblelog to <a href="http://thisis.thomasupton.com/" title="This Is Thomas">This Is Thomas</a>.</p>
+
+<p>I’m really hoping to have more time to blog about issues and topics that I care about now that I don’t have class and homework to worry about. The site is continually undergoing changes in design and structure as I learn more about how to write and design more effectively.</p>
+
+<p>Enjoy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tumblr]]></title>
+    <link href="http://tupton.github.com/blog/2009/01/tumblr/"/>
+    <updated>2009-01-18T00:00:31-06:00</updated>
+    <id>http://tupton.github.com/blog/2009/01/tumblr</id>
+    <content type="html"><![CDATA[<p>I <a href="http://thisis.thomasupton.com/">recently started using my Tumblr tumblelog</a> a lot more.</p>
+
+<p>I created my <a href="http://www.tumblr.com/">Tumblr</a> account some time last year, like everyone else. I linked my <a href="http://delicious.com/third">Delicious feed</a> and this blog to it and promptly forgot about it. I recently realized that there are photos that <a href="http://www.flickr.com/photos/third/favorites/">I favorite on Flickr</a>, and videos that I <a href="http://www.youtube.com/profile?user=tdmupton&view;=favorites">favorite on YouTube</a> or <a href="http://vimeo.com/user214820/likes">like on Vimeo</a>, and quotes that I see on many different web pages, and chats that I have with my friends that I think other friends would enjoy, but I can’t share them in one central place and oh my goodness I’ve just described the entire reason for Tumblr’s being.</p>
+
+<p>So I added the <a href="http://www.tumblr.com/goodies">Tumblr bookmarklet</a> to my browser’s bookmark bar, and now my favorite things that I come across on the web are all located in one place.</p>
+
+<p>One of the greatest features of Tumblr is the fact that each tumblelog is connected. I can favorite a post right from its permalink, and I can <a href="http://www.kungfugrippe.com/">follow</a> <a href="http://behindtherabbit.tumblr.com/">those</a> <a href="http://lonelysandwich.com/">who</a> I <a href="http://yourmonkeycalled.com/">find</a> <a href="http://clips.43folders.com/">interesting</a>.</p>
+
+<p>I spent a lot of time over the past two days tweaking <a href="http://danny-garcia.com/">Danny Garcia’s</a> <a href="http://lightgrid.tumblr.com/">LightGrid theme</a> to my liking and in the general look and feel of my tumblelog.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Cities I've Been To, 2008]]></title>
+    <link href="http://tupton.github.com/blog/2008/12/the-cities-ive-been-to-2008/"/>
+    <updated>2008-12-29T17:18:27-06:00</updated>
+    <id>http://tupton.github.com/blog/2008/12/the-cities-ive-been-to-2008</id>
+    <content type="html"><![CDATA[<p>Inspired by <a href="http://www.kottke.org/08/12/my-year-in-cities-2008">Jason Kottke</a>, a list of the cities I visited in 2008.</p>
+
+<ul>
+  <li>Columbia, MD</li>
+  <li>Madrid, Spain</li>
+  <li>Vera, Spain</li>
+  <li>Seville, Spain</li>
+  <li>Granada, Spain</li>
+  <li>Frederick, MD</li>
+  <li>Fall’s Church, VA</li>
+  <li>Harrogate, England</li>
+  <li>Kitty Hawk, NC</li>
+  <li>Brick, NJ</li>
+  <li>Oak Ridge, NC</li>
+  <li>Blacksburg, VA</li>
+</ul>
+
+<p>I spent one or more nights in each of these cities. I went to <a href="http://www.flickr.com/photos/third/collections/72157604079408262/">Spain for spring break</a>, and visited family in England over the summer. I stayed at a friend’s house in Columbia before the Spain trip and in Frederick after. I saw <a href="http://www.last.fm/event/514337">Kate Nash in Washington, DC</a> and stayed with a friend in Fall’s Church, after which I visited a friend in Brick just for fun. My family and I went on a vacation to the beach in Kitty Hawk. My family lives in Oak Ridge, and I live in Blacksburg.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Blogwatch]]></title>
+    <link href="http://tupton.github.com/blog/2008/04/blogwatch/"/>
+    <updated>2008-04-16T22:54:56-05:00</updated>
+    <id>http://tupton.github.com/blog/2008/04/blogwatch</id>
+    <content type="html"><![CDATA[<p>A couple of my friends have blogs, too.</p>
+
+<ul>
+  <li><a href="http://blog.emerick.org/">Jason Emerick</a> is currently working on an <a href="http://www.rememberthemilk.com/">RTM</a> <a href="http://code.google.com/p/rtm4bb/">app for the Blackberry</a>, and has some interesting ideas for future projects. He also likes hockey.</li>
+  <li><a href="http://hokietux.net/">Ben Hilburn</a> finally got himself a domain and <a href="http://hokietux.net/blog">has started a blog</a>. Keep a look out for some Linux love and some anecdote about him ploughing your girlfriend last night.</li>
+</ul>
+
+<p>You should read them.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[One Year]]></title>
+    <link href="http://tupton.github.com/blog/2008/04/two-years/"/>
+    <updated>2008-04-15T23:18:17-05:00</updated>
+    <id>http://tupton.github.com/blog/2008/04/two-years</id>
+    <content type="html"><![CDATA[<p>It’s been <a href="http://www.vt.edu/remember/">one year</a>.</p>
+
+<p>I will always remember.</p>
+]]></content>
+  </entry>
+  
+</feed>
