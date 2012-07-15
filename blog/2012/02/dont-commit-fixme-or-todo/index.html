@@ -9,8 +9,7 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="&lt;code data-language="php"&gt;
-function getObject($id) { $object = null; // TODO Do we need to validate username? $objects = $this-&gt;db-&gt; &hellip;">
+  <meta name="description" content="function getObject($id) { $object = null; // TODO Do we need to validate username? $objects = $this-&gt;db-&gt;retrieveForUsername($this-&gt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -29,6 +28,9 @@ function getObject($id) { $object = null; // TODO Do we need to validate usernam
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<script src="/javascripts/rainbow.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/custom/github.css"></script>
 
   
 
@@ -89,7 +91,8 @@ function getObject($id) { $object = null; // TODO Do we need to validate usernam
   </header>
 
 
-<div class="entry-content"><pre><code>&lt;code data-language="php"&gt;
+<div class="entry-content"><pre>
+<code data-language="php">
 function getObject($id) {
     $object = null;
         
@@ -106,8 +109,8 @@ function getObject($id) {
         
     return $object;
 }
-&lt;/code&gt;
-</code></pre>
+</code>
+</pre>
 
 <p>This shouldn’t happen. I’m not talking about the comically bad code – it’s a contrived example, but it proves the point – but about the little “notes” left by whoever committed this.</p>
 

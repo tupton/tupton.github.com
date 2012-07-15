@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Webapps | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/webapps/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-15T15:26:31-05:00</updated>
+  <updated>2012-07-15T17:05:46-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -87,11 +87,12 @@
     <id>http://tupton.github.com/blog/2012/03/the-handle-pattern</id>
     <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
 
-<pre><code>&lt;code data-language="javascript"&gt;
+<pre>
+<code data-language="javascript">
 var subscriber = (function() {
-	
+    
     var _listeners = {};
-	    
+        
     var s = {
         // Listen to a channel and call a callback when that channel fires
         listen: function(channel, cb) {
@@ -119,7 +120,7 @@ var subscriber = (function() {
     
     return s;
 })();
-	
+    
 var h = subscriber.listen('update', function() {
     console.log('The update event was fired!');
 });
@@ -129,8 +130,8 @@ subscriber.publish('update'); // &gt; "The update event was fired!"
 h.unlisten();
     
 subscriber.publish('update'); // &gt; &lt;no output&gt;
-&lt;/code&gt;
-</code></pre>
+</code>
+</pre>
 
 <p>When you have an event-driven application, like a Javascript app that performs actions based on user interaction or based on back end “pushes” to a listening front end, you often have a central “publisher” that handles firing events when certain actions occur. It makes sense to have a static <code>listen</code> function that takes a “channel” and a callback function to call when that channel gets updated. The problem comes when you have to decide how to <em>stop</em> listening to that channel. If you go with a static <code>unlisten</code> function on the publisher with the same signature as <code>listen</code> (the channel and callback), you need to keep track of which callback is listening to which channel, and it can get messy.</p>
 
