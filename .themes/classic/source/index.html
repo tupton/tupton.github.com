@@ -1,29 +1,47 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head profile="http://gmpg.org/xfn/11">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<div class="blog-index">
-  {% assign index = true %}
-  {% for post in paginator.posts %}
-  {% assign content = post.content %}
-    <article>
-      {% include article.html %}
-    </article>
-  {% endfor %}
-  <div class="pagination">
-    {% if paginator.next_page %}
-      <a class="prev" href="{{paginator.next_page}}">&larr; Older</a>
-    {% endif %}
-    <a href="/blog/archives">Blog Archives</a>
-    {% if paginator.previous_page %}
-    <a class="next" href="{{paginator.previous_page}}">Newer &rarr;</a>
-    {% endif %}
-  </div>
-</div>
-<aside class="sidebar">
-  {% if site.blog_index_asides.size %}
-    {% include_array blog_index_asides %}
-  {% else %}
-    {% include_array default_asides %}
-  {% endif %}
-</aside>
+        <title>Thomas Upton</title>
+
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css">
+        <link rel="stylesheet" type="text/css" href="stylesheets/custom/home.css" media="screen" />
+        <link rel="icon" type="image/png" href="favicon_uptonian-thoughts_white.png" />
+
+        <meta name="keywords" content="thomas upton, tom upton, thomas, tom, upton, thomasupton, tomupton, tupton, tdmupton, third, development, programming, software, music, writing, design" />
+        <meta name="description" content="Thomas Upton's personal website is a hub of his development, writing, and design work, including links to his profiles on various media sites." />
+
+        <script src="/mint/?js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="page">
+            <div id="circle">U</div>
+            <div id="description">
+                <p>
+                    I&#8217;m Thomas Upton. I <a href="blog/" id="blog">write about code, music, and other things on my blog</a>,
+                    and I <a href="http://github.com/tupton" id="code">write code for a living and for fun</a>.
+                    You can <a href="http://twitter.com/thomasupton/" id="twitter">follow what I do on Twitter</a>
+                    or check out <a href="http://last.fm/user/tupton/" id="lastfm">some of the music I listen to on Last.fm</a>.
+                    Sometimes you can find some <a href="http://flickr.com/photos/third/" id="flickr">photographs
+                    on my Flickr profile</a>. I <a href="http://thisis.thomasupton.com/" id="tumblr">keep a tumblelog with Tumblr</a>
+                    and I <a href="http://pinboard.in/u:tupton" id="pinboard">bookmark some interesting things on Pinboard</a>.
+                    Here are some <a href="unplayed" id="unplayed">games that I am playing</a>.
+                    You can read more <a href="http://about.me/thomasupton/" id="aboutme">about me</a>.
+                </p>
+            </div>
+        </div>
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-332267-2']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+    </body>
+</html>
+
