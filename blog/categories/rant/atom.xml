@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rant | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/rant/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T00:01:59-05:00</updated>
+  <updated>2012-07-19T14:26:52-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -18,26 +18,25 @@
     <link href="http://tupton.github.com/blog/2012/02/dont-commit-fixme-or-todo/"/>
     <updated>2012-02-24T12:41:13-06:00</updated>
     <id>http://tupton.github.com/blog/2012/02/dont-commit-fixme-or-todo</id>
-    <content type="html"><![CDATA[<pre>
-<code data-language="php">
-function getObject($id) {
-    $object = null;
-        
-    // TODO Do we need to validate username?
-    $objects = $this-&gt;db-&gt;retrieveForUsername($this-&gt;username);
-        
-    // FIXME Write `retrieveForIdAndUsername` instead of iterating here
-    foreach ($objects as $o) {
-        if ($o-&gt;id() == $id) {
-            $object = $o;
-            break;
-        }
+    <content type="html"><![CDATA[<p>``` php
+&lt;?php</p>
+
+<p>function getObject($id) {
+    $object = null;</p>
+
+<pre><code>// TODO Do we need to validate username?
+$objects = $this-&gt;db-&gt;retrieveForUsername($this-&gt;username);
+    
+// FIXME Write `retrieveForIdAndUsername` instead of iterating here
+foreach ($objects as $o) {
+    if ($o-&gt;id() == $id) {
+        $object = $o;
+        break;
     }
-        
-    return $object;
 }
-</code>
-</pre>
+    
+return $object; } ```
+</code></pre>
 
 <p>This shouldn’t happen. I’m not talking about the comically bad code – it’s a contrived example, but it proves the point – but about the little “notes” left by whoever committed this.</p>
 

@@ -21,11 +21,9 @@
   <link rel="canonical" href="http://tupton.github.com/blog/2010/12/automated-backups-with-tarsnap/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/custom/github.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <script src="/javascripts/rainbow.min.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -99,14 +97,15 @@
 
 <p>I found <a href="http://jonathanstreet.com/blog/setting-up-backups-with-tarsnap">a blog post by Jonathan Street</a> that detailed his automated backups, and that served as inspiration for my system. I wrote a little bash script to wrap <code>tarsnap</code> for my purposes:</p>
 
-<pre>
-<code data-language="shell">
-#! /bin/bash
-echo `date +%F\ %T`: Beginning back up of $2
-/usr/local/bin/tarsnap -c -f $1-`date +%F` $2
-echo `date +%F\ %T`: Completed back up of $2
-</code>
-</pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /bin/bash</span>
+</span><span class="line"><span class="nb">echo</span> <span class="sb">`</span>date +%F<span class="se">\ </span>%T<span class="sb">`</span>: Beginning back up of <span class="nv">$2</span>
+</span><span class="line">/usr/local/bin/tarsnap -c -f <span class="nv">$1</span>-<span class="sb">`</span>date +%F<span class="sb">`</span> <span class="nv">$2</span>
+</span><span class="line"><span class="nb">echo</span> <span class="sb">`</span>date +%F<span class="se">\ </span>%T<span class="sb">`</span>: Completed back up of <span class="nv">$2</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Calling <code>tarsnap-backup.sh  </code> tells tarsnap to create an archive  of the specified directory with the given name and the current date. I was in business.</p>
 
@@ -114,11 +113,9 @@ echo `date +%F\ %T`: Completed back up of $2
 
 <p>An aside: Jonathan Street’s blog post mentioned creating a new key that only had permission to read and write archives. I initially did the same thing, but for reasons I’ll get into later, I wanted the ability to delete backups, too. Generating a new key was extremely easy:</p>
 
-<pre>
-<code data-language="shell">
-$ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
-</code>
-</pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>This creates a new key in <code>/root/</code> called <code>tarsnap-rw.key</code> that only has read and write permission.</p>
 
@@ -131,7 +128,7 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 <p>I made a configuration called <code>user.conf</code> in <code>/etc/newsyslog.d/</code> and put my tarsnap logs inside. I decided to use a distinct log for each automated backup I do, as opposed to a single tarsnap log. I still haven’t decided if this is the right way to go, but I do like being able to quickly see the result of the last backup. My <code>user.conf</code> looks like the following.</p>
 
 <pre><code>/var/log/tarsnap-backup-code.log                        640     5       1000    *       Z
-/var/log/tarsnap-backup-documents.log                   640     5       1000    *       Z 
+/var/log/tarsnap-backup-documents.log                   640     5       1000    *       Z
 </code></pre>
 
 <p>This configuration tells <code>newsyslog</code> to gzip, roll to a new log once the current log exceeds 1MB in size, and keep at most five old logs.</p>
@@ -149,42 +146,71 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 
 <p>Since I wanted these backups to run whenever possible, I decided to put my <code>launchd</code> backup configurations in <code>/Library/LaunchDameons</code> instead of <code>/Library/LaunchAgents</code>. LaunchDaemons are able to run without a logged-in user; this is exactly what I wanted. The <code>launchd</code> configuration for my <code>code</code> backup looks like the following:</p>
 
-<pre>    
-<code data-language="html">
-<?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version=&quot;1.0&quot;&gt;
-&lt;dict&gt;
-    &lt;key&gt;Label&lt;/key&gt;
-    &lt;string&gt;com.thomasupton.backup-daily-code&lt;/string&gt;
-    &lt;key&gt;ProgramArguments&lt;/key&gt;
-    &lt;array&gt; 
-        &lt;string&gt;/usr/local/bin/tarsnap-backup&lt;/string&gt;
-        &lt;string&gt;code&lt;/string&gt;
-        &lt;string&gt;/Users/thomas/code&lt;/string&gt;
-    &lt;/array&gt;
-    &lt;key&gt;GroupName&lt;/key&gt;
-    &lt;string&gt;wheel&lt;/string&gt;
-    &lt;key&gt;UserName&lt;/key&gt;
-    &lt;string&gt;root&lt;/string&gt;
-    &lt;key&gt;Nice&lt;/key&gt;
-    &lt;integer&gt;1&lt;/integer&gt;
-    &lt;key&gt;StandardErrorPath&lt;/key&gt;
-    &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-    &lt;key&gt;StandardOutPath&lt;/key&gt;
-    &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-    &lt;key&gt;StartCalendarInterval&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;Hour&lt;/key&gt;
-        &lt;integer&gt;5&lt;/integer&gt;
-        &lt;key&gt;Minute&lt;/key&gt;
-        &lt;integer&gt;0&lt;/integer&gt;
-    &lt;/dict&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;
-</code>
-</pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class="line"><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;</span>
+</span><span class="line"><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+</span><span class="line"><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;dict&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;string&gt;</span>com.thomasupton.backup-daily-code<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;array&gt;</span>
+</span><span class="line">        <span class="nt">&lt;string&gt;</span>/usr/local/bin/tarsnap-backup<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">        <span class="nt">&lt;string&gt;</span>code<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">        <span class="nt">&lt;string&gt;</span>/Users/thomas/code<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/array&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>GroupName<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;string&gt;</span>wheel<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>UserName<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;string&gt;</span>root<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>Nice<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;integer&gt;</span>1<span class="nt">&lt;/integer&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>StandardErrorPath<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;string&gt;</span>/var/log/tarsnap-backup-code.log<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>StandardOutPath<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;string&gt;</span>/var/log/tarsnap-backup-code.log<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>StartCalendarInterval<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;dict&gt;</span>
+</span><span class="line">        <span class="nt">&lt;key&gt;</span>Hour<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">        <span class="nt">&lt;integer&gt;</span>5<span class="nt">&lt;/integer&gt;</span>
+</span><span class="line">        <span class="nt">&lt;key&gt;</span>Minute<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">        <span class="nt">&lt;integer&gt;</span>0<span class="nt">&lt;/integer&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/dict&gt;</span>
+</span><span class="line"><span class="nt">&lt;/dict&gt;</span>
+</span><span class="line"><span class="nt">&lt;/plist&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The <code>ProgramArguments</code> section is exactly how I called the backup script from <code>cron</code>. The <code>UserName</code> and <code>GroupName</code> keys are important: they tell <code>launchd</code> to run the backup script as root, which, as I mentioned before, is necessary for using <code>tarsnap</code> and for appending to the log file. The <code>StandardErrorPath</code> and <code>StandardOutPath</code> keys tell <code>launchd</code> to redirect output to the proper log file. The <code>StartCalendarInterval</code> tells <code>launchd</code> to run this script at 5am daily.</p>
 
@@ -196,14 +222,15 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 
 <p>I added the following lines to my <code>tarsnap-backup.sh</code> script.</p>
 
-<pre>
-<code data-language="shell">
-# Remove the backup from three days previous, if there is one
-echo `date +%F\ %T`: Removing backup of $2 from `date -v-3d +%F`
-/usr/local/bin/tarsnap -d -f $1-`date -v-3d +%F`
-echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
-</code>
-</pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># Remove the backup from three days previous, if there is one</span>
+</span><span class="line"><span class="nb">echo</span> <span class="sb">`</span>date +%F<span class="se">\ </span>%T<span class="sb">`</span>: Removing backup of <span class="nv">$2</span> from <span class="sb">`</span>date -v-3d +%F<span class="sb">`</span>
+</span><span class="line">/usr/local/bin/tarsnap -d -f <span class="nv">$1</span>-<span class="sb">`</span>date -v-3d +%F<span class="sb">`</span>
+</span><span class="line"><span class="nb">echo</span> <span class="sb">`</span>date +%F<span class="se">\ </span>%T<span class="sb">`</span>: Completed removing backup of <span class="nv">$2</span> from <span class="sb">`</span>date -v-3d +%F<span class="sb">`</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The key to this is the date in the archive name passed to <code>tarsnap -d</code>. <code>date -v</code> lets you add a value to the date output, so <code>-v-3d</code> outputs the date from three days previous. Now, every scheduled backup attempts to delete the archive from three days ago in addition to creating a backup for the current day. Of course, if a backup is missed, this can lead to an accumulation of old archives. This is where the log files come in handy: I can just inspect the logs every couple of days to see what successfully ran and manually prune the archive list if necessary.</p>
 

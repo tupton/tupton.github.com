@@ -21,11 +21,9 @@
   <link rel="canonical" href="http://tupton.github.com/blog/2009/09/i-love-weather/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/custom/github.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <script src="/javascripts/rainbow.min.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -103,29 +101,61 @@
 
 <p>Before we start creating a <code>launchd</code> item, we need the script for the item to run. I have provided a bash script version of Gato’s’ image-grabbing command. I added a fifteen second timeout argument to the initial <code>curl</code> call; this prevents long timeouts for those times that you are without a network connection. You will also need to replace the URL at the end of line three of the script with your weather forecast URL. Simply go to the <a href="http://weather.yahoo.com/">Yahoo! weather page</a> and put in your zip or location code in order to retrieve your weather page, then paste that page’s URL into the script. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2009/09/get_weather_image.sh.zip">download the script here</a>.</p>
 
-<pre><code>#! /bin/bash
-
-/usr/bin/curl --connect-timeout 15 --silent "http://weather.yahoo.com/united-states/virginia/blacksburg-2365044/" |
-/usr/bin/grep "forecast-icon" |
-/usr/bin/sed "s/.*background\:url(\'\(.*\)\')\;\ _background.*/\1/" |
-/usr/bin/xargs curl --silent -o /tmp/weather.png
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /bin/bash</span>
+</span><span class="line">
+</span><span class="line">/usr/bin/curl --connect-timeout 15 --silent <span class="s2">&quot;http://weather.yahoo.com/united-states/virginia/blacksburg-2365044/&quot;</span> |
+</span><span class="line">/usr/bin/grep <span class="s2">&quot;forecast-icon&quot;</span> |
+</span><span class="line">/usr/bin/sed <span class="s2">&quot;s/.*background\:url(\&#39;\(.*\)\&#39;)\;\ _background.*/\1/&quot;</span> |
+</span><span class="line">/usr/bin/xargs curl --silent -o /tmp/weather.png
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Now we can create the property list that will launch our image-grabbing script. <code>launchd</code> works by parsing a particular format of property list file. The man page for <a href="x-man-page://launchd.plist"><code>launchd.plist</code></a> is very extensive and contains documentation on the entries that are allowed in a <code>launchd</code> item. If that is all a bit too dense, I will walk through the creation of a simple <code>launchd</code> item with the bare minimum of properties needed to launch our script.</p>
 
 <p>Open Property List Editor.app and create a new item by clicking <strong>Add Item</strong> in the toolbar. In the <strong>Key</strong> column, type <code>Label</code>. The default <strong>Type</strong> is <em>string</em>, so type a label identifier in the <strong>Value</strong> column. I used <code>com.thomasupton.fetchweatherimage</code>. You can use whatever you like. Next, add another item and this time switch its <strong>Type</strong> to <em>boolean</em>. Type <code>KeepAlive</code> as the <strong>Key</strong> and don’t check the check box to leave its value as <code>false</code>. Add another <em>number</em> item called <code>StartInterval</code> and give it a value of <code>600</code>. Finally, add an <em>array</em> item called <code>ProgramArguments</code>. Add a child to this array (just click the <strong>Add Item</strong> button with the <code>Program Arguments</code> node selected) and give it a value of <code>/bin/bash</code>. Add a second child and give it a value of <code>/absolute/path/to/script/get_weather_image.sh</code>, with the <em>absolute</em> path to where you saved the script. I have pasted the XML contents of the file here, and you can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2009/09/com.thomasupton.fetchweatherimage.plist">download the property list file here</a>. You can open the property list with a text editor to edit the contents if you do not have the Property List Editor installed.</p>
 
-<pre><code>	Label
-	com.thomasupton.fetchweatherimage
-	KeepAlive
-	
-	StartInterval
-	600
-	ProgramArguments
-	
-		/bin/bash
-		/Users/thomasupton/code/script/get_weather_image.sh
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class="line"><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
+</span><span class="line"><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+</span><span class="line"><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;dict&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;string&gt;</span>com.thomasupton.fetchweatherimage<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>KeepAlive<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;false/&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>StartInterval<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;integer&gt;</span>600<span class="nt">&lt;/integer&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;array&gt;</span>
+</span><span class="line">        <span class="nt">&lt;string&gt;</span>/bin/bash<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">        <span class="nt">&lt;string&gt;</span>/Users/thomasupton/code/script/get_weather_image.sh<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/array&gt;</span>
+</span><span class="line"><span class="nt">&lt;/dict&gt;</span>
+</span><span class="line"><span class="nt">&lt;/plist&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>What we have just created is a <code>launchd</code> item that will only start on demand every 600 seconds and run our script to grab the weather image. Save the property list to <code>~/Library/LaunchAgents</code> and give it a name like <em>com.thomasupton.fetchweatherimage.plist</em>. Open Terminal.app and type the following command to load our new <code>launchd</code> item, replacing the name of the script with the file name that you saved your property list as.</p>
 

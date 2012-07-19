@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Webapps | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/webapps/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T00:01:59-05:00</updated>
+  <updated>2012-07-19T14:26:52-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -87,51 +87,49 @@
     <id>http://tupton.github.com/blog/2012/03/the-handle-pattern</id>
     <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
 
-<pre>
-<code data-language="javascript">
-var subscriber = (function() {
+<p>``` javascript
+var subscriber = (function() {</p>
+
+<pre><code>var _listeners = {};
     
-    var _listeners = {};
+var s = {
+    // Listen to a channel and call a callback when that channel fires
+    listen: function(channel, cb) {
+        // Add the callback to the list of listeners on the given channel
+        _listeners[channel] = _listeners[channel] || [];
+        _listeners[channel].push(cb);
         
-    var s = {
-        // Listen to a channel and call a callback when that channel fires
-        listen: function(channel, cb) {
-            // Add the callback to the list of listeners on the given channel
-            _listeners[channel] = _listeners[channel] || [];
-            _listeners[channel].push(cb);
-            
-            return {
-                // Return an object that can be used to remove the callback from the channel
-                unlisten: function() {
-                    // Remove the callback from the list of listeners on that channel
-                    _listeners[channel].splice(_listeners[channel].indexOf(cb), 1);
-                }
+        return {
+            // Return an object that can be used to remove the callback from the channel
+            unlisten: function() {
+                // Remove the callback from the list of listeners on that channel
+                _listeners[channel].splice(_listeners[channel].indexOf(cb), 1);
             }
-        },
-        
-        // Manually fire events on a given channel.
-        publish: function(channel) {
-            _listeners[channel] = _listeners[channel] || [];
-            _listeners[channel].forEach(function(cb) {
-                cb();
-            });
         }
-    };
+    },
     
-    return s;
-})();
-    
-var h = subscriber.listen('update', function() {
-    console.log('The update event was fired!');
-});
+    // Manually fire events on a given channel.
+    publish: function(channel) {
+        _listeners[channel] = _listeners[channel] || [];
+        _listeners[channel].forEach(function(cb) {
+            cb();
+        });
+    }
+};
 
-subscriber.publish('update'); // &gt; "The update event was fired!"
+return s; })();
+</code></pre>
 
-h.unlisten();
-    
-subscriber.publish('update'); // &gt; &lt;no output&gt;
-</code>
-</pre>
+<p>var h = subscriber.listen(‘update’, function() {
+    console.log(‘The update event was fired!’);
+});</p>
+
+<p>subscriber.publish(‘update’); // &gt; “The update event was fired!”</p>
+
+<p>h.unlisten();</p>
+
+<p>subscriber.publish(‘update’); // &gt; <no output="">
+```</no></p>
 
 <p>When you have an event-driven application, like a Javascript app that performs actions based on user interaction or based on back end “pushes” to a listening front end, you often have a central “publisher” that handles firing events when certain actions occur. It makes sense to have a static <code>listen</code> function that takes a “channel” and a callback function to call when that channel gets updated. The problem comes when you have to decide how to <em>stop</em> listening to that channel. If you go with a static <code>unlisten</code> function on the publisher with the same signature as <code>listen</code> (the channel and callback), you need to keep track of which callback is listening to which channel, and it can get messy.</p>
 

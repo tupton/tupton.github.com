@@ -21,11 +21,9 @@
   <link rel="canonical" href="http://tupton.github.com/blog/page/5/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/custom/github.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <script src="/javascripts/rainbow.min.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -154,7 +152,7 @@
   </header>
 
 
-  <div class="entry-content"><p>[caption id=”attachment_232” align=”alignnone” width=”600” caption=”My Shelfari profile”]<img src="http://www.thomasupton.com/wp/wp-content/uploads/2008/12/shelfari-profile.png" alt="My Shelfari profile" />[/caption]</p>
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/wp/wp-content/uploads/2008/12/shelfari-profile.png" alt="My Shelfari profile" title="My Shelfari profile" /></p>
 
 <p>I recently joined <a href="http://www.shelfari.com/">Shelfari</a>, which my dad described to me as <a href="http://www.last.fm/">Last.fm</a> for books. Your profile consists of your shelf, to which you can add books that you have read, are currently reading, or plan to read. You can search for any book by title, author, ISBN, and other attributes.</p>
 
@@ -209,19 +207,10 @@
 <em><a href="http://amazon.com/dp/B00005YTRR" title="Amazon.com: The Illusion of Safety: Thrice: Music">The Illusion of Safety</a></em> opens with a quiet but frantically discordant guitar. The song swells, and Dustin Kensrue ironically begs for his life to end in order to escape the violence of this world. The sad state of the world and its inhabitants is a theme that runs throughout this album, manifesting itself as commentary on friendship in <em><a href="http://www.last.fm/music/Thrice/_/Trust" title="Thrice - Trust  - Listen free at Last.fm">Trust</a></em> and <em><a href="http://www.last.fm/music/Thrice/_/The+Beltsville+Crucible" title="Thrice - The Beltsville Crucible  - Listen free at Last.fm">The Beltsville Crucible</a></em>, or a lament concerning the decay of morals in <em><a href="http://www.last.fm/music/Thrice/_/A+Subtle+Dagger" title="Thrice - A Subtle Dagger  - Listen free at Last.fm">A Subtle Dagger</a></em>. Sings Kensrue:</p>
 
 <blockquote>
-  <p>We extend our</p>
-</blockquote>
-
-<blockquote>
-  <p>claws to grasp at shadows of the</p>
-</blockquote>
-
-<blockquote>
-  <p>ideals we have,</p>
-</blockquote>
-
-<blockquote>
-  <p>lost causalities of a subtle dagger</p>
+  <p>We extend our
+claws to grasp at shadows of the
+ideals we have,
+lost causalities of a subtle dagger</p>
 </blockquote>
 
 <p>The songs never lose their intensity but the order in which they are presented to the listener shows their dynamic. The minor chord solos of <em><a href="http://www.last.fm/music/Thrice/_/A+Subtle+Dagger" title="Thrice - A Subtle Dagger  - Listen free at Last.fm">A Subtle Dagger</a></em> give way to almost poppy rhythms in <em><a href="http://www.last.fm/music/Thrice/_/See+You+in+the+Shallows" title="Thrice – See You in the Shallows  - Listen free at Last.fm">See You In The Shallows</a></em>. The 6/8 waltz feel of <em><a href="http://www.last.fm/music/Thrice/_/Trust" title="Thrice - Trust  - Listen free at Last.fm">Trust</a></em> gives way to brutal breakdowns in <em><a href="http://www.last.fm/music/Thrice/_/To+Awake+and+Avenge+the+Dead" title="Thrice - To Awake and Avenge the Dead - Listen free at Last.fm">To Awake and Avenge the Dead</a></em>. The songs can be brutal, but they all have an underlying passion that shines through the riffs and lyrics.</p>
@@ -270,65 +259,173 @@
 
 <p>I also enabled <a href="http://en.gravatar.com/">Gravatars</a> and have highlighted my own comments when I make them. I have posted the comment loop and the relevant comment CSS in case anyone else wants to use this idea.</p>
 
-<p>This is the comment loop in comments.php. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/04/comment-snippetphp.zip">download it as a PHP snippet</a>.</p>
+<p>This is the comment loop in comments.php.</p>
 
-<ol>
-  <li>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+</pre></td><td class="code"><pre><code class="php"><span class="line"><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$comments</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    &lt;ol id=&quot;comments&quot;&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$comments</span> <span class="k">as</span> <span class="nv">$comment</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">        &lt;li id=&quot;comment-</span><span class="cp">&lt;?php</span> <span class="nx">comment_ID</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x">&quot; class=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">get_comment_author_email</span><span class="p">()</span> <span class="o">==</span> <span class="nx">get_the_author_email</span><span class="p">()</span> <span class="o">?</span> <span class="s1">&#39; blog-author&#39;</span> <span class="o">:</span> <span class="nv">$oddcomment</span> <span class="cp">?&gt;</span><span class="x">&quot;&gt;</span>
+</span><span class="line"><span class="x">            &lt;cite&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;author&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="nx">comment_author_link</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x">&lt;/span&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;date&quot;&gt;&lt;a href=&quot;#comment-</span><span class="cp">&lt;?php</span> <span class="nx">comment_ID</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x">&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="nx">comment_date</span><span class="p">(</span> <span class="nv">$hemingway</span><span class="o">-&gt;</span><span class="na">date_format</span><span class="p">()</span> <span class="o">.</span> <span class="s1">&#39;.y&#39;</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="x"> / </span><span class="cp">&lt;?php</span> <span class="nx">comment_date</span><span class="p">(</span><span class="s1">&#39;H.i&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/a&gt;&lt;/span&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;gravatar&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">get_avatar</span><span class="p">(</span> <span class="nv">$comment</span><span class="p">,</span> <span class="nv">$size</span> <span class="o">=</span> <span class="s1">&#39;80&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="x">&lt;/span&gt;</span>
+</span><span class="line"><span class="x">            &lt;/cite&gt;</span>
+</span><span class="line"><span class="x">            &lt;div class=&quot;content&quot;&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;number&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$i</span> <span class="cp">?&gt;</span><span class="x">&lt;/span&gt;</span>
+</span><span class="line"><span class="x">                </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">comment_approved</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">                &lt;em&gt;Your comment is awaiting moderation.&lt;/em&gt;</span>
+</span><span class="line"><span class="x">                </span><span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">                </span><span class="cp">&lt;?php</span> <span class="nx">comment_text</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">            &lt;/div&gt;</span>
+</span><span class="line"><span class="x">            &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</span>
+</span><span class="line"><span class="x">        &lt;/li&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x">        </span><span class="cp">&lt;?php</span> <span class="nv">$i</span><span class="o">++</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="cm">/* Changes every other comment to a different class */</span>
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;alt&#39;</span> <span class="o">==</span> <span class="nv">$oddcomment</span><span class="p">)</span> <span class="nv">$oddcomment</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class="line">        <span class="k">else</span> <span class="nv">$oddcomment</span> <span class="o">=</span> <span class="s1">&#39;alt&#39;</span><span class="p">;</span>
+</span><span class="line">    <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cm">/* end for each comment */</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    &lt;/ol&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x"> </span><span class="cp">&lt;?php</span> <span class="k">else</span> <span class="o">:</span> <span class="c1">// this is displayed if there are no comments so far ?&gt;</span>
+</span><span class="line">
+</span><span class="line">  <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;open&#39;</span> <span class="o">==</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">comment_status</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">        &lt;!-- If comments are open, but there are no comments. --&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x">     </span><span class="cp">&lt;?php</span> <span class="k">else</span> <span class="o">:</span> <span class="c1">// comments are closed ?&gt;</span>
+</span><span class="line">        <span class="o">&lt;!--</span> <span class="k">If</span> <span class="nx">comments</span> <span class="nx">are</span> <span class="nx">closed</span><span class="o">.</span> <span class="o">--&gt;</span>
+</span><span class="line">        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;nocomments&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span> <span class="nx">are</span> <span class="nx">closed</span><span class="o">.&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-    <pre><code>			date_format() . '.y' ) ?&gt; / 
-				
-			
-			
+<p>This is the CSS section for my comments.</p>
 
-
-				
-			comment_approved == '0') : ?&gt;
-			_Your comment is awaiting moderation._
-</code></pre>
-
-    <p>comment_status) : ?&gt;</p>
-  </li>
-</ol>
-
-<p>Comments are closed.</p>
-
-<p>This is the CSS section for my comments. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/04/comment-snippet.css">download it as a CSS snippet</a>.</p>
-
-<pre><code>/* Comments */
-ol#comments li .content span.number {
-	position: relative;
-	top: 0px;
-	left: 0px;
-	font-size: 10em;
-	color: #c7c7c7;
-	float: right;
-}
-
-ol#comments li {
-	padding: 10px 0;
-}
-
-ol#comments li.blog-author {
-	background-color: #ddd;
-}
-
-ol#comments li.alt .content {
-	background-color: #ddd;
-}
-
-ol#comments li cite span.date a {
-	text-decoration: none;
-}
-
-ol#comments li cite span.gravatar {
-	margin-top: 13px;
-}
-
-ol#comments li cite span.gravatar img {
-	padding: 3px;
-	border: 1px solid #ccc;
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="c">/* Comments */</span>
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nc">.content</span> <span class="nt">span</span><span class="nc">.number</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+</span><span class="line">	<span class="k">top</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+</span><span class="line">	<span class="k">left</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+</span><span class="line">	<span class="k">font-size</span><span class="o">:</span> <span class="m">10em</span><span class="p">;</span>
+</span><span class="line">	<span class="k">color</span><span class="o">:</span> <span class="m">#c7c7c7</span><span class="p">;</span>
+</span><span class="line">	<span class="k">float</span><span class="o">:</span> <span class="k">right</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">padding</span><span class="o">:</span> <span class="m">10px</span> <span class="m">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span><span class="nc">.blog-author</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">background-color</span><span class="o">:</span> <span class="m">#ddd</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span><span class="nc">.alt</span> <span class="nc">.content</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">background-color</span><span class="o">:</span> <span class="m">#ddd</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nt">cite</span> <span class="nt">span</span><span class="nc">.date</span> <span class="nt">a</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nt">cite</span> <span class="nt">span</span><span class="nc">.gravatar</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">margin-top</span><span class="o">:</span> <span class="m">13px</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nt">cite</span> <span class="nt">span</span><span class="nc">.gravatar</span> <span class="nt">img</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">padding</span><span class="o">:</span> <span class="m">3px</span><span class="p">;</span>
+</span><span class="line">	<span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#ccc</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
   
   
@@ -380,11 +477,15 @@ ol#comments li cite span.gravatar img {
 
 <p>I learned a few things regarding Python while writing this script. The <a href="http://docs.python.org/lib/module-getopt.html">getopt() method</a> is a very useful command-line options and arguments parser. It’s very simple to define options for your script using this method.</p>
 
-<pre><code>import getopt
-import sys
-
-opts, args = getopt(sys.argv[1:], "cflv")
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">getopt</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line">
+</span><span class="line"><span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s">&quot;cflv&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Now the options that were passed on the command line and that are part of <code>cflv</code> are in the <code>opts</code> array; command line arguments are listed in <code>args</code>.</p>
 
@@ -392,15 +493,23 @@ opts, args = getopt(sys.argv[1:], "cflv")
 
 <p><a href="http://docs.python.org/lib/module-xml.dom.minidom.html">minidom</a> is a simple but complete DOM implementation. Using the <code>getElementsByTagName</code> and the <code>getAttribute</code> methods makes for easy and stress-free XML parsing.</p>
 
-<pre><code>from xml.dom.minidom import parse
-
-dom = parse("file.xml")
-
-attrs = []
-
-for node in dom.getElementsByTagName('tag'):
-    attrs.append(node.getAttribute('text'))
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">xml.dom.minidom</span> <span class="kn">import</span> <span class="n">parse</span>
+</span><span class="line">
+</span><span class="line"><span class="n">dom</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s">&quot;file.xml&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="n">attrs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">dom</span><span class="o">.</span><span class="n">getElementsByTagName</span><span class="p">(</span><span class="s">&#39;tag&#39;</span><span class="p">):</span>
+</span><span class="line">    <span class="n">attrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s">&#39;text&#39;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><code>attrs</code> contains the <code>text</code> attribute of each <code>tag</code> node in the XML file <code>file.xml</code>.</p>
 
@@ -563,27 +672,23 @@ Blacksburg, VA
 
   <div class="entry-content"><p>I <a href="http://www.thomasupton.com/blog/?p=65">last wrote about GeekTool</a> when I had an iTunes script and some process management output on my desktop. I have a few new scripts that I’ll highlight here.</p>
 
-<ul>
-  <li>tail -25 /var/log/system.log</li>
-</ul>
-
-<pre><code>The first script displays the last 25 lines of the system log. In Mac OS X 10.5, the system log rolls over at midnight every day, and this for some reason causes the built-in file display to malfunction. I am using `tail` to display the last 25 lines of the system log.
+<pre><code>tail -25 /var/log/system.log
 </code></pre>
 
-<ul>
-  <li>ps -ecm -O %cpu,%mem</li>
-</ul>
+<p>The first script displays the last 25 lines of the system log. In Mac OS X 10.5, the system log rolls over at midnight every day, and this for some reason causes the built-in file display to malfunction. I am using <code>tail</code> to display the last 25 lines of the system log.</p>
 
-<pre><code>This script shows the output of all currently running processes, sorted by memory usage.
-
-*   `-e` Displays processes from all users.
-*   `-c` Only displays the executable name, not the entire path to the excutable.
-*   `-m` Sorts the processes by memory usage.
-*   `-O` Designates the start of a list of comma-delimited options. `%cpu` displays CPU usage as a percentage. `%mem` displays memory usage as a percentage.
+<pre><code>ps -ecm -O %cpu,%mem
 </code></pre>
 
+<p>This script shows the output of all currently running processes, sorted by memory usage.</p>
+
 <ul>
+  <li><code>-e</code> Displays processes from all users.</li>
+  <li><code>-c</code> Only displays the executable name, not the entire path to the excutable.</li>
+  <li><code>-m</code> Sorts the processes by memory usage.</li>
   <li>
+    <p><code>-O</code> Designates the start of a list of comma-delimited options. <code>%cpu</code> displays CPU usage as a percentage. <code>%mem</code> displays memory usage as a percentage.</p>
+
     <table>
       <tbody>
         <tr>
@@ -596,35 +701,19 @@ Blacksburg, VA
   </li>
 </ul>
 
-<pre><code>This command outputs a formatted display of the current month. The current date is replaced by the string "--" in order to visually differentiate it.
+<p>This command outputs a formatted display of the current month. The current date is replaced by the string “–” in order to visually differentiate it.</p>
+
+<pre><code>/path/to/script/iTunes-Now-Playing.pl | iconv -f utf-8 -t ucs-2-internal
 </code></pre>
 
-<ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>/path/to/script/iTunes-Now-Playing.pl</td>
-          <td>iconv -f utf-8 -t ucs-2-internal</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-</ul>
+<p>This Perl script is something I wrote to display the currently playing track in iTunes. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/04/itunes-now-playingpl.zip">download the script here</a>. The script contains a function that was derived from John Gruber’s article <a href="http://daringfireball.net/2006/10/how_to_tell_if_an_app_is_running">How to Determine if a Certain App Is Running Using AppleScript and Perl</a>.</p>
 
-<pre><code>This Perl script is something I wrote to display the currently playing track in iTunes. You can [download the script here] [script]. The script contains a function that was derived from John Gruber's article [How to Determine if a Certain App Is Running Using AppleScript and Perl] [running app].
+<pre><code>/usr/bin/curl -s http://rss.wunderground.com/auto/rss_full/VA/Blacksburg.xml?units=both | awk '/%3Ctitle%3ECurrent/ {printf "Temp: " $4 " | "; for (i = 8; i %3C 11; i++) if ($i != "-") printf $i " "; else break; printf "\n"}'
 </code></pre>
-
-<ul>
-  <li>/usr/bin/curl -s http://rss.wunderground.com/auto/rss_full/VA/Blacksburg.xml?units=both
-| awk ‘/%3Ctitle%3ECurrent/ {printf “Temp: “ $4 “ | “; for (i = 8; i %3C 11; i++) if
-($i != “-“) printf $i “ “; else break; printf “\n”}’</li>
-</ul>
 
 <p><strong>UPDATE:</strong> I now use a <a href="http://www.thomasupton.com/blog/?p=202">Python script that uses the Yahoo! Weather API</a> to get weather data.</p>
 
-<pre><code>This bash script scrapes the [Weather Underground] [wunderground] feed for [Blacksburg] [] and displays the temperature and current conditions. It's not as pretty as a Dashboard weather widget, but it takes up much less screen real estate. I have another instance of this command set up to scrape the Oak Ridge XML feed for when I'm back in Greensboro.
-</code></pre>
+<p>This bash script scrapes the <a href="http://www.wunderground.com/">Weather Underground</a> feed for <a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=24060">Blacksburg</a> and displays the temperature and current conditions. It’s not as pretty as a Dashboard weather widget, but it takes up much less screen real estate. I have another instance of this command set up to scrape the Oak Ridge XML feed for when I’m back in Greensboro.</p>
 
 <p>Each one of these scripts is set up to display for both my 20” Cinema Display and my MacBook screen; I have Home and Portable groups of commands set up in GeekTool. You can <a href="http://projects.tynsoe.org/en/geektool/">download GeekTool from Tynsoe’s website</a>.</p>
 
@@ -715,7 +804,9 @@ Blacksburg, VA
 
 <p>Adding the following code to the .htaccess file in <code>wp-admin/</code> does the trick.</p>
 
-<pre><code>SecFilterEngine Off
+<pre><code>&lt;IfModule mod_security.c&gt;
+    SecFilterEngine Off
+&lt;/IfModule&gt;
 </code></pre>
 
 </div>

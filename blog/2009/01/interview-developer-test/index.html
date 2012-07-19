@@ -21,11 +21,9 @@
   <link rel="canonical" href="http://tupton.github.com/blog/2009/01/interview-developer-test/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/custom/github.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <script src="/javascripts/rainbow.min.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -122,21 +120,35 @@ dog.
 
 <p>A problem that arises with this method is words that are longer than a line. I got around this by printing the word in chunks of the maximum width until its length was less than that text width. <code>words_printed</code> is just a count of the number of words that have been printed on the line thus far. It was used instead of <code>len(to_justify)</code> for use in another section of the code.</p>
 
-<pre><code># Take care of words that are longer than our desired text width.
-while len(word) &gt; text_width:
-  if words_printed == 0:
-    print word[:text_width]
-    word = word[text_width:]
-
-  else:
-    # Here we fill the rest of the line with as much of the word as
-    # we can, given that there is already text on the current line.
-    print " ".join(to_justify) + " " + word[:(text_width -
-      len(" ".join(to_justify)) - 1)]
-    word = word[(text_width - len(to_justify) - 1):]
-    to_justify = []
-    words_printed = 0
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># Take care of words that are longer than our desired text width.</span>
+</span><span class="line"><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">text_width</span><span class="p">:</span>
+</span><span class="line">  <span class="k">if</span> <span class="n">words_printed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class="line">    <span class="k">print</span> <span class="n">word</span><span class="p">[:</span><span class="n">text_width</span><span class="p">]</span>
+</span><span class="line">    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="n">text_width</span><span class="p">:]</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">else</span><span class="p">:</span>
+</span><span class="line">    <span class="c"># Here we fill the rest of the line with as much of the word as</span>
+</span><span class="line">    <span class="c"># we can, given that there is already text on the current line.</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to_justify</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">word</span><span class="p">[:(</span><span class="n">text_width</span> <span class="o">-</span>
+</span><span class="line">      <span class="nb">len</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to_justify</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+</span><span class="line">    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[(</span><span class="n">text_width</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">to_justify</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):]</span>
+</span><span class="line">    <span class="n">to_justify</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">    <span class="n">words_printed</span> <span class="o">=</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="problem-2">Problem 2</h2>
 
@@ -191,22 +203,29 @@ while len(word) &gt; text_width:
 
 <p>The <code>reversed()</code> top-level method produces an iterator on a list in reverse. This was very useful for the bottom row and left column. This is how I addressed the bottom row of the array:</p>
 
-<pre><code>for item in reversed(array[-1]):
-  "".join(item)
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+</span><span class="line">  <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Using <code>array[-1]</code> also came in handy for the right column of the array:</p>
 
-<pre><code>for item in array[1:-1]:
-  print "".join(item[-1])
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+</span><span class="line">  <span class="k">print</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>And also for extracting the part of the array that still needs to be processed:</p>
 
-<pre><code>new_array = []
-for row in array[1:-1]:
-  new_array.append(row[1:-1])
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">new_array</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line"><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+</span><span class="line">  <span class="n">new_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>I think the idea of a developer test is great. It allows the interviewers a brief glimpse into what kind of worker or programmer you are, and it gives the applicant a sense of accomplishment. The fact that I knew how to attack and solve these problems also gave me some confidence in my own programming skills. Being a recent college graduate and not having much professional programming experience meant that I had no idea what to expect. Now I do, and I’m excited. I got the job, and I very much look forward to starting work.</p>
 </div>

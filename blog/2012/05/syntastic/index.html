@@ -21,11 +21,9 @@
   <link rel="canonical" href="http://tupton.github.com/blog/2012/05/syntastic/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/stylesheets/custom/github.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <script src="/javascripts/rainbow.min.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -101,11 +99,15 @@
 
 <p>Before we get to configuring individual syntax checkers, syntastic itself has a couple of configuration options. Syntastic has what it refers to as a “mode map”, which is basically just a way to configure which file types are checked. Here is the relevant config option from <a href="https://github.com/tupton/vim-support/blob/master/vimrc#L302">my vimrc</a>:</p>
 
-<pre><code>" On by default, turn it off for html
-let g:syntastic_mode_map = { 'mode': 'active',
-	\ 'active_filetypes': [],
-	\ 'passive_filetypes': ['html'] }
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; On by default, turn it off for html</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_mode_map <span class="p">=</span> { <span class="s1">&#39;mode&#39;</span>: <span class="s1">&#39;active&#39;</span><span class="p">,</span>
+</span><span class="line">	\ <span class="s1">&#39;active_filetypes&#39;</span>: []<span class="p">,</span>
+</span><span class="line">	\ <span class="s1">&#39;passive_filetypes&#39;</span>: [<span class="s1">&#39;html&#39;</span>] }
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The ‘mode’ option set to active means that syntastic is on by default, so we can leave the list of ‘active_filetypes’ empty. The ‘passive_filetypes’ names filetypes that syntastic does not attempt to check. I don’t check HTML files because I mainly work with templates that either can’t or won’t validate with most HTML syntax checkers. If templates use non-standard attributes, it’s hard for a syntax checker to do its job.</p>
 

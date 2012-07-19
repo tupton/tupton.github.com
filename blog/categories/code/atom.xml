@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/code/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T00:01:59-05:00</updated>
+  <updated>2012-07-19T14:26:52-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -30,11 +30,12 @@
 
 <p>Before we get to configuring individual syntax checkers, syntastic itself has a couple of configuration options. Syntastic has what it refers to as a “mode map”, which is basically just a way to configure which file types are checked. Here is the relevant config option from <a href="https://github.com/tupton/vim-support/blob/master/vimrc#L302">my vimrc</a>:</p>
 
-<pre><code>" On by default, turn it off for html
-let g:syntastic_mode_map = { 'mode': 'active',
-	\ 'active_filetypes': [],
-	\ 'passive_filetypes': ['html'] }
-</code></pre>
+<p><code>vim
+	" On by default, turn it off for html
+	let g:syntastic_mode_map = { 'mode': 'active',
+		\ 'active_filetypes': [],
+		\ 'passive_filetypes': ['html'] }
+</code></p>
 
 <p>The ‘mode’ option set to active means that syntastic is on by default, so we can leave the list of ‘active_filetypes’ empty. The ‘passive_filetypes’ names filetypes that syntastic does not attempt to check. I don’t check HTML files because I mainly work with templates that either can’t or won’t validate with most HTML syntax checkers. If templates use non-standard attributes, it’s hard for a syntax checker to do its job.</p>
 
@@ -65,51 +66,49 @@ let g:syntastic_mode_map = { 'mode': 'active',
     <id>http://tupton.github.com/blog/2012/03/the-handle-pattern</id>
     <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
 
-<pre>
-<code data-language="javascript">
-var subscriber = (function() {
+<p>``` javascript
+var subscriber = (function() {</p>
+
+<pre><code>var _listeners = {};
     
-    var _listeners = {};
+var s = {
+    // Listen to a channel and call a callback when that channel fires
+    listen: function(channel, cb) {
+        // Add the callback to the list of listeners on the given channel
+        _listeners[channel] = _listeners[channel] || [];
+        _listeners[channel].push(cb);
         
-    var s = {
-        // Listen to a channel and call a callback when that channel fires
-        listen: function(channel, cb) {
-            // Add the callback to the list of listeners on the given channel
-            _listeners[channel] = _listeners[channel] || [];
-            _listeners[channel].push(cb);
-            
-            return {
-                // Return an object that can be used to remove the callback from the channel
-                unlisten: function() {
-                    // Remove the callback from the list of listeners on that channel
-                    _listeners[channel].splice(_listeners[channel].indexOf(cb), 1);
-                }
+        return {
+            // Return an object that can be used to remove the callback from the channel
+            unlisten: function() {
+                // Remove the callback from the list of listeners on that channel
+                _listeners[channel].splice(_listeners[channel].indexOf(cb), 1);
             }
-        },
-        
-        // Manually fire events on a given channel.
-        publish: function(channel) {
-            _listeners[channel] = _listeners[channel] || [];
-            _listeners[channel].forEach(function(cb) {
-                cb();
-            });
         }
-    };
+    },
     
-    return s;
-})();
-    
-var h = subscriber.listen('update', function() {
-    console.log('The update event was fired!');
-});
+    // Manually fire events on a given channel.
+    publish: function(channel) {
+        _listeners[channel] = _listeners[channel] || [];
+        _listeners[channel].forEach(function(cb) {
+            cb();
+        });
+    }
+};
 
-subscriber.publish('update'); // &gt; "The update event was fired!"
+return s; })();
+</code></pre>
 
-h.unlisten();
-    
-subscriber.publish('update'); // &gt; &lt;no output&gt;
-</code>
-</pre>
+<p>var h = subscriber.listen(‘update’, function() {
+    console.log(‘The update event was fired!’);
+});</p>
+
+<p>subscriber.publish(‘update’); // &gt; “The update event was fired!”</p>
+
+<p>h.unlisten();</p>
+
+<p>subscriber.publish(‘update’); // &gt; <no output="">
+```</no></p>
 
 <p>When you have an event-driven application, like a Javascript app that performs actions based on user interaction or based on back end “pushes” to a listening front end, you often have a central “publisher” that handles firing events when certain actions occur. It makes sense to have a static <code>listen</code> function that takes a “channel” and a callback function to call when that channel gets updated. The problem comes when you have to decide how to <em>stop</em> listening to that channel. If you go with a static <code>unlisten</code> function on the publisher with the same signature as <code>listen</code> (the channel and callback), you need to keep track of which callback is listening to which channel, and it can get messy.</p>
 
@@ -127,7 +126,7 @@ subscriber.publish('update'); // &gt; &lt;no output&gt;
     <link href="http://tupton.github.com/blog/2012/02/configuration/"/>
     <updated>2012-02-18T20:43:38-06:00</updated>
     <id>http://tupton.github.com/blog/2012/02/configuration</id>
-    <content type="html"><![CDATA[<p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <a href="https://github.com/tupton/vim-support"><code>vim</code> environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
+    <content type="html"><![CDATA[<p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <code>vim</code> <a href="https://github.com/tupton/vim-support">environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
 
 <p>I use <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins. I follow the examples in <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">this great article on plugin management with Pathogen</a> to keep most of my plugins as <code>git</code> submodules. Installing my <code>vim</code> environment is just a matter of cloning the <code>git</code> repository and symlinking my <code>vimrc</code>.</p>
 
@@ -156,14 +155,12 @@ subscriber.publish('update'); // &gt; &lt;no output&gt;
 
 <p>I found <a href="http://jonathanstreet.com/blog/setting-up-backups-with-tarsnap">a blog post by Jonathan Street</a> that detailed his automated backups, and that served as inspiration for my system. I wrote a little bash script to wrap <code>tarsnap</code> for my purposes:</p>
 
-<pre>
-<code data-language="shell">
-#! /bin/bash
-echo `date +%F\ %T`: Beginning back up of $2
-/usr/local/bin/tarsnap -c -f $1-`date +%F` $2
-echo `date +%F\ %T`: Completed back up of $2
-</code>
-</pre>
+<p><code>bash
+    #! /bin/bash
+    echo `date +%F\ %T`: Beginning back up of $2
+    /usr/local/bin/tarsnap -c -f $1-`date +%F` $2
+    echo `date +%F\ %T`: Completed back up of $2
+</code></p>
 
 <p>Calling <code>tarsnap-backup.sh  </code> tells tarsnap to create an archive  of the specified directory with the given name and the current date. I was in business.</p>
 
@@ -171,11 +168,9 @@ echo `date +%F\ %T`: Completed back up of $2
 
 <p>An aside: Jonathan Street’s blog post mentioned creating a new key that only had permission to read and write archives. I initially did the same thing, but for reasons I’ll get into later, I wanted the ability to delete backups, too. Generating a new key was extremely easy:</p>
 
-<pre>
-<code data-language="shell">
-$ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
-</code>
-</pre>
+<p><code>bash
+    $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
+</code></p>
 
 <p>This creates a new key in <code>/root/</code> called <code>tarsnap-rw.key</code> that only has read and write permission.</p>
 
@@ -188,7 +183,7 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 <p>I made a configuration called <code>user.conf</code> in <code>/etc/newsyslog.d/</code> and put my tarsnap logs inside. I decided to use a distinct log for each automated backup I do, as opposed to a single tarsnap log. I still haven’t decided if this is the right way to go, but I do like being able to quickly see the result of the last backup. My <code>user.conf</code> looks like the following.</p>
 
 <pre><code>/var/log/tarsnap-backup-code.log                        640     5       1000    *       Z
-/var/log/tarsnap-backup-documents.log                   640     5       1000    *       Z 
+/var/log/tarsnap-backup-documents.log                   640     5       1000    *       Z
 </code></pre>
 
 <p>This configuration tells <code>newsyslog</code> to gzip, roll to a new log once the current log exceeds 1MB in size, and keep at most five old logs.</p>
@@ -206,42 +201,40 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 
 <p>Since I wanted these backups to run whenever possible, I decided to put my <code>launchd</code> backup configurations in <code>/Library/LaunchDameons</code> instead of <code>/Library/LaunchAgents</code>. LaunchDaemons are able to run without a logged-in user; this is exactly what I wanted. The <code>launchd</code> configuration for my <code>code</code> backup looks like the following:</p>
 
-<pre>    
-<code data-language="html">
-<?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version=&quot;1.0&quot;&gt;
-&lt;dict&gt;
-    &lt;key&gt;Label&lt;/key&gt;
-    &lt;string&gt;com.thomasupton.backup-daily-code&lt;/string&gt;
-    &lt;key&gt;ProgramArguments&lt;/key&gt;
-    &lt;array&gt; 
-        &lt;string&gt;/usr/local/bin/tarsnap-backup&lt;/string&gt;
-        &lt;string&gt;code&lt;/string&gt;
-        &lt;string&gt;/Users/thomas/code&lt;/string&gt;
-    &lt;/array&gt;
-    &lt;key&gt;GroupName&lt;/key&gt;
-    &lt;string&gt;wheel&lt;/string&gt;
-    &lt;key&gt;UserName&lt;/key&gt;
-    &lt;string&gt;root&lt;/string&gt;
-    &lt;key&gt;Nice&lt;/key&gt;
-    &lt;integer&gt;1&lt;/integer&gt;
-    &lt;key&gt;StandardErrorPath&lt;/key&gt;
-    &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-    &lt;key&gt;StandardOutPath&lt;/key&gt;
-    &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-    &lt;key&gt;StartCalendarInterval&lt;/key&gt;
+<p><code>html
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+    &lt;plist version="1.0"&gt;
     &lt;dict&gt;
-        &lt;key&gt;Hour&lt;/key&gt;
-        &lt;integer&gt;5&lt;/integer&gt;
-        &lt;key&gt;Minute&lt;/key&gt;
-        &lt;integer&gt;0&lt;/integer&gt;
+        &lt;key&gt;Label&lt;/key&gt;
+        &lt;string&gt;com.thomasupton.backup-daily-code&lt;/string&gt;
+        &lt;key&gt;ProgramArguments&lt;/key&gt;
+        &lt;array&gt;
+            &lt;string&gt;/usr/local/bin/tarsnap-backup&lt;/string&gt;
+            &lt;string&gt;code&lt;/string&gt;
+            &lt;string&gt;/Users/thomas/code&lt;/string&gt;
+        &lt;/array&gt;
+        &lt;key&gt;GroupName&lt;/key&gt;
+        &lt;string&gt;wheel&lt;/string&gt;
+        &lt;key&gt;UserName&lt;/key&gt;
+        &lt;string&gt;root&lt;/string&gt;
+        &lt;key&gt;Nice&lt;/key&gt;
+        &lt;integer&gt;1&lt;/integer&gt;
+        &lt;key&gt;StandardErrorPath&lt;/key&gt;
+        &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
+        &lt;key&gt;StandardOutPath&lt;/key&gt;
+        &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
+        &lt;key&gt;StartCalendarInterval&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;Hour&lt;/key&gt;
+            &lt;integer&gt;5&lt;/integer&gt;
+            &lt;key&gt;Minute&lt;/key&gt;
+            &lt;integer&gt;0&lt;/integer&gt;
+        &lt;/dict&gt;
     &lt;/dict&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;
-</code>
-</pre>
+    &lt;/plist&gt;
+</code></p>
 
 <p>The <code>ProgramArguments</code> section is exactly how I called the backup script from <code>cron</code>. The <code>UserName</code> and <code>GroupName</code> keys are important: they tell <code>launchd</code> to run the backup script as root, which, as I mentioned before, is necessary for using <code>tarsnap</code> and for appending to the log file. The <code>StandardErrorPath</code> and <code>StandardOutPath</code> keys tell <code>launchd</code> to redirect output to the proper log file. The <code>StartCalendarInterval</code> tells <code>launchd</code> to run this script at 5am daily.</p>
 
@@ -253,14 +246,12 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 
 <p>I added the following lines to my <code>tarsnap-backup.sh</code> script.</p>
 
-<pre>
-<code data-language="shell">
-# Remove the backup from three days previous, if there is one
-echo `date +%F\ %T`: Removing backup of $2 from `date -v-3d +%F`
-/usr/local/bin/tarsnap -d -f $1-`date -v-3d +%F`
-echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
-</code>
-</pre>
+<p><code>bash
+    # Remove the backup from three days previous, if there is one
+    echo `date +%F\ %T`: Removing backup of $2 from `date -v-3d +%F`
+    /usr/local/bin/tarsnap -d -f $1-`date -v-3d +%F`
+    echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
+</code></p>
 
 <p>The key to this is the date in the archive name passed to <code>tarsnap -d</code>. <code>date -v</code> lets you add a value to the date output, so <code>-v-3d</code> outputs the date from three days previous. Now, every scheduled backup attempts to delete the archive from three days ago in addition to creating a backup for the current day. Of course, if a backup is missed, this can lead to an accumulation of old archives. This is where the log files come in handy: I can just inspect the logs every couple of days to see what successfully ran and manually prune the archive list if necessary.</p>
 
@@ -293,36 +284,30 @@ echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
 
 <p>Pastebin has a <a href="http://pastebin.com/api.php">simple RPC API</a> for posting content, and it’s perfect for <code>curl</code>. The very first version of the pastebin script was this simple <code>curl</code> script.</p>
 
-<pre>
-<code data-language="shell">
-#! /usr/bin/env bash
-curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
-</code>
-</pre>
+<p><code>bash
+    #! /usr/bin/env bash
+    curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
+</code></p>
 
 <p><code>paste_code</code> is the POST parameter that the pastebin API expects to contain pasted content, so we just POST that to the public API page. The output of a successful pastebin API call is the URL for the paste, so we pipe that to OS X’s clipboard for easy pasting. Right from the beginning, this is clearly an OS X-specific script, but I don’t think it would be that hard to interact with the Linux system clipboard via <code>xclip</code>.</p>
 
 <p>Making this work for text from <code>stdin</code> instead of as an argument was easy, too.</p>
 
-<pre>
-<code data-language="shell">
-#! /usr/bin/env bash
-to_paste=`cat /dev/stdin`
-curl -s -X POST -d "paste_code=$to_paste" "http://pastebin.com/api_public.php" | pbcopy
-</code>
-</pre>
+<p><code>bash
+    #! /usr/bin/env bash
+    to_paste=`cat /dev/stdin`
+    curl -s -X POST -d "paste_code=$to_paste" "http://pastebin.com/api_public.php" | pbcopy
+</code></p>
 
 <p>Both Mike and I recently started using <a href="http://jumpcut.sourceforge.net/">Jumpcut</a>, a minimal clipboard manager for OS X, so I had the idea of copying the actual text that was posted to pastebin before copying the URL so both would be readily available via Jumpcut. I tried adding <code>echo "$to_paste" | pbcopy</code> before the <code>curl</code> call, but it didn’t always work. I didn’t actually find any documentation on it, but it seems that <code>pbcopy</code> does some sort of buffering so that too much text isn’t copied in quick succession. Adding a very hacky <code>sleep</code> call fixed it, so the resulting script became the following.</p>
 
-<pre>
-<code data-language="shell">
+<p><code>bash
 #! /usr/bin/env bash
 to_paste=`cat /dev/stdin`
 echo "$to_paste" | pbcopy
 sleep 1
 curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
-</code>
-</pre>
+</code></p>
 
 <p>Having a commandline script is all well and good, but it’s on about the same usability level as using pastebin.com: instead of switching to a browser, you switch to a terminal, but you still have to paste content and get away from you original context. This is where OS X Services come into play.</p>
 
@@ -330,24 +315,22 @@ curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
 
 <p>I cleaned up the script by adding a few command line options using the <code>getopts</code> <code>bash</code> built-in. This was pretty useful and easy to use. I’m not a very proficient <code>bash</code> scripter, but I was easily able to add what I needed, including making the ability to copy the text optional and allowing a file to be used in place of <code>stdin</code>. <a href="http://ginatrapani.org/">Gina Trapani</a>’s excellent <a href="https://github.com/ginatrapani/todo.txt-cli">todo.txt</a> script was helpful in figuring out the correct syntax.</p>
 
-<pre>
-<code data-language="shell">
-while getopts ":cf:h" Option
-do
-    case $Option in
-        c )
-            PASTEBIN_COPY=1
-            ;;
-        f )
-            PASTEBIN_FILE=$OPTARG
-            ;;
-        h )
-            usage
-            ;;
-    esac
-done
-</code>
-</pre>
+<p><code>bash
+    while getopts ":cf:h" Option
+    do
+        case $Option in
+            c )
+                PASTEBIN_COPY=1
+                ;;
+            f )
+                PASTEBIN_FILE=$OPTARG
+                ;;
+            h )
+                usage
+                ;;
+        esac
+    done
+</code></p>
 
 <p>I wrapped the script and the Automator workflow and <a href="https://github.com/tupton/pastebin-cl/">added it to github</a>. You can <a href="https://github.com/tupton/pastebin-cl/blob/8ff3cdda9e0027c41416b285f2822781a0ba4b5e/pastebin.sh">view the original bash script</a> in its latest form if you’re interested.</p>
 
@@ -355,12 +338,11 @@ done
 
 <p>I have experience with <a href="https://github.com/tupton/python-yahoo-weather">simple python scripts</a>, but I decided I should try my luck using classes in order to wrap the pastebin API. It was really easy. The beginning of the class looked like the following.</p>
 
-<pre>
-<code data-language="python">
-class Pastebin(object):
-    """A wrapper for the pastebin API"""
+<p>``` python
+    class Pastebin(object):
+        “"”A wrapper for the pastebin API”””</p>
 
-    pastebin_api = "http://pastebin.com/api_public.php"
+<pre><code>    pastebin_api = "http://pastebin.com/api_public.php"
 
     def __init__(self, paste_code, paste_name=None, paste_email=None, paste_subdomain=None,
             paste_private=False, paste_expire_date=PASTEBIN_EXPIRE_NEVER, paste_format=None):
@@ -371,29 +353,24 @@ class Pastebin(object):
         self.set_paste_subdomain(paste_subdomain)
         self.set_paste_private(paste_private)
         self.set_paste_expire_date(paste_expire_date)
-        self.set_paste_format(paste_format)
-</code>
-</pre>
+        self.set_paste_format(paste_format) ```
+</code></pre>
 
 <p>Then all I had to do was use the class.</p>
 
-<pre>
-<code data-language="python">
-pastebin = Pastebin(paste_code=lines, paste_name=opts.paste_name, paste_email=opts.paste_email,
-            paste_subdomain=opts.paste_subdomain, paste_private=opts.paste_private,
-            paste_expire_date=opts.paste_expire_date, paste_format=opts.paste_format)
-response = pastebin.paste()
-return response
-</code>
-</pre>
+<p><code>python
+    pastebin = Pastebin(paste_code=lines, paste_name=opts.paste_name, paste_email=opts.paste_email,
+                paste_subdomain=opts.paste_subdomain, paste_private=opts.paste_private,
+                paste_expire_date=opts.paste_expire_date, paste_format=opts.paste_format)
+    response = pastebin.paste()
+    return response
+</code></p>
 
 <p>I have no idea if getters and setters are very “pythonic,” but they make sense to me, even if I’m only using them internally for this script. I used a pretty interesting trick to build the POST data string. I put the necessary data into a dictionary, but I needed to build a proper parameter string.</p>
 
-<pre>
-<code data-language="python">
+<p><code>python
 return "&amp;".join([k + "=" + str(v) for (k, v) in params.iteritems()])
-</code>
-</pre>
+</code></p>
 
 <p>I love the syntax used for “inline” for-loops here. The extra <code>str()</code> call was used just in case a parameter (like expiration date) was accidentally interpreted as a number.</p>
 

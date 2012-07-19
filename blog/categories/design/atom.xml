@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Design | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/design/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T00:01:59-05:00</updated>
+  <updated>2012-07-19T14:26:52-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -18,25 +18,11 @@
     <link href="http://tupton.github.com/blog/2009/02/new-beginnings/"/>
     <updated>2009-02-25T22:24:10-06:00</updated>
     <id>http://tupton.github.com/blog/2009/02/new-beginnings</id>
-    <content type="html"><![CDATA[<table>
-  <tbody>
-    <tr>
-      <td>I recently started working at [Mailtrust](http://www.mailtrust.com/ “Business Email Hosting &amp; Webmail Services</td>
-      <td>Mailtrust”) in Blacksburg, VA. Mailtrust is a division of <a href="http://www.rackspace.com/" title="Dedicated Server - Dedicated Server Hosting - Managed Dedicated Server by Rackspace">Rackspace</a>, a company that has been experiencing some astounding growth recently. One of the companies that Rackspace recently acquired is <a href="http://www.slicehost.com/" title="Slicehost - VPS Hosting">Slicehost</a>. Last week, I decided to sign up for Slicehost hosting and move my website to this new server. I also decided to buy a new domain, <strong>thomasupton.com</strong>. I spent the last week or so setting up my server just how I wanted it.</td>
-    </tr>
-  </tbody>
-</table>
+    <content type="html"><![CDATA[<p>I recently started working at <a href="http://www.mailtrust.com/" title="Business Email Hosting &amp; Webmail Services Mailtrust">Mailtrust</a> in Blacksburg, VA. Mailtrust is a division of <a href="http://www.rackspace.com/" title="Dedicated Server - Dedicated Server Hosting - Managed Dedicated Server by Rackspace">Rackspace</a>, a company that has been experiencing some astounding growth recently. One of the companies that Rackspace recently acquired is <a href="http://www.slicehost.com/" title="Slicehost - VPS Hosting">Slicehost</a>. Last week, I decided to sign up for Slicehost hosting and move my website to this new server. I also decided to buy a new domain, <strong>thomasupton.com</strong>. I spent the last week or so setting up my server just how I wanted it.</p>
 
 <p>I followed the excellent <a href="http://articles.slicehost.com/" title="Slicehost Article Repository - VPS setup, servers, Ruby on Rails, Django, PHP, DNS, Slicemanager and more">Slicehost articles</a> in order to get started. Setup is a breeze because you have total control over your server. When I screwed something up shortly after starting the setup process, I simply rebuilt and re-imaged my slice and started over.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>The articles for [Ubuntu 8.10](http://www.ubuntu.com/getubuntu/download “Download Ubuntu</td>
-      <td>Ubuntu”) are presented in a useful order and detail how to set up and secure a new slice, install Apache to serve websites, and install MySQL and PHP to start getting things done.</td>
-    </tr>
-  </tbody>
-</table>
+<p>The articles for <a href="http://www.ubuntu.com/getubuntu/download" title="Download Ubuntu Ubuntu">Ubuntu 8.10</a> are presented in a useful order and detail how to set up and secure a new slice, install Apache to serve websites, and install MySQL and PHP to start getting things done.</p>
 
 <p>By far the hardest part of setting all of this up was the migration of my <a href="http://wordpress.org/" title="WordPress › Blog Tool and Publishing Platform">Wordpress</a> installation. I spent a lot of time trying to export a MySQL dump of my existing Wordpress database and import onto my slice. It turns out that <a href="http://en.blog.wordpress.com/2006/06/12/xml-import-export/" title="XML Import / Export « Blog « WordPress.com">Wordpress supports an extended XML-based format for importing and exporting</a> almost every bit of user-created content, including posts, comments, and pages. Existing URL structures are preserved, and author data can be changed to an existing author in the new installation. This was <em>much</em> easier to do than my attempt to directly import a MySQL dump.</p>
 
@@ -79,41 +65,71 @@
 
 <p>I also enabled <a href="http://en.gravatar.com/">Gravatars</a> and have highlighted my own comments when I make them. I have posted the comment loop and the relevant comment CSS in case anyone else wants to use this idea.</p>
 
-<p>This is the comment loop in comments.php. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/04/comment-snippetphp.zip">download it as a PHP snippet</a>.</p>
+<p>This is the comment loop in comments.php.</p>
 
-<ol>
-  <li>
+<p>``` php
+    <?php if ($comments) : ?></p>
 
-    <pre><code>			date_format() . '.y' ) ?&gt; / 
-				
-			
-			
+<pre><code>    &lt;ol id="comments"&gt;
+
+    &lt;?php $i = 1 ?&gt;
+
+    &lt;?php foreach ($comments as $comment) : ?&gt;
+        &lt;li id="comment-&lt;?php comment_ID() ?&gt;" class="&lt;?php echo get_comment_author_email() == get_the_author_email() ? ' blog-author' : $oddcomment ?&gt;"&gt;
+            &lt;cite&gt;
+                &lt;span class="author"&gt;&lt;?php comment_author_link() ?&gt;&lt;/span&gt;
+                &lt;span class="date"&gt;&lt;a href="#comment-&lt;?php comment_ID() ?&gt;"&gt;&lt;?php comment_date( $hemingway-&gt;date_format() . '.y' ) ?&gt; / &lt;?php comment_date('H.i') ?&gt;&lt;/a&gt;&lt;/span&gt;
+                &lt;span class="gravatar"&gt;&lt;?php echo get_avatar( $comment, $size = '80'); ?&gt;&lt;/span&gt;
+            &lt;/cite&gt;
+            &lt;div class="content"&gt;
+                &lt;span class="number"&gt;&lt;?php echo $i ?&gt;&lt;/span&gt;
+                &lt;?php if ($comment-&gt;comment_approved == '0') : ?&gt;
+                &lt;em&gt;Your comment is awaiting moderation.&lt;/em&gt;
+                &lt;?php endif; ?&gt;
+                &lt;?php comment_text() ?&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/li&gt;
+
+        &lt;?php $i++; ?&gt;
 
 
-				
-			comment_approved == '0') : ?&gt;
-			_Your comment is awaiting moderation._
+    &lt;?php /* Changes every other comment to a different class */
+        if ('alt' == $oddcomment) $oddcomment = '';
+        else $oddcomment = 'alt';
+    ?&gt;
+
+    &lt;?php endforeach; /* end for each comment */ ?&gt;
+
+    &lt;/ol&gt;
+
+ &lt;?php else : // this is displayed if there are no comments so far ?&gt;
+
+  &lt;?php if ('open' == $post-&gt;comment_status) : ?&gt;
+        &lt;!-- If comments are open, but there are no comments. --&gt;
+
+     &lt;?php else : // comments are closed ?&gt;
+        &lt;!-- If comments are closed. --&gt;
+        &lt;p class="nocomments"&gt;Comments are closed.&lt;/p&gt;
+
+    &lt;?php endif; ?&gt;
+&lt;?php endif; ?&gt; ```
 </code></pre>
 
-    <p>comment_status) : ?&gt;</p>
-  </li>
-</ol>
+<p>This is the CSS section for my comments.</p>
 
-<p>Comments are closed.</p>
+<p>``` css
+    /* Comments */
+    ol#comments li .content span.number {
+    	position: relative;
+    	top: 0px;
+    	left: 0px;
+    	font-size: 10em;
+    	color: #c7c7c7;
+    	float: right;
+    }</p>
 
-<p>This is the CSS section for my comments. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/04/comment-snippet.css">download it as a CSS snippet</a>.</p>
-
-<pre><code>/* Comments */
-ol#comments li .content span.number {
-	position: relative;
-	top: 0px;
-	left: 0px;
-	font-size: 10em;
-	color: #c7c7c7;
-	float: right;
-}
-
-ol#comments li {
+<pre><code>ol#comments li {
 	padding: 10px 0;
 }
 
@@ -136,7 +152,7 @@ ol#comments li cite span.gravatar {
 ol#comments li cite span.gravatar img {
 	padding: 3px;
 	border: 1px solid #ccc;
-}
+} ```
 </code></pre>
 ]]></content>
   </entry>
