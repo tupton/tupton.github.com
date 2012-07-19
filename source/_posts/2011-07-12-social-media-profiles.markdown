@@ -9,6 +9,8 @@ categories:
 - Webapps
 ---
 
-# [/+](/+)
-# [/@](/@)
-# [/f](/f)
+[/+](http://thomasupton.com/+)
+
+[/@](http://thomasupton.com/@)
+
+[/f](http://thomasupton.com/f)

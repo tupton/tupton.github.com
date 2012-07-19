@@ -26,51 +26,39 @@ A couple of days ago, my friend [Mike][mb] suggested that he wanted a utility th
 Pastebin has a [simple RPC API][pb-api] for posting content, and it's perfect for `curl`. The very first version of the pastebin script was this simple `curl` script.
 
 [pb-api]: http://pastebin.com/api.php
-
-
     
-    
-    <code data-language="shell">
-    #! /usr/bin/env bash
-    curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
-    </code>
-    
-
-
+<pre>
+<code data-language="shell">
+#! /usr/bin/env bash
+curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
+</code>
+</pre>
     
 `paste_code` is the POST parameter that the pastebin API expects to contain pasted content, so we just POST that to the public API page. The output of a successful pastebin API call is the URL for the paste, so we pipe that to OS X's clipboard for easy pasting. Right from the beginning, this is clearly an OS X-specific script, but I don't think it would be that hard to interact with the Linux system clipboard via `xclip`.
 
 Making this work for text from `stdin` instead of as an argument was easy, too.
-
-
     
-    
-    <code data-language="shell">
-    #! /usr/bin/env bash
-    to_paste=`cat /dev/stdin`
-    curl -s -X POST -d "paste_code=$to_paste" "http://pastebin.com/api_public.php" | pbcopy
-    </code>
-    
-
-
+<pre>
+<code data-language="shell">
+#! /usr/bin/env bash
+to_paste=`cat /dev/stdin`
+curl -s -X POST -d "paste_code=$to_paste" "http://pastebin.com/api_public.php" | pbcopy
+</code>
+</pre>
 
 Both Mike and I recently started using [Jumpcut][jc], a minimal clipboard manager for OS X, so I had the idea of copying the actual text that was posted to pastebin before copying the URL so both would be readily available via Jumpcut. I tried adding `echo "$to_paste" | pbcopy` before the `curl` call, but it didn't always work. I didn't actually find any documentation on it, but it seems that `pbcopy` does some sort of buffering so that too much text isn't copied in quick succession. Adding a very hacky `sleep` call fixed it, so the resulting script became the following.
 
 [jc]: http://jumpcut.sourceforge.net/
-
-
     
-    
-    <code data-language="shell">
-    #! /usr/bin/env bash
-    to_paste=`cat /dev/stdin`
-    echo "$to_paste" | pbcopy
-    sleep 1
-    curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
-    </code>
-    
-
-
+<pre>
+<code data-language="shell">
+#! /usr/bin/env bash
+to_paste=`cat /dev/stdin`
+echo "$to_paste" | pbcopy
+sleep 1
+curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
+</code>
+</pre>
     
 Having a commandline script is all well and good, but it's on about the same usability level as using pastebin.com: instead of switching to a browser, you switch to a terminal, but you still have to paste content and get away from you original context. This is where OS X Services come into play.
 
@@ -83,29 +71,25 @@ I cleaned up the script by adding a few command line options using the `getopts`
 
 [gt]: http://ginatrapani.org/
 [td]: https://github.com/ginatrapani/todo.txt-cli
-
-
     
-    
-    <code data-language="shell">
-    while getopts ":cf:h" Option
-    do
-        case $Option in
-            c )
-                PASTEBIN_COPY=1
-                ;;
-            f )
-                PASTEBIN_FILE=$OPTARG
-                ;;
-            h )
-                usage
-                ;;
-        esac
-    done
-    </code>
-    
-
-
+<pre>
+<code data-language="shell">
+while getopts ":cf:h" Option
+do
+    case $Option in
+        c )
+            PASTEBIN_COPY=1
+            ;;
+        f )
+            PASTEBIN_FILE=$OPTARG
+            ;;
+        h )
+            usage
+            ;;
+    esac
+done
+</code>
+</pre>
     
 I wrapped the script and the Automator workflow and [added it to github][gh]. You can [view the original bash script][bash-script] in its latest form if you're interested.
 
@@ -119,58 +103,46 @@ All this was well and good, but a couple of things bothered me. I didn't like th
 I have experience with [simple python scripts][weather], but I decided I should try my luck using classes in order to wrap the pastebin API. It was really easy. The beginning of the class looked like the following.
 
 [weather]: https://github.com/tupton/python-yahoo-weather
+    
+<pre>
+<code data-language="python">
+class Pastebin(object):
+    """A wrapper for the pastebin API"""
 
+    pastebin_api = "http://pastebin.com/api_public.php"
 
-    
-    
-    <code data-language="python">
-    class Pastebin(object):
-        """A wrapper for the pastebin API"""
-    
-        pastebin_api = "http://pastebin.com/api_public.php"
-    
-        def __init__(self, paste_code, paste_name=None, paste_email=None, paste_subdomain=None,
-                paste_private=False, paste_expire_date=PASTEBIN_EXPIRE_NEVER, paste_format=None):
-    
-            self.set_paste_code(paste_code)
-            self.set_paste_name(paste_name)
-            self.set_paste_email(paste_email)
-            self.set_paste_subdomain(paste_subdomain)
-            self.set_paste_private(paste_private)
-            self.set_paste_expire_date(paste_expire_date)
-            self.set_paste_format(paste_format)
-    </code>
-    
+    def __init__(self, paste_code, paste_name=None, paste_email=None, paste_subdomain=None,
+            paste_private=False, paste_expire_date=PASTEBIN_EXPIRE_NEVER, paste_format=None):
 
-
+        self.set_paste_code(paste_code)
+        self.set_paste_name(paste_name)
+        self.set_paste_email(paste_email)
+        self.set_paste_subdomain(paste_subdomain)
+        self.set_paste_private(paste_private)
+        self.set_paste_expire_date(paste_expire_date)
+        self.set_paste_format(paste_format)
+</code>
+</pre>
 
 Then all I had to do was use the class.
-
-
     
-    
-    <code data-language="python">
-    pastebin = Pastebin(paste_code=lines, paste_name=opts.paste_name, paste_email=opts.paste_email,
-                paste_subdomain=opts.paste_subdomain, paste_private=opts.paste_private,
-                paste_expire_date=opts.paste_expire_date, paste_format=opts.paste_format)
-    response = pastebin.paste()
-    return response
-    </code>
-    
-
-
+<pre>
+<code data-language="python">
+pastebin = Pastebin(paste_code=lines, paste_name=opts.paste_name, paste_email=opts.paste_email,
+            paste_subdomain=opts.paste_subdomain, paste_private=opts.paste_private,
+            paste_expire_date=opts.paste_expire_date, paste_format=opts.paste_format)
+response = pastebin.paste()
+return response
+</code>
+</pre>
         
 I have no idea if getters and setters are very "pythonic," but they make sense to me, even if I'm only using them internally for this script. I used a pretty interesting trick to build the POST data string. I put the necessary data into a dictionary, but I needed to build a proper parameter string.
-
-
     
-    
-    <code data-language="python">
-    return "&".join([k + "=" + str(v) for (k, v) in params.iteritems()])
-    </code>
-    
-
-
+<pre>
+<code data-language="python">
+return "&".join([k + "=" + str(v) for (k, v) in params.iteritems()])
+</code>
+</pre>
     
 I love the syntax used for "inline" for-loops here. The extra `str()` call was used just in case a parameter (like expiration date) was accidentally interpreted as a number.
 
