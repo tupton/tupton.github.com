@@ -34,29 +34,25 @@ After you sign up for a Tarsnap account, put at least $5 (via Paypal) into your 
 ## A Simple Wrapper
 
 I found [a blog post by Jonathan Street][js] that detailed his automated backups, and that served as inspiration for my system. I wrote a little bash script to wrap `tarsnap` for my purposes:
-    
-<pre>
-<code data-language="shell">
-#! /bin/bash
-echo `date +%F\ %T`: Beginning back up of $2
-/usr/local/bin/tarsnap -c -f $1-`date +%F` $2
-echo `date +%F\ %T`: Completed back up of $2
-</code>
-</pre>
-    
+
+``` bash
+    #! /bin/bash
+    echo `date +%F\ %T`: Beginning back up of $2
+    /usr/local/bin/tarsnap -c -f $1-`date +%F` $2
+    echo `date +%F\ %T`: Completed back up of $2
+```
+
 Calling `tarsnap-backup.sh  ` tells tarsnap to create an archive  of the specified directory with the given name and the current date. I was in business.
-    
+
 [js]: http://jonathanstreet.com/blog/setting-up-backups-with-tarsnap
-    
+
 ### Generating a new key
-    
+
 An aside: Jonathan Street's blog post mentioned creating a new key that only had permission to read and write archives. I initially did the same thing, but for reasons I'll get into later, I wanted the ability to delete backups, too. Generating a new key was extremely easy:
-    
-<pre>
-<code data-language="shell">
-$ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
-</code>
-</pre>
+
+``` bash
+    $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
+```
 
 This creates a new key in `/root/` called `tarsnap-rw.key` that only has read and write permission.
 
@@ -71,7 +67,7 @@ The simple wrapper script above was great, but if I was going to automate it, I 
 I made a configuration called `user.conf` in `/etc/newsyslog.d/` and put my tarsnap logs inside. I decided to use a distinct log for each automated backup I do, as opposed to a single tarsnap log. I still haven't decided if this is the right way to go, but I do like being able to quickly see the result of the last backup. My `user.conf` looks like the following.
 
     /var/log/tarsnap-backup-code.log                        640     5       1000    *       Z
-    /var/log/tarsnap-backup-documents.log                   640     5       1000    *       Z 
+    /var/log/tarsnap-backup-documents.log                   640     5       1000    *       Z
 
 This configuration tells `newsyslog` to gzip, roll to a new log once the current log exceeds 1MB in size, and keep at most five old logs.
 
@@ -80,7 +76,7 @@ This configuration tells `newsyslog` to gzip, roll to a new log once the current
 With log rotation in place, I could create a cron job.
 
     0 4 * * * /usr/local/bin/tarsnap-backup code ~/code > /var/log/tarsnap-backup-code.log
-    
+
 This crontab schedules backups for my `code` directory at 4am daily and my `Documents` directory at 5am daily. I used `sudo crontabe -e` to create this because both `tarsnap` and my log file's permissions require root privileges. This would have sufficed, but there was a nagging thought in the back of my head: I [knew][w] that `launchd` is used in place of `cron` in OS X, and I thought this would give me a good opportunity to dive into even more options that `launchd` has to offer.
 
 [w]: http://www.thomasupton.com/blog/2009/09/i-love-weather/
@@ -88,43 +84,41 @@ This crontab schedules backups for my `code` directory at 4am daily and my `Docu
 ### `launchd`
 
 Since I wanted these backups to run whenever possible, I decided to put my `launchd` backup configurations in `/Library/LaunchDameons` instead of `/Library/LaunchAgents`. LaunchDaemons are able to run without a logged-in user; this is exactly what I wanted. The `launchd` configuration for my `code` backup looks like the following:
-    
-<pre>    
-<code data-language="html">
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-&lt;plist version=&quot;1.0&quot;&gt;
-&lt;dict&gt;
-    &lt;key&gt;Label&lt;/key&gt;
-    &lt;string&gt;com.thomasupton.backup-daily-code&lt;/string&gt;
-    &lt;key&gt;ProgramArguments&lt;/key&gt;
-    &lt;array&gt; 
-        &lt;string&gt;/usr/local/bin/tarsnap-backup&lt;/string&gt;
-        &lt;string&gt;code&lt;/string&gt;
-        &lt;string&gt;/Users/thomas/code&lt;/string&gt;
-    &lt;/array&gt;
-    &lt;key&gt;GroupName&lt;/key&gt;
-    &lt;string&gt;wheel&lt;/string&gt;
-    &lt;key&gt;UserName&lt;/key&gt;
-    &lt;string&gt;root&lt;/string&gt;
-    &lt;key&gt;Nice&lt;/key&gt;
-    &lt;integer&gt;1&lt;/integer&gt;
-    &lt;key&gt;StandardErrorPath&lt;/key&gt;
-    &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-    &lt;key&gt;StandardOutPath&lt;/key&gt;
-    &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-    &lt;key&gt;StartCalendarInterval&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;Hour&lt;/key&gt;
-        &lt;integer&gt;5&lt;/integer&gt;
-        &lt;key&gt;Minute&lt;/key&gt;
-        &lt;integer&gt;0&lt;/integer&gt;
-    &lt;/dict&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;
-</code>
-</pre>
+
+``` html
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.thomasupton.backup-daily-code</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/local/bin/tarsnap-backup</string>
+            <string>code</string>
+            <string>/Users/thomas/code</string>
+        </array>
+        <key>GroupName</key>
+        <string>wheel</string>
+        <key>UserName</key>
+        <string>root</string>
+        <key>Nice</key>
+        <integer>1</integer>
+        <key>StandardErrorPath</key>
+        <string>/var/log/tarsnap-backup-code.log</string>
+        <key>StandardOutPath</key>
+        <string>/var/log/tarsnap-backup-code.log</string>
+        <key>StartCalendarInterval</key>
+        <dict>
+            <key>Hour</key>
+            <integer>5</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+    </dict>
+    </plist>
+```
 
 The `ProgramArguments` section is exactly how I called the backup script from `cron`. The `UserName` and `GroupName` keys are important: they tell `launchd` to run the backup script as root, which, as I mentioned before, is necessary for using `tarsnap` and for appending to the log file. The `StandardErrorPath` and `StandardOutPath` keys tell `launchd` to redirect output to the proper log file. The `StartCalendarInterval` tells `launchd` to run this script at 5am daily.
 
@@ -135,15 +129,13 @@ After registering the configuration via `launchctl load /Library/LaunchDaemons/c
 Since Tarsnap backs up data with the notion of "snapshots" and keeps track of blocks of data (and not archive data), keeping multiple archives of the same data doesn't make much sense. However, running a daily backup by creating a new archive would mean that many archives would build up fast. I decided that keeping at most three previous backups of the same data would suffice. I wanted to automate this, too. This is the reason I decided not to use a read-write-only key.
 
 I added the following lines to my `tarsnap-backup.sh` script.
-    
-<pre>
-<code data-language="shell">
-# Remove the backup from three days previous, if there is one
-echo `date +%F\ %T`: Removing backup of $2 from `date -v-3d +%F`
-/usr/local/bin/tarsnap -d -f $1-`date -v-3d +%F`
-echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
-</code>
-</pre>
+
+``` bash
+    # Remove the backup from three days previous, if there is one
+    echo `date +%F\ %T`: Removing backup of $2 from `date -v-3d +%F`
+    /usr/local/bin/tarsnap -d -f $1-`date -v-3d +%F`
+    echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
+```
 
 The key to this is the date in the archive name passed to `tarsnap -d`. `date -v` lets you add a value to the date output, so `-v-3d` outputs the date from three days previous. Now, every scheduled backup attempts to delete the archive from three days ago in addition to creating a backup for the current day. Of course, if a backup is missed, this can lead to an accumulation of old archives. This is where the log files come in handy: I can just inspect the logs every couple of days to see what successfully ran and manually prune the archive list if necessary.
 

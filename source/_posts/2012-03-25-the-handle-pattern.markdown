@@ -12,8 +12,7 @@ categories:
 
 I'm not entirely sure if there's a better name for this pattern that already exists, but I like "handle pattern" to describe this method of keeping track of and managing "subscriptions".
 
-<pre>
-<code data-language="javascript">
+``` javascript
 var subscriber = (function() {
     
     var _listeners = {};
@@ -54,9 +53,8 @@ subscriber.publish('update'); // > "The update event was fired!"
 
 h.unlisten();
     
-subscriber.publish('update'); // > &lt;no output&gt;
-</code>
-</pre>
+subscriber.publish('update'); // > <no output>
+```
 
 When you have an event-driven application, like a Javascript app that performs actions based on user interaction or based on back end "pushes" to a listening front end, you often have a central "publisher" that handles firing events when certain actions occur. It makes sense to have a static `listen` function that takes a "channel" and a callback function to call when that channel gets updated. The problem comes when you have to decide how to *stop* listening to that channel. If you go with a static `unlisten` function on the publisher with the same signature as `listen` (the channel and callback), you need to keep track of which callback is listening to which channel, and it can get messy.
 

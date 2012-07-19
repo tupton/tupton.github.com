@@ -11,8 +11,9 @@ categories:
 ---
 
 
-<pre>
-<code data-language="php">
+``` php
+<?php
+
 function getObject($id) {
     $object = null;
         
@@ -29,8 +30,7 @@ function getObject($id) {
         
     return $object;
 }
-</code>
-</pre>
+```
 
 This shouldn't happen. I'm not talking about the comically bad code – it's a contrived example, but it proves the point – but about the little "notes" left by whoever committed this.
 

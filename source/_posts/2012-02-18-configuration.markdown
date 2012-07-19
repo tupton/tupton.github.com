@@ -10,7 +10,7 @@ categories:
 - Howto
 ---
 
-Starting a fresh environment on a new system isn't a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my [`vim` environment][vim-github] and my [environment dot files][dotfiles-github] in version control on Github.
+Starting a fresh environment on a new system isn't a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my `vim` [environment][vim-github] and my [environment dot files][dotfiles-github] in version control on Github.
 
 [vim-github]: https://github.com/tupton/vim-support
 [dotfiles-github]: https://github.com/tupton/dotfiles

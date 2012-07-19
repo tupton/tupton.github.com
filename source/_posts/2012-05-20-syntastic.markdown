@@ -28,10 +28,12 @@ Before we get to configuring individual syntax checkers, syntastic itself has a 
 
 [vimrc]: https://github.com/tupton/vim-support/blob/master/vimrc#L302
 
+``` vim
 	" On by default, turn it off for html
 	let g:syntastic_mode_map = { 'mode': 'active',
 		\ 'active_filetypes': [],
 		\ 'passive_filetypes': ['html'] }
+```
 
 The 'mode' option set to active means that syntastic is on by default, so we can leave the list of 'active_filetypes' empty. The 'passive_filetypes' names filetypes that syntastic does not attempt to check. I don't check HTML files because I mainly work with templates that either can't or won't validate with most HTML syntax checkers. If templates use non-standard attributes, it's hard for a syntax checker to do its job.
 
