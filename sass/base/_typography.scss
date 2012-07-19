@@ -78,9 +78,19 @@ strong { font-weight: bold; }
 
 em { font-style: italic; }
 
-sup, sub { font-size: 0.8em; position: relative;  display: inline-block; }
-sup { top: -.5em; }
+sup, sub {
+  font-size: 0.8em;
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  padding: 0 3px 3px 3px;
+  a {
+    text-decoration: none;
+  }
+}
+sup { top: -.8em; }
 sub { bottom: -.5em; }
+
 
 q { font-style: italic;
   &:before { content: "\201C"; }
@@ -96,8 +106,6 @@ del, s { text-decoration: line-through; }
 abbr, acronym { border-bottom: 1px dotted; cursor: help; }
 
 pre, code, tt { @extend .mono; }
-
-sub, sup { line-height: 0; }
 
 hr { margin-bottom: 0.2em; }
 
