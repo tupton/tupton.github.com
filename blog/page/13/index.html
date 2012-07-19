@@ -9,7 +9,8 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="Google announced yesterday the immediate availability of RSS feeds for their news page. You can subscribe to any section of news that is available at &hellip;">
+  <meta name="description" content=" This is awesome. Apple, please make a Bluetooth version.
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -60,43 +61,15 @@
   <div id="main">
     <div id="content">
       <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <div class="pagination">
     
-      <h1 class="entry-title"><a href="/blog/2005/08/google-news-rss/">Google News RSS</a></h1>
+      <a class="prev" href="/blog/page/14/">&larr; Older</a>
     
     
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-08-10T15:21:00-05:00" pubdate data-updated="true">Aug 10<span>th</span>, 2005</time>
-        
-      </p>
+    <a class="next" href="/blog/page/12/">Newer &rarr;</a>
     
-  </header>
-
-
-  <div class="entry-content"><p>Google <a href="http://googleblog.blogspot.com/2005/08/breaking-story-google-news-feeds.html">announced yesterday</a> the immediate availability of RSS feeds for their news page.  You can subscribe to any section of news that is available at <a href="http://news.google.com">http://news.google.com</a>.  I am still wondering why they did not make sure the feeds show up in Firefox via the Live Bookmark icon, but I use <a href="http://sage.mozdev.org/">Sage</a> anyway.</p>
-</div>
+  </div>
   
-  
-
-
-    </article>
   
   
     <article>
@@ -542,11 +515,93 @@ With the proliferation of blogs and news feeds comes an avalanche of feedback co
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2005/06/firefox-extensions/">Firefox Extensions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-06-22T23:24:00-05:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/21027787/"><img src="http://photos17.flickr.com/21027787_7e6090a61d.jpg" alt="" /></a></p>
+
+<ul>
+  <li>
+    <p><a href="http://adblock.mozdev.org/">Adblock</a> - It blocks ads.  Really well.  I use <a href="http://www.pierceive.com/filtersetg/">this site</a> for all my filters.  Instructions are in the directory at the top.  Apparently, there is a new <a href="http://bene.sitesled.com/adblock.htm">Adblock Plus</a> in the works, but as of right now, it is not part of the official builds. The new version allows whitelisting of sites, but can anyone tell me when you <em>want</em> ads to be shown while browsing?</p>
+  </li>
+  <li>
+    <p><a href="http://extensionroom.mozdev.org/more-info/automarks">Automarks</a> - This nifty extension copies your bookmarks to Autocomplete so that when you start typing in the location bar, your bookmarks show up in the drop down menu. The only gripe I have is that you have to tell it to copy them yourself, meaning that after clearing your History you need to Automark again. Surely it could be made to update your Autocomplete history every few minutes?</p>
+  </li>
+  <li>
+    <p><a href="http://roachfiend.com/archives/2005/02/07/bugmenot/">Bug Me Not</a> - This amazing extension allows you to right click a login form on a registration-required site (such as <a href="http://nytimes.com">nytimes.com</a>) and use an anonymous login to bypass said compulsory site registration.  Astounding.</p>
+  </li>
+  <li>
+    <p><a href="http://www.cusser.net/extensions/disabletarget/">Disable Targets For Download</a> - Ever notice that a new window (<a href="http://kb.mozillazine.org/Firefox_:_FAQs_:_About:config_Entries#Browser..2A"> or tab, for trendy about:config geeks</a>) opens when you click a file to download?  This extension stops those new windows, complete with a user-defined list of file extensions to use.</p>
+  </li>
+  <li>
+    <p><a href="http://www.epigoon.com/?page=feedview">Feedview</a> - Why Firefox does not do this by default I do not know, but this extension displays RSS XML files with a pretty stylesheet.  I know that Sage (see below) makes this superfluous, but this makes Firefox handle RSS more like Safari does.</p>
+  </li>
+  <li>
+    <p><a href="http://gorgias.de/mfe/">FLST</a> (scroll down to the bottom) - Focus Last Selected Tab does exactly that.  When you close a tab, Firefox will make active the last tab that had focus, as opposed to making active the next tab in line.</p>
+  </li>
+  <li>
+    <p><a href="http://greasemonkey.mozdev.org/">Greasemonkey</a> - This extension is probably one of the most flexible and versatile extensions out there.  Greasemonkey allows you to modify sites’ content through javascript.  <a href="http://dunck.us/collab/GreaseMonkeyUserScripts">This wiki</a> has a lot of useful scripts to get you started.</p>
+  </li>
+  <li>
+    <p><a href="https://addons.mozilla.org/extensions/moreinfo.php?id=112">LastTab</a> - Similar to FLST, this extension modifies the behavior of Ctrl-Tab to focus the last selected tab.</p>
+  </li>
+  <li>
+    <p><a href="http://sage.mozdev.org/">Sage</a> - This is my most used extension.  Sage is an RSS aggregator that resides in Firefox’s sidebar.  Click a button to discover feeds on the current site, add, and read.  I use <a href="http://www.hicksdesign.co.uk/">Jon Hicks’</a> <a href="http://www.hicksdesign.co.uk/journal/sage-on-os-x">Sage modifications for OS X</a>, even on my PC.  For Windows I get rid of the Mac throbber by commenting out the following code from userChrome.css:
+<code>#rssStatusImage[loading="true"] {
+list-style-image: url("sage/checking.gif") !important;
+}</code></p>
+  </li>
+  <li>
+    <p><a href="http://www.pikey.me.uk/mozilla/">Show Failed URL</a> (third from the bottom) - By default, Firefox does not show the URL of a page that failed to load; instead it pops up a rather nasty dialog box.  Before you install this extension, type about:config into the location bar, and then type browser.xul into the filter box.  There should only be one option visible; change it to true.  Now, when a page does not load in Firefox, the URL remains in the location bar and there are no more popup dialogs to click through!</p>
+  </li>
+  <li>
+    <p><a href="https://addons.mozilla.org/extensions/moreinfo.php?application=firefox&amp;id=460">Sort Extensions</a> - Pretty self explanatory.  You can see the changes it makes to the extensions window in the image above.</p>
+  </li>
+  <li>
+    <p><a href="http://extensionroom.mozdev.org/more-info/undoclosetab">undoclosetab</a> - This extension keeps a history of up to three closed tabs.  Middle click the tab bar, or right click and choose through the context menu to enable.  Unfortunately, it does not work between browser sessions, so if you close a tab, then close the window, it will not remember your last closed tabs.</p>
+  </li>
+  <li>
+    <p><a href="http://extensionroom.mozdev.org/more-info/copyimage">Copy Image</a> - It adds Copy Image To Clipboard to the context menu of an image.  Very useful, but why is it not built in to Firefox?  I seem to remember enabling this in about:config, but I could not find it again.  If anyone knows anything, please let me know.<em>Update</em>: After looking at my work PC’s context menu, I can see that this functionality is built in to Firefox 1.0.4.  However, on my Powerbook at home, it was not available.  I recently had to do a clean install of Firefox, which meant reinstalling all of my extensions, so I am positive that Copy Image was not there.  Interesting that the menu item is “Copy Image To Clipboard” in the extension but just “Copy Image” in the Windows build.  I’ll have to check on my Windows laptop at home to see if Copy Image is available.</p>
+  </li>
+</ul>
+
+<p>A lot of my extensions come from <a href="http://extensionroom.mozdev.org/">The Extension Room</a> and the <a href="https://addons.mozilla.org/extensions/">Mozilla Add-Ons Page</a>. Feel free to browse through those archives and let me know if you find anything interesting.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
     
-    <a href="/blog/archives">Blog Archives</a>
     
     <a class="next" href="/blog/page/12/">Newer &rarr;</a>
     
@@ -557,10 +612,6 @@ With the proliferation of blogs and news feeds comes an avalanche of feedback co
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/07/just-a-test/">just a test</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/07/reading-my-news/">Reading My News</a>
@@ -576,6 +627,10 @@ With the proliferation of blogs and news feeds comes an avalanche of feedback co
     
       <li class="post">
         <a href="/blog/2012/05/syntastic/">Syntastic</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/mint/">Mint</a>
       </li>
     
   </ul>

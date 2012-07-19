@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-18T22:20:40-05:00</updated>
+  <updated>2012-07-18T22:57:35-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[just a test]]></title>
-    <link href="http://tupton.github.com/blog/2012/07/just-a-test/"/>
-    <updated>2012-07-14T16:45:00-05:00</updated>
-    <id>http://tupton.github.com/blog/2012/07/just-a-test</id>
-    <content type="html"><![CDATA[<p>This is just a test.</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reading My News]]></title>
@@ -812,6 +803,17 @@ function getObject($id) {
 
 <p>I hope you enjoyed my picks. Please let me know what you think and what your favorite music of 2011 is.</p>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[And Now For Something Completely Similar]]></title>
+    <link href="http://tupton.github.com/blog/2011/12/and-now-for-something-completely-similar/"/>
+    <updated>2011-12-20T00:03:48-06:00</updated>
+    <id>http://tupton.github.com/blog/2011/12/and-now-for-something-completely-similar</id>
+    <content type="html"><![CDATA[<p>Hi there. Remember me? It’s been a while, I know. Sorry I have not kept in touch. While I would be lying if I promised that I would never go silent for that long again, I have, for mulitple reasons, renewed my interest in writing.</p>
+
+<p>I do not have many topics lined up, but I have the desire to write. Stay tuned for a bit of a year-end cliché and we’ll take it from there.</p>
 ]]></content>
   </entry>
   

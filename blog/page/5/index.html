@@ -9,7 +9,7 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="I recently started using my Tumblr tumblelog a lot more. I created my Tumblr account some time last year, like everyone else. I linked my Delicious &hellip;">
+  <meta name="description" content="Inspired by Jason Kottke, a list of the cities I visited in 2008. Columbia, MD Madrid, Spain Vera, Spain Seville, Spain Granada, Spain Frederick, MD &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -60,52 +60,15 @@
   <div id="main">
     <div id="content">
       <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <div class="pagination">
     
-      <h1 class="entry-title"><a href="/blog/2009/01/tumblr/">Tumblr</a></h1>
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
     
     
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-18T00:00:31-06:00" pubdate data-updated="true">Jan 18<span>th</span>, 2009</time>
-        
-      </p>
+    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
     
-  </header>
-
-
-  <div class="entry-content"><p>I <a href="http://thisis.thomasupton.com/">recently started using my Tumblr tumblelog</a> a lot more.</p>
-
-<p>I created my <a href="http://www.tumblr.com/">Tumblr</a> account some time last year, like everyone else. I linked my <a href="http://delicious.com/third">Delicious feed</a> and this blog to it and promptly forgot about it. I recently realized that there are photos that <a href="http://www.flickr.com/photos/third/favorites/">I favorite on Flickr</a>, and videos that I <a href="http://www.youtube.com/profile?user=tdmupton&view;=favorites">favorite on YouTube</a> or <a href="http://vimeo.com/user214820/likes">like on Vimeo</a>, and quotes that I see on many different web pages, and chats that I have with my friends that I think other friends would enjoy, but I can’t share them in one central place and oh my goodness I’ve just described the entire reason for Tumblr’s being.</p>
-
-<p>So I added the <a href="http://www.tumblr.com/goodies">Tumblr bookmarklet</a> to my browser’s bookmark bar, and now my favorite things that I come across on the web are all located in one place.</p>
-
-<p>One of the greatest features of Tumblr is the fact that each tumblelog is connected. I can favorite a post right from its permalink, and I can <a href="http://www.kungfugrippe.com/">follow</a> <a href="http://behindtherabbit.tumblr.com/">those</a> <a href="http://lonelysandwich.com/">who</a> I <a href="http://yourmonkeycalled.com/">find</a> <a href="http://clips.43folders.com/">interesting</a>.</p>
-
-<p>I spent a lot of time over the past two days tweaking <a href="http://danny-garcia.com/">Danny Garcia’s</a> <a href="http://lightgrid.tumblr.com/">LightGrid theme</a> to my liking and in the general look and feel of my tumblelog.</p>
-
-</div>
+  </div>
   
-  
-
-
-    </article>
   
   
     <article>
@@ -710,11 +673,60 @@ Blacksburg, VA
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/wordpress-403-forbidden-posting-error/">Wordpress 403 Forbidden Posting Error</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-30T00:35:13-05:00" pubdate data-updated="true">Mar 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In trying to post about <a href="http://thomas.fiveuptons.com/blog/?p=188">my modified Twitter stats script</a>, I ran into a <a href="http://en.wikipedia.org/wiki/HTTP_403">403 Forbidden</a> error every time I tried to publish. I could write and publish test posts with minimal text, but I could not post what I had written about my scripts.</p>
+
+<p>At first I thought it was an outdated version of Wordpress that was responsible for the error. However, upgrading to 2.3 did not fix anything. I simply ignored the error and conceded that I would not be able to post anything for now.</p>
+
+<p><a href="http://wordpress.org/development/2008/03/wordpress-25-brecker/">Wordpress 2.5</a> was released today, and I decided to try posting once more. I still got the same error. This time, I decided to <a href="http://www.google.com/search?q=You%20don%27t%20have%20permission%20to%20access%20%2Fblog%2Fwp-admin%2Fpost.php%20on%20this%20server.">Google the issue</a>.</p>
+
+<p>The <a href="http://forums.asmallorange.com/index.php?showtopic=3631&amp;st=0&amp;p=26154&amp;">results</a> <a href="http://wordpress.org/support/topic/135394">are</a> <a href="http://wordpress.org/support/topic/117993?replies=2">not</a> <a href="http://wordpress.org/support/topic/37489">suprising</a>.</p>
+
+<p>It seems that Wordpress has some parsing issues when posts contain certain PHP commands. Apparently, modifying the mod_security rules in .htaccess helps to resolve this issue.</p>
+
+<p>Adding the following code to the .htaccess file in <code>wp-admin/</code> does the trick.</p>
+
+<pre><code>SecFilterEngine Off
+</code></pre>
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
     
-    <a href="/blog/archives">Blog Archives</a>
     
     <a class="next" href="/blog/page/4/">Newer &rarr;</a>
     
@@ -725,10 +737,6 @@ Blacksburg, VA
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/07/just-a-test/">just a test</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/07/reading-my-news/">Reading My News</a>
@@ -744,6 +752,10 @@ Blacksburg, VA
     
       <li class="post">
         <a href="/blog/2012/05/syntastic/">Syntastic</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/mint/">Mint</a>
       </li>
     
   </ul>
