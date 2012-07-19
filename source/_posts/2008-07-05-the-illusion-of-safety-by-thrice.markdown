@@ -13,8 +13,6 @@ tags:
 
 [![](http://www.thomasupton.com/images/album/thrice-the_illusion_of_safety-2001.jpg)](http://amazon.com/dp/B00005YTRR)
 
-
-
 The first Thrice song I ever heard was on the *[Atticus: ...dragging the lake, Vol. 2] [atticus]* compilation. When I first heard *[To Awake and Avenge the Dead] [taaatd]*, I was in my car alone and I must have listened to it five times on repeat. I had discovered Thrice, and I immediately knew that they were a band to watch.
 
 [atticus]: http://musicbrainz.org/release/dc93399d-8256-4648-9450-726a990301ad.html "Release: Atticus: Dragging the Lake, Volume 2 - MusicBrainz"
@@ -24,11 +22,8 @@ Writing a review of an album over six years after its initial release allows a c
 *[The Illusion of Safety] [illusion]* opens with a quiet but frantically discordant guitar. The song swells, and Dustin Kensrue ironically begs for his life to end in order to escape the violence of this world. The sad state of the world and its inhabitants is a theme that runs throughout this album, manifesting itself as commentary on friendship in *[Trust] []* and *[The Beltsville Crucible] [crucible]*, or a lament concerning the decay of morals in *[A Subtle Dagger] [dagger]*. Sings Kensrue:
 
 > We extend our
-
 > claws to grasp at shadows of the
-
 > ideals we have,
-
 > lost causalities of a subtle dagger
 
 [illusion]: http://amazon.com/dp/B00005YTRR "Amazon.com: The Illusion of Safety: Thrice: Music"

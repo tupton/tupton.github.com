@@ -34,6 +34,7 @@ It seems that Wordpress has some parsing issues when posts contain certain PHP c
 
 Adding the following code to the .htaccess file in `wp-admin/` does the trick.
 
-    
-    SecFilterEngine Off
+    <IfModule mod_security.c>
+        SecFilterEngine Off
+    </IfModule>
     

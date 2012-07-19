@@ -26,72 +26,60 @@ I also enabled [Gravatars] [] and have highlighted my own comments when I make t
 
 [gravatars]: http://en.gravatar.com/
 
-This is the comment loop in comments.php. You can [download it as a PHP snippet] [php].
+This is the comment loop in comments.php.
 
-[php]: http://www.thomasupton.com/wp/wp-content/uploads/2008/04/comment-snippetphp.zip
+``` php
+    <?php if ($comments) : ?>
 
-    
+        <ol id="comments">
 
-    	
+        <?php $i = 1 ?>
 
+        <?php foreach ($comments as $comment) : ?>
+            <li id="comment-<?php comment_ID() ?>" class="<?php echo get_comment_author_email() == get_the_author_email() ? ' blog-author' : $oddcomment ?>">
+                <cite>
+                    <span class="author"><?php comment_author_link() ?></span>
+                    <span class="date"><a href="#comment-<?php comment_ID() ?>"><?php comment_date( $hemingway->date_format() . '.y' ) ?> / <?php comment_date('H.i') ?></a></span>
+                    <span class="gravatar"><?php echo get_avatar( $comment, $size = '80'); ?></span>
+                </cite>
+                <div class="content">
+                    <span class="number"><?php echo $i ?></span>
+                    <?php if ($comment->comment_approved == '0') : ?>
+                    <em>Your comment is awaiting moderation.</em>
+                    <?php endif; ?>
+                    <?php comment_text() ?>
+                </div>
+                <div class="clear"></div>
+            </li>
 
-
-    	
-
-    	
-    		
-  1. 
-    			
-    				
-    				date_format() . '.y' ) ?> / 
-    				
-    			
-    			
-
-
-    				
-    				comment_approved == '0') : ?>
-    				_Your comment is awaiting moderation._
-    				
-    				
-    			
+            <?php $i++; ?>
 
 
-    			
+        <?php /* Changes every other comment to a different class */
+            if ('alt' == $oddcomment) $oddcomment = '';
+            else $oddcomment = 'alt';
+        ?>
 
+        <?php endforeach; /* end for each comment */ ?>
 
-    		
+        </ol>
 
+     <?php else : // this is displayed if there are no comments so far ?>
 
-    		
+      <?php if ('open' == $post->comment_status) : ?>
+            <!-- If comments are open, but there are no comments. -->
 
+         <?php else : // comments are closed ?>
+            <!-- If comments are closed. -->
+            <p class="nocomments">Comments are closed.</p>
 
-    	
+        <?php endif; ?>
+    <?php endif; ?>
+```
 
-    	
+This is the CSS section for my comments.
 
-    	
-
-     
-
-      comment_status) : ?>
-    		
-
-    	 
-    		
-    		
-
-Comments are closed.
-
-
-
-    	
-    
-
-This is the CSS section for my comments. You can [download it as a CSS snippet] [css].
-
-[css]: http://www.thomasupton.com/wp/wp-content/uploads/2008/04/comment-snippet.css
-
+``` css
     /* Comments */
     ol#comments li .content span.number {
     	position: relative;
@@ -126,3 +114,4 @@ This is the CSS section for my comments. You can [download it as a CSS snippet] 
     	padding: 3px;
     	border: 1px solid #ccc;
     }
+```

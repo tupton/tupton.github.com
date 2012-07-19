@@ -18,20 +18,7 @@ tags:
 
 [Download the weather script from GitHub.](http://github.com/tupton/python-yahoo-weather/tree/master)
 
-
-  
-
-
-
-
-
-
 **UPDATE:** Chris Lasher updated my script. It now utilizes [optparse](http://docs.python.org/lib/module-optparse.html) and docstrings. Some of the options have been changed, too, and I have licensed the code under a [by-nc-sa CC license](http://creativecommons.org/licenses/by-nc-sa/3.0/us/).  I have updated this post to reflect these changes. Thanks, Chris!
-
-
-
-
-
 
 I believe that everyone likes to know what the weather is like outside. In the good ol' days, people used to stick a hand out of the window and know everything they needed to know about the weather; now we have [myriad] [google weather] [options] [wunderground weather] to [check] [yahoo weather] the [weather] [weather.gov].
 
@@ -65,23 +52,22 @@ I learned a few things regarding Python while writing this script. The [getopt()
 
 [getopt]: http://docs.python.org/lib/module-getopt.html
 
+``` python
     import getopt
     import sys
 
     opts, args = getopt(sys.argv[1:], "cflv")
+```
 
 Now the options that were passed on the command line and that are part of `cflv` are in the `opts` array; command line arguments are listed in `args`.
 
-
-
 **UPDATE:** My script now uses [optparse](http://docs.python.org/lib/module-optparse.html) instead of getopt.
-
-
 
 [minidom] [] is a simple but complete DOM implementation. Using the `getElementsByTagName` and the `getAttribute` methods makes for easy and stress-free XML parsing.
 
 [minidom]: http://docs.python.org/lib/module-xml.dom.minidom.html
 
+``` python
     from xml.dom.minidom import parse
 
     dom = parse("file.xml")
@@ -90,6 +76,7 @@ Now the options that were passed on the command line and that are part of `cflv`
 
     for node in dom.getElementsByTagName('tag'):
         attrs.append(node.getAttribute('text'))
+```
 
 `attrs` contains the `text` attribute of each `tag` node in the XML file `file.xml`.
 
@@ -101,12 +88,10 @@ In order to run the script, pass it a zip code to find the weather.
 
 Running the script without any arguments will show the usage and the available options.
 
-
 * `-c` Suppress the current weather output. Use this if you only want the forecast data.
 * `-f DAYS` Show the forecast for the next DAYS days.
 * `-l` Show the city and region name of the forecast that was retrieved. Use this to verify the zip code that you are using is in fact your area.
 * `-v` Print headers above all output.
-
 
 Here is some example output from the script:
 
