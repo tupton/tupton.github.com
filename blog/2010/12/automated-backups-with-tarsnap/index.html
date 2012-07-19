@@ -21,9 +21,11 @@
   <link rel="canonical" href="http://tupton.github.com/blog/2010/12/automated-backups-with-tarsnap/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/custom/github.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/rainbow.min.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -97,13 +99,14 @@
 
 <p>I found <a href="http://jonathanstreet.com/blog/setting-up-backups-with-tarsnap">a blog post by Jonathan Street</a> that detailed his automated backups, and that served as inspiration for my system. I wrote a little bash script to wrap <code>tarsnap</code> for my purposes:</p>
 
-<pre><code>&lt;code data-language="shell"&gt;
+<pre>
+<code data-language="shell">
 #! /bin/bash
 echo `date +%F\ %T`: Beginning back up of $2
 /usr/local/bin/tarsnap -c -f $1-`date +%F` $2
 echo `date +%F\ %T`: Completed back up of $2
-&lt;/code&gt;
-</code></pre>
+</code>
+</pre>
 
 <p>Calling <code>tarsnap-backup.sh  </code> tells tarsnap to create an archive  of the specified directory with the given name and the current date. I was in business.</p>
 
@@ -111,10 +114,11 @@ echo `date +%F\ %T`: Completed back up of $2
 
 <p>An aside: Jonathan Street’s blog post mentioned creating a new key that only had permission to read and write archives. I initially did the same thing, but for reasons I’ll get into later, I wanted the ability to delete backups, too. Generating a new key was extremely easy:</p>
 
-<pre><code>&lt;code data-language="shell"&gt;
+<pre>
+<code data-language="shell">
 $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
-&lt;/code&gt;
-</code></pre>
+</code>
+</pre>
 
 <p>This creates a new key in <code>/root/</code> called <code>tarsnap-rw.key</code> that only has read and write permission.</p>
 
@@ -145,11 +149,12 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 
 <p>Since I wanted these backups to run whenever possible, I decided to put my <code>launchd</code> backup configurations in <code>/Library/LaunchDameons</code> instead of <code>/Library/LaunchAgents</code>. LaunchDaemons are able to run without a logged-in user; this is exactly what I wanted. The <code>launchd</code> configuration for my <code>code</code> backup looks like the following:</p>
 
-<pre><code>&lt;code data-language="html"&gt;
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<pre>    
+<code data-language="html">
+<?xml version="1.0" encoding="UTF-8"?>
 &lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
 "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
 &lt;dict&gt;
     &lt;key&gt;Label&lt;/key&gt;
     &lt;string&gt;com.thomasupton.backup-daily-code&lt;/string&gt;
@@ -178,8 +183,8 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
     &lt;/dict&gt;
 &lt;/dict&gt;
 &lt;/plist&gt;
-&lt;/code&gt;
-</code></pre>
+</code>
+</pre>
 
 <p>The <code>ProgramArguments</code> section is exactly how I called the backup script from <code>cron</code>. The <code>UserName</code> and <code>GroupName</code> keys are important: they tell <code>launchd</code> to run the backup script as root, which, as I mentioned before, is necessary for using <code>tarsnap</code> and for appending to the log file. The <code>StandardErrorPath</code> and <code>StandardOutPath</code> keys tell <code>launchd</code> to redirect output to the proper log file. The <code>StartCalendarInterval</code> tells <code>launchd</code> to run this script at 5am daily.</p>
 
@@ -191,13 +196,14 @@ $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
 
 <p>I added the following lines to my <code>tarsnap-backup.sh</code> script.</p>
 
-<pre><code>&lt;code data-language="shell"&gt;
+<pre>
+<code data-language="shell">
 # Remove the backup from three days previous, if there is one
 echo `date +%F\ %T`: Removing backup of $2 from `date -v-3d +%F`
 /usr/local/bin/tarsnap -d -f $1-`date -v-3d +%F`
 echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
-&lt;/code&gt;
-</code></pre>
+</code>
+</pre>
 
 <p>The key to this is the date in the archive name passed to <code>tarsnap -d</code>. <code>date -v</code> lets you add a value to the date output, so <code>-v-3d</code> outputs the date from three days previous. Now, every scheduled backup attempts to delete the archive from three days ago in addition to creating a backup for the current day. Of course, if a backup is missed, this can lead to an accumulation of old archives. This is where the log files come in handy: I can just inspect the logs every couple of days to see what successfully ran and manually prune the archive list if necessary.</p>
 
