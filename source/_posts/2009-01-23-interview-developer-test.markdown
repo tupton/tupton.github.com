@@ -39,6 +39,7 @@ The formulas for coming up with `n` and `x` are related and fairly straightforwa
 
 A problem that arises with this method is words that are longer than a line. I got around this by printing the word in chunks of the maximum width until its length was less than that text width. `words_printed` is just a count of the number of words that have been printed on the line thus far. It was used instead of `len(to_justify)` for use in another section of the code.
 
+``` python
     # Take care of words that are longer than our desired text width.
     while len(word) > text_width:
       if words_printed == 0:
@@ -53,6 +54,7 @@ A problem that arises with this method is words that are longer than a line. I g
         word = word[(text_width - len(to_justify) - 1):]
         to_justify = []
         words_printed = 0
+```
 
 ## Problem 2
 
@@ -100,18 +102,24 @@ I constructed the array by using `split()` on each each line of the input file, 
 
 The `reversed()` top-level method produces an iterator on a list in reverse. This was very useful for the bottom row and left column. This is how I addressed the bottom row of the array:
 
+``` python
     for item in reversed(array[-1]):
       "".join(item)
+```
       
 Using `array[-1]` also came in handy for the right column of the array:
 
+``` python
     for item in array[1:-1]:
       print "".join(item[-1])
+```
       
 And also for extracting the part of the array that still needs to be processed:
 
+``` python
     new_array = []
     for row in array[1:-1]:
       new_array.append(row[1:-1])
+```
 
 I think the idea of a developer test is great. It allows the interviewers a brief glimpse into what kind of worker or programmer you are, and it gives the applicant a sense of accomplishment. The fact that I knew how to attack and solve these problems also gave me some confidence in my own programming skills. Being a recent college graduate and not having much professional programming experience meant that I had no idea what to expect. Now I do, and I'm excited. I got the job, and I very much look forward to starting work.
