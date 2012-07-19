@@ -36,7 +36,7 @@ body > nav {
     font-size: .9em;
     ul {
       @include horizontal-list(0);
-      float: left;
+      float: right;
       display: block;
       padding-top: .15em;
     }
@@ -52,7 +52,7 @@ body > nav {
       @include link-colors($nav-color, $nav-color-hover, $visited: $nav-color);
       font-family: $sans;
       text-shadow: lighten($nav-bg, 12) 0 1px;
-      float: left;
+      float: right;
       text-decoration: none;
       font-size: 1.1em;
       padding: .1em 0;
