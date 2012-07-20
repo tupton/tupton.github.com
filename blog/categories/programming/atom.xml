@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T14:26:52-05:00</updated>
+  <updated>2012-07-19T22:04:44-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -65,30 +65,31 @@
     <updated>2012-02-24T12:41:13-06:00</updated>
     <id>http://tupton.github.com/blog/2012/02/dont-commit-fixme-or-todo</id>
     <content type="html"><![CDATA[<p>``` php
-&lt;?php</p>
+    &lt;?php</p>
 
-<p>function getObject($id) {
-    $object = null;</p>
+<pre><code>function getObject($id) {
+    $object = null;
 
-<pre><code>// TODO Do we need to validate username?
-$objects = $this-&gt;db-&gt;retrieveForUsername($this-&gt;username);
-    
-// FIXME Write `retrieveForIdAndUsername` instead of iterating here
-foreach ($objects as $o) {
-    if ($o-&gt;id() == $id) {
-        $object = $o;
-        break;
+    // TODO Do we need to validate username?
+    $objects = $this-&gt;db-&gt;retrieveForUsername($this-&gt;username);
+
+    // FIXME Write `retrieveForIdAndUsername` instead of iterating here
+    foreach ($objects as $o) {
+        if ($o-&gt;id() == $id) {
+            $object = $o;
+            break;
+        }
     }
-}
-    
-return $object; } ```
+
+    return $object;
+} ```
 </code></pre>
 
 <p>This shouldn’t happen. I’m not talking about the comically bad code – it’s a contrived example, but it proves the point – but about the little “notes” left by whoever committed this.</p>
 
 <p>Do we need to validate the username? Probably. Find out, and take the necessary action. If you know your codebase well, it should take about ten seconds to know the answer.</p>
 
-<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly. <sup id="fnref:bad-dev"><a href="#fn:bad-dev" rel="footnote">1</a></sup></p>
+<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly<sup id="fnref:bad-dev"><a href="#fn:bad-dev" rel="footnote">1</a></sup>.</p>
 
 <p>Of course, use <code>TODO</code> or <code>FIXME</code> while you’re developing to keep a list of tasks that you have to finish before your feature is complete. Just don’t commit them to where other developers can see them and <em>certainly</em> don’t merge them to trunk.</p>
 
