@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Design | Uptonian Thoughts]]></title>
+  <link href="http://tupton.github.com/categories/design/atom.xml" rel="self"/>
+  <link href="http://tupton.github.com/"/>
+  <updated>2012-07-20T15:13:20-05:00</updated>
+  <id>http://tupton.github.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New Beginnings]]></title>
+    <link href="http://tupton.github.com/2009/02/new-beginnings"/>
+    <updated>2009-02-25T22:24:10-06:00</updated>
+    <id>http://tupton.github.com/2009/02/new-beginnings</id>
+    <content type="html"><![CDATA[<p>I recently started working at <a href="http://www.mailtrust.com/" title="Business Email Hosting &amp; Webmail Services Mailtrust">Mailtrust</a> in Blacksburg, VA. Mailtrust is a division of <a href="http://www.rackspace.com/" title="Dedicated Server - Dedicated Server Hosting - Managed Dedicated Server by Rackspace">Rackspace</a>, a company that has been experiencing some astounding growth recently. One of the companies that Rackspace recently acquired is <a href="http://www.slicehost.com/" title="Slicehost - VPS Hosting">Slicehost</a>. Last week, I decided to sign up for Slicehost hosting and move my website to this new server. I also decided to buy a new domain, <strong>thomasupton.com</strong>. I spent the last week or so setting up my server just how I wanted it.</p>
+
+<p>I followed the excellent <a href="http://articles.slicehost.com/" title="Slicehost Article Repository - VPS setup, servers, Ruby on Rails, Django, PHP, DNS, Slicemanager and more">Slicehost articles</a> in order to get started. Setup is a breeze because you have total control over your server. When I screwed something up shortly after starting the setup process, I simply rebuilt and re-imaged my slice and started over.</p>
+
+<p>The articles for <a href="http://www.ubuntu.com/getubuntu/download" title="Download Ubuntu Ubuntu">Ubuntu 8.10</a> are presented in a useful order and detail how to set up and secure a new slice, install Apache to serve websites, and install MySQL and PHP to start getting things done.</p>
+
+<p>By far the hardest part of setting all of this up was the migration of my <a href="http://wordpress.org/" title="WordPress › Blog Tool and Publishing Platform">Wordpress</a> installation. I spent a lot of time trying to export a MySQL dump of my existing Wordpress database and import onto my slice. It turns out that <a href="http://en.blog.wordpress.com/2006/06/12/xml-import-export/" title="XML Import / Export « Blog « WordPress.com">Wordpress supports an extended XML-based format for importing and exporting</a> almost every bit of user-created content, including posts, comments, and pages. Existing URL structures are preserved, and author data can be changed to an existing author in the new installation. This was <em>much</em> easier to do than my attempt to directly import a MySQL dump.</p>
+
+<p>After I installed and migrated Wordpress, I decided that I wanted to redesign the look of the site. I wanted an article-centric design that took a minimalist approach to the extreme. What I needed was a skeleton Wordpress template that had useful, semantic markup that was easily customizable. Enter <a href="http://www.plaintxt.org/themes/sandbox/" title="Sandbox plaintxt.org">Sandbox</a>. After activating the theme, designing a layout purely in CSS was extremely easy, thanks in large part to the clear and concise HTML markup. I’m still tweaking the design here and there, and I want to add a dedicated Archives page, but I’m really happy with how the site has turned out so far.</p>
+
+<p>As I mentioned a couple of weeks ago, my interest was rekindled in <a href="http://www.tumblr.com/" title="Tumblr">Tumblr</a> after the release of version five. Tumblr supports custom domains, so I’ve moved my tumblelog to <a href="http://thisis.thomasupton.com/" title="This Is Thomas">This Is Thomas</a>.</p>
+
+<p>I’m really hoping to have more time to blog about issues and topics that I care about now that I don’t have class and homework to worry about. The site is continually undergoing changes in design and structure as I learn more about how to write and design more effectively.</p>
+
+<p>Enjoy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tumblr]]></title>
+    <link href="http://tupton.github.com/2009/01/tumblr"/>
+    <updated>2009-01-18T00:00:31-06:00</updated>
+    <id>http://tupton.github.com/2009/01/tumblr</id>
+    <content type="html"><![CDATA[<p>I <a href="http://thisis.thomasupton.com/">recently started using my Tumblr tumblelog</a> a lot more.</p>
+
+<p>I created my <a href="http://www.tumblr.com/">Tumblr</a> account some time last year, like everyone else. I linked my <a href="http://delicious.com/third">Delicious feed</a> and this blog to it and promptly forgot about it. I recently realized that there are photos that <a href="http://www.flickr.com/photos/third/favorites/">I favorite on Flickr</a>, and videos that I <a href="http://www.youtube.com/profile?user=tdmupton&view;=favorites">favorite on YouTube</a> or <a href="http://vimeo.com/user214820/likes">like on Vimeo</a>, and quotes that I see on many different web pages, and chats that I have with my friends that I think other friends would enjoy, but I can’t share them in one central place and oh my goodness I’ve just described the entire reason for Tumblr’s being.</p>
+
+<p>So I added the <a href="http://www.tumblr.com/goodies">Tumblr bookmarklet</a> to my browser’s bookmark bar, and now my favorite things that I come across on the web are all located in one place.</p>
+
+<p>One of the greatest features of Tumblr is the fact that each tumblelog is connected. I can favorite a post right from its permalink, and I can <a href="http://www.kungfugrippe.com/">follow</a> <a href="http://behindtherabbit.tumblr.com/">those</a> <a href="http://lonelysandwich.com/">who</a> I <a href="http://yourmonkeycalled.com/">find</a> <a href="http://clips.43folders.com/">interesting</a>.</p>
+
+<p>I spent a lot of time over the past two days tweaking <a href="http://danny-garcia.com/">Danny Garcia’s</a> <a href="http://lightgrid.tumblr.com/">LightGrid theme</a> to my liking and in the general look and feel of my tumblelog.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Blog Comment Design]]></title>
+    <link href="http://tupton.github.com/2008/04/blog-comment-design"/>
+    <updated>2008-04-24T16:24:47-05:00</updated>
+    <id>http://tupton.github.com/2008/04/blog-comment-design</id>
+    <content type="html"><![CDATA[<p>I updated my blog comments from the <a href="http://warpspire.com/hemingway">Hemingway</a> default to a more iconic design.</p>
+
+<p>A <a href="http://css-tricks.com/better-ordered-lists-using-simple-php-and-css/">post about blog comments</a> that I saw a few weeks ago inspired me to use the “big number” idea for my own comments.</p>
+
+<p>I also enabled <a href="http://en.gravatar.com/">Gravatars</a> and have highlighted my own comments when I make them. I have posted the comment loop and the relevant comment CSS in case anyone else wants to use this idea.</p>
+
+<p>This is the comment loop in comments.php.</p>
+
+<p>``` php
+    <?php if ($comments) : ?></p>
+
+<pre><code>    &lt;ol id="comments"&gt;
+
+    &lt;?php $i = 1 ?&gt;
+
+    &lt;?php foreach ($comments as $comment) : ?&gt;
+        &lt;li id="comment-&lt;?php comment_ID() ?&gt;" class="&lt;?php echo get_comment_author_email() == get_the_author_email() ? ' blog-author' : $oddcomment ?&gt;"&gt;
+            &lt;cite&gt;
+                &lt;span class="author"&gt;&lt;?php comment_author_link() ?&gt;&lt;/span&gt;
+                &lt;span class="date"&gt;&lt;a href="#comment-&lt;?php comment_ID() ?&gt;"&gt;&lt;?php comment_date( $hemingway-&gt;date_format() . '.y' ) ?&gt; / &lt;?php comment_date('H.i') ?&gt;&lt;/a&gt;&lt;/span&gt;
+                &lt;span class="gravatar"&gt;&lt;?php echo get_avatar( $comment, $size = '80'); ?&gt;&lt;/span&gt;
+            &lt;/cite&gt;
+            &lt;div class="content"&gt;
+                &lt;span class="number"&gt;&lt;?php echo $i ?&gt;&lt;/span&gt;
+                &lt;?php if ($comment-&gt;comment_approved == '0') : ?&gt;
+                &lt;em&gt;Your comment is awaiting moderation.&lt;/em&gt;
+                &lt;?php endif; ?&gt;
+                &lt;?php comment_text() ?&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/li&gt;
+
+        &lt;?php $i++; ?&gt;
+
+
+    &lt;?php /* Changes every other comment to a different class */
+        if ('alt' == $oddcomment) $oddcomment = '';
+        else $oddcomment = 'alt';
+    ?&gt;
+
+    &lt;?php endforeach; /* end for each comment */ ?&gt;
+
+    &lt;/ol&gt;
+
+ &lt;?php else : // this is displayed if there are no comments so far ?&gt;
+
+  &lt;?php if ('open' == $post-&gt;comment_status) : ?&gt;
+        &lt;!-- If comments are open, but there are no comments. --&gt;
+
+     &lt;?php else : // comments are closed ?&gt;
+        &lt;!-- If comments are closed. --&gt;
+        &lt;p class="nocomments"&gt;Comments are closed.&lt;/p&gt;
+
+    &lt;?php endif; ?&gt;
+&lt;?php endif; ?&gt; ```
+</code></pre>
+
+<p>This is the CSS section for my comments.</p>
+
+<p>``` css
+    /* Comments */
+    ol#comments li .content span.number {
+    	position: relative;
+    	top: 0px;
+    	left: 0px;
+    	font-size: 10em;
+    	color: #c7c7c7;
+    	float: right;
+    }</p>
+
+<pre><code>ol#comments li {
+	padding: 10px 0;
+}
+
+ol#comments li.blog-author {
+	background-color: #ddd;
+}
+
+ol#comments li.alt .content {
+	background-color: #ddd;
+}
+
+ol#comments li cite span.date a {
+	text-decoration: none;
+}
+
+ol#comments li cite span.gravatar {
+	margin-top: 13px;
+}
+
+ol#comments li cite span.gravatar img {
+	padding: 3px;
+	border: 1px solid #ccc;
+} ```
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New Site Layout]]></title>
+    <link href="http://tupton.github.com/2008/03/new-site-layout"/>
+    <updated>2008-03-30T15:29:22-05:00</updated>
+    <id>http://tupton.github.com/2008/03/new-site-layout</id>
+    <content type="html"><![CDATA[<p>I changed my blog layout to the <a href="http://warpspire.com/hemingway">Hemingway theme</a> and directed Wordpress to publish to the root of my section of <a href="http://fiveuptons.com">FiveUptons.com</a>.</p>
+
+<p>I am now using Wordpress plugins to display <a href="http://rick.jinlabs.com/code/delicious/">my del.icio.us bookmarks</a>, <a href="http://rick.jinlabs.com/code/lastfm/">Last.fm tracks</a>, and <a href="http://eightface.com/wordpress/flickrrss/">Flickr photos</a>.</p>
+
+<p>To all three of my readers out there, please let me know if there are any issues with the new layout and presentation.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CSS Naked Day]]></title>
+    <link href="http://tupton.github.com/2006/04/css-naked-day"/>
+    <updated>2006-04-05T09:25:14-05:00</updated>
+    <id>http://tupton.github.com/2006/04/css-naked-day</id>
+    <content type="html"><![CDATA[<p>While <a href="http://naked.dustindiaz.com/">the concept</a> is nice, I really hate going to everyone’s blog and not being able to see these wonderful designs that everyone is so proud of.</p>
+
+<p>Over at <a href="http://www.stylegala.com/news/public200604/1617.htm">Stylegala</a> there is an interesting comment thread about this idea.  Sure, the underlying XHTML is very important.  I even disabled my stylesheets in Firefox and fixed a couple errors in my markup that I wasn’t happy with. One could argue that this is the point of CSS Naked Day, but I don’t see the point in shoving it in every user’s face.</p>
+
+<p>I can’t wait for 6th April, the CSS Renaissance.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sports | Uptonian Thoughts]]></title>
+  <link href="http://tupton.github.com/categories/sports/atom.xml" rel="self"/>
+  <link href="http://tupton.github.com/"/>
+  <updated>2012-07-20T15:13:20-05:00</updated>
+  <id>http://tupton.github.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Momentum, Loss Of]]></title>
+    <link href="http://tupton.github.com/2006/12/momentum-loss-of"/>
+    <updated>2006-12-31T05:12:11-06:00</updated>
+    <id>http://tupton.github.com/2006/12/momentum-loss-of</id>
+    <content type="html"><![CDATA[<p>See the 2006 Chik-Fil-A Bowl:</p>
+
+<p>Half: 21-3, VT</p>
+
+<p>Final: 24-31, GA</p>
+]]></content>
+  </entry>
+  
+</feed>

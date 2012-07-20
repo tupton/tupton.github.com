@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rant | Uptonian Thoughts]]></title>
+  <link href="http://tupton.github.com/categories/rant/atom.xml" rel="self"/>
+  <link href="http://tupton.github.com/"/>
+  <updated>2012-07-20T15:13:20-05:00</updated>
+  <id>http://tupton.github.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Don't Commit FIXME or TODO]]></title>
+    <link href="http://tupton.github.com/2012/02/dont-commit-fixme-or-todo"/>
+    <updated>2012-02-24T12:41:13-06:00</updated>
+    <id>http://tupton.github.com/2012/02/dont-commit-fixme-or-todo</id>
+    <content type="html"><![CDATA[<p>``` php
+    &lt;?php</p>
+
+<pre><code>function getObject($id) {
+    $object = null;
+
+    // TODO Do we need to validate username?
+    $objects = $this-&gt;db-&gt;retrieveForUsername($this-&gt;username);
+
+    // FIXME Write `retrieveForIdAndUsername` instead of iterating here
+    foreach ($objects as $o) {
+        if ($o-&gt;id() == $id) {
+            $object = $o;
+            break;
+        }
+    }
+
+    return $object;
+} ```
+</code></pre>
+
+<p>This shouldn’t happen. I’m not talking about the comically bad code – it’s a contrived example, but it proves the point – but about the little “notes” left by whoever committed this.</p>
+
+<p>Do we need to validate the username? Probably. Find out, and take the necessary action. If you know your codebase well, it should take about ten seconds to know the answer.</p>
+
+<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly<sup id="fnref:bad-dev"><a href="#fn:bad-dev" rel="footnote">1</a></sup>.</p>
+
+<p>Of course, use <code>TODO</code> or <code>FIXME</code> while you’re developing to keep a list of tasks that you have to finish before your feature is complete. Just don’t commit them to where other developers can see them and <em>certainly</em> don’t merge them to trunk.</p>
+
+<p>If you’re lazy with that code now, there’s no way you’re going to overcome that laziness and come back to fix it later.</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:bad-dev">
+      <p>One could argue that being aware of bad code is better than nothing, but that’s fluffy. If you’re aware of a problem, you’re probably smart enough to do something about it.<a href="#fnref:bad-dev" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Microwave Ovens Suck]]></title>
+    <link href="http://tupton.github.com/2012/02/microwave-ovens-suck"/>
+    <updated>2012-02-23T18:50:14-06:00</updated>
+    <id>http://tupton.github.com/2012/02/microwave-ovens-suck</id>
+    <content type="html"><![CDATA[<p>Really. My microwave helpfully makes the numbers 1 through 6 shortcuts for running for that number of minutes, on full power. When’s the last time you needed to microwave something for <em>six whole minutes</em>?</p>
+
+<p>Most of my microwaving involves re-heating leftovers or softening things like tortillas or butter. These things don’t take minutes; they take <em>seconds</em>. And if I have something that really need to warm up over the course of one or two minutes, it certainly doesn’t need to be that long at full power. Those preset buttons are absolutely useless. I need presets for 10, 20, and 30 seconds, and maybe 90, and at power levels of 5, 7, and “hi”. Not “high”, mind you, “hi”.</p>
+
+<p>The rest of my microwaving time is spent trying to defrost frozen meat, like a chicken breast or a tilapia filet. There’s a button for this, yes, but it requires that I guess the weight of the thing I’m defrosting. I don’t own a kitchen scale, but even if I did, I sure as hell wouldn’t bust it out to figure out how to long I need to defrost my meat. Let me tell you what I’m defrosting, and then figure out how long to defrost it. Defrosting is not a new science or even science at all.</p>
+
+<p>Here’s another irksome feature: when I open the microwave door before the timer goes off, I really appreciate that it remembers how much time was left. Once eight hours have passed, though, I think it’s safe to assume that I’m no longer in need of that timer. “PRESS START” is not helpful after that long. Show me the clock again after a reasonable amount of time has passed.</p>
+
+<p>Another thing: that awful beeping sound. I know some smug person with too much time on his hands has Googled his unit’s manual and has memorized the arcane sequence of button presses required to mute the microwave, but I haven’t. Why is there not just a mute button? It’s not for lack of room: put it under my “9 “ button or in between “Defrost” and “Popcorn” (which always burns those poor defenseless kernels) or even in the place of the “Reminder” button, because I don’t keep my todo list on my microwave.</p>
+
+<p>Can someone “<a href="http://www.nest.com/">Nest</a>-ify” the microwave? I would buy one in a heartbeat.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[And Now For Something Completely Similar]]></title>
+    <link href="http://tupton.github.com/2011/12/and-now-for-something-completely-similar"/>
+    <updated>2011-12-20T00:03:48-06:00</updated>
+    <id>http://tupton.github.com/2011/12/and-now-for-something-completely-similar</id>
+    <content type="html"><![CDATA[<p>Hi there. Remember me? It’s been a while, I know. Sorry I have not kept in touch. While I would be lying if I promised that I would never go silent for that long again, I have, for mulitple reasons, renewed my interest in writing.</p>
+
+<p>I do not have many topics lined up, but I have the desire to write. Stay tuned for a bit of a year-end cliché and we’ll take it from there.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[April Fool's Day]]></title>
+    <link href="http://tupton.github.com/2007/04/april-fools-day"/>
+    <updated>2007-04-01T14:05:52-05:00</updated>
+    <id>http://tupton.github.com/2007/04/april-fools-day</id>
+    <content type="html"><![CDATA[<p>I haven’t seen a good joke yet.  Lame.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Totally Unacceptable]]></title>
+    <link href="http://tupton.github.com/2005/09/totally-unacceptable"/>
+    <updated>2005-09-04T19:03:00-05:00</updated>
+    <id>http://tupton.github.com/2005/09/totally-unacceptable</id>
+    <content type="html"><![CDATA[<p><a href="http://news.bbc.co.uk/1/hi/world/americas/4213214.stm">Surivors reveal Superdrome horror</a>, found via <a href="http://www.boingboing.net/2005/09/04/in_america.html">Boing Boing</a>.</p>
+
+<p>This is America, the land of hope, oppurtunity, tolerance, and accountability.  In recent times, this statement becomes more and more idealistic and further away from the truth.</p>
+
+<p>The disaster in New Orleans is horrendous enough.  Why does it take a tragedy like this to bring out the worst in people?  Who is to blame here?</p>
+
+<p>The kneejerk reaction might be to point the finger at the poor, because they don’t know any better, or because they are only trying to survive.  Bullshit.  The scenario down there was controllable after the weather died down, and the organizers and leaders made mistakes.  Logistical errors were made, miscommunications are abound, and thousands upon thousands of people watched their lives worsen every day, even now, six days after the hurricane made landfall in New Orleans.</p>
+
+<p>Rape, looting, pillaging, and violence are not tolerable.  Neither is violent retaliation against these egregious acts.  Army units are being brought in from Iraq, where they have little to no accountability for their actions against what the media has so popularly named the insurgency.  This does not insinuate that they will treat the citizens of New Orleans as if they were a threat to the well-being of America, but one must wonder about the validity of the choices being made by American armed forces.  Not only did help arrive much too late, but the organization of aid to Louisiana has been lacking to say the least.</p>
+
+<p>Numerous stories pour in throughout the day regarding the limit of supplies and manpower.  The choice to make available all resources to all areas is not a hard one to make.  The fact that a man was killed trying to flag down help says it all.  What about the dozens of pirate bus drivers that risk incarceration to go where official rescue operations dare not.</p>
+
+<p>People’s lives should not be governed by red tape.  Getting the help in there is only half the battle. Using manpower and resources responsibly and effectively are key to helping resolve this situation.</p>
+]]></content>
+  </entry>
+  
+</feed>

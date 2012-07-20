@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hardware | Uptonian Thoughts]]></title>
+  <link href="http://tupton.github.com/categories/hardware/atom.xml" rel="self"/>
+  <link href="http://tupton.github.com/"/>
+  <updated>2012-07-20T15:13:20-05:00</updated>
+  <id>http://tupton.github.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Dell Latitude D800 Pointing Stick Issues]]></title>
+    <link href="http://tupton.github.com/2009/02/dell-latitude-d800-pointing-stick-issues"/>
+    <updated>2009-02-02T00:48:46-06:00</updated>
+    <id>http://tupton.github.com/2009/02/dell-latitude-d800-pointing-stick-issues</id>
+    <content type="html"><![CDATA[<p>I recently installed <a href="http://www.ubuntu.com/">Ubuntu 8.10</a> on my old Dell Latitude D800. I had not used that machine in a couple of years, and I had forgotten about a few hardware issues that it had. One of the most annoying issues was the “drifting” <a href="http://en.wikipedia.org/wiki/Pointing_stick">pointing stick</a>.</p>
+
+<p>According to a number of posts I found when searching for solutions to the problem, the drifting pointing stick issue is a common one on many Dell models. It causes random and erratic mouse movement, making it nigh impossible to operate a graphical interface. I got around the issue when I was using this machine full time by disabling the pointing stick using the <a href="http://support.dell.com/support/downloads/download.aspx?c=us&amp;l=en&amp;s=gen&amp;releaseid=R89598&amp;SystemID=LAT_PNT_PM_D600&amp;os=WW1&amp;osl=en&amp;deviceid=2514&amp;devlib=0&amp;typecnt=1&amp;vercnt=6&amp;formatcnt=1&amp;fileid=116869">Windows driver for the ALPS GlidePoint</a>. Unfortunately, the system preferences offered by Ubuntu do not have an option to disable the pointing stick.</p>
+
+<p>I found <a href="http://ubuntuforums.org/showthread.php?t=107521">a post on the Ubuntu forums</a> from a user who had a similar problem to mine. A responder mentioned that he removed the keyboard and found that the pointing stick had its own leads that could be disconnected. I searched for the <a href="http://support.dell.com/support/edocs/systems/latd800/sm_en/keyboard.htm">Dell support document that matched my model</a> and decided that I, too, could remove my keyboard and disconnect the pointing stick.</p>
+
+<p>Unfortunately, I did not take any pictures of my machine when I had it opened. However, it is <em>very</em> easy to remove the keyboard by following the instructions in the support document. Once the machine was open and the keyboard removed, I just ripped off the leads from the pointing stick where they attached back to the keyboard connector. To be safe, I taped the loose end with electrical tape. After I replaced the keyboard, the trackpad and keyboard both worked fine and were not marred by the erratic mouse movement that was caused by my pointing stick.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Peel OS X Music Blog Player & Reader]]></title>
+    <link href="http://tupton.github.com/2007/04/peel-os-x-music-blog-client"/>
+    <updated>2007-04-09T01:10:52-05:00</updated>
+    <id>http://tupton.github.com/2007/04/peel-os-x-music-blog-client</id>
+    <content type="html"><![CDATA[<p><img src="http://www.thomasupton.com/wp/wp-content/uploads/2007/04/snipshot_d4qr5b2m6gw.png" alt="Peel for OS X" /></p>
+
+<p><a href="http://www.getpeel.com/">Peel for OS X</a> is a beta music blog client that aggregates mp3 files from user-specified music blogs, and allows you to view the music blog right there in the app.  While it is great software, using it for one day has made me realize that a lot of potentially deal-breaking features are missing from this piece of software.  Thankfully, this is the reason public betas were invented, and, without further ado and in no particular order whatsoever, here is my wish-list for Peel:</p>
+
+<ul>
+  <li>
+    <p>Better Flagged Songs Management</p>
+
+    <p>I want a central location (separate window, source list, whatever) for all the songs that I have flagged.  Sometimes I don’t have time or I don’t want to download a song, but I’d like to flag it in order to deal with it later.  I need to be able to see all flagged songs, regardless of the music blog from which they originally came.</p>
+  </li>
+  <li>
+    <p>Downloads Window</p>
+
+    <p>A window would be much easier to manage and visualize than those small progress bars that are currently in place.  Additionally, it would be nice if there was a way to scan the download directory to see if the downloaded songs are still there.  The check mark that appears next to a downloaded song will always remain present, even when the downloaded song has been removed from the hard drive.</p>
+  </li>
+  <li>
+    <p>Search</p>
+
+    <p>Let me search for artists, songs, music blogs (on the web, not search for local files), and, while we’re at it, make adding blogs easier.  Get website titles automatically, and don’t make me enter a title just to add a new music blog.  Handle feed URLs as well as music site URLs, too.  Peel crashed while adding a Wordpress RSS feed to the source list.</p>
+  </li>
+  <li>
+    <p>Better iTunes Integration</p>
+
+    <p><em>Please</em> let me add Peel songs to a specific playlist.  I don’t want these singles mucking up my pristine album-only music library.  I spent way too much time tagging my music library to have it littered with improperly tagged music.  If you give me the option to add to a playlist, I can reduce this mess a lot more efficiently.</p>
+  </li>
+  <li>
+    <p>Better Playback Controls</p>
+
+    <p>Allow me to shuffle songs, both within individual blogs and globally.  Make the spacebar a play/pause  button, and reflect that in the Controls menu.</p>
+  </li>
+</ul>
+
+<p><a href="http://www.last.fm/">Last.fm</a> support would be awesome, too.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Apple iPhone]]></title>
+    <link href="http://tupton.github.com/2007/01/apple-iphone"/>
+    <updated>2007-01-11T20:24:27-06:00</updated>
+    <id>http://tupton.github.com/2007/01/apple-iphone</id>
+    <content type="html"><![CDATA[<p><img src="http://thomas.fiveuptons.com/blog/wp-content/uploads/2007/01/apple_iphone.png" alt="Apple iPhone" /></p>
+
+<p>As everyone knows, Apple announced its foray into the magical, convoluted world of mobile communications devices on Tuesday during the MacWorld Expo Keynote speech.</p>
+
+<p><a href="http://www.kottke.org/">Jason Kottke</a> has a <a href="http://www.kottke.org/07/01/iphone-roundup">great round-up of iPhone observations</a>, including commentary on the <a href="http://www.37signals.com/svn/posts/188-iphone-not-touchy-feely">lack of tacticle feedback</a> the iPhone will provide.  It’s a great point, in my opinion, and something that should be addressed.  My thinking is, however, that because the on screen keyboard will always be in the same place, we can expect our hands’ muscle memory to adapt to the lack of physical feedback.  Like Mr. Kottke says, this interface is one that requires weeks, not hours or minutes, of regular usage in order to fully understand its effectiveness.</p>
+
+<p>I look forward to June, but I think that the price may stop me from getting one right away.  Here’s to hoping for a widescreen iPod with similar multi-touch technology not long after the release of the iPhone.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New MacBook]]></title>
+    <link href="http://tupton.github.com/2007/01/new-macbook"/>
+    <updated>2007-01-11T19:46:34-06:00</updated>
+    <id>http://tupton.github.com/2007/01/new-macbook</id>
+    <content type="html"><![CDATA[<p><img src="http://thomas.fiveuptons.com/blog/wp-content/uploads/2007/01/new_macbook.JPG" alt="New MacBook" /></p>
+
+<p>I got a new <a href="http://www.apple.com/macbook/macbook.html">MacBook</a> last week, and it is FAST.  From start-up, to login, to opening apps, to using apps, it is blindingly, blisteringly fast.  I’m very excited about my new purchase.</p>
+
+<p>It’s a black, 2.0 GHz Intel Core 2 Duo MacBook with 2 GB RAM and 120 GB HDD.</p>
+
+<p>Here is a <a href="http://www.flickr.com/photos/third/sets/72157594474124489/">Flickr set of the unpacking photos</a>.</p>
+
+<p>Unfortunately, there’s an issue with the sound output when external speakers are plugged in.  I <a href="http://discussions.apple.com/thread.jspa?threadID=803432&amp;tstart=0">posted on the discussion boards about my issue</a>, but I don’t seem to have much of a response.  I’m going to call Apple when I get back to school over the weekend and see what I can do about a replacement.  I have a dead pixel on the screen, too, right out of the box, and that’s just plain old annoying.
+Other than that, this machine is great!  I suppose I’ll have to start looking for a new use / home for my Powerbook G4 now.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mighty Mouse]]></title>
+    <link href="http://tupton.github.com/2005/08/mighty-mouse"/>
+    <updated>2005-08-02T09:51:00-05:00</updated>
+    <id>http://tupton.github.com/2005/08/mighty-mouse</id>
+    <content type="html"><![CDATA[<p><a href="http://www.apple.com/mightymouse/"><img src="http://photos22.flickr.com/30610206_c2af4cc9e4_o.png" alt="Mighty Mouse" /></a></p>
+
+<p><a href="http://www.apple.com/mightymouse/">This is awesome</a>. Apple, please make a Bluetooth version.</p>
+]]></content>
+  </entry>
+  
+</feed>

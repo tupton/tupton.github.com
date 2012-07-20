@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Interesting | Uptonian Thoughts]]></title>
+  <link href="http://tupton.github.com/categories/interesting/atom.xml" rel="self"/>
+  <link href="http://tupton.github.com/"/>
+  <updated>2012-07-20T15:13:20-05:00</updated>
+  <id>http://tupton.github.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Twitter Stats]]></title>
+    <link href="http://tupton.github.com/2008/03/twitter-stats"/>
+    <updated>2008-03-30T00:12:09-05:00</updated>
+    <id>http://tupton.github.com/2008/03/twitter-stats</id>
+    <content type="html"><![CDATA[<p><strong>Update:</strong> <a href="http://www.tweetstats.com/">TweetStats</a> webifies a version of these Twitter statistics.</p>
+
+<p><img src="http://www.thomasupton.com/wp/wp-content/uploads/2008/03/twitter_stats-300x154.png" alt="Twitter stats, by hour." /></p>
+
+<p>Damon Cortesi wrote a <a href="http://dcortesi.com/2007/12/27/twitter-stats/">pretty nifty script to grab some Twitter statistics</a>. A bunch of people modified his script in order to <a href="http://bradkellett.com/twitter_stats.html">webify it</a>, <a href="http://michael-mccracken.net/wp/2008/01/02/twitter-stats-in-svg-using-gnuplot/">plot the results using gnuplot</a>, and <a href="http://iamthewalr.us/blog/2008/01/02/twitter-stats/">plot the results with the Google Charts API</a>.</p>
+
+<p>This last modification really intrigued me, as I know there are <a href="http://google-code-updates.blogspot.com/2008/01/chartmaker-tool-for-google-chart-api.html">a few wrappers for the Google Charts API</a> available, including one for Python. I decided to modify <a href="http://iamthewalr.us/blog/2008/01/02/twitter-stats/">Colin Barrett’s Python script</a> that uses the Google Charts API to use the <a href="http://pygooglechart.slowchop.com/">pygooglechart</a> module.</p>
+
+<p>So now instead of:</p>
+
+<pre><code>if f[0] == "\n":
+    s = "http://chart.apis.google.com/chart?cht=bvg&amp;chbh;=15&amp;chs;=600x300&amp;chd;=t:%s&amp;chxt;=y,x&amp;
+    chxr=0,0,%d&amp;chtt;=%s"
+    s = s % ( str(map(lambda x: x*100/max(v), v)).replace(" ", "")[1:-1], max(v), t )
+</code></pre>
+
+<p>we have:</p>
+
+<pre><code># If we are at a newline, we have just finished gathering data for a single chart
+if fields[0] == "\n":
+    # Most of the time we are generating a vertical bar chart
+    chart = GroupedVerticalBarChart(600, 300)
+    # Set the y-axis range according to the current data
+    chart.set_axis_range(Axis.LEFT, 0, max(chartData))
+</code></pre>
+
+<p>I also commented my modifications because I’m still on winter break and I felt like it.</p>
+
+<p>You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/01/pygooglechart_twitter_stats.zip">download my modified script here</a>. Make sure you have the pygooglechart module and read the included README.txt file.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Last.fm Geographical Scrobbles]]></title>
+    <link href="http://tupton.github.com/2006/09/lastfm-geographical-scrobbles"/>
+    <updated>2006-09-18T22:38:31-05:00</updated>
+    <id>http://tupton.github.com/2006/09/lastfm-geographical-scrobbles</id>
+    <content type="html"><![CDATA[<p><a href="http://static.last.fm/vis/scrobbles.gif"><img src="http://static.flickr.com/85/247080089_3b595645f8.jpg" alt="Last.fm Scrobbles Geography" /></a></p>
+
+<p><a href="http://www.last.fm/">Last.fm</a> developer <a href="http://www.last.fm/user/Russ/">Russ</a> posted <a href="http://www.last.fm/user/Russ/journal/2006/09/13/226806/">a neat image on his journal</a>.  This kind of visualization is so cool to look at, and reveals a lot about the service.  It’s a 24 hour look at scrobbles from around the world.  Great stuff, Russ.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iTunes 7.0 Is Pretty Awesome]]></title>
+    <link href="http://tupton.github.com/2006/09/itunes-70-is-pretty-awesome"/>
+    <updated>2006-09-13T01:14:17-05:00</updated>
+    <id>http://tupton.github.com/2006/09/itunes-70-is-pretty-awesome</id>
+    <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/third/242122330/"><img src="http://static.flickr.com/82/242122330_6362fe8573_o.png" alt="iTunes Simultaneous Download" /></a></p>
+
+<p>I love the new UI of <a href="http://www.apple.com/itunes/overview/">iTunes 7.0</a>.</p>
+
+<p>The new features can be found all over the internet, but I read most of the details at <a href="http://www.tuaw.com/2006/09/12/walkthrough-itunes-7s-big-new-features/">The Unofficial Apple Weblog</a>.</p>
+
+<p>One of the features that I noticed today is that the iTunes Store now provides three simultaneous downloads.  Along with creating a Currently Downloading playlist in your Source List on the left side of the window, three items can be downloaded concurrently.  It’s the little things, Apple.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Humiliation, Or How NOT To Steal A SideKick II]]></title>
+    <link href="http://tupton.github.com/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii"/>
+    <updated>2006-06-07T14:37:07-05:00</updated>
+    <id>http://tupton.github.com/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii</id>
+    <content type="html"><![CDATA[<p>This is sad, funny, obscene, ridiculous, and downright silly, all at the same time.</p>
+
+<p><a href="http://www.evanwashere.com/StolenSidekick/">How NOT To Steal A SideKick II</a></p>
+
+<p>I hope that the issue gets resolved soon.  Stolen tech plus whiney thieves does not a great day make.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Wikipedia]]></title>
+    <link href="http://tupton.github.com/2005/01/wikipedia"/>
+    <updated>2005-01-14T15:04:00-06:00</updated>
+    <id>http://tupton.github.com/2005/01/wikipedia</id>
+    <content type="html"><![CDATA[<p>The <a href="http://en.wikipedia.org/wiki/Main_Page">Wikipedia</a> is a free public encyclopedia.  The premise of this project brings open source ideals to general and public knowledge.</p>
+
+<p>I could delve into lengthy histories and explanations, but there are some great sources out there, in particular Wikipedia’s own <a href="http://en.wikipedia.org/wiki/Wikipedia:About">About page</a>.</p>
+
+<p>There exist a number of <a href="http://meta.wikimedia.org/wiki/Complete_list_of_language_Wikipedias_available">non-English Wikipedias</a>, attesting to the success of the project’s core goals.</p>
+
+<p>The very idea of common knowledge in this context is limitless. To edit knowledgebases in real time, relying on the common desire for correct information is, <a href="http://en.wikipedia.org/wiki/Early_Muslim_philosophy">if</a> <a href="http://www.ehistory.com/world/articles/ArticleView.cfm?AID=9">not</a> <a href="http://www.kirjasto.sci.fi/diderot.htm">revolutionary</a>, certainly given a new meaning when combined with the global connection that is made possible by the internet.</p>
+
+<p>Recently, Wikipedia has garnered a lot of attention, and, as a result, many visitors and contributors. Larry Sanger, one of the co-founders of Wikipedia, wrote an <a href="http://www.kuro5hin.org/story/2004/12/30/142458/25">interesting article on the prevalence of anti-elitism</a> in the contributing community. In it, he describes some faults of the current moderation system (of which there is none,) and the failure of many contributors to give enough respect to the knowledge of masters of a particular field. It’s an interesting read, and has many interesting comments; Sanger has responded to a few of them.</p>
+
+<p>Another, somewhat related issue is that of <a href="http://en.wikipedia.org/wiki/Wikipedia:Neutral_Point_of_View">neutrality</a>.  Obviously, some issues are more <a href="http://en.wikipedia.org/wiki/Abortion">controversial</a> than <a href="http://en.wikipedia.org/wiki/Carrot">others</a>.  Because of this, a <a href="http://en.wikipedia.org/wiki/Wikipedia:NPOV_dispute">neutrality dispute system</a> has been implemented.  Political articles are also under close watch, as the article on <a href="http://en.wikipedia.org/wiki/George_w_bush">George W. Bush</a> was locked both before and during the <a href="http://en.wikipedia.org/wiki/U.S._presidential_election%2C_2004">2004 election</a> in response to vandalism on the article.</p>
+
+<p>In time, the problems of the Wikipedia will solve themselves, but the idea of open source general knowledge is pretty cool regardless of those who don’t respect it. The community grows each day, bringing with this growth myriad new experts that are willing to let the world know what they know.</p>
+
+<p>Here are some articles that I found particularly interesting:</p>
+
+<ul>
+  <li>
+    <p><a href="http://en.wikipedia.org/wiki/Falun_Gong">Falun Gong</a></p>
+  </li>
+  <li>
+    <p><a href="http://en.wikipedia.org/wiki/Dyson_sphere">The Dyson Sphere</a></p>
+  </li>
+  <li>
+    <p><a href="http://en.wikipedia.org/wiki/Mozilla_Firefox">Firefox</a></p>
+  </li>
+  <li>
+    <p><a href="http://en.wikipedia.org/wiki/Grey_goo">Gray Goo</a></p>
+  </li>
+  <li>
+    <p><a href="http://en.wikipedia.org/wiki/Chuck_Palahniuk">Chuck Palahniuk</a></p>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
