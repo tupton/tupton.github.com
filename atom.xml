@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T22:37:17-05:00</updated>
+  <updated>2012-07-19T23:11:54-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress]]></title>
+    <link href="http://tupton.github.com/2012/07/octopress"/>
+    <updated>2012-07-19T23:05:00-05:00</updated>
+    <id>http://tupton.github.com/2012/07/octopress</id>
+    <content type="html"><![CDATA[<p>This blog is now being served by <a href="http://pages.github.com/">GitHub Pages</a> (<a href="https://github.com/tupton/tupton.github.com">source</a>) by way of <a href="http://octopress.org/">Octopress</a>. I’ve
+tried to set up some redirects from the old site that should match up pretty well, but please let me
+know if something looks awry.</p>
+
+<p>There aren’t any site comments here anymore, so feel free to let me know on Twitter
+<a href="https://twitter.com/thomasupton">@thomasupton</a> or email.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reading My News]]></title>
@@ -862,17 +877,6 @@ a little research – Googling, asking your friends or family – beforehand com
 
 <p>I hope you enjoyed my picks. Please let me know what you think and what your favorite music of 2011 is.</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[And Now For Something Completely Similar]]></title>
-    <link href="http://tupton.github.com/2011/12/and-now-for-something-completely-similar"/>
-    <updated>2011-12-20T00:03:48-06:00</updated>
-    <id>http://tupton.github.com/2011/12/and-now-for-something-completely-similar</id>
-    <content type="html"><![CDATA[<p>Hi there. Remember me? It’s been a while, I know. Sorry I have not kept in touch. While I would be lying if I promised that I would never go silent for that long again, I have, for mulitple reasons, renewed my interest in writing.</p>
-
-<p>I do not have many topics lined up, but I have the desire to write. Stay tuned for a bit of a year-end cliché and we’ll take it from there.</p>
 ]]></content>
   </entry>
   

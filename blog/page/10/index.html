@@ -9,7 +9,7 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="Geek Tool (use JAW Software’s Tiger build for OS X 10.4 or later) is a versatile tool to output different shell scripts, text, and images to your &hellip;">
+  <meta name="description" content="Last.fm, what would I be without you? A man with a lot more hard drive space, that’s for sure. The amount of music I have come across because of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,61 @@
     
   </div>
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/03/lastfm-greasemonkey-statistics-overload">Last.fm + Greasemonkey = Statistics Overload</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-03-07T20:49:00-06:00" pubdate data-updated="true">Mar 7<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/109460996/"><img src="http://static.flickr.com/38/109460996_12e240678b_o.png" alt="Last.fm GM Scripts In Action" /></a></p>
+
+<p><a href="http://last.fm/">Last.fm</a>, what would I be without you?  A man with a lot more hard drive space, that’s for sure.  The amount of music I have come across because of this amazing social service is staggering.  The official iTunes count is 13837 items, 35.8 days, 56.23GB.  And, thanks to Last.fm, <a href="http://last.fm/user/tupton/">I can track how much of that I actually listen to and enjoy</a>.</p>
+
+<p>That’s the thing.  I can see my charts, and I can see my top artists.  It’s awesome.   It’s not as awesome as some people think it could be, though.  With the help of the increasingly awesome / useful Firefox extension <a href="http://greasemonkey.mozdev.org/">Greasemonkey</a>, I now have access to so many music and listening stats that I could spend hours looking at them… Not that I do that.  The image at the top of the post show’s my <a href="http://www.last.fm/user/aupton/">father’s profile</a> with all the userscripty goodness attached.  Here are the Last.fm Greasemonkey scripts that I use.</p>
+
+<p><a href="http://thomas.fiveuptons.com/gm/">Last.fm Prettifier</a> (<a href="http://www.fiveuptons.com/thomas/gm/lastfmprettifier.user.js">Right-click to install</a>)
+First up, we have my own concoction.  This script changes the links in Last.fm charts to block elements so that they take up the whole row and makes them Audioscrobbler Red (#D20039) on hover.  It’s a simple change, but it’s effective, especially with a wide screen.</p>
+
+<p><a href="http://userscripts.org/scripts/show/2365">Last.fm Percentages</a>
+This displays a percentage next to the number in all Last.fm charts.  It’s useful to see how big a chunk a certain band can take up in terms of your listening habits.  I changed the color to a more neutral grey.  My wish for this script:  Make the weekly percentages out of the total number of songs played that week, not the total number of songs played in the profile.  Also, if there was a way to extend the chart rows to always accomodate this new information, that’d be great.  Sometimes the percentages bleed over into the white of the page when the chart is too narrow.  Shouldn’t there be a way to fix this?</p>
+
+<p><a href="http://userscripts.org/scripts/show/2252">Last.fm User Statistics</a>
+This script inserts a daily / weekly / monthly average of tracks played beneath your total stats on the left side.  I modified this script to change the format of the data.  I’m averaging 68.9 tracks a day after seven months of tracking.  That includes the iPod tracks, too.  I have a life.</p>
+
+<p><a href="http://userscripts.org/scripts/show/3009">Highlight Same Artists</a>
+This awesome script highlights Top 50 artists on other profiles that you share with that particular user.  I changed the CSS to make the highlighted artists AS red and  bold so they stand out a lot more.</p>
+
+<p><a href="http://userscripts.org/scripts/show/1982">Last.fm Chart Changes</a>
+This absolutely incredible script tracks (via a <a href="http://lastfm.indiegigs.co.uk/">server-side script</a>) changes to your charts from week to week.  The relative position to last week is shown to the left of the artist, and appropriate notifications are made for new and stagnant artists.  This script is unbelievable.  Good work, <a href="http://indiegigs.co.uk/">Mr. Wilkinson</a>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -519,56 +574,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/01/itunes-602-mini-store-privacy-concerns">iTunes 6.0.2 Mini Store Privacy Concerns</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2006-01-12T11:35:00-06:00" pubdate data-updated="true">Jan 12<span>th</span>, 2006</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>UPDATE:</strong> Apple has <a href="http://thomas.fiveuptons.com/?p=60">changed the behavior of iTunes</a>.  Thank you, Apple.</p>
-
-<p><a href="http://www.flickr.com/photos/third/85834383/"><img src="http://static.flickr.com/38/85834383_485619a2e0_o.png" alt="iTmS - iTunes Mini Store" /></a></p>
-
-<p>Apple updated iTunes on Tuesday, and yesterday, pretty much the whole Apple blogosphere went off the wall talking about how Apple now infringes on basic privacy rights with a new feature called the iTunes Mini Store (iTmS?).  I decided I needed to weigh in on this whole hooplah. <a href="http://www.boingboing.net/2006/01/11/itunes_update_spies_.html">Cory Doctorow of Boing Boing</a> first alerted me to what was going on.  As usual, he was concerned for the privacy of iTunes users, and, as expected, preached the end of his Apple fanboy days if Apple phoned home about his listening habits. The <a href="http://since1968.com/article/153/itunes-is-watching">blog post that Cory linked to</a> over at <a href="http://since1968.com">since1968.com</a> was quite alarmist, but the concern was valid.  Marc Garret, the author of the blog, then <a href="http://since1968.com/article/154/itunes-update-update">posted a rebuttal</a> to all the comments on the original post.  In it, he makes some good points and debunks some ridiculous claims (“Dude, you should know that Apple is collecting the information because it couldn’t display related songs without it.” What?)</p>
-
-<p>Then, <a href="http://yro.slashdot.org/article.pl?sid=06/01/11/1619259">the story reached Slashdot</a>.  Some commenters were taken aback and angry at Apple, while others tried to make it clear that Apple was doing nothing to infringe on anybody’s rights.  Still others made it out that Apple apologists were trying to defend Apple’s evil intentions, and that if Microsoft was doing the same thing with WMP then everyone would be up in arms about the whole situation.</p>
-
-<p>This morning, <a href="http://www.theappleblog.com/">The Apple Blog</a> <a href="http://www.theappleblog.com/2006/01/11/itunes-knows-where-you-live-and-its-going-to-hunt-you-down/">weighed in on the issue</a>, and these are the points that I agree most with.</p>
-
-<p><a href="http://since1968.com/article/153/itunes-is-watching#c000084">I was one of the early commenters on the since1968 post</a>, and I maintain that if Apple does not store the information (<a href="http://www.macworld.com/weblogs/editors/2006/01/ministore/index.php">as reported by MacWorld</a>) that is sent to the Music Store then no data-mining is occuring.  This is more akin to having an RSS feed of an artist’s works displayed as you listen, or performing a search on the iTMS and retrieving the results automatically.</p>
-
-<p>However, I find it a little strange that Apple made no mention of this feature on Tuesday, and they make no reference to how the data is used in any of THREE license argreements associated with iTunes and the Music Store.  The most disconcerting aspect of this is WHERE the information is going.  <a href="http://5ives.com/">Merlin Mann</a> discovered that packets are being sent to <a href="http://2o7.net/">2o7.net</a>, a website of a known marketing company.  My question is, if Apple is not collecting information, is another company doing just that for them?  I have no problem with Apple knowing my listening habits; the Recommendations over at <a href="http://amazon.com">Amazon</a> is one of my favorite features and they are normally bang on.  I DO have an issue with the feature not being explained and it being opt-out instead of opt-in (but I suppose Amazon’s Recommendations are opt-out, too), but the fact that no data is sent when the mini store is closed not only makes sense, but goes a long way in describing Apple’s intentions.  They just want to sell more music, and I DO NOT have an issue with that.</p>
-
-<p>For the record, I turned the mini store off. This has little to do with online privacy, though.  The mini-store takes up way too much space, even on my 20” Cinema Display, and I do not want to know what albums I’m missing in an artist’s discography (I might be compelled to spend even MORE money!)  Here’s to hoping that the feature will be opt out in the next update to iTunes and that a section is added to the iTunes license agreement that explains what is going on with this data.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -583,6 +588,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/octopress">Octopress</a>
+      </li>
     
       <li class="post">
         <a href="/2012/07/reading-my-news">Reading My News</a>
@@ -618,10 +627,6 @@
     
       <li class="post">
         <a href="/2012/02/configuration">Configuration</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/01/coffee">Coffee</a>
       </li>
     
   </ul>
