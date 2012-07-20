@@ -43,7 +43,7 @@ want to read.
 [lamebook]: http://www.lamebook.com/
 [ap]: http://www.absolutepunk.net/
 
-I now have 26 feeds in 8 categories[^cross-link], down from twice that before pruning. This is
+I now have 26 feeds in 8 categories,[^cross-link] down from twice that before pruning. This is
 manageable. 50+ high-traffic feeds are not. I can read the items from these feeds quickly, and I
 can finally read "all items" without becoming overwhelmed.
 
@@ -75,7 +75,7 @@ up.
 
 The end result is that I have a streamlined way to catch up on news that's important to me as
 quickly as possible, no matter where I am. I spend less time fiddling with news items I don't really
-care about, less time out of my day being distracted by the latest hot article[^distract], and more
+care about, less time out of my day being distracted by the latest hot article,[^distract] and more
 time doing what I want and need to do.
 
 [^too-long]: I did this ritual for far too long before I realized it needed to end. Old habits die hard. 
