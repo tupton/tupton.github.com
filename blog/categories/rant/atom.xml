@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rant | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/rant/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T22:14:50-05:00</updated>
+  <updated>2012-07-19T22:30:23-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Don't Commit FIXME or TODO]]></title>
-    <link href="http://tupton.github.com/blog/2012/02/dont-commit-fixme-or-todo/"/>
+    <link href="http://tupton.github.com/2012/02/dont-commit-fixme-or-todo"/>
     <updated>2012-02-24T12:41:13-06:00</updated>
-    <id>http://tupton.github.com/blog/2012/02/dont-commit-fixme-or-todo</id>
+    <id>http://tupton.github.com/2012/02/dont-commit-fixme-or-todo</id>
     <content type="html"><![CDATA[<p>``` php
     &lt;?php</p>
 
@@ -60,9 +60,9 @@
   
   <entry>
     <title type="html"><![CDATA[Microwave Ovens Suck]]></title>
-    <link href="http://tupton.github.com/blog/2012/02/microwave-ovens-suck/"/>
+    <link href="http://tupton.github.com/2012/02/microwave-ovens-suck"/>
     <updated>2012-02-23T18:50:14-06:00</updated>
-    <id>http://tupton.github.com/blog/2012/02/microwave-ovens-suck</id>
+    <id>http://tupton.github.com/2012/02/microwave-ovens-suck</id>
     <content type="html"><![CDATA[<p>Really. My microwave helpfully makes the numbers 1 through 6 shortcuts for running for that number of minutes, on full power. When’s the last time you needed to microwave something for <em>six whole minutes</em>?</p>
 
 <p>Most of my microwaving involves re-heating leftovers or softening things like tortillas or butter. These things don’t take minutes; they take <em>seconds</em>. And if I have something that really need to warm up over the course of one or two minutes, it certainly doesn’t need to be that long at full power. Those preset buttons are absolutely useless. I need presets for 10, 20, and 30 seconds, and maybe 90, and at power levels of 5, 7, and “hi”. Not “high”, mind you, “hi”.</p>
@@ -80,9 +80,9 @@
   
   <entry>
     <title type="html"><![CDATA[And Now For Something Completely Similar]]></title>
-    <link href="http://tupton.github.com/blog/2011/12/and-now-for-something-completely-similar/"/>
+    <link href="http://tupton.github.com/2011/12/and-now-for-something-completely-similar"/>
     <updated>2011-12-20T00:03:48-06:00</updated>
-    <id>http://tupton.github.com/blog/2011/12/and-now-for-something-completely-similar</id>
+    <id>http://tupton.github.com/2011/12/and-now-for-something-completely-similar</id>
     <content type="html"><![CDATA[<p>Hi there. Remember me? It’s been a while, I know. Sorry I have not kept in touch. While I would be lying if I promised that I would never go silent for that long again, I have, for mulitple reasons, renewed my interest in writing.</p>
 
 <p>I do not have many topics lined up, but I have the desire to write. Stay tuned for a bit of a year-end cliché and we’ll take it from there.</p>
@@ -91,18 +91,18 @@
   
   <entry>
     <title type="html"><![CDATA[April Fool's Day]]></title>
-    <link href="http://tupton.github.com/blog/2007/04/april-fools-day/"/>
+    <link href="http://tupton.github.com/2007/04/april-fools-day"/>
     <updated>2007-04-01T14:05:52-05:00</updated>
-    <id>http://tupton.github.com/blog/2007/04/april-fools-day</id>
+    <id>http://tupton.github.com/2007/04/april-fools-day</id>
     <content type="html"><![CDATA[<p>I haven’t seen a good joke yet.  Lame.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Totally Unacceptable]]></title>
-    <link href="http://tupton.github.com/blog/2005/09/totally-unacceptable/"/>
+    <link href="http://tupton.github.com/2005/09/totally-unacceptable"/>
     <updated>2005-09-04T19:03:00-05:00</updated>
-    <id>http://tupton.github.com/blog/2005/09/totally-unacceptable</id>
+    <id>http://tupton.github.com/2005/09/totally-unacceptable</id>
     <content type="html"><![CDATA[<p><a href="http://news.bbc.co.uk/1/hi/world/americas/4213214.stm">Surivors reveal Superdrome horror</a>, found via <a href="http://www.boingboing.net/2005/09/04/in_america.html">Boing Boing</a>.</p>
 
 <p>This is America, the land of hope, oppurtunity, tolerance, and accountability.  In recent times, this statement becomes more and more idealistic and further away from the truth.</p>

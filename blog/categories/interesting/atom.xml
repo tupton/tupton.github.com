@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Interesting | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/interesting/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T22:14:50-05:00</updated>
+  <updated>2012-07-19T22:30:23-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Twitter Stats]]></title>
-    <link href="http://tupton.github.com/blog/2008/03/twitter-stats/"/>
+    <link href="http://tupton.github.com/2008/03/twitter-stats"/>
     <updated>2008-03-30T00:12:09-05:00</updated>
-    <id>http://tupton.github.com/blog/2008/03/twitter-stats</id>
+    <id>http://tupton.github.com/2008/03/twitter-stats</id>
     <content type="html"><![CDATA[<p><strong>Update:</strong> <a href="http://www.tweetstats.com/">TweetStats</a> webifies a version of these Twitter statistics.</p>
 
 <p><img src="http://www.thomasupton.com/wp/wp-content/uploads/2008/03/twitter_stats-300x154.png" alt="Twitter stats, by hour." /></p>
@@ -53,9 +53,9 @@ if fields[0] == "\n":
   
   <entry>
     <title type="html"><![CDATA[Last.fm Geographical Scrobbles]]></title>
-    <link href="http://tupton.github.com/blog/2006/09/lastfm-geographical-scrobbles/"/>
+    <link href="http://tupton.github.com/2006/09/lastfm-geographical-scrobbles"/>
     <updated>2006-09-18T22:38:31-05:00</updated>
-    <id>http://tupton.github.com/blog/2006/09/lastfm-geographical-scrobbles</id>
+    <id>http://tupton.github.com/2006/09/lastfm-geographical-scrobbles</id>
     <content type="html"><![CDATA[<p><a href="http://static.last.fm/vis/scrobbles.gif"><img src="http://static.flickr.com/85/247080089_3b595645f8.jpg" alt="Last.fm Scrobbles Geography" /></a></p>
 
 <p><a href="http://www.last.fm/">Last.fm</a> developer <a href="http://www.last.fm/user/Russ/">Russ</a> posted <a href="http://www.last.fm/user/Russ/journal/2006/09/13/226806/">a neat image on his journal</a>.  This kind of visualization is so cool to look at, and reveals a lot about the service.  It’s a 24 hour look at scrobbles from around the world.  Great stuff, Russ.</p>
@@ -64,9 +64,9 @@ if fields[0] == "\n":
   
   <entry>
     <title type="html"><![CDATA[iTunes 7.0 Is Pretty Awesome]]></title>
-    <link href="http://tupton.github.com/blog/2006/09/itunes-70-is-pretty-awesome/"/>
+    <link href="http://tupton.github.com/2006/09/itunes-70-is-pretty-awesome"/>
     <updated>2006-09-13T01:14:17-05:00</updated>
-    <id>http://tupton.github.com/blog/2006/09/itunes-70-is-pretty-awesome</id>
+    <id>http://tupton.github.com/2006/09/itunes-70-is-pretty-awesome</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/third/242122330/"><img src="http://static.flickr.com/82/242122330_6362fe8573_o.png" alt="iTunes Simultaneous Download" /></a></p>
 
 <p>I love the new UI of <a href="http://www.apple.com/itunes/overview/">iTunes 7.0</a>.</p>
@@ -79,9 +79,9 @@ if fields[0] == "\n":
   
   <entry>
     <title type="html"><![CDATA[Humiliation, Or How NOT To Steal A SideKick II]]></title>
-    <link href="http://tupton.github.com/blog/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii/"/>
+    <link href="http://tupton.github.com/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii"/>
     <updated>2006-06-07T14:37:07-05:00</updated>
-    <id>http://tupton.github.com/blog/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii</id>
+    <id>http://tupton.github.com/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii</id>
     <content type="html"><![CDATA[<p>This is sad, funny, obscene, ridiculous, and downright silly, all at the same time.</p>
 
 <p><a href="http://www.evanwashere.com/StolenSidekick/">How NOT To Steal A SideKick II</a></p>
@@ -92,9 +92,9 @@ if fields[0] == "\n":
   
   <entry>
     <title type="html"><![CDATA[Wikipedia]]></title>
-    <link href="http://tupton.github.com/blog/2005/01/wikipedia/"/>
+    <link href="http://tupton.github.com/2005/01/wikipedia"/>
     <updated>2005-01-14T15:04:00-06:00</updated>
-    <id>http://tupton.github.com/blog/2005/01/wikipedia</id>
+    <id>http://tupton.github.com/2005/01/wikipedia</id>
     <content type="html"><![CDATA[<p>The <a href="http://en.wikipedia.org/wiki/Main_Page">Wikipedia</a> is a free public encyclopedia.  The premise of this project brings open source ideals to general and public knowledge.</p>
 
 <p>I could delve into lengthy histories and explanations, but there are some great sources out there, in particular Wikipedia’s own <a href="http://en.wikipedia.org/wiki/Wikipedia:About">About page</a>.</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Writing | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/writing/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T22:14:50-05:00</updated>
+  <updated>2012-07-19T22:30:23-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Writing]]></title>
-    <link href="http://tupton.github.com/blog/2011/12/writing/"/>
+    <link href="http://tupton.github.com/2011/12/writing"/>
     <updated>2011-12-25T23:19:21-06:00</updated>
-    <id>http://tupton.github.com/blog/2011/12/writing</id>
+    <id>http://tupton.github.com/2011/12/writing</id>
     <content type="html"><![CDATA[<p>I recently started using <a href="http://bywordapp.com/">Byword</a> on OS X and <a href="http://www.secondgearsoftware.com/elements/">Elements</a> on iOS for my writing in general. Both apps are <a href="http://daringfireball.net/projects/markdown/">Markdown</a> editors that, in conjunction with Dropbox, let me write from nearly anywhere.</p>
 
 <p>I write my blog posts in Markdown, but the format is useful for almost any kind of writing. Any application that can read plain text can read Markdown for those times that you need to keep it simple, or you can convert to HTML for when you want or need to make it a bit more presentable.</p>

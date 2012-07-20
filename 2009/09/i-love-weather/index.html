@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>I Love Weather - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="UPDATE: It seems that Yahoo! has changed their weather URL formats, which breaks the script that fetches the weather image. In order to fix it, go to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tupton.github.com/2009/09/i-love-weather">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tupton.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">I Love Weather</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-22T22:53:38-05:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>UPDATE</strong>: It seems that Yahoo! has changed their weather URL formats, which breaks the script that fetches the weather image. In order to fix it, go to <a href="http://weather.yahoo.com/">Yahoo! Weather</a> and enter your desired location. Once you have the correct page loaded, replace the URL in the script with this new one. The script should start working again.</p>
+
+<p>There’s no question that my post that describes my script to <a href="http://www.thomasupton.com/blog/2008/04/yahoo-weather-feeds-with-python/">get the current weather conditions with Python and Yahoo! weather feeds</a> is the most popular post on my site. It drives a huge proportion of the (small amount of) traffic that this site gets, and the post has many more comments than the average post.</p>
+
+<p>Many <a href="http://www.flickr.com/photos/megatrond/3100049946/">people</a> <a href="http://www.flickr.com/photos/donnyboy09/3436467554/">post</a> images of their desktops in their best GeekTool getup, including ones that feature my weather script. <a href="http://www.flickr.com/photos/mgastongrillo/3858032308/">One of these in particular</a> had a lovely image to go along with his weather conditions. The author, <a href="http://www.flickr.com/photos/mgastongrillo/">Gato’s</a>, was kind enough to share how he <a href="http://www.flickr.com/photos/mgastongrillo/3858032308/#comment72157622208211629">retrieved and displayed this image</a> in the comments of the photo post. I love this idea, and tweaked Gato’s’ method. I thought I’d detail what I did in case anyone else is interested.</p>
+
+<p><img src="http://farm3.static.flickr.com/2615/3951420535_9a3d34e105_o.png" alt="Partly Cloudy" /></p>
+
+<p>Gato’s’ method of retrieving Yahoo!’s weather images involves <em>two</em> additional GeekTool entries: one to fetch the image, and one to display the image on the desktop. I knew that there was a better way to do this, and I knew it involved <a href="http://developer.apple.com/macosx/launchd.html"><code>launchd</code></a>. <code>launchd</code> is a system-wide service for starting and stopping daemons. It replaced <code>init</code>, <code>cron</code>, and many other utilities in OS X 10.4. You can find out a lot more on the previous link and on the <a href="http://en.wikipedia.org/wiki/Launchd">Wikipedia page</a>.</p>
+
+<p>I had never used <code>launchd</code> before, but setting up my own entry was fairly straightforward after I read a couple of the related man pages. In particular, <a href="x-man-page://launchd.plist"><code>launchd.plist</code></a> and <a href="x-man-page://execvp"><code>execvp</code></a> were very useful. In order to get started, you need to use the Property List Editor, found in <code>/Developer/Applications/Utilities/Property List Editor.app</code>. If you do not have Apple’s developer tools installed, you can create an XML file with a <code>.plist</code> extension with the same contents.</p>
+
+<p>Before we start creating a <code>launchd</code> item, we need the script for the item to run. I have provided a bash script version of Gato’s’ image-grabbing command. I added a fifteen second timeout argument to the initial <code>curl</code> call; this prevents long timeouts for those times that you are without a network connection. You will also need to replace the URL at the end of line three of the script with your weather forecast URL. Simply go to the <a href="http://weather.yahoo.com/">Yahoo! weather page</a> and put in your zip or location code in order to retrieve your weather page, then paste that page’s URL into the script. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2009/09/get_weather_image.sh.zip">download the script here</a>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /bin/bash</span>
+</span><span class="line">
+</span><span class="line">/usr/bin/curl --connect-timeout 15 --silent <span class="s2">&quot;http://weather.yahoo.com/united-states/virginia/blacksburg-2365044/&quot;</span> |
+</span><span class="line">/usr/bin/grep <span class="s2">&quot;forecast-icon&quot;</span> |
+</span><span class="line">/usr/bin/sed <span class="s2">&quot;s/.*background\:url(\&#39;\(.*\)\&#39;)\;\ _background.*/\1/&quot;</span> |
+</span><span class="line">/usr/bin/xargs curl --silent -o /tmp/weather.png
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Now we can create the property list that will launch our image-grabbing script. <code>launchd</code> works by parsing a particular format of property list file. The man page for <a href="x-man-page://launchd.plist"><code>launchd.plist</code></a> is very extensive and contains documentation on the entries that are allowed in a <code>launchd</code> item. If that is all a bit too dense, I will walk through the creation of a simple <code>launchd</code> item with the bare minimum of properties needed to launch our script.</p>
+
+<p>Open Property List Editor.app and create a new item by clicking <strong>Add Item</strong> in the toolbar. In the <strong>Key</strong> column, type <code>Label</code>. The default <strong>Type</strong> is <em>string</em>, so type a label identifier in the <strong>Value</strong> column. I used <code>com.thomasupton.fetchweatherimage</code>. You can use whatever you like. Next, add another item and this time switch its <strong>Type</strong> to <em>boolean</em>. Type <code>KeepAlive</code> as the <strong>Key</strong> and don’t check the check box to leave its value as <code>false</code>. Add another <em>number</em> item called <code>StartInterval</code> and give it a value of <code>600</code>. Finally, add an <em>array</em> item called <code>ProgramArguments</code>. Add a child to this array (just click the <strong>Add Item</strong> button with the <code>Program Arguments</code> node selected) and give it a value of <code>/bin/bash</code>. Add a second child and give it a value of <code>/absolute/path/to/script/get_weather_image.sh</code>, with the <em>absolute</em> path to where you saved the script. I have pasted the XML contents of the file here, and you can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2009/09/com.thomasupton.fetchweatherimage.plist">download the property list file here</a>. You can open the property list with a text editor to edit the contents if you do not have the Property List Editor installed.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class="line"><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
+</span><span class="line"><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+</span><span class="line"><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;dict&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;string&gt;</span>com.thomasupton.fetchweatherimage<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>KeepAlive<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;false/&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>StartInterval<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;integer&gt;</span>600<span class="nt">&lt;/integer&gt;</span>
+</span><span class="line">    <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+</span><span class="line">    <span class="nt">&lt;array&gt;</span>
+</span><span class="line">        <span class="nt">&lt;string&gt;</span>/bin/bash<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">        <span class="nt">&lt;string&gt;</span>/Users/thomasupton/code/script/get_weather_image.sh<span class="nt">&lt;/string&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/array&gt;</span>
+</span><span class="line"><span class="nt">&lt;/dict&gt;</span>
+</span><span class="line"><span class="nt">&lt;/plist&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>What we have just created is a <code>launchd</code> item that will only start on demand every 600 seconds and run our script to grab the weather image. Save the property list to <code>~/Library/LaunchAgents</code> and give it a name like <em>com.thomasupton.fetchweatherimage.plist</em>. Open Terminal.app and type the following command to load our new <code>launchd</code> item, replacing the name of the script with the file name that you saved your property list as.</p>
+
+<pre><code>$ launchctl load ~/Library/LaunchAgents/com.thomasupton.fetchweatherimage.plist
+</code></pre>
+
+<p>Back in GeekTool, all you need to do is add one new entry. Make it a picture and give it the URL <code>file:///tmp/weather.png</code>. <em>Et voilà</em>, you have a beautiful image of your weather conditions on your desktop.</p>
+
+<p>I <a href="http://www.flickr.com/photos/third/3946891446/">took a picture of my current desktop</a> to show you what it looks like. I gave the weather image an opacity of 60% for a more subtle effect.</p>
+
+<p><img src="http://farm3.static.flickr.com/2498/3946891446_da67c218a9.jpg" alt="Snow Leopard Desktop" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-22T22:53:38-05:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/articles/'>Articles</a>, <a class='category' href='/blog/categories/howto/'>Howto</a>, <a class='category' href='/blog/categories/software/'>Software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2009/09/updates-to-now-playing-perl-script" title="Previous Post: Updates to Now Playing Perl Script">&laquo; Updates to Now Playing Perl Script</a>
+      
+      
+        <a class="basic-alignment right" href="/2009/10/last-fm-milestones" title="Next Post: Last.fm Milestones">Last.fm Milestones &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/05/syntastic">Syntastic</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/04/mint">Mint</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/the-handle-pattern">The Handle Pattern</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/dont-commit-fixme-or-todo">Don't Commit FIXME or TODO</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/configuration">Configuration</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/01/coffee">Coffee</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("thomasupton", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/thomasupton" class="twitter-follow-button" data-show-count="false">Follow @thomasupton</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

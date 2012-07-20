@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Howto | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/howto/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T22:14:50-05:00</updated>
+  <updated>2012-07-19T22:30:23-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Configuration]]></title>
-    <link href="http://tupton.github.com/blog/2012/02/configuration/"/>
+    <link href="http://tupton.github.com/2012/02/configuration"/>
     <updated>2012-02-18T20:43:38-06:00</updated>
-    <id>http://tupton.github.com/blog/2012/02/configuration</id>
+    <id>http://tupton.github.com/2012/02/configuration</id>
     <content type="html"><![CDATA[<p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <code>vim</code> <a href="https://github.com/tupton/vim-support">environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
 
 <p>I use <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins. I follow the examples in <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">this great article on plugin management with Pathogen</a> to keep most of my plugins as <code>git</code> submodules. Installing my <code>vim</code> environment is just a matter of cloning the <code>git</code> repository and symlinking my <code>vimrc</code>.</p>
@@ -34,9 +34,9 @@
   
   <entry>
     <title type="html"><![CDATA[Local Backups are Great]]></title>
-    <link href="http://tupton.github.com/blog/2011/12/local-backups-are-great/"/>
+    <link href="http://tupton.github.com/2011/12/local-backups-are-great"/>
     <updated>2011-12-23T21:48:47-06:00</updated>
-    <id>http://tupton.github.com/blog/2011/12/local-backups-are-great</id>
+    <id>http://tupton.github.com/2011/12/local-backups-are-great</id>
     <content type="html"><![CDATA[<p>I use <a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">SuperDuper!</a> to make daily backups to my local hard drive. <a href="http://www.thomasupton.com/blog/2010/12/automated-backups-with-tarsnap/">Remote backup</a> is important, but it’s always nice to have an easily-accessible way to recover from a hard drive disaster, especially when you need to fix the situation <em>quickly</em>.</p>
 
 <h2 id="your-backup-device">Your Backup Device</h2>
@@ -76,9 +76,9 @@
   
   <entry>
     <title type="html"><![CDATA[Automated Backups with Tarsnap]]></title>
-    <link href="http://tupton.github.com/blog/2010/12/automated-backups-with-tarsnap/"/>
+    <link href="http://tupton.github.com/2010/12/automated-backups-with-tarsnap"/>
     <updated>2010-12-12T20:14:08-06:00</updated>
-    <id>http://tupton.github.com/blog/2010/12/automated-backups-with-tarsnap</id>
+    <id>http://tupton.github.com/2010/12/automated-backups-with-tarsnap</id>
     <content type="html"><![CDATA[<p>I remember <a href="http://www.daemonology.net/blog/2006-09-13-encrypted-backup.html">reading</a> <a href="http://www.daemonology.net/blog/2008-11-10-tarsnap-public-beta.html">about</a> <a href="http://www.tarsnap.com/">Tarsnap</a> a couple of years ago, back when it was only an idea. I wasn’t too convinced about using a service that was in beta to back up my data, but I recently rediscovered that it had graduated to a full-blown product and signed up immediately.</p>
 
 <p>Tarsnap is an encrypted backup tool based on archives. I’m not going to go into any details about the implementation, but you can read about the <a href="http://www.tarsnap.com/crypto.html">cryptography</a>, <a href="http://www.tarsnap.com/security.html">the security</a>, or anything else about the <a href="http://www.tarsnap.com/design.html">overall design</a> of the tool on the <a href="http://www.tarsnap.com/">Tarsnap site</a>. Basically, it creates archives (hence the “tar” part of the name), encrypts them, and stores them on <a href="http://aws.amazon.com/s3/">Amazon S3</a>. The “snap” part of the name refers to the idea that backups are done in “snapshots,” which means that backups are incremental and duplicate data can be shared between archives.</p>
@@ -205,9 +205,9 @@
   
   <entry>
     <title type="html"><![CDATA[Pastebin From The Command-line]]></title>
-    <link href="http://tupton.github.com/blog/2010/12/pastebin-from-the-commandline/"/>
+    <link href="http://tupton.github.com/2010/12/pastebin-from-the-commandline"/>
     <updated>2010-12-11T14:42:56-06:00</updated>
-    <id>http://tupton.github.com/blog/2010/12/pastebin-from-the-commandline</id>
+    <id>http://tupton.github.com/2010/12/pastebin-from-the-commandline</id>
     <content type="html"><![CDATA[<p><a href="http://pastebin.com/">Pastebin.com</a> is a utility for sharing snippets of text with anyone. The service is simple: go to <a href="http://pastebin.com/">pastebin.com</a>, paste your text, click submit, and share the link. It’s useful for sharing time-saving snippets with you team, or for an impromptu, informal code review of changes that for one reason or another haven’t been committed yet (e.g. a design decision for which the author wants early feedback.)</p>
 
 <blockquote>
@@ -325,9 +325,9 @@ return "&amp;".join([k + "=" + str(v) for (k, v) in params.iteritems()])
   
   <entry>
     <title type="html"><![CDATA[I Love Weather]]></title>
-    <link href="http://tupton.github.com/blog/2009/09/i-love-weather/"/>
+    <link href="http://tupton.github.com/2009/09/i-love-weather"/>
     <updated>2009-09-22T22:53:38-05:00</updated>
-    <id>http://tupton.github.com/blog/2009/09/i-love-weather</id>
+    <id>http://tupton.github.com/2009/09/i-love-weather</id>
     <content type="html"><![CDATA[<p><strong>UPDATE</strong>: It seems that Yahoo! has changed their weather URL formats, which breaks the script that fetches the weather image. In order to fix it, go to <a href="http://weather.yahoo.com/">Yahoo! Weather</a> and enter your desired location. Once you have the correct page loaded, replace the URL in the script with this new one. The script should start working again.</p>
 
 <p>There’s no question that my post that describes my script to <a href="http://www.thomasupton.com/blog/2008/04/yahoo-weather-feeds-with-python/">get the current weather conditions with Python and Yahoo! weather feeds</a> is the most popular post on my site. It drives a huge proportion of the (small amount of) traffic that this site gets, and the post has many more comments than the average post.</p>

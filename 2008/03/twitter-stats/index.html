@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Twitter Stats - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="Update: TweetStats webifies a version of these Twitter statistics. Damon Cortesi wrote a pretty nifty script to grab some Twitter statistics. A bunch &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tupton.github.com/2008/03/twitter-stats">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tupton.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Twitter Stats</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-30T00:12:09-05:00" pubdate data-updated="true">Mar 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>Update:</strong> <a href="http://www.tweetstats.com/">TweetStats</a> webifies a version of these Twitter statistics.</p>
+
+<p><img src="http://www.thomasupton.com/wp/wp-content/uploads/2008/03/twitter_stats-300x154.png" alt="Twitter stats, by hour." /></p>
+
+<p>Damon Cortesi wrote a <a href="http://dcortesi.com/2007/12/27/twitter-stats/">pretty nifty script to grab some Twitter statistics</a>. A bunch of people modified his script in order to <a href="http://bradkellett.com/twitter_stats.html">webify it</a>, <a href="http://michael-mccracken.net/wp/2008/01/02/twitter-stats-in-svg-using-gnuplot/">plot the results using gnuplot</a>, and <a href="http://iamthewalr.us/blog/2008/01/02/twitter-stats/">plot the results with the Google Charts API</a>.</p>
+
+<p>This last modification really intrigued me, as I know there are <a href="http://google-code-updates.blogspot.com/2008/01/chartmaker-tool-for-google-chart-api.html">a few wrappers for the Google Charts API</a> available, including one for Python. I decided to modify <a href="http://iamthewalr.us/blog/2008/01/02/twitter-stats/">Colin Barrett’s Python script</a> that uses the Google Charts API to use the <a href="http://pygooglechart.slowchop.com/">pygooglechart</a> module.</p>
+
+<p>So now instead of:</p>
+
+<pre><code>if f[0] == "\n":
+    s = "http://chart.apis.google.com/chart?cht=bvg&amp;chbh;=15&amp;chs;=600x300&amp;chd;=t:%s&amp;chxt;=y,x&amp;
+    chxr=0,0,%d&amp;chtt;=%s"
+    s = s % ( str(map(lambda x: x*100/max(v), v)).replace(" ", "")[1:-1], max(v), t )
+</code></pre>
+
+<p>we have:</p>
+
+<pre><code># If we are at a newline, we have just finished gathering data for a single chart
+if fields[0] == "\n":
+    # Most of the time we are generating a vertical bar chart
+    chart = GroupedVerticalBarChart(600, 300)
+    # Set the y-axis range according to the current data
+    chart.set_axis_range(Axis.LEFT, 0, max(chartData))
+</code></pre>
+
+<p>I also commented my modifications because I’m still on winter break and I felt like it.</p>
+
+<p>You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/01/pygooglechart_twitter_stats.zip">download my modified script here</a>. Make sure you have the pygooglechart module and read the included README.txt file.</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-30T00:12:09-05:00" pubdate data-updated="true">Mar 30<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/articles/'>Articles</a>, <a class='category' href='/blog/categories/code/'>Code</a>, <a class='category' href='/blog/categories/interesting/'>Interesting</a>, <a class='category' href='/blog/categories/websites/'>Websites</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2007/08/pandorajam" title="Previous Post: PandoraJam">&laquo; PandoraJam</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/03/wordpress-403-forbidden-posting-error" title="Next Post: Wordpress 403 Forbidden Posting Error">Wordpress 403 Forbidden Posting Error &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/05/syntastic">Syntastic</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/04/mint">Mint</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/the-handle-pattern">The Handle Pattern</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/dont-commit-fixme-or-todo">Don't Commit FIXME or TODO</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/configuration">Configuration</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/01/coffee">Coffee</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("thomasupton", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/thomasupton" class="twitter-follow-button" data-show-count="false">Follow @thomasupton</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

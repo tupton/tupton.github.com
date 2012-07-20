@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Webapps | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/webapps/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T22:14:50-05:00</updated>
+  <updated>2012-07-19T22:30:23-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Mint]]></title>
-    <link href="http://tupton.github.com/blog/2012/04/mint/"/>
+    <link href="http://tupton.github.com/2012/04/mint"/>
     <updated>2012-04-17T18:37:38-05:00</updated>
-    <id>http://tupton.github.com/blog/2012/04/mint</id>
+    <id>http://tupton.github.com/2012/04/mint</id>
     <content type="html"><![CDATA[<p><img src="http://farm8.staticflickr.com/7180/7089520649_0beff76701_o_d.png" alt="Mint" /></p>
 
 <p>I just started using <a href="http://haveamint.com/">Mint</a> to track statistics on my site. I’ve been using Google Analytics for a long time, and I will continue to do so, but it is definitely geared more towards sites trying to earn money. Mint seemed to offer a more streamlined and customizable interface for people who just want to look at stats.</p>
@@ -82,9 +82,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Handle Pattern]]></title>
-    <link href="http://tupton.github.com/blog/2012/03/the-handle-pattern/"/>
+    <link href="http://tupton.github.com/2012/03/the-handle-pattern"/>
     <updated>2012-03-25T13:12:06-05:00</updated>
-    <id>http://tupton.github.com/blog/2012/03/the-handle-pattern</id>
+    <id>http://tupton.github.com/2012/03/the-handle-pattern</id>
     <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
 
 <p>``` javascript
@@ -144,9 +144,9 @@ return s; })();
   
   <entry>
     <title type="html"><![CDATA[Uptonian Thoughts on Twitter]]></title>
-    <link href="http://tupton.github.com/blog/2012/01/uptonian-thoughts-on-twitter/"/>
+    <link href="http://tupton.github.com/2012/01/uptonian-thoughts-on-twitter"/>
     <updated>2012-01-04T22:50:51-06:00</updated>
-    <id>http://tupton.github.com/blog/2012/01/uptonian-thoughts-on-twitter</id>
+    <id>http://tupton.github.com/2012/01/uptonian-thoughts-on-twitter</id>
     <content type="html"><![CDATA[<p>You can now follow <a href="http://twitter.com/uptonin">Uptonian Thoughts on Twitter</a>! I’m using the <a href="http://somadesign.ca/2011/lessn-shortlinks-wordpress-plugin/">Lessn Shortlinks</a> and <a href="http://ottopress.com/wordpress-plugins/simple-twitter-connect/">Simple Twitter Connect</a> Wordpress plugins to tweet my posts to @uptonin.</p>
 
 <p>I might still occasionally link to my own posts on my @thomasupton account, but all posts and articles, along with information about the site, will be available on @uptonin.</p>
@@ -155,9 +155,9 @@ return s; })();
   
   <entry>
     <title type="html"><![CDATA[Lessn]]></title>
-    <link href="http://tupton.github.com/blog/2012/01/lessn/"/>
+    <link href="http://tupton.github.com/2012/01/lessn"/>
     <updated>2012-01-04T22:37:07-06:00</updated>
-    <id>http://tupton.github.com/blog/2012/01/lessn</id>
+    <id>http://tupton.github.com/2012/01/lessn</id>
     <content type="html"><![CDATA[<p>I recently installed <a href="http://shauninman.com/archive/2009/08/17/less_n">Lessn</a> and then <a href="http://lessnmore.net/">Lessn More</a> to take control of my own short links. Lessn is a very simple URL shortener that is hosted on my own domain.</p>
 
 <p>I registered <a href="http://upton.in/">upton.in</a> to serve my short links. I chose the “.in” TLD because it’s short and common. I do wish there was an “.on” TLD so I could register <em>upt.on</em>, but I like the connotation of “in”. As <a href="https://twitter.com/thomasupton/status/154218836722335745">I said on Twitter the other day</a>, it can mean “Internet, inside, come in, infinity, interesting” among other things. </p>
@@ -169,9 +169,9 @@ return s; })();
   
   <entry>
     <title type="html"><![CDATA[Unplayed]]></title>
-    <link href="http://tupton.github.com/blog/2012/01/unplayed/"/>
+    <link href="http://tupton.github.com/2012/01/unplayed"/>
     <updated>2012-01-02T19:23:21-06:00</updated>
-    <id>http://tupton.github.com/blog/2012/01/unplayed</id>
+    <id>http://tupton.github.com/2012/01/unplayed</id>
     <content type="html"><![CDATA[<p>Santa brought me <a href="http://www.amazon.com/gp/product/B002BSC54I/ref=as_li_tf_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=9325&creativeASIN;=B002BSC54I">The Legend of Zelda: Skyward Sword</a> for Christmas (thanks Mom!). I’ve enjoyed playing it, just as I’ve enjoyed playing video games for nearly my entire life.</p>
 
 <p>In recent years, however, I’ve abandoned or not fully played all of my video games. I attempted to maintain a Google Docs spreadsheet to keep track of my unplayed games, but it quickly became more neglected than the games themselves.</p>

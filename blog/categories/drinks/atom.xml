@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Drinks | Uptonian Thoughts]]></title>
   <link href="http://tupton.github.com/blog/categories/drinks/atom.xml" rel="self"/>
   <link href="http://tupton.github.com/"/>
-  <updated>2012-07-19T22:14:50-05:00</updated>
+  <updated>2012-07-19T22:30:23-05:00</updated>
   <id>http://tupton.github.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Aeropress]]></title>
-    <link href="http://tupton.github.com/blog/2012/07/aeropress/"/>
+    <link href="http://tupton.github.com/2012/07/aeropress"/>
     <updated>2012-07-01T00:07:18-05:00</updated>
-    <id>http://tupton.github.com/blog/2012/07/aeropress</id>
+    <id>http://tupton.github.com/2012/07/aeropress</id>
     <content type="html"><![CDATA[<p><img src="http://farm9.staticflickr.com/8161/7476327252_8acfa39cbb_z_d.jpg" alt="Aeropress" /></p>
 
 <p>I don’t think I’ll be using my Keurig much anymore.</p>
@@ -42,9 +42,9 @@ delicious. There are no downsides.</p>
   
   <entry>
     <title type="html"><![CDATA[Coffee]]></title>
-    <link href="http://tupton.github.com/blog/2012/01/coffee/"/>
+    <link href="http://tupton.github.com/2012/01/coffee"/>
     <updated>2012-01-07T14:37:42-06:00</updated>
-    <id>http://tupton.github.com/blog/2012/01/coffee</id>
+    <id>http://tupton.github.com/2012/01/coffee</id>
     <content type="html"><![CDATA[<p><img src="http://farm8.staticflickr.com/7164/6654753833_ab1c242b36_z_d.jpg" alt="Coffee" /></p>
 
 <p>Like <a href="http://www.youtube.com/watch?v=OTVE5iPMKLg">most of the world</a>, I love coffee. I usually drink a cup or two a day, and sometimes more. I’m lucky enough to live close to places that sell great coffee: Whole Foods roasts their own coffee, and there are numerous local places with great beans.</p>

@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Wordpress 403 Forbidden Posting Error - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="In trying to post about my modified Twitter stats script, I ran into a 403 Forbidden error every time I tried to publish. I could write and publish &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tupton.github.com/2008/03/wordpress-403-forbidden-posting-error">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tupton.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Wordpress 403 Forbidden Posting Error</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-30T00:35:13-05:00" pubdate data-updated="true">Mar 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In trying to post about <a href="http://thomas.fiveuptons.com/blog/?p=188">my modified Twitter stats script</a>, I ran into a <a href="http://en.wikipedia.org/wiki/HTTP_403">403 Forbidden</a> error every time I tried to publish. I could write and publish test posts with minimal text, but I could not post what I had written about my scripts.</p>
+
+<p>At first I thought it was an outdated version of Wordpress that was responsible for the error. However, upgrading to 2.3 did not fix anything. I simply ignored the error and conceded that I would not be able to post anything for now.</p>
+
+<p><a href="http://wordpress.org/development/2008/03/wordpress-25-brecker/">Wordpress 2.5</a> was released today, and I decided to try posting once more. I still got the same error. This time, I decided to <a href="http://www.google.com/search?q=You%20don%27t%20have%20permission%20to%20access%20%2Fblog%2Fwp-admin%2Fpost.php%20on%20this%20server.">Google the issue</a>.</p>
+
+<p>The <a href="http://forums.asmallorange.com/index.php?showtopic=3631&amp;st=0&amp;p=26154&amp;">results</a> <a href="http://wordpress.org/support/topic/135394">are</a> <a href="http://wordpress.org/support/topic/117993?replies=2">not</a> <a href="http://wordpress.org/support/topic/37489">suprising</a>.</p>
+
+<p>It seems that Wordpress has some parsing issues when posts contain certain PHP commands. Apparently, modifying the mod_security rules in .htaccess helps to resolve this issue.</p>
+
+<p>Adding the following code to the .htaccess file in <code>wp-admin/</code> does the trick.</p>
+
+<pre><code>&lt;IfModule mod_security.c&gt;
+    SecFilterEngine Off
+&lt;/IfModule&gt;
+</code></pre>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-30T00:35:13-05:00" pubdate data-updated="true">Mar 30<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/howto/'>Howto</a>, <a class='category' href='/blog/categories/software/'>Software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2008/03/twitter-stats" title="Previous Post: Twitter Stats">&laquo; Twitter Stats</a>
+      
+      
+        <a class="basic-alignment right" href="/2008/03/new-site-layout" title="Next Post: New Site Layout">New Site Layout &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/05/syntastic">Syntastic</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/04/mint">Mint</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/the-handle-pattern">The Handle Pattern</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/dont-commit-fixme-or-todo">Don't Commit FIXME or TODO</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/02/configuration">Configuration</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/01/coffee">Coffee</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("thomasupton", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/thomasupton" class="twitter-follow-button" data-show-count="false">Follow @thomasupton</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
