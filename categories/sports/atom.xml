@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Sports | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/sports/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/sports/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Momentum, Loss Of]]></title>
-    <link href="http://tupton.github.com/2006/12/momentum-loss-of"/>
+    <link href="http://blog.thomasupton.com/2006/12/momentum-loss-of"/>
     <updated>2006-12-31T05:12:11-06:00</updated>
-    <id>http://tupton.github.com/2006/12/momentum-loss-of</id>
+    <id>http://blog.thomasupton.com/2006/12/momentum-loss-of</id>
     <content type="html"><![CDATA[<p>See the 2006 Chik-Fil-A Bowl:</p>
 
 <p>Half: 21-3, VT</p>

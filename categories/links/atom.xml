@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Links | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/links/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/links/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Move Your Domains Away From GoDaddy]]></title>
-    <link href="http://tupton.github.com/2011/12/move-your-domains-away-from-godaddy"/>
+    <link href="http://blog.thomasupton.com/2011/12/move-your-domains-away-from-godaddy"/>
     <updated>2011-12-23T09:06:34-06:00</updated>
-    <id>http://tupton.github.com/2011/12/move-your-domains-away-from-godaddy</id>
+    <id>http://blog.thomasupton.com/2011/12/move-your-domains-away-from-godaddy</id>
     <content type="html"><![CDATA[<p>The Stop Online Piracy Act (explanation via <a href="http://kottke.org/11/12/the-internets-go-daddy-issues">Kottke</a> on <a href="[http://www.techdirt.com/articles/20111122/04254316872/definitive-post-why-sopa-protect-ip-are-bad-bad-ideas.shtml]">what’s wrong with SOPA</a>) is bad for the internet in general. <a href="http://www.thedomains.com/2011/11/15/here-is-godaddys-statement-in-support-of-the-stop-online-privacy-act-house-hearing-tomorrow/">GoDaddy supports SOPA</a>, and this has alarmed many of its customers, including this <a href="http://www.reddit.com/r/politics/comments/nmnie/godaddy_supports_sopa_im_transferring_51_domains/">Redditor with fifty one domains</a> and myself.</p>
 
 <p>Again via Kottke, I came across <a href="http://blog.jeffepstein.me/post/14629857835/a-step-by-step-guide-to-transfer-domains-out-of-godaddy">this guide to moving from GoDaddy to NameCheap</a> (<a href="http://webcache.googleusercontent.com/search?q=cache:1BOfAgmNnuAJ:blog.jeffepstein.me/post/14629857835/a-step-by-step-guide-to-transfer-domains-out-of-godaddy+&cd;=1&hl;=en&ct;=clnk&gl;=us">Google cache</a>). <a href="https://www.namecheap.com">NameCheap</a> has officially come out against SOPA, and their site and experience has been nothing but top notch since I started the transfer process.</p>

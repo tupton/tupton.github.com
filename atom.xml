@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress]]></title>
-    <link href="http://tupton.github.com/2012/07/octopress"/>
+    <link href="http://blog.thomasupton.com/2012/07/octopress"/>
     <updated>2012-07-19T23:05:00-05:00</updated>
-    <id>http://tupton.github.com/2012/07/octopress</id>
+    <id>http://blog.thomasupton.com/2012/07/octopress</id>
     <content type="html"><![CDATA[<p>This blog is now being served by <a href="http://pages.github.com/">GitHub Pages</a> (<a href="https://github.com/tupton/tupton.github.com">source</a>) by way of <a href="http://octopress.org/">Octopress</a>. I’ve
 tried to set up some redirects from the old site that should match up pretty well, but please let me
 know if something looks awry.</p>
@@ -30,9 +30,9 @@ know if something looks awry.</p>
   
   <entry>
     <title type="html"><![CDATA[Reading My News]]></title>
-    <link href="http://tupton.github.com/2012/07/reading-my-news"/>
+    <link href="http://blog.thomasupton.com/2012/07/reading-my-news"/>
     <updated>2012-07-12T18:12:22-05:00</updated>
-    <id>http://tupton.github.com/2012/07/reading-my-news</id>
+    <id>http://blog.thomasupton.com/2012/07/reading-my-news</id>
     <content type="html"><![CDATA[<p>I’ve used Google Reader for a long time, but I’ve never been completely satisfied with using it to
 read and keep up with RSS feeds. Apps like <a href="http://flipboard.com/">Flipboard</a> on the iPad provide a better
 reading experience for traditionally “newsy” outlets – I enjoy flipping through the feeds from <em>The
@@ -108,9 +108,9 @@ time doing what I want and need to do.</p>
   
   <entry>
     <title type="html"><![CDATA[Aeropress]]></title>
-    <link href="http://tupton.github.com/2012/07/aeropress"/>
+    <link href="http://blog.thomasupton.com/2012/07/aeropress"/>
     <updated>2012-07-01T00:07:18-05:00</updated>
-    <id>http://tupton.github.com/2012/07/aeropress</id>
+    <id>http://blog.thomasupton.com/2012/07/aeropress</id>
     <content type="html"><![CDATA[<p><img src="http://farm9.staticflickr.com/8161/7476327252_8acfa39cbb_z_d.jpg" alt="Aeropress" /></p>
 
 <p>I don’t think I’ll be using my Keurig much anymore.</p>
@@ -135,9 +135,9 @@ delicious. There are no downsides.</p>
   
   <entry>
     <title type="html"><![CDATA[Knowing The Rules]]></title>
-    <link href="http://tupton.github.com/2012/06/knowing-the-rules"/>
+    <link href="http://blog.thomasupton.com/2012/06/knowing-the-rules"/>
     <updated>2012-06-27T20:55:48-05:00</updated>
-    <id>http://tupton.github.com/2012/06/knowing-the-rules</id>
+    <id>http://blog.thomasupton.com/2012/06/knowing-the-rules</id>
     <content type="html"><![CDATA[<p>You’re likely to be more comfortable with many situations if you know the rules of the environment
 you’re in, including knowing its bounds and how flexible they are. </p>
 
@@ -182,9 +182,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Syntastic]]></title>
-    <link href="http://tupton.github.com/2012/05/syntastic"/>
+    <link href="http://blog.thomasupton.com/2012/05/syntastic"/>
     <updated>2012-05-20T14:13:08-05:00</updated>
-    <id>http://tupton.github.com/2012/05/syntastic</id>
+    <id>http://blog.thomasupton.com/2012/05/syntastic</id>
     <content type="html"><![CDATA[<p>I love writing with <code>vim</code>, but — for many valid reasons — some people are averse to it. I think the steep (–ish) learning curve has something to do with it, but I think some people really don’t want to give up their IDE. The thing is, <code>vim</code> isn’t <em>just</em> a text editor. You can extend it to do pretty much anything, including features that normally show up in IDEs.</p>
 
 <p>I recently started using <a href="https://github.com/scrooloose/syntastic">syntastic</a>, which is a <code>vim</code> plugin that runs linters or syntax checkers and displays warnings and errors right in your window. IDEs like Eclipse or Xcode provide this syntax-checking for a couple of languages, but syntastic supports many languages and linters out of the box with pluggable support for nearly any language. </p>
@@ -231,9 +231,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Mint]]></title>
-    <link href="http://tupton.github.com/2012/04/mint"/>
+    <link href="http://blog.thomasupton.com/2012/04/mint"/>
     <updated>2012-04-17T18:37:38-05:00</updated>
-    <id>http://tupton.github.com/2012/04/mint</id>
+    <id>http://blog.thomasupton.com/2012/04/mint</id>
     <content type="html"><![CDATA[<p><img src="http://farm8.staticflickr.com/7180/7089520649_0beff76701_o_d.png" alt="Mint" /></p>
 
 <p>I just started using <a href="http://haveamint.com/">Mint</a> to track statistics on my site. I’ve been using Google Analytics for a long time, and I will continue to do so, but it is definitely geared more towards sites trying to earn money. Mint seemed to offer a more streamlined and customizable interface for people who just want to look at stats.</p>
@@ -298,9 +298,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[The Handle Pattern]]></title>
-    <link href="http://tupton.github.com/2012/03/the-handle-pattern"/>
+    <link href="http://blog.thomasupton.com/2012/03/the-handle-pattern"/>
     <updated>2012-03-25T13:12:06-05:00</updated>
-    <id>http://tupton.github.com/2012/03/the-handle-pattern</id>
+    <id>http://blog.thomasupton.com/2012/03/the-handle-pattern</id>
     <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -400,9 +400,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Don't Commit FIXME or TODO]]></title>
-    <link href="http://tupton.github.com/2012/02/dont-commit-fixme-or-todo"/>
+    <link href="http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo"/>
     <updated>2012-02-24T12:41:13-06:00</updated>
-    <id>http://tupton.github.com/2012/02/dont-commit-fixme-or-todo</id>
+    <id>http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo</id>
     <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -462,9 +462,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Microwave Ovens Suck]]></title>
-    <link href="http://tupton.github.com/2012/02/microwave-ovens-suck"/>
+    <link href="http://blog.thomasupton.com/2012/02/microwave-ovens-suck"/>
     <updated>2012-02-23T18:50:14-06:00</updated>
-    <id>http://tupton.github.com/2012/02/microwave-ovens-suck</id>
+    <id>http://blog.thomasupton.com/2012/02/microwave-ovens-suck</id>
     <content type="html"><![CDATA[<p>Really. My microwave helpfully makes the numbers 1 through 6 shortcuts for running for that number of minutes, on full power. When’s the last time you needed to microwave something for <em>six whole minutes</em>?</p>
 
 <p>Most of my microwaving involves re-heating leftovers or softening things like tortillas or butter. These things don’t take minutes; they take <em>seconds</em>. And if I have something that really need to warm up over the course of one or two minutes, it certainly doesn’t need to be that long at full power. Those preset buttons are absolutely useless. I need presets for 10, 20, and 30 seconds, and maybe 90, and at power levels of 5, 7, and “hi”. Not “high”, mind you, “hi”.</p>
@@ -482,9 +482,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Configuration]]></title>
-    <link href="http://tupton.github.com/2012/02/configuration"/>
+    <link href="http://blog.thomasupton.com/2012/02/configuration"/>
     <updated>2012-02-18T20:43:38-06:00</updated>
-    <id>http://tupton.github.com/2012/02/configuration</id>
+    <id>http://blog.thomasupton.com/2012/02/configuration</id>
     <content type="html"><![CDATA[<p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <code>vim</code> <a href="https://github.com/tupton/vim-support">environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
 
 <p>I use <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins. I follow the examples in <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">this great article on plugin management with Pathogen</a> to keep most of my plugins as <code>git</code> submodules. Installing my <code>vim</code> environment is just a matter of cloning the <code>git</code> repository and symlinking my <code>vimrc</code>.</p>
@@ -501,9 +501,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Coffee]]></title>
-    <link href="http://tupton.github.com/2012/01/coffee"/>
+    <link href="http://blog.thomasupton.com/2012/01/coffee"/>
     <updated>2012-01-07T14:37:42-06:00</updated>
-    <id>http://tupton.github.com/2012/01/coffee</id>
+    <id>http://blog.thomasupton.com/2012/01/coffee</id>
     <content type="html"><![CDATA[<p><img src="http://farm8.staticflickr.com/7164/6654753833_ab1c242b36_z_d.jpg" alt="Coffee" /></p>
 
 <p>Like <a href="http://www.youtube.com/watch?v=OTVE5iPMKLg">most of the world</a>, I love coffee. I usually drink a cup or two a day, and sometimes more. I’m lucky enough to live close to places that sell great coffee: Whole Foods roasts their own coffee, and there are numerous local places with great beans.</p>
@@ -524,9 +524,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[My Essential Tools]]></title>
-    <link href="http://tupton.github.com/2012/01/my-essential-tools"/>
+    <link href="http://blog.thomasupton.com/2012/01/my-essential-tools"/>
     <updated>2012-01-05T16:16:30-06:00</updated>
-    <id>http://tupton.github.com/2012/01/my-essential-tools</id>
+    <id>http://blog.thomasupton.com/2012/01/my-essential-tools</id>
     <content type="html"><![CDATA[<p>In light of some <a href="http://carpeaqua.com/2011/12/19/my-ultimate-developer-and-power-users-tool-list-for-mac-os-x-2011-edition-/">recent</a> <a href="http://collindonnell.com/blog/2012/1/4/essential-tools-2011.html">excellent</a> posts about tools that smart people use, here are my essential tools that I used in 2011.</p>
 
 <h2 id="hardware">Hardware</h2>
@@ -568,9 +568,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Uptonian Thoughts on Twitter]]></title>
-    <link href="http://tupton.github.com/2012/01/uptonian-thoughts-on-twitter"/>
+    <link href="http://blog.thomasupton.com/2012/01/uptonian-thoughts-on-twitter"/>
     <updated>2012-01-04T22:50:51-06:00</updated>
-    <id>http://tupton.github.com/2012/01/uptonian-thoughts-on-twitter</id>
+    <id>http://blog.thomasupton.com/2012/01/uptonian-thoughts-on-twitter</id>
     <content type="html"><![CDATA[<p>You can now follow <a href="http://twitter.com/uptonin">Uptonian Thoughts on Twitter</a>! I’m using the <a href="http://somadesign.ca/2011/lessn-shortlinks-wordpress-plugin/">Lessn Shortlinks</a> and <a href="http://ottopress.com/wordpress-plugins/simple-twitter-connect/">Simple Twitter Connect</a> Wordpress plugins to tweet my posts to @uptonin.</p>
 
 <p>I might still occasionally link to my own posts on my @thomasupton account, but all posts and articles, along with information about the site, will be available on @uptonin.</p>
@@ -579,9 +579,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Lessn]]></title>
-    <link href="http://tupton.github.com/2012/01/lessn"/>
+    <link href="http://blog.thomasupton.com/2012/01/lessn"/>
     <updated>2012-01-04T22:37:07-06:00</updated>
-    <id>http://tupton.github.com/2012/01/lessn</id>
+    <id>http://blog.thomasupton.com/2012/01/lessn</id>
     <content type="html"><![CDATA[<p>I recently installed <a href="http://shauninman.com/archive/2009/08/17/less_n">Lessn</a> and then <a href="http://lessnmore.net/">Lessn More</a> to take control of my own short links. Lessn is a very simple URL shortener that is hosted on my own domain.</p>
 
 <p>I registered <a href="http://upton.in/">upton.in</a> to serve my short links. I chose the “.in” TLD because it’s short and common. I do wish there was an “.on” TLD so I could register <em>upt.on</em>, but I like the connotation of “in”. As <a href="https://twitter.com/thomasupton/status/154218836722335745">I said on Twitter the other day</a>, it can mean “Internet, inside, come in, infinity, interesting” among other things. </p>
@@ -593,9 +593,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Unplayed]]></title>
-    <link href="http://tupton.github.com/2012/01/unplayed"/>
+    <link href="http://blog.thomasupton.com/2012/01/unplayed"/>
     <updated>2012-01-02T19:23:21-06:00</updated>
-    <id>http://tupton.github.com/2012/01/unplayed</id>
+    <id>http://blog.thomasupton.com/2012/01/unplayed</id>
     <content type="html"><![CDATA[<p>Santa brought me <a href="http://www.amazon.com/gp/product/B002BSC54I/ref=as_li_tf_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=9325&creativeASIN;=B002BSC54I">The Legend of Zelda: Skyward Sword</a> for Christmas (thanks Mom!). I’ve enjoyed playing it, just as I’ve enjoyed playing video games for nearly my entire life.</p>
 
 <p>In recent years, however, I’ve abandoned or not fully played all of my video games. I attempted to maintain a Google Docs spreadsheet to keep track of my unplayed games, but it quickly became more neglected than the games themselves.</p>
@@ -607,9 +607,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Christopher Nolan's "Other" Movies]]></title>
-    <link href="http://tupton.github.com/2012/01/christopher-nolans-other-movies"/>
+    <link href="http://blog.thomasupton.com/2012/01/christopher-nolans-other-movies"/>
     <updated>2012-01-01T21:33:42-06:00</updated>
-    <id>http://tupton.github.com/2012/01/christopher-nolans-other-movies</id>
+    <id>http://blog.thomasupton.com/2012/01/christopher-nolans-other-movies</id>
     <content type="html"><![CDATA[<p>The first Christopher Nolan movie I saw was the incredible <a href="http://www.imdb.com/title/tt0209144/"><em>Memento</em></a>. I’ve watched it many times since, and I always manage to catch something new. It’s a great movie the first and tenth time you watch it. It’s well-written – with some help from his brother Jonathan, who has helped out on other films since – and the attention to detail is incredible. </p>
 
 <p>I think Nolan caught the attention of most of the movie-going public for his reboot of the Batman franchise. <a href="http://www.imdb.com/title/tt0372784/"><em>Batman Begins</em></a> is one of the best comic book translations, outdone only by its sequel, <a href="http://www.imdb.com/title/tt0468569/"><em>The Dark Knight</em></a>. Nolan wisely decided to take breaks between Batman films to make other films that he was interested in. He managed to pull this off because of his own production company, Syncopy Films, and his success as a director. As a result we’ve got two great films so far: <a href="http://www.imdb.com/title/tt0482571/"><em>The Prestige</em></a> and <a href="http://www.imdb.com/title/tt1375666/"><em>Inception</em></a>.</p>
@@ -622,9 +622,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Writing]]></title>
-    <link href="http://tupton.github.com/2011/12/writing"/>
+    <link href="http://blog.thomasupton.com/2011/12/writing"/>
     <updated>2011-12-25T23:19:21-06:00</updated>
-    <id>http://tupton.github.com/2011/12/writing</id>
+    <id>http://blog.thomasupton.com/2011/12/writing</id>
     <content type="html"><![CDATA[<p>I recently started using <a href="http://bywordapp.com/">Byword</a> on OS X and <a href="http://www.secondgearsoftware.com/elements/">Elements</a> on iOS for my writing in general. Both apps are <a href="http://daringfireball.net/projects/markdown/">Markdown</a> editors that, in conjunction with Dropbox, let me write from nearly anywhere.</p>
 
 <p>I write my blog posts in Markdown, but the format is useful for almost any kind of writing. Any application that can read plain text can read Markdown for those times that you need to keep it simple, or you can convert to HTML for when you want or need to make it a bit more presentable.</p>
@@ -637,9 +637,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Local Backups are Great]]></title>
-    <link href="http://tupton.github.com/2011/12/local-backups-are-great"/>
+    <link href="http://blog.thomasupton.com/2011/12/local-backups-are-great"/>
     <updated>2011-12-23T21:48:47-06:00</updated>
-    <id>http://tupton.github.com/2011/12/local-backups-are-great</id>
+    <id>http://blog.thomasupton.com/2011/12/local-backups-are-great</id>
     <content type="html"><![CDATA[<p>I use <a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">SuperDuper!</a> to make daily backups to my local hard drive. <a href="http://www.thomasupton.com/blog/2010/12/automated-backups-with-tarsnap/">Remote backup</a> is important, but it’s always nice to have an easily-accessible way to recover from a hard drive disaster, especially when you need to fix the situation <em>quickly</em>.</p>
 
 <h2 id="your-backup-device">Your Backup Device</h2>
@@ -679,9 +679,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Move Your Domains Away From GoDaddy]]></title>
-    <link href="http://tupton.github.com/2011/12/move-your-domains-away-from-godaddy"/>
+    <link href="http://blog.thomasupton.com/2011/12/move-your-domains-away-from-godaddy"/>
     <updated>2011-12-23T09:06:34-06:00</updated>
-    <id>http://tupton.github.com/2011/12/move-your-domains-away-from-godaddy</id>
+    <id>http://blog.thomasupton.com/2011/12/move-your-domains-away-from-godaddy</id>
     <content type="html"><![CDATA[<p>The Stop Online Piracy Act (explanation via <a href="http://kottke.org/11/12/the-internets-go-daddy-issues">Kottke</a> on <a href="[http://www.techdirt.com/articles/20111122/04254316872/definitive-post-why-sopa-protect-ip-are-bad-bad-ideas.shtml]">what’s wrong with SOPA</a>) is bad for the internet in general. <a href="http://www.thedomains.com/2011/11/15/here-is-godaddys-statement-in-support-of-the-stop-online-privacy-act-house-hearing-tomorrow/">GoDaddy supports SOPA</a>, and this has alarmed many of its customers, including this <a href="http://www.reddit.com/r/politics/comments/nmnie/godaddy_supports_sopa_im_transferring_51_domains/">Redditor with fifty one domains</a> and myself.</p>
 
 <p>Again via Kottke, I came across <a href="http://blog.jeffepstein.me/post/14629857835/a-step-by-step-guide-to-transfer-domains-out-of-godaddy">this guide to moving from GoDaddy to NameCheap</a> (<a href="http://webcache.googleusercontent.com/search?q=cache:1BOfAgmNnuAJ:blog.jeffepstein.me/post/14629857835/a-step-by-step-guide-to-transfer-domains-out-of-godaddy+&cd;=1&hl;=en&ct;=clnk&gl;=us">Google cache</a>). <a href="https://www.namecheap.com">NameCheap</a> has officially come out against SOPA, and their site and experience has been nothing but top notch since I started the transfer process.</p>
@@ -694,9 +694,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[My Favorite Albums of 2011]]></title>
-    <link href="http://tupton.github.com/2011/12/my-ten-favorite-albums-of-2011"/>
+    <link href="http://blog.thomasupton.com/2011/12/my-ten-favorite-albums-of-2011"/>
     <updated>2011-12-21T09:31:58-06:00</updated>
-    <id>http://tupton.github.com/2011/12/my-ten-favorite-albums-of-2011</id>
+    <id>http://blog.thomasupton.com/2011/12/my-ten-favorite-albums-of-2011</id>
     <content type="html"><![CDATA[<h2 id="a-musical-year">A Musical Year</h2>
 
 <p>Music has been a huge part of my life for a long time now. I started playing the violin in the fourth grade. I played the saxophone for six years, including for four years in my high school marching band. I played in a punk rock band with my best friends from high school for four years. The next and latest chapter of my musical life began when I moved to Austin, TX in June of 2010.</p>

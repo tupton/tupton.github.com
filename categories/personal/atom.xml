@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Personal | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/personal/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/personal/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[New Beginnings]]></title>
-    <link href="http://tupton.github.com/2009/02/new-beginnings"/>
+    <link href="http://blog.thomasupton.com/2009/02/new-beginnings"/>
     <updated>2009-02-25T22:24:10-06:00</updated>
-    <id>http://tupton.github.com/2009/02/new-beginnings</id>
+    <id>http://blog.thomasupton.com/2009/02/new-beginnings</id>
     <content type="html"><![CDATA[<p>I recently started working at <a href="http://www.mailtrust.com/" title="Business Email Hosting &amp; Webmail Services Mailtrust">Mailtrust</a> in Blacksburg, VA. Mailtrust is a division of <a href="http://www.rackspace.com/" title="Dedicated Server - Dedicated Server Hosting - Managed Dedicated Server by Rackspace">Rackspace</a>, a company that has been experiencing some astounding growth recently. One of the companies that Rackspace recently acquired is <a href="http://www.slicehost.com/" title="Slicehost - VPS Hosting">Slicehost</a>. Last week, I decided to sign up for Slicehost hosting and move my website to this new server. I also decided to buy a new domain, <strong>thomasupton.com</strong>. I spent the last week or so setting up my server just how I wanted it.</p>
 
 <p>I followed the excellent <a href="http://articles.slicehost.com/" title="Slicehost Article Repository - VPS setup, servers, Ruby on Rails, Django, PHP, DNS, Slicemanager and more">Slicehost articles</a> in order to get started. Setup is a breeze because you have total control over your server. When I screwed something up shortly after starting the setup process, I simply rebuilt and re-imaged my slice and started over.</p>
@@ -38,9 +38,9 @@
   
   <entry>
     <title type="html"><![CDATA[Tumblr]]></title>
-    <link href="http://tupton.github.com/2009/01/tumblr"/>
+    <link href="http://blog.thomasupton.com/2009/01/tumblr"/>
     <updated>2009-01-18T00:00:31-06:00</updated>
-    <id>http://tupton.github.com/2009/01/tumblr</id>
+    <id>http://blog.thomasupton.com/2009/01/tumblr</id>
     <content type="html"><![CDATA[<p>I <a href="http://thisis.thomasupton.com/">recently started using my Tumblr tumblelog</a> a lot more.</p>
 
 <p>I created my <a href="http://www.tumblr.com/">Tumblr</a> account some time last year, like everyone else. I linked my <a href="http://delicious.com/third">Delicious feed</a> and this blog to it and promptly forgot about it. I recently realized that there are photos that <a href="http://www.flickr.com/photos/third/favorites/">I favorite on Flickr</a>, and videos that I <a href="http://www.youtube.com/profile?user=tdmupton&view;=favorites">favorite on YouTube</a> or <a href="http://vimeo.com/user214820/likes">like on Vimeo</a>, and quotes that I see on many different web pages, and chats that I have with my friends that I think other friends would enjoy, but I can’t share them in one central place and oh my goodness I’ve just described the entire reason for Tumblr’s being.</p>
@@ -56,9 +56,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Cities I've Been To, 2008]]></title>
-    <link href="http://tupton.github.com/2008/12/the-cities-ive-been-to-2008"/>
+    <link href="http://blog.thomasupton.com/2008/12/the-cities-ive-been-to-2008"/>
     <updated>2008-12-29T17:18:27-06:00</updated>
-    <id>http://tupton.github.com/2008/12/the-cities-ive-been-to-2008</id>
+    <id>http://blog.thomasupton.com/2008/12/the-cities-ive-been-to-2008</id>
     <content type="html"><![CDATA[<p>Inspired by <a href="http://www.kottke.org/08/12/my-year-in-cities-2008">Jason Kottke</a>, a list of the cities I visited in 2008.</p>
 
 <ul>
@@ -83,9 +83,9 @@
   
   <entry>
     <title type="html"><![CDATA[Blogwatch]]></title>
-    <link href="http://tupton.github.com/2008/04/blogwatch"/>
+    <link href="http://blog.thomasupton.com/2008/04/blogwatch"/>
     <updated>2008-04-16T22:54:56-05:00</updated>
-    <id>http://tupton.github.com/2008/04/blogwatch</id>
+    <id>http://blog.thomasupton.com/2008/04/blogwatch</id>
     <content type="html"><![CDATA[<p>A couple of my friends have blogs, too.</p>
 
 <ul>
@@ -99,9 +99,9 @@
   
   <entry>
     <title type="html"><![CDATA[One Year]]></title>
-    <link href="http://tupton.github.com/2008/04/two-years"/>
+    <link href="http://blog.thomasupton.com/2008/04/two-years"/>
     <updated>2008-04-15T23:18:17-05:00</updated>
-    <id>http://tupton.github.com/2008/04/two-years</id>
+    <id>http://blog.thomasupton.com/2008/04/two-years</id>
     <content type="html"><![CDATA[<p>It’s been <a href="http://www.vt.edu/remember/">one year</a>.</p>
 
 <p>I will always remember.</p>

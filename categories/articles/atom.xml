@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Articles | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/articles/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/articles/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Reading My News]]></title>
-    <link href="http://tupton.github.com/2012/07/reading-my-news"/>
+    <link href="http://blog.thomasupton.com/2012/07/reading-my-news"/>
     <updated>2012-07-12T18:12:22-05:00</updated>
-    <id>http://tupton.github.com/2012/07/reading-my-news</id>
+    <id>http://blog.thomasupton.com/2012/07/reading-my-news</id>
     <content type="html"><![CDATA[<p>I’ve used Google Reader for a long time, but I’ve never been completely satisfied with using it to
 read and keep up with RSS feeds. Apps like <a href="http://flipboard.com/">Flipboard</a> on the iPad provide a better
 reading experience for traditionally “newsy” outlets – I enjoy flipping through the feeds from <em>The
@@ -93,9 +93,9 @@ time doing what I want and need to do.</p>
   
   <entry>
     <title type="html"><![CDATA[Knowing The Rules]]></title>
-    <link href="http://tupton.github.com/2012/06/knowing-the-rules"/>
+    <link href="http://blog.thomasupton.com/2012/06/knowing-the-rules"/>
     <updated>2012-06-27T20:55:48-05:00</updated>
-    <id>http://tupton.github.com/2012/06/knowing-the-rules</id>
+    <id>http://blog.thomasupton.com/2012/06/knowing-the-rules</id>
     <content type="html"><![CDATA[<p>You’re likely to be more comfortable with many situations if you know the rules of the environment
 you’re in, including knowing its bounds and how flexible they are. </p>
 
@@ -140,9 +140,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Writing]]></title>
-    <link href="http://tupton.github.com/2011/12/writing"/>
+    <link href="http://blog.thomasupton.com/2011/12/writing"/>
     <updated>2011-12-25T23:19:21-06:00</updated>
-    <id>http://tupton.github.com/2011/12/writing</id>
+    <id>http://blog.thomasupton.com/2011/12/writing</id>
     <content type="html"><![CDATA[<p>I recently started using <a href="http://bywordapp.com/">Byword</a> on OS X and <a href="http://www.secondgearsoftware.com/elements/">Elements</a> on iOS for my writing in general. Both apps are <a href="http://daringfireball.net/projects/markdown/">Markdown</a> editors that, in conjunction with Dropbox, let me write from nearly anywhere.</p>
 
 <p>I write my blog posts in Markdown, but the format is useful for almost any kind of writing. Any application that can read plain text can read Markdown for those times that you need to keep it simple, or you can convert to HTML for when you want or need to make it a bit more presentable.</p>
@@ -155,9 +155,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Automated Backups with Tarsnap]]></title>
-    <link href="http://tupton.github.com/2010/12/automated-backups-with-tarsnap"/>
+    <link href="http://blog.thomasupton.com/2010/12/automated-backups-with-tarsnap"/>
     <updated>2010-12-12T20:14:08-06:00</updated>
-    <id>http://tupton.github.com/2010/12/automated-backups-with-tarsnap</id>
+    <id>http://blog.thomasupton.com/2010/12/automated-backups-with-tarsnap</id>
     <content type="html"><![CDATA[<p>I remember <a href="http://www.daemonology.net/blog/2006-09-13-encrypted-backup.html">reading</a> <a href="http://www.daemonology.net/blog/2008-11-10-tarsnap-public-beta.html">about</a> <a href="http://www.tarsnap.com/">Tarsnap</a> a couple of years ago, back when it was only an idea. I wasn’t too convinced about using a service that was in beta to back up my data, but I recently rediscovered that it had graduated to a full-blown product and signed up immediately.</p>
 
 <p>Tarsnap is an encrypted backup tool based on archives. I’m not going to go into any details about the implementation, but you can read about the <a href="http://www.tarsnap.com/crypto.html">cryptography</a>, <a href="http://www.tarsnap.com/security.html">the security</a>, or anything else about the <a href="http://www.tarsnap.com/design.html">overall design</a> of the tool on the <a href="http://www.tarsnap.com/">Tarsnap site</a>. Basically, it creates archives (hence the “tar” part of the name), encrypts them, and stores them on <a href="http://aws.amazon.com/s3/">Amazon S3</a>. The “snap” part of the name refers to the idea that backups are done in “snapshots,” which means that backups are incremental and duplicate data can be shared between archives.</p>
@@ -284,9 +284,9 @@ a little research – Googling, asking your friends or family – beforehand com
   
   <entry>
     <title type="html"><![CDATA[Pastebin From The Command-line]]></title>
-    <link href="http://tupton.github.com/2010/12/pastebin-from-the-commandline"/>
+    <link href="http://blog.thomasupton.com/2010/12/pastebin-from-the-commandline"/>
     <updated>2010-12-11T14:42:56-06:00</updated>
-    <id>http://tupton.github.com/2010/12/pastebin-from-the-commandline</id>
+    <id>http://blog.thomasupton.com/2010/12/pastebin-from-the-commandline</id>
     <content type="html"><![CDATA[<p><a href="http://pastebin.com/">Pastebin.com</a> is a utility for sharing snippets of text with anyone. The service is simple: go to <a href="http://pastebin.com/">pastebin.com</a>, paste your text, click submit, and share the link. It’s useful for sharing time-saving snippets with you team, or for an impromptu, informal code review of changes that for one reason or another haven’t been committed yet (e.g. a design decision for which the author wants early feedback.)</p>
 
 <blockquote>

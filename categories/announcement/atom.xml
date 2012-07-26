@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Announcement | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/announcement/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/announcement/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Uptonian Thoughts on Twitter]]></title>
-    <link href="http://tupton.github.com/2012/01/uptonian-thoughts-on-twitter"/>
+    <link href="http://blog.thomasupton.com/2012/01/uptonian-thoughts-on-twitter"/>
     <updated>2012-01-04T22:50:51-06:00</updated>
-    <id>http://tupton.github.com/2012/01/uptonian-thoughts-on-twitter</id>
+    <id>http://blog.thomasupton.com/2012/01/uptonian-thoughts-on-twitter</id>
     <content type="html"><![CDATA[<p>You can now follow <a href="http://twitter.com/uptonin">Uptonian Thoughts on Twitter</a>! I’m using the <a href="http://somadesign.ca/2011/lessn-shortlinks-wordpress-plugin/">Lessn Shortlinks</a> and <a href="http://ottopress.com/wordpress-plugins/simple-twitter-connect/">Simple Twitter Connect</a> Wordpress plugins to tweet my posts to @uptonin.</p>
 
 <p>I might still occasionally link to my own posts on my @thomasupton account, but all posts and articles, along with information about the site, will be available on @uptonin.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Programming | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/programming/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/programming/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Syntastic]]></title>
-    <link href="http://tupton.github.com/2012/05/syntastic"/>
+    <link href="http://blog.thomasupton.com/2012/05/syntastic"/>
     <updated>2012-05-20T14:13:08-05:00</updated>
-    <id>http://tupton.github.com/2012/05/syntastic</id>
+    <id>http://blog.thomasupton.com/2012/05/syntastic</id>
     <content type="html"><![CDATA[<p>I love writing with <code>vim</code>, but — for many valid reasons — some people are averse to it. I think the steep (–ish) learning curve has something to do with it, but I think some people really don’t want to give up their IDE. The thing is, <code>vim</code> isn’t <em>just</em> a text editor. You can extend it to do pretty much anything, including features that normally show up in IDEs.</p>
 
 <p>I recently started using <a href="https://github.com/scrooloose/syntastic">syntastic</a>, which is a <code>vim</code> plugin that runs linters or syntax checkers and displays warnings and errors right in your window. IDEs like Eclipse or Xcode provide this syntax-checking for a couple of languages, but syntastic supports many languages and linters out of the box with pluggable support for nearly any language. </p>
@@ -61,9 +61,9 @@
   
   <entry>
     <title type="html"><![CDATA[Don't Commit FIXME or TODO]]></title>
-    <link href="http://tupton.github.com/2012/02/dont-commit-fixme-or-todo"/>
+    <link href="http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo"/>
     <updated>2012-02-24T12:41:13-06:00</updated>
-    <id>http://tupton.github.com/2012/02/dont-commit-fixme-or-todo</id>
+    <id>http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo</id>
     <content type="html"><![CDATA[<p>``` php
     &lt;?php</p>
 

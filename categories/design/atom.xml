@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Design | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/design/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/design/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[New Beginnings]]></title>
-    <link href="http://tupton.github.com/2009/02/new-beginnings"/>
+    <link href="http://blog.thomasupton.com/2009/02/new-beginnings"/>
     <updated>2009-02-25T22:24:10-06:00</updated>
-    <id>http://tupton.github.com/2009/02/new-beginnings</id>
+    <id>http://blog.thomasupton.com/2009/02/new-beginnings</id>
     <content type="html"><![CDATA[<p>I recently started working at <a href="http://www.mailtrust.com/" title="Business Email Hosting &amp; Webmail Services Mailtrust">Mailtrust</a> in Blacksburg, VA. Mailtrust is a division of <a href="http://www.rackspace.com/" title="Dedicated Server - Dedicated Server Hosting - Managed Dedicated Server by Rackspace">Rackspace</a>, a company that has been experiencing some astounding growth recently. One of the companies that Rackspace recently acquired is <a href="http://www.slicehost.com/" title="Slicehost - VPS Hosting">Slicehost</a>. Last week, I decided to sign up for Slicehost hosting and move my website to this new server. I also decided to buy a new domain, <strong>thomasupton.com</strong>. I spent the last week or so setting up my server just how I wanted it.</p>
 
 <p>I followed the excellent <a href="http://articles.slicehost.com/" title="Slicehost Article Repository - VPS setup, servers, Ruby on Rails, Django, PHP, DNS, Slicemanager and more">Slicehost articles</a> in order to get started. Setup is a breeze because you have total control over your server. When I screwed something up shortly after starting the setup process, I simply rebuilt and re-imaged my slice and started over.</p>
@@ -38,9 +38,9 @@
   
   <entry>
     <title type="html"><![CDATA[Tumblr]]></title>
-    <link href="http://tupton.github.com/2009/01/tumblr"/>
+    <link href="http://blog.thomasupton.com/2009/01/tumblr"/>
     <updated>2009-01-18T00:00:31-06:00</updated>
-    <id>http://tupton.github.com/2009/01/tumblr</id>
+    <id>http://blog.thomasupton.com/2009/01/tumblr</id>
     <content type="html"><![CDATA[<p>I <a href="http://thisis.thomasupton.com/">recently started using my Tumblr tumblelog</a> a lot more.</p>
 
 <p>I created my <a href="http://www.tumblr.com/">Tumblr</a> account some time last year, like everyone else. I linked my <a href="http://delicious.com/third">Delicious feed</a> and this blog to it and promptly forgot about it. I recently realized that there are photos that <a href="http://www.flickr.com/photos/third/favorites/">I favorite on Flickr</a>, and videos that I <a href="http://www.youtube.com/profile?user=tdmupton&view;=favorites">favorite on YouTube</a> or <a href="http://vimeo.com/user214820/likes">like on Vimeo</a>, and quotes that I see on many different web pages, and chats that I have with my friends that I think other friends would enjoy, but I can’t share them in one central place and oh my goodness I’ve just described the entire reason for Tumblr’s being.</p>
@@ -56,9 +56,9 @@
   
   <entry>
     <title type="html"><![CDATA[Blog Comment Design]]></title>
-    <link href="http://tupton.github.com/2008/04/blog-comment-design"/>
+    <link href="http://blog.thomasupton.com/2008/04/blog-comment-design"/>
     <updated>2008-04-24T16:24:47-05:00</updated>
-    <id>http://tupton.github.com/2008/04/blog-comment-design</id>
+    <id>http://blog.thomasupton.com/2008/04/blog-comment-design</id>
     <content type="html"><![CDATA[<p>I updated my blog comments from the <a href="http://warpspire.com/hemingway">Hemingway</a> default to a more iconic design.</p>
 
 <p>A <a href="http://css-tricks.com/better-ordered-lists-using-simple-php-and-css/">post about blog comments</a> that I saw a few weeks ago inspired me to use the “big number” idea for my own comments.</p>
@@ -159,9 +159,9 @@ ol#comments li cite span.gravatar img {
   
   <entry>
     <title type="html"><![CDATA[New Site Layout]]></title>
-    <link href="http://tupton.github.com/2008/03/new-site-layout"/>
+    <link href="http://blog.thomasupton.com/2008/03/new-site-layout"/>
     <updated>2008-03-30T15:29:22-05:00</updated>
-    <id>http://tupton.github.com/2008/03/new-site-layout</id>
+    <id>http://blog.thomasupton.com/2008/03/new-site-layout</id>
     <content type="html"><![CDATA[<p>I changed my blog layout to the <a href="http://warpspire.com/hemingway">Hemingway theme</a> and directed Wordpress to publish to the root of my section of <a href="http://fiveuptons.com">FiveUptons.com</a>.</p>
 
 <p>I am now using Wordpress plugins to display <a href="http://rick.jinlabs.com/code/delicious/">my del.icio.us bookmarks</a>, <a href="http://rick.jinlabs.com/code/lastfm/">Last.fm tracks</a>, and <a href="http://eightface.com/wordpress/flickrrss/">Flickr photos</a>.</p>
@@ -172,9 +172,9 @@ ol#comments li cite span.gravatar img {
   
   <entry>
     <title type="html"><![CDATA[CSS Naked Day]]></title>
-    <link href="http://tupton.github.com/2006/04/css-naked-day"/>
+    <link href="http://blog.thomasupton.com/2006/04/css-naked-day"/>
     <updated>2006-04-05T09:25:14-05:00</updated>
-    <id>http://tupton.github.com/2006/04/css-naked-day</id>
+    <id>http://blog.thomasupton.com/2006/04/css-naked-day</id>
     <content type="html"><![CDATA[<p>While <a href="http://naked.dustindiaz.com/">the concept</a> is nice, I really hate going to everyone’s blog and not being able to see these wonderful designs that everyone is so proud of.</p>
 
 <p>Over at <a href="http://www.stylegala.com/news/public200604/1617.htm">Stylegala</a> there is an interesting comment thread about this idea.  Sure, the underlying XHTML is very important.  I even disabled my stylesheets in Firefox and fixed a couple errors in my markup that I wasn’t happy with. One could argue that this is the point of CSS Naked Day, but I don’t see the point in shoving it in every user’s face.</p>

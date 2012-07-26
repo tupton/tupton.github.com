@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Code | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/code/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/code/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Syntastic]]></title>
-    <link href="http://tupton.github.com/2012/05/syntastic"/>
+    <link href="http://blog.thomasupton.com/2012/05/syntastic"/>
     <updated>2012-05-20T14:13:08-05:00</updated>
-    <id>http://tupton.github.com/2012/05/syntastic</id>
+    <id>http://blog.thomasupton.com/2012/05/syntastic</id>
     <content type="html"><![CDATA[<p>I love writing with <code>vim</code>, but — for many valid reasons — some people are averse to it. I think the steep (–ish) learning curve has something to do with it, but I think some people really don’t want to give up their IDE. The thing is, <code>vim</code> isn’t <em>just</em> a text editor. You can extend it to do pretty much anything, including features that normally show up in IDEs.</p>
 
 <p>I recently started using <a href="https://github.com/scrooloose/syntastic">syntastic</a>, which is a <code>vim</code> plugin that runs linters or syntax checkers and displays warnings and errors right in your window. IDEs like Eclipse or Xcode provide this syntax-checking for a couple of languages, but syntastic supports many languages and linters out of the box with pluggable support for nearly any language. </p>
@@ -61,9 +61,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Handle Pattern]]></title>
-    <link href="http://tupton.github.com/2012/03/the-handle-pattern"/>
+    <link href="http://blog.thomasupton.com/2012/03/the-handle-pattern"/>
     <updated>2012-03-25T13:12:06-05:00</updated>
-    <id>http://tupton.github.com/2012/03/the-handle-pattern</id>
+    <id>http://blog.thomasupton.com/2012/03/the-handle-pattern</id>
     <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
 
 <p>``` javascript
@@ -123,9 +123,9 @@ return s; })();
   
   <entry>
     <title type="html"><![CDATA[Configuration]]></title>
-    <link href="http://tupton.github.com/2012/02/configuration"/>
+    <link href="http://blog.thomasupton.com/2012/02/configuration"/>
     <updated>2012-02-18T20:43:38-06:00</updated>
-    <id>http://tupton.github.com/2012/02/configuration</id>
+    <id>http://blog.thomasupton.com/2012/02/configuration</id>
     <content type="html"><![CDATA[<p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <code>vim</code> <a href="https://github.com/tupton/vim-support">environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
 
 <p>I use <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins. I follow the examples in <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">this great article on plugin management with Pathogen</a> to keep most of my plugins as <code>git</code> submodules. Installing my <code>vim</code> environment is just a matter of cloning the <code>git</code> repository and symlinking my <code>vimrc</code>.</p>
@@ -142,9 +142,9 @@ return s; })();
   
   <entry>
     <title type="html"><![CDATA[Automated Backups with Tarsnap]]></title>
-    <link href="http://tupton.github.com/2010/12/automated-backups-with-tarsnap"/>
+    <link href="http://blog.thomasupton.com/2010/12/automated-backups-with-tarsnap"/>
     <updated>2010-12-12T20:14:08-06:00</updated>
-    <id>http://tupton.github.com/2010/12/automated-backups-with-tarsnap</id>
+    <id>http://blog.thomasupton.com/2010/12/automated-backups-with-tarsnap</id>
     <content type="html"><![CDATA[<p>I remember <a href="http://www.daemonology.net/blog/2006-09-13-encrypted-backup.html">reading</a> <a href="http://www.daemonology.net/blog/2008-11-10-tarsnap-public-beta.html">about</a> <a href="http://www.tarsnap.com/">Tarsnap</a> a couple of years ago, back when it was only an idea. I wasn’t too convinced about using a service that was in beta to back up my data, but I recently rediscovered that it had graduated to a full-blown product and signed up immediately.</p>
 
 <p>Tarsnap is an encrypted backup tool based on archives. I’m not going to go into any details about the implementation, but you can read about the <a href="http://www.tarsnap.com/crypto.html">cryptography</a>, <a href="http://www.tarsnap.com/security.html">the security</a>, or anything else about the <a href="http://www.tarsnap.com/design.html">overall design</a> of the tool on the <a href="http://www.tarsnap.com/">Tarsnap site</a>. Basically, it creates archives (hence the “tar” part of the name), encrypts them, and stores them on <a href="http://aws.amazon.com/s3/">Amazon S3</a>. The “snap” part of the name refers to the idea that backups are done in “snapshots,” which means that backups are incremental and duplicate data can be shared between archives.</p>
@@ -271,9 +271,9 @@ return s; })();
   
   <entry>
     <title type="html"><![CDATA[Pastebin From The Command-line]]></title>
-    <link href="http://tupton.github.com/2010/12/pastebin-from-the-commandline"/>
+    <link href="http://blog.thomasupton.com/2010/12/pastebin-from-the-commandline"/>
     <updated>2010-12-11T14:42:56-06:00</updated>
-    <id>http://tupton.github.com/2010/12/pastebin-from-the-commandline</id>
+    <id>http://blog.thomasupton.com/2010/12/pastebin-from-the-commandline</id>
     <content type="html"><![CDATA[<p><a href="http://pastebin.com/">Pastebin.com</a> is a utility for sharing snippets of text with anyone. The service is simple: go to <a href="http://pastebin.com/">pastebin.com</a>, paste your text, click submit, and share the link. It’s useful for sharing time-saving snippets with you team, or for an impromptu, informal code review of changes that for one reason or another haven’t been committed yet (e.g. a design decision for which the author wants early feedback.)</p>
 
 <blockquote>

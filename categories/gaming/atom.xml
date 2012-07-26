@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Gaming | Uptonian Thoughts]]></title>
-  <link href="http://tupton.github.com/categories/gaming/atom.xml" rel="self"/>
-  <link href="http://tupton.github.com/"/>
-  <updated>2012-07-23T23:10:40-05:00</updated>
-  <id>http://tupton.github.com/</id>
+  <link href="http://blog.thomasupton.com/categories/gaming/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-07-25T22:09:13-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Unplayed]]></title>
-    <link href="http://tupton.github.com/2012/01/unplayed"/>
+    <link href="http://blog.thomasupton.com/2012/01/unplayed"/>
     <updated>2012-01-02T19:23:21-06:00</updated>
-    <id>http://tupton.github.com/2012/01/unplayed</id>
+    <id>http://blog.thomasupton.com/2012/01/unplayed</id>
     <content type="html"><![CDATA[<p>Santa brought me <a href="http://www.amazon.com/gp/product/B002BSC54I/ref=as_li_tf_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=9325&creativeASIN;=B002BSC54I">The Legend of Zelda: Skyward Sword</a> for Christmas (thanks Mom!). I’ve enjoyed playing it, just as I’ve enjoyed playing video games for nearly my entire life.</p>
 
 <p>In recent years, however, I’ve abandoned or not fully played all of my video games. I attempted to maintain a Google Docs spreadsheet to keep track of my unplayed games, but it quickly became more neglected than the games themselves.</p>
