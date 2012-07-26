@@ -9,7 +9,7 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="UPDATE: Apple has changed the behavior of iTunes. Thank you, Apple. Apple updated iTunes on Tuesday, and yesterday, pretty much the whole Apple &hellip;">
+  <meta name="description" content="Upgrading to OS X 10.4.4 broke my previous hacked installation of Front Row, but it turns out that only a reinstall is needed. Check out Andrew &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,48 @@
     
   </div>
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2006/01/front-row">Front Row</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-01-13T00:17:00-06:00" pubdate data-updated="true">January 13, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/85895390/"><img src="http://static.flickr.com/41/85895390_af60be2216.jpg" alt="Front Row" /></a></p>
+
+<p>Upgrading to OS X 10.4.4 broke my previous hacked installation of <a href="http://www.apple.com/imac/frontrow.html">Front Row</a>, but it turns out that only a reinstall is needed.</p>
+
+<p>Check out <a href="http://www.andrewescobar.com/frontrow">Andrew Escobar’s tutorial</a> to install it.  It involves a bit of deep-rooted changing (the Bezel Services framework, for one), but it seems to be ok.  I had to log out one final time (bringing the total to three times since starting the install) in order to watch a DVD.  Everything seems to be peachy, as it should.  You are effectively tricking your machine into thinking it has Front Row natively installed.  There is no thrown-together hack; you actually download the install package from Apple and activate it through Escobar’s Enabler.</p>
+
+<p>Check it out.  Front Row is a really neat app.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -513,125 +555,6 @@ This extension comes with Firefox.  It is a crash-logger and data-collector for 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/12/lastfm-revisited">Last.fm Revisited</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-12-07T13:23:00-06:00" pubdate data-updated="true">December  7, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/71235012/"><img src="http://static.flickr.com/20/71235012_5b230c6940_o.png" alt="Recently Played Tracks - Generated HTML" /></a></p>
-
-<p>Earlier today, I posted about a <a href="http://last.fm/">Last.fm</a> <a href="http://www.audioscrobbler.net/wiki/index.php/RecentlyPlayedImageV2#arguments">recently played tracks image generator</a>, but I expressed an interest in an HTML-generating method of showing these tracks.  Well, I <a href="http://www.audioscrobbler.net/wiki/RecentTracksOnYourBlog">found one</a>.</p>
-
-<p>I’ll outline the steps that I took to make this work, because that wiki is not so helpful.</p>
-
-<ol>
-  <li>
-    <p>Go to <a href="http://feeddigest.com/">Feed Digest</a>.  This is a website that takes an RSS feed and parses it how you want into HTML.  The service also offers a mix of multiple feeds, but we don’t need that for Last.fm.</p>
-  </li>
-  <li>
-    <p>Create a digest from your Last.fm feed.  The format is http://ws.audioscrobbler.com/1.0/user/<username>/recenttracks.rss, where <username> is replaced by your Last.fm user name.</username></username></p>
-  </li>
-  <li>
-    <p>Edit the template of your feed.  I used</p>
-  </li>
-</ol>
-
-<pre><code>&lt;li class="music"&gt;
-&lt;span&gt;&lt;a href="%URL%" &gt;%TITLE%&lt;/a&gt;&lt;/span&gt;
-&lt;/li&gt;
-</code></pre>
-
-<p>for the per-item template and</p>
-
-<pre><code>&lt;p&gt;&lt;a href="http://last.fm/user/Tupton"&gt;Recently Played Tracks&lt;/a&gt;&lt;/p&gt;
-</code></pre>
-
-<p>for the header template.  This makes a list out of your tracks, allowing for better CSS styling.</p>
-
-<ol>
-  <li>
-    <p>Get the code for your feed.  After creating the feed, you can get a Javascript implementation of your feed to include in your site.  All the code you need is offered on the site.</p>
-  </li>
-  <li>
-    <p>Put the HTML in your web page.  I enclosed the Javascript include in a div, for greater editing ease.</p>
-  </li>
-  <li>
-    <p>Style, baby!  Here is the CSS I used to make this work:</p>
-  </li>
-</ol>
-
-<pre><code>#lastfm {
-padding: 3px;
-margin-top: 5px;
-border: #ddd solid 1px;
-background-color: #f8f8f8;
-font-size: 1em;
-}
- #lastfm a:hover {
-color: #fff;
-background-color: #39c;
-}
- #lastfm p {
-font-size: 12px;
-font-weight: bold;
-}
- #lastfm ul {
-margin-left: -40px;
-}
- #lastfm li.music {
-font-size: 10px;
-line-height: 2em;
-padding: 2px;
-margin-bottom: 3px;
-background-color: #fff;
-border-top: 1px #ddd solid;
-border-bottom: 1px #ddd solid;
-list-style-image:url('http://www.fiveuptons.com/thomas/images/audio.gif');
-}
- #lastfm li.music:hover {
-background-color: #39c;
-}
- #lastfm li.music:hover a {
-color: #fff;
-}
- #lastfm li.music a {
-display: block;
-}
-</code></pre>
-
-<p>The image I used for the list bullet was an edited image from the BBC.  Feel free to use it, but just save it on your own server so you aren’t hot-linking to my images, please.  Also, a <a href="http://images.google.com/images?q=speaker.gif&amp;hl=en">Google search for speaker.gif</a> yields some nice results.  You can see the image I used is the third one there.</p>
-
-<p>You can see the final result of what I did on my <a href="http://fiveuptons.com/thomas/">main page</a>.  Enjoy!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/12/">&larr; Older</a>
@@ -646,6 +569,10 @@ display: block;
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
     
       <li class="post">
         <a href="/2012/07/octopress">Octopress</a>
@@ -681,10 +608,6 @@ display: block;
     
       <li class="post">
         <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/configuration">Configuration</a>
       </li>
     
   </ul>

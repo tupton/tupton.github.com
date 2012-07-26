@@ -9,8 +9,8 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="This blog is now being served by GitHub Pages (source) by way of Octopress. I’ve
-tried to set up some redirects from the old site that should match &hellip;">
+  <meta name="description" content="When I first switched over to Octopress, the feed for this site was completely new. The last
+twenty or so posts showed up as new again, and it was &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,50 @@ tried to set up some redirects from the old site that should match &hellip;">
     
   </div>
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts in the Feed</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-26T09:23:00-05:00" pubdate data-updated="true">July 26, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I first switched over to Octopress, the feed for this site was completely new. The last
+twenty or so posts showed up as new again, and it was kind of annoying.</p>
+
+<p>I realized yesterday that my site was still configured to be hosted on <a href="http://tupton.github.com">tupton.github.com</a>, so
+I switched it to <a href="http://blog.thomasupton.com">blog.thomasupton.com</a>. This must have reset the site’s feed again, causing
+recent posts to show up as unread.</p>
+
+<p>This should hopefully be the last time that happens, and hopefully it wasn’t too hard to mark all
+posts from this site as read. I apologize for any inconvenience.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -791,52 +835,6 @@ a little research – Googling, asking your friends or family – beforehand com
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/02/configuration">Configuration</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-18T20:43:38-06:00" pubdate data-updated="true">February 18, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <code>vim</code> <a href="https://github.com/tupton/vim-support">environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
-
-<p>I use <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins. I follow the examples in <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">this great article on plugin management with Pathogen</a> to keep most of my plugins as <code>git</code> submodules. Installing my <code>vim</code> environment is just a matter of cloning the <code>git</code> repository and symlinking my <code>vimrc</code>.</p>
-
-<p>I just spent some time cleaning up and organizing my dotfiles.  I wasn’t even using my old dotfiles repository on GitHub, but I quickly rectified that. I now keep my dotfiles in <code>~/.dotfiles</code> and symlink them to <code>~</code>. There is a helper script in my <a href="https://github.com/tupton/dotfiles">dotfiles repository</a> that sets up these symlinks.</p>
-
-<p>Along with the usual <code>bashrc</code>, there are a few config files that aren’t as common. My <code>ackrc</code> defines a few convenient options and ignores directories with built artifacts in them. My (old) <code>pythonrc</code> defines a tab-completion function, although this might be outdated at this point. There’s a <code>tm_properties</code> config for <a href="http://blog.macromates.com/2011/textmate-2-0-alpha/">TextMate 2</a>.</p>
-
-<p>Hopefully the fact that my configuration is out in the open will bring to light some useful features that I probably take for granted but you might not know about. So, go explore! Check out my <code>inputrc</code>, for example. I know that I discover new things almost every time I look at someone else’s <code>vimrc</code> or <code>bashrc</code>.</p>
-
-<p>Do you have any configuration tips or tricks? Let me know.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -849,6 +847,10 @@ a little research – Googling, asking your friends or family – beforehand com
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
     
       <li class="post">
         <a href="/2012/07/octopress">Octopress</a>
@@ -884,10 +886,6 @@ a little research – Googling, asking your friends or family – beforehand com
     
       <li class="post">
         <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/configuration">Configuration</a>
       </li>
     
   </ul>

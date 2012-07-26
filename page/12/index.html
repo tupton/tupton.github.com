@@ -9,7 +9,7 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="Last.fm is a site that keeps track of all the songs that you play, in a media player of your choice. It’s a pretty neat site for personal use, but I &hellip;">
+  <meta name="description" content="Earlier today, I posted about a Last.fm recently played tracks image generator, but I expressed an interest in an HTML-generating method of showing &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,125 @@
     
   </div>
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2005/12/lastfm-revisited">Last.fm Revisited</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2005-12-07T13:23:00-06:00" pubdate data-updated="true">December  7, 2005</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/third/71235012/"><img src="http://static.flickr.com/20/71235012_5b230c6940_o.png" alt="Recently Played Tracks - Generated HTML" /></a></p>
+
+<p>Earlier today, I posted about a <a href="http://last.fm/">Last.fm</a> <a href="http://www.audioscrobbler.net/wiki/index.php/RecentlyPlayedImageV2#arguments">recently played tracks image generator</a>, but I expressed an interest in an HTML-generating method of showing these tracks.  Well, I <a href="http://www.audioscrobbler.net/wiki/RecentTracksOnYourBlog">found one</a>.</p>
+
+<p>I’ll outline the steps that I took to make this work, because that wiki is not so helpful.</p>
+
+<ol>
+  <li>
+    <p>Go to <a href="http://feeddigest.com/">Feed Digest</a>.  This is a website that takes an RSS feed and parses it how you want into HTML.  The service also offers a mix of multiple feeds, but we don’t need that for Last.fm.</p>
+  </li>
+  <li>
+    <p>Create a digest from your Last.fm feed.  The format is http://ws.audioscrobbler.com/1.0/user/<username>/recenttracks.rss, where <username> is replaced by your Last.fm user name.</username></username></p>
+  </li>
+  <li>
+    <p>Edit the template of your feed.  I used</p>
+  </li>
+</ol>
+
+<pre><code>&lt;li class="music"&gt;
+&lt;span&gt;&lt;a href="%URL%" &gt;%TITLE%&lt;/a&gt;&lt;/span&gt;
+&lt;/li&gt;
+</code></pre>
+
+<p>for the per-item template and</p>
+
+<pre><code>&lt;p&gt;&lt;a href="http://last.fm/user/Tupton"&gt;Recently Played Tracks&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+
+<p>for the header template.  This makes a list out of your tracks, allowing for better CSS styling.</p>
+
+<ol>
+  <li>
+    <p>Get the code for your feed.  After creating the feed, you can get a Javascript implementation of your feed to include in your site.  All the code you need is offered on the site.</p>
+  </li>
+  <li>
+    <p>Put the HTML in your web page.  I enclosed the Javascript include in a div, for greater editing ease.</p>
+  </li>
+  <li>
+    <p>Style, baby!  Here is the CSS I used to make this work:</p>
+  </li>
+</ol>
+
+<pre><code>#lastfm {
+padding: 3px;
+margin-top: 5px;
+border: #ddd solid 1px;
+background-color: #f8f8f8;
+font-size: 1em;
+}
+ #lastfm a:hover {
+color: #fff;
+background-color: #39c;
+}
+ #lastfm p {
+font-size: 12px;
+font-weight: bold;
+}
+ #lastfm ul {
+margin-left: -40px;
+}
+ #lastfm li.music {
+font-size: 10px;
+line-height: 2em;
+padding: 2px;
+margin-bottom: 3px;
+background-color: #fff;
+border-top: 1px #ddd solid;
+border-bottom: 1px #ddd solid;
+list-style-image:url('http://www.fiveuptons.com/thomas/images/audio.gif');
+}
+ #lastfm li.music:hover {
+background-color: #39c;
+}
+ #lastfm li.music:hover a {
+color: #fff;
+}
+ #lastfm li.music a {
+display: block;
+}
+</code></pre>
+
+<p>The image I used for the list bullet was an edited image from the BBC.  Feel free to use it, but just save it on your own server so you aren’t hot-linking to my images, please.  Also, a <a href="http://images.google.com/images?q=speaker.gif&amp;hl=en">Google search for speaker.gif</a> yields some nice results.  You can see the image I used is the third one there.</p>
+
+<p>You can see the final result of what I did on my <a href="http://fiveuptons.com/thomas/">main page</a>.  Enjoy!</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -483,42 +602,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2005/08/new-site">New Site</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2005-08-14T23:26:00-05:00" pubdate data-updated="true">August 14, 2005</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have moved my blog to <a href="http://fiveuptons.com/thomas/blog/">a new site</a>.  I’m not sure how long Blogger keeps URLs that are no longer published to, but <a href="http://uptonianthoughts.blogspot.com/">http://uptonianthoughts.blogspot.com/</a> will remain up as long as possible.  Please change your bookmarks and feed readers accordingly.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/13/">&larr; Older</a>
@@ -533,6 +616,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
     
       <li class="post">
         <a href="/2012/07/octopress">Octopress</a>
@@ -568,10 +655,6 @@
     
       <li class="post">
         <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/configuration">Configuration</a>
       </li>
     
   </ul>

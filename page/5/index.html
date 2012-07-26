@@ -9,7 +9,7 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="I recently started using my Tumblr tumblelog a lot more. I created my Tumblr account some time last year, like everyone else. I linked my Delicious &hellip;">
+  <meta name="description" content="When I interviewed earlier this week, I was given a developer take-home test to complete as part of the application process. The test consists of six &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,182 @@
     
   </div>
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/01/interview-developer-test">Interview Developer Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-23T18:02:19-06:00" pubdate data-updated="true">January 23, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I interviewed earlier this week, I was given a developer take-home test to complete as part of the application process. The test consists of six short coding problems, any three of which are required to be completed within 48 hours of receiving the test.</p>
+
+<p>I do not think there are any issues with me posting the problems here, and I want to share my solutions. Just to be safe, I’ll only post the three problems that I answered along with only some of my solution and methodology.</p>
+
+<p>The problems could be answered in any of Java, C#, C/C++, Python, or PHP. I answered all three in Python. I wrote 227 lines of code for this test, including comments.</p>
+
+<h2 id="problem-1">Problem 1</h2>
+
+<blockquote>
+  <p>Write a program that justifies a given line of text to the specified width. The width is given on the first line of the input file, and the text in on the second.</p>
+</blockquote>
+
+<p>Sample input:</p>
+
+<pre><code>20
+The quick brown fox jumps over the lazy dog.
+</code></pre>
+
+<p>Sample output:</p>
+
+<pre><code>The quick  brown fox
+jumps  over the lazy
+dog.
+</code></pre>
+
+<p>The algorithm I came up with split the input into a list of words. Then, I keep popping those words off of that list and into a new list until no more words can fit within the specified width. Using the length of each word in the list plus a space between each word (<code>len(" ".join(to_justify))</code>), one can figure out the number of required spaces.</p>
+
+<p>I decided that I would distribute the required spaces one by one into each “slot” that requires spaces until there are no more remaining spaces. This means that for the first <code>x</code> slots, there would be <code>n</code> spaces, and for the remaining <code>number_of_slots - x</code> slots, there would be <code>n - 1</code> spaces. <code>number_of_slots</code> here is really just <code>len(to_justify) - 1</code>.</p>
+
+<p>The formulas for coming up with <code>n</code> and <code>x</code> are related and fairly straightforward. In terms of modulo arithmetic, think of the slots as your modulo, adding a space to each slot as you traverse the slots. We can use an example to illustrate this. If you have a desired text width of 20 characters, and a current word length of 13 characters, you need 7 spaces. For the first <code>7 % 4 = 3</code> slots, you need <code>ceil(7 / 4) = 2</code> spaces, and for the last slot, you need 1 (which is also <code>floor(7  /4)</code> or just <code>7 / 4</code> in Python) space. You need to import the <code>math</code> module in order to access the <code>math.ceil</code> function.</p>
+
+<p>A problem that arises with this method is words that are longer than a line. I got around this by printing the word in chunks of the maximum width until its length was less than that text width. <code>words_printed</code> is just a count of the number of words that have been printed on the line thus far. It was used instead of <code>len(to_justify)</code> for use in another section of the code.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># Take care of words that are longer than our desired text width.</span>
+</span><span class="line"><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">text_width</span><span class="p">:</span>
+</span><span class="line">  <span class="k">if</span> <span class="n">words_printed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class="line">    <span class="k">print</span> <span class="n">word</span><span class="p">[:</span><span class="n">text_width</span><span class="p">]</span>
+</span><span class="line">    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="n">text_width</span><span class="p">:]</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">else</span><span class="p">:</span>
+</span><span class="line">    <span class="c"># Here we fill the rest of the line with as much of the word as</span>
+</span><span class="line">    <span class="c"># we can, given that there is already text on the current line.</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to_justify</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">word</span><span class="p">[:(</span><span class="n">text_width</span> <span class="o">-</span>
+</span><span class="line">      <span class="nb">len</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to_justify</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+</span><span class="line">    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="p">[(</span><span class="n">text_width</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">to_justify</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):]</span>
+</span><span class="line">    <span class="n">to_justify</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">    <span class="n">words_printed</span> <span class="o">=</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="problem-2">Problem 2</h2>
+
+<blockquote>
+  <p>Write a program that compacts a string in place. It should remove all whitespace and replace duplicate characters with only the first character.</p>
+</blockquote>
+
+<p>Sample input:</p>
+
+<pre><code>abb cddpddef gh
+</code></pre>
+
+<p>Sample output:</p>
+
+<pre><code>abcdpdefgh
+</code></pre>
+
+<p>The <code>re</code> module made this one extremely easy. After grabbing the line from the input file, my entire solution consisted of one line.</p>
+
+<pre><code>print re.compile(r'(.)1+', re.IGNORECASE).sub(r'g&lt;1&gt;', "".join(text.split()))
+</code></pre>
+
+<p><code>split()</code> defaults to a whitespace delimiter and <code>join()</code> pushes an array into a string with the given delimiter. This removes all the whitespace in a string.</p>
+
+<p><code>re.compile()</code> takes a regular expression string as its argument and returns an <code>re</code> object instance. This object instance can then utilize a great many methods related to regular expressions. A lot more information can be found on <a href="http://docs.python.org/library/re.html" title="re -- Regular expression operations -- Python v2.6.1 documentation">the Python docs site</a>. Building a string with <code>r' '</code> tells Python to treat the string literally, e.g. the string <code>r'\n'</code> is two characters long (<code>\</code> then <code>n</code>). I passed the <code>re.IGNORECASE</code> flag to, well, ignore the case of the searched string.</p>
+
+<p>We can break down the regular expression into three segments. First, <code>(.)</code> creates a character group that matches nearly any non-whitespace character. This lets me match both numbers and letters. <code>1</code> lets me match that first character group exactly. <code>(..)</code> or <code>(.){2,}</code> or something similar would not work, as that would match any two characters in a row and not just duplicates. Lastly, <code>+</code> lets me match the previous group 1 or more times. In English, this regular expression says “match any character, then match that exact character 1 or more times directly after it.”</p>
+
+<p>The <code>sub</code> method allows me to substitute using regular expressions. I passed it our string that has gone through <code>split()</code> and <code>join()</code>, and tell it to replace any matches with the first group (<code>1</code>). Since this group only matches single characters, I am done. Regular expressions are powerful.</p>
+
+<h2 id="problem-3">Problem 3</h2>
+
+<blockquote>
+  <p>Print a 2D array in a clockwise spiral fashion.</p>
+</blockquote>
+
+<p>Sample input:</p>
+
+<pre><code>1 2 3
+4 5 6
+7 8 9
+</code></pre>
+
+<p>Sample output:</p>
+
+<pre><code>1 2 3 6 9 8 7 4 5
+</code></pre>
+
+<p>I decided that this problem could be attacked using recursion. I quickly looked online for an example of what others had done, but they all seemed sloppy and inefficient. If I could write a function that printed the borders of an array in the desired order, I could recursively process the entire array.</p>
+
+<p>I constructed the array by using <code>split()</code> on each each line of the input file, one by one. If the array passed to <code>print_borders()</code> has one row or one column, it prints it. If it has two rows, it prints the first row in order, and the second row backwards. Otherwise, it prints the top row in order, the right column in order, the bottom row in reverse, and the left column in reverse.</p>
+
+<p>The <code>reversed()</code> top-level method produces an iterator on a list in reverse. This was very useful for the bottom row and left column. This is how I addressed the bottom row of the array:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+</span><span class="line">  <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Using <code>array[-1]</code> also came in handy for the right column of the array:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+</span><span class="line">  <span class="k">print</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>And also for extracting the part of the array that still needs to be processed:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">new_array</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line"><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">array</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+</span><span class="line">  <span class="n">new_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I think the idea of a developer test is great. It allows the interviewers a brief glimpse into what kind of worker or programmer you are, and it gives the applicant a sense of accomplishment. The fact that I knew how to attack and solve these problems also gave me some confidence in my own programming skills. Being a recent college graduate and not having much professional programming experience meant that I had no idea what to expect. Now I do, and I’m excited. I got the job, and I very much look forward to starting work.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -781,46 +957,6 @@ Blacksburg, VA
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/03/new-site-layout">New Site Layout</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-30T15:29:22-05:00" pubdate data-updated="true">March 30, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I changed my blog layout to the <a href="http://warpspire.com/hemingway">Hemingway theme</a> and directed Wordpress to publish to the root of my section of <a href="http://fiveuptons.com">FiveUptons.com</a>.</p>
-
-<p>I am now using Wordpress plugins to display <a href="http://rick.jinlabs.com/code/delicious/">my del.icio.us bookmarks</a>, <a href="http://rick.jinlabs.com/code/lastfm/">Last.fm tracks</a>, and <a href="http://eightface.com/wordpress/flickrrss/">Flickr photos</a>.</p>
-
-<p>To all three of my readers out there, please let me know if there are any issues with the new layout and presentation.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/6/">&larr; Older</a>
@@ -835,6 +971,10 @@ Blacksburg, VA
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
     
       <li class="post">
         <a href="/2012/07/octopress">Octopress</a>
@@ -870,10 +1010,6 @@ Blacksburg, VA
     
       <li class="post">
         <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/configuration">Configuration</a>
       </li>
     
   </ul>
