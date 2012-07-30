@@ -9,8 +9,10 @@
       <p class="meta">
         {% include post/date.html %}{{ time }}
         {% if site.disqus_short_name and page.comments != false and post.comments != false and site.disqus_show_comment_count == true %}
-         | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread">Comments</a>
+          &middot; <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread">Comments</a>
         {% endif %}
+        &middot; <a href="{{ root_url}}{{ post.url }}">&infin;</a>
+        &middot; {% include custom/read-later.html %}
       </p>
     {% endunless %}
   </header>

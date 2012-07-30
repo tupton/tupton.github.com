@@ -1,0 +1,6 @@
+{% capture post_url %}{% if post %}{{ post.url }}{% else %}{{ page.url }}{% endif %}{% endcapture %}
+{% capture post_title %}{% if post %}{{ post.title }}{% else %}{{ page.title }}{% endif %}{% endcapture %}
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url={{ site.url }}%2F{{ post_url | url_encode }}&title={{ post_title | url_encode }}"
+></iframe>
