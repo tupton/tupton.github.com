@@ -3,7 +3,7 @@ layout: post
 title: "Octopress"
 date: 2012-07-19 23:05
 comments: true
-categories: 
+categories: Housekeeping
 ---
 
 This blog is now being served by [GitHub Pages][ghp] ([source][s]) by way of [Octopress][o]. I've
