@@ -13,7 +13,7 @@ tags:
 - yahoo
 ---
 
-[![Konfabulator](http://photos22.flickr.com/30023292_edfc78b512_o.png)](http://www.flickr.com/photos/third/30023292/)
+[![Konfabulator](http://farm1.staticflickr.com/22/30023292_edfc78b512_o_d.png)](http://www.flickr.com/photos/third/30023292/)
 
 This past Monday, Yahoo announced the purchase of desktop widget application [Konfabulator](http://konfabulator.com/).  With the purchase came the announcement that Konfabulator would be free, and anyone who bought version 2.0 or later would be eligible for a refund of the application's former $20 charge.
 

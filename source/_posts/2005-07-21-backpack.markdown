@@ -20,7 +20,7 @@ So today I thought that if I had some kind of todo app that I could use to remin
 
 I came up with a format for corrections (mostly capitalization errors) and started posting any errors to my iTunes Corrections Backpack page.  Check it out:
 
-[![Backpack iTunes Corrections Queue](http://photos21.flickr.com/27624675_38fde4708f_o.png)](http://www.flickr.com/photos/third/27624675/)
+[![Backpack iTunes Corrections Queue](http://farm1.staticflickr.com/21/27624675_38fde4708f_o_d.png)](http://www.flickr.com/photos/third/27624675/)
 
 As you can see, the format is
 

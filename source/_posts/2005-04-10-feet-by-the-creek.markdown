@@ -12,7 +12,7 @@ tags:
 - photo
 ---
 
-[![](http://photos7.flickr.com/9043693_d505d7de64.jpg)](http://www.flickr.com/photos/third/9043693/)
+[![](http://farm1.staticflickr.com/7/9043693_d505d7de64_o_d.jpg)](http://www.flickr.com/photos/third/9043693/)
 
 [Feet By The Creek](http://www.flickr.com/photos/third/9043693/)
 Originally uploaded by [Third](http://www.flickr.com/people/third/).
