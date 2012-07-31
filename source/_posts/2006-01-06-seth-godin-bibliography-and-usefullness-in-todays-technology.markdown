@@ -1,9 +1,9 @@
 ---
 date: '2006-01-06 20:27:00'
 layout: post
-slug: seth-godin-bibliography-and-usefullness-in-todays-technology
+slug: seth-godin-bibliography-and-usefulness-in-todays-technology
 status: publish
-title: Seth Godin, Bibliography, And Usefullness In Today's Technology
+title: Seth Godin, Bibliography, And Usefulness In Today's Technology
 wordpress_id: '54'
 categories:
 - Articles
