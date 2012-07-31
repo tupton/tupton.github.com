@@ -78,8 +78,8 @@ quickly as possible, no matter where I am. I spend less time fiddling with news 
 care about, less time out of my day being distracted by the latest hot article,[^distract] and more
 time doing what I want and need to do.
 
-[^too-long]: I did this ritual for far too long before I realized it needed to end. Old habits die hard. 
-[^cross-link]: I've noticed that a lot of sites and blogs I read will "cross-post" each other's items. This sounds like it might be annoying to have to read about the same things in multiple places, but usually one of two things happens: either the cross-posting contains a bit of insightful back-and-forth on a topic, or multiple people link to a great article elsewhere that I know I need to check out. I get to follow great discussions and the cream of the hot topic crop rises to the top of my news readers. Win-win for me. 
+[^too-long]: I did this ritual for far too long before I realized it needed to end. Old habits die hard.
+[^cross-link]: I've noticed that a lot of sites and blogs I read will "cross-post" each other's items. This sounds like it might be annoying to have to read about the same things in multiple places, but usually one of two things happens: either the cross-posting contains a bit of insightful back-and-forth on a topic, or multiple people link to a great article elsewhere that I know I need to check out. I get to follow great discussions and the cream of the hot topic crop rises to the top of my news readers. Win-win for me.
 [^distract]: If only I could figure out how to stop checking [Stellar][stellar] so much.
 
 [stellar]: http://stellar.io/
