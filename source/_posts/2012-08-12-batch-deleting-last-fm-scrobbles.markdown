@@ -1,0 +1,49 @@
+---
+layout: post
+title: "Batch Deleting Last.fm Scrobbles"
+date: 2012-08-12 20:06
+comments: true
+categories: 
+---
+
+I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use [Melo][m] to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it's there.
+
+[m]: http://meloapp.com/faq/
+
+I'm not entirely sure if Melo, iTunes, or [Last.fm][lfm] is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.
+
+[lfm]: http://last.fm/
+
+I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn't have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.
+
+That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.
+
+``` javascript
+    jQuery('#deletablert a.delete').each(function(_, a) {
+        a.click();
+    });
+```
+
+I just open up the console with `⌘-⌥-I`, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.
+
+![Batch deleting Last.fm scrobbles.](http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png "Last.fm Batch Delete")
+
+Since [jQuery][jq] is already embedded in Last.fm's pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it's done, I can click
+the link to the previous page and repeat.
+
+[jq]: http://jquery.com/
+
+I don't expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you've been listening to too much Carly Rae Jepsen.
+
