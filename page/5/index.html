@@ -9,7 +9,7 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="When I interviewed earlier this week, I was given a developer take-home test to complete as part of the application process. The test consists of six &hellip;">
+  <meta name="description" content="I recently installed Ubuntu 8.10 on my old Dell Latitude D800. I had not used that machine in a couple of years, and I had forgotten about a few &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,56 @@
     
   </div>
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/dell-latitude-d800-pointing-stick-issues">Dell Latitude D800 Pointing Stick Issues</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-02T00:48:46-06:00" pubdate data-updated="true">February  2, 2009</time>
+        
+        &middot; <a href="/2009/02/dell-latitude-d800-pointing-stick-issues">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2009%2F02%2Fdell-latitude-d800-pointing-stick-issues&title=Dell%20Latitude%20D800%20Pointing%20Stick%20Issues"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently installed <a href="http://www.ubuntu.com/">Ubuntu 8.10</a> on my old Dell Latitude D800. I had not used that machine in a couple of years, and I had forgotten about a few hardware issues that it had. One of the most annoying issues was the “drifting” <a href="http://en.wikipedia.org/wiki/Pointing_stick">pointing stick</a>.</p>
+
+<p>According to a number of posts I found when searching for solutions to the problem, the drifting pointing stick issue is a common one on many Dell models. It causes random and erratic mouse movement, making it nigh impossible to operate a graphical interface. I got around the issue when I was using this machine full time by disabling the pointing stick using the <a href="http://support.dell.com/support/downloads/download.aspx?c=us&amp;l=en&amp;s=gen&amp;releaseid=R89598&amp;SystemID=LAT_PNT_PM_D600&amp;os=WW1&amp;osl=en&amp;deviceid=2514&amp;devlib=0&amp;typecnt=1&amp;vercnt=6&amp;formatcnt=1&amp;fileid=116869">Windows driver for the ALPS GlidePoint</a>. Unfortunately, the system preferences offered by Ubuntu do not have an option to disable the pointing stick.</p>
+
+<p>I found <a href="http://ubuntuforums.org/showthread.php?t=107521">a post on the Ubuntu forums</a> from a user who had a similar problem to mine. A responder mentioned that he removed the keyboard and found that the pointing stick had its own leads that could be disconnected. I searched for the <a href="http://support.dell.com/support/edocs/systems/latd800/sm_en/keyboard.htm">Dell support document that matched my model</a> and decided that I, too, could remove my keyboard and disconnect the pointing stick.</p>
+
+<p>Unfortunately, I did not take any pictures of my machine when I had it opened. However, it is <em>very</em> easy to remove the keyboard by following the instructions in the support document. Once the machine was open and the keyboard removed, I just ripped off the leads from the pointing stick where they attached back to the keyboard connector. To be safe, I taped the loose end with electrical tape. After I replaced the keyboard, the trackpad and keyboard both worked fine and were not marred by the erratic mouse movement that was caused by my pointing stick.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -947,96 +997,6 @@ Blacksburg, VA
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/04/geek-tool-redux">Geek Tool Redux</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-01T00:11:37-05:00" pubdate data-updated="true">April  1, 2008</time>
-        
-        &middot; <a href="/2008/04/geek-tool-redux">&infin;</a>
-        &middot; 
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2008%2F04%2Fgeek-tool-redux&title=Geek%20Tool%20Redux"
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I <a href="http://www.thomasupton.com/blog/?p=65">last wrote about GeekTool</a> when I had an iTunes script and some process management output on my desktop. I have a few new scripts that I’ll highlight here.</p>
-
-<pre><code>tail -25 /var/log/system.log
-</code></pre>
-
-<p>The first script displays the last 25 lines of the system log. In Mac OS X 10.5, the system log rolls over at midnight every day, and this for some reason causes the built-in file display to malfunction. I am using <code>tail</code> to display the last 25 lines of the system log.</p>
-
-<pre><code>ps -ecm -O %cpu,%mem
-</code></pre>
-
-<p>This script shows the output of all currently running processes, sorted by memory usage.</p>
-
-<ul>
-  <li><code>-e</code> Displays processes from all users.</li>
-  <li><code>-c</code> Only displays the executable name, not the entire path to the excutable.</li>
-  <li><code>-m</code> Sorts the processes by memory usage.</li>
-  <li>
-    <p><code>-O</code> Designates the start of a list of comma-delimited options. <code>%cpu</code> displays CPU usage as a percentage. <code>%mem</code> displays memory usage as a percentage.</p>
-
-    <table>
-      <tbody>
-        <tr>
-          <td>cal</td>
-          <td>sed “s/^/ /;s/$/ /;s/ $(date +%e) / $(date +%e</td>
-          <td>sed ‘s/./-/g’) /”</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-</ul>
-
-<p>This command outputs a formatted display of the current month. The current date is replaced by the string “–” in order to visually differentiate it.</p>
-
-<pre><code>/path/to/script/iTunes-Now-Playing.pl | iconv -f utf-8 -t ucs-2-internal
-</code></pre>
-
-<p>This Perl script is something I wrote to display the currently playing track in iTunes. You can <a href="http://www.thomasupton.com/wp/wp-content/uploads/2008/04/itunes-now-playingpl.zip">download the script here</a>. The script contains a function that was derived from John Gruber’s article <a href="http://daringfireball.net/2006/10/how_to_tell_if_an_app_is_running">How to Determine if a Certain App Is Running Using AppleScript and Perl</a>.</p>
-
-<pre><code>/usr/bin/curl -s http://rss.wunderground.com/auto/rss_full/VA/Blacksburg.xml?units=both | awk '/%3Ctitle%3ECurrent/ {printf "Temp: " $4 " | "; for (i = 8; i %3C 11; i++) if ($i != "-") printf $i " "; else break; printf "\n"}'
-</code></pre>
-
-<p><strong>UPDATE:</strong> I now use a <a href="http://www.thomasupton.com/blog/?p=202">Python script that uses the Yahoo! Weather API</a> to get weather data.</p>
-
-<p>This bash script scrapes the <a href="http://www.wunderground.com/">Weather Underground</a> feed for <a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=24060">Blacksburg</a> and displays the temperature and current conditions. It’s not as pretty as a Dashboard weather widget, but it takes up much less screen real estate. I have another instance of this command set up to scrape the Oak Ridge XML feed for when I’m back in Greensboro.</p>
-
-<p>Each one of these scripts is set up to display for both my 20” Cinema Display and my MacBook screen; I have Home and Portable groups of commands set up in GeekTool. You can <a href="http://projects.tynsoe.org/en/geektool/">download GeekTool from Tynsoe’s website</a>.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/6/">&larr; Older</a>
@@ -1051,6 +1011,10 @@ Blacksburg, VA
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
     
       <li class="post">
         <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
@@ -1086,10 +1050,6 @@ Blacksburg, VA
     
       <li class="post">
         <a href="/2012/02/dont-commit-fixme-or-todo">Don&#8217;t Commit FIXME or TODO</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
       </li>
     
   </ul>

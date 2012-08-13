@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Doom - Uptonian Thoughts</title>
+  <title>Batch Deleting Last.fm Scrobbles - Uptonian Thoughts</title>
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="Worst movie. Ever.
-">
+  <meta name="description" content="I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use Melo to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.thomasupton.com/2006/04/doom">
+  <link rel="canonical" href="http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,7 +77,7 @@
   
   <header>
     
-      <h1 class="entry-title">Doom</h1>
+      <h1 class="entry-title">Batch Deleting Last.fm Scrobbles</h1>
     
     
       <p class="meta">
@@ -93,14 +93,14 @@
   
 
 
-<time datetime="2006-04-23T21:19:15-05:00" pubdate data-updated="true">April 23, 2006</time>
+<time datetime="2012-08-12T20:06:00-05:00" pubdate data-updated="true">August 12, 2012</time>
         
         &middot; <a href="">&infin;</a>
         &middot; 
 
 <iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
  style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2006%2F04%2Fdoom&title=Doom"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F08%2Fbatch-deleting-last-fm-scrobbles&title=Batch%20Deleting%20Last.fm%20Scrobbles"
 ></iframe>
 
       </p>
@@ -108,7 +108,43 @@
   </header>
 
 
-<div class="entry-content"><p><a href="http://imdb.com/title/tt0419706/">Worst movie</a>.  Ever.</p>
+<div class="entry-content"><p>I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use <a href="http://meloapp.com/faq/">Melo</a> to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it’s there.</p>
+
+<p>I’m not entirely sure if Melo, iTunes, or <a href="http://last.fm/">Last.fm</a> is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.</p>
+
+<p>I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn’t have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.</p>
+
+<p>That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#deletablert a.delete&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</span><span class="line"><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.</p>
+
+<p><img src="http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png" alt="Batch deleting Last.fm scrobbles." title="Last.fm Batch Delete" /></p>
+
+<p>Since <a href="http://jquery.com/">jQuery</a> is already embedded in Last.fm’s pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it’s done, I can click
+the link to the previous page and repeat.</p>
+
+<p>I don’t expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you’ve been listening to too much Carly Rae Jepsen.</p>
+
 </div>
 
 
@@ -131,14 +167,8 @@
   
 
 
-<time datetime="2006-04-23T21:19:15-05:00" pubdate data-updated="true">April 23, 2006</time>
+<time datetime="2012-08-12T20:06:00-05:00" pubdate data-updated="true">August 12, 2012</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/categories/films/'>Films</a>
-  
-</span>
 
 
     </p>
@@ -152,10 +182,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2006/04/google-calendar" title="Previous Post: Google Calendar">&laquo; Google Calendar</a>
+        <a class="basic-alignment left" href="/2012/07/duplicate-posts-in-the-feed" title="Previous Post: Duplicate Posts In The Feed">&laquo; Duplicate Posts In The Feed</a>
       
-      
-        <a class="basic-alignment right" href="/2006/05/30-boxes-vs-google-calendar" title="Next Post: 30 Boxes Vs. Google Calendar">30 Boxes Vs. Google Calendar &raquo;</a>
       
     </p>
   </footer>

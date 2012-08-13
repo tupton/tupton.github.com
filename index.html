@@ -9,8 +9,8 @@
   <meta name="author" content="Thomas Upton">
 
   
-  <meta name="description" content="When I first switched over to Octopress, the feed for this site was completely new. The last
-twenty or so posts showed up as new again, and it was &hellip;">
+  <meta name="description" content="I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use Melo to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,86 @@ twenty or so posts showed up as new again, and it was &hellip;">
     
   </div>
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-12T20:06:00-05:00" pubdate data-updated="true">August 12, 2012</time>
+        
+        &middot; <a href="/2012/08/batch-deleting-last-fm-scrobbles">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F08%2Fbatch-deleting-last-fm-scrobbles&title=Batch%20Deleting%20Last.fm%20Scrobbles"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use <a href="http://meloapp.com/faq/">Melo</a> to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it’s there.</p>
+
+<p>I’m not entirely sure if Melo, iTunes, or <a href="http://last.fm/">Last.fm</a> is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.</p>
+
+<p>I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn’t have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.</p>
+
+<p>That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#deletablert a.delete&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</span><span class="line"><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.</p>
+
+<p><img src="http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png" alt="Batch deleting Last.fm scrobbles." title="Last.fm Batch Delete" /></p>
+
+<p>Since <a href="http://jquery.com/">jQuery</a> is already embedded in Last.fm’s pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it’s done, I can click
+the link to the previous page and repeat.</p>
+
+<p>I don’t expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you’ve been listening to too much Carly Rae Jepsen.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -860,61 +940,6 @@ a little research – Googling, asking your friends or family – beforehand com
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-23T18:50:14-06:00" pubdate data-updated="true">February 23, 2012</time>
-        
-        &middot; <a href="/2012/02/microwave-ovens-suck">&infin;</a>
-        &middot; 
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F02%2Fmicrowave-ovens-suck&title=Microwave%20Ovens%20Suck"
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Really. My microwave helpfully makes the numbers 1 through 6 shortcuts for running for that number of minutes, on full power. When’s the last time you needed to microwave something for <em>six whole minutes</em>?</p>
-
-<p>Most of my microwaving involves re-heating leftovers or softening things like tortillas or butter. These things don’t take minutes; they take <em>seconds</em>. And if I have something that really need to warm up over the course of one or two minutes, it certainly doesn’t need to be that long at full power. Those preset buttons are absolutely useless. I need presets for 10, 20, and 30 seconds, and maybe 90, and at power levels of 5, 7, and “hi”. Not “high”, mind you, “hi”.</p>
-
-<p>The rest of my microwaving time is spent trying to defrost frozen meat, like a chicken breast or a tilapia filet. There’s a button for this, yes, but it requires that I guess the weight of the thing I’m defrosting. I don’t own a kitchen scale, but even if I did, I sure as hell wouldn’t bust it out to figure out how to long I need to defrost my meat. Let me tell you what I’m defrosting, and then figure out how long to defrost it. Defrosting is not a new science or even science at all.</p>
-
-<p>Here’s another irksome feature: when I open the microwave door before the timer goes off, I really appreciate that it remembers how much time was left. Once eight hours have passed, though, I think it’s safe to assume that I’m no longer in need of that timer. “PRESS START” is not helpful after that long. Show me the clock again after a reasonable amount of time has passed.</p>
-
-<p>Another thing: that awful beeping sound. I know some smug person with too much time on his hands has Googled his unit’s manual and has memorized the arcane sequence of button presses required to mute the microwave, but I haven’t. Why is there not just a mute button? It’s not for lack of room: put it under my “9 “ button or in between “Defrost” and “Popcorn” (which always burns those poor defenseless kernels) or even in the place of the “Reminder” button, because I don’t keep my todo list on my microwave.</p>
-
-<p>Can someone “<a href="http://www.nest.com/">Nest</a>-ify” the microwave? I would buy one in a heartbeat.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -927,6 +952,10 @@ a little research – Googling, asking your friends or family – beforehand com
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
     
       <li class="post">
         <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
@@ -962,10 +991,6 @@ a little research – Googling, asking your friends or family – beforehand com
     
       <li class="post">
         <a href="/2012/02/dont-commit-fixme-or-todo">Don&#8217;t Commit FIXME or TODO</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a>
       </li>
     
   </ul>

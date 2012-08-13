@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2012-07-30T23:08:40-05:00</updated>
+  <updated>2012-08-12T20:27:51-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Batch Deleting Last.fm Scrobbles]]></title>
+    <link href="http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles"/>
+    <updated>2012-08-12T20:06:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles</id>
+    <content type="html"><![CDATA[<p>I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use <a href="http://meloapp.com/faq/">Melo</a> to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it’s there.</p>
+
+<p>I’m not entirely sure if Melo, iTunes, or <a href="http://last.fm/">Last.fm</a> is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.</p>
+
+<p>I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn’t have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.</p>
+
+<p>That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#deletablert a.delete&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</span><span class="line"><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.</p>
+
+<p><img src="http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png" alt="Batch deleting Last.fm scrobbles." title="Last.fm Batch Delete" /></p>
+
+<p>Since <a href="http://jquery.com/">jQuery</a> is already embedded in Last.fm’s pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it’s done, I can click
+the link to the previous page and repeat.</p>
+
+<p>I don’t expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you’ve been listening to too much Carly Rae Jepsen.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Duplicate Posts In The Feed]]></title>
@@ -691,21 +736,6 @@ a little research – Googling, asking your friends or family – beforehand com
 </ul>
 
 <p>That’s it. Back up your data. It’s so simple and so useful.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Move Your Domains Away From GoDaddy]]></title>
-    <link href="http://blog.thomasupton.com/2011/12/move-your-domains-away-from-godaddy"/>
-    <updated>2011-12-23T09:06:34-06:00</updated>
-    <id>http://blog.thomasupton.com/2011/12/move-your-domains-away-from-godaddy</id>
-    <content type="html"><![CDATA[<p>The Stop Online Piracy Act (explanation via <a href="http://kottke.org/11/12/the-internets-go-daddy-issues">Kottke</a> on <a href="[http://www.techdirt.com/articles/20111122/04254316872/definitive-post-why-sopa-protect-ip-are-bad-bad-ideas.shtml]">what’s wrong with SOPA</a>) is bad for the internet in general. <a href="http://www.thedomains.com/2011/11/15/here-is-godaddys-statement-in-support-of-the-stop-online-privacy-act-house-hearing-tomorrow/">GoDaddy supports SOPA</a>, and this has alarmed many of its customers, including this <a href="http://www.reddit.com/r/politics/comments/nmnie/godaddy_supports_sopa_im_transferring_51_domains/">Redditor with fifty one domains</a> and myself.</p>
-
-<p>Again via Kottke, I came across <a href="http://blog.jeffepstein.me/post/14629857835/a-step-by-step-guide-to-transfer-domains-out-of-godaddy">this guide to moving from GoDaddy to NameCheap</a> (<a href="http://webcache.googleusercontent.com/search?q=cache:1BOfAgmNnuAJ:blog.jeffepstein.me/post/14629857835/a-step-by-step-guide-to-transfer-domains-out-of-godaddy+&cd;=1&hl;=en&ct;=clnk&gl;=us">Google cache</a>). <a href="https://www.namecheap.com">NameCheap</a> has officially come out against SOPA, and their site and experience has been nothing but top notch since I started the transfer process.</p>
-
-<p>I’ve also heard good things about <a href="https://www.hover.com/">Hover</a>; by all means shop around for a registrar that fits your needs and doesn’t blatantly support SOPA.</p>
-
-<p>My transfer process to NameCheap is nearly complete, and I couldn’t be happier to leave GoDaddy. Don’t forget that December 29th is Move Your Domain Day!</p>
 ]]></content>
   </entry>
   
