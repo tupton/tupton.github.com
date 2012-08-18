@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Howto, | Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/categories/howto-/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2012-08-17T20:05:58-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Batch Deleting Last.fm Scrobbles]]></title>
+    <link href="http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles"/>
+    <updated>2012-08-12T20:06:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles</id>
+    <content type="html"><![CDATA[<p>I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use <a href="http://meloapp.com/faq/">Melo</a> to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it’s there.</p>
+
+<p>I’m not entirely sure if Melo, iTunes, or <a href="http://last.fm/">Last.fm</a> is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.</p>
+
+<p>I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn’t have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.</p>
+
+<p>That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.</p>
+
+<p><code>javascript
+    jQuery('#deletablert a.delete').each(function(_, a) {
+        a.click();
+    });
+</code></p>
+
+<p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.</p>
+
+<p><img src="http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png" alt="Batch deleting Last.fm scrobbles." title="Last.fm Batch Delete" /></p>
+
+<p>Since <a href="http://jquery.com/">jQuery</a> is already embedded in Last.fm’s pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it’s done, I can click
+the link to the previous page and repeat.</p>
+
+<p>I don’t expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you’ve been listening to too much Carly Rae Jepsen.</p>
+
+]]></content>
+  </entry>
+  
+</feed>
