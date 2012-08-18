@@ -3,7 +3,10 @@ layout: post
 title: "Batch Deleting Last.fm Scrobbles"
 date: 2012-08-12 20:06
 comments: true
-categories: 
+categories:
+- Code
+- Howto
+- Music
 ---
 
 I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
