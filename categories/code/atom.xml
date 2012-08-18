@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/code/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2012-08-17T20:05:58-05:00</updated>
+  <updated>2012-08-17T20:23:13-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Batch Deleting Last.fm Scrobbles]]></title>
+    <link href="http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles"/>
+    <updated>2012-08-12T20:06:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles</id>
+    <content type="html"><![CDATA[<p>I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use <a href="http://meloapp.com/faq/">Melo</a> to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it’s there.</p>
+
+<p>I’m not entirely sure if Melo, iTunes, or <a href="http://last.fm/">Last.fm</a> is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.</p>
+
+<p>I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn’t have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.</p>
+
+<p>That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.</p>
+
+<p><code>javascript
+    jQuery('#deletablert a.delete').each(function(_, a) {
+        a.click();
+    });
+</code></p>
+
+<p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.</p>
+
+<p><img src="http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png" alt="Batch deleting Last.fm scrobbles." title="Last.fm Batch Delete" /></p>
+
+<p>Since <a href="http://jquery.com/">jQuery</a> is already embedded in Last.fm’s pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it’s done, I can click
+the link to the previous page and repeat.</p>
+
+<p>I don’t expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you’ve been listening to too much Carly Rae Jepsen.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Syntastic]]></title>
@@ -266,126 +309,6 @@ return s; })();
 <p>Tarsnap is a great service, but truly for those who know what they are doing. It took me far longer than I would like to admit to come up with a process for all of this, but it was worth it. Of course, creating backups is only one part of a complete system. The other, more important part, is restoration. Since <code>tarsnap</code> is built on <code>tar</code> and <code>libarchive</code>, this is incredibly simple. <code>tarsnap -x</code> extracts archives, and <code>tarsnap -r</code> writes a tar stream to <code>stdout</code>, which can be used to create a local tar.</p>
 
 <p>If you like the idea of easy, encrypted backups, tarsnap is a great service. It’s cheap, secure, and reliable, plus it’s fun and easy to use if you’re comfortable with UNIX-style archiving tools.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pastebin From The Command-line]]></title>
-    <link href="http://blog.thomasupton.com/2010/12/pastebin-from-the-commandline"/>
-    <updated>2010-12-11T14:42:56-06:00</updated>
-    <id>http://blog.thomasupton.com/2010/12/pastebin-from-the-commandline</id>
-    <content type="html"><![CDATA[<p><a href="http://pastebin.com/">Pastebin.com</a> is a utility for sharing snippets of text with anyone. The service is simple: go to <a href="http://pastebin.com/">pastebin.com</a>, paste your text, click submit, and share the link. It’s useful for sharing time-saving snippets with you team, or for an impromptu, informal code review of changes that for one reason or another haven’t been committed yet (e.g. a design decision for which the author wants early feedback.)</p>
-
-<blockquote>
-  <p><em>10:56:55 AM</em> <strong>Mike Bulman</strong>: im gonna try to find one, but if it doesn’t exist im gonna write:  a service/app for osx that will post whatevers on the clipboard to pastebin and give you a url</p>
-</blockquote>
-
-<p>A couple of days ago, my friend <a href="http://twitter.com/#!/mikebulman">Mike</a> suggested that he wanted a utility that would make it easy to post to pastebin without having to break your workflow and go to the site. I thought “that sounds fun,” and went to work that evening.</p>
-
-<p>Pastebin has a <a href="http://pastebin.com/api.php">simple RPC API</a> for posting content, and it’s perfect for <code>curl</code>. The very first version of the pastebin script was this simple <code>curl</code> script.</p>
-
-<p><code>bash
-    #! /usr/bin/env bash
-    curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
-</code></p>
-
-<p><code>paste_code</code> is the POST parameter that the pastebin API expects to contain pasted content, so we just POST that to the public API page. The output of a successful pastebin API call is the URL for the paste, so we pipe that to OS X’s clipboard for easy pasting. Right from the beginning, this is clearly an OS X-specific script, but I don’t think it would be that hard to interact with the Linux system clipboard via <code>xclip</code>.</p>
-
-<p>Making this work for text from <code>stdin</code> instead of as an argument was easy, too.</p>
-
-<p><code>bash
-    #! /usr/bin/env bash
-    to_paste=`cat /dev/stdin`
-    curl -s -X POST -d "paste_code=$to_paste" "http://pastebin.com/api_public.php" | pbcopy
-</code></p>
-
-<p>Both Mike and I recently started using <a href="http://jumpcut.sourceforge.net/">Jumpcut</a>, a minimal clipboard manager for OS X, so I had the idea of copying the actual text that was posted to pastebin before copying the URL so both would be readily available via Jumpcut. I tried adding <code>echo "$to_paste" | pbcopy</code> before the <code>curl</code> call, but it didn’t always work. I didn’t actually find any documentation on it, but it seems that <code>pbcopy</code> does some sort of buffering so that too much text isn’t copied in quick succession. Adding a very hacky <code>sleep</code> call fixed it, so the resulting script became the following.</p>
-
-<p><code>bash
-#! /usr/bin/env bash
-to_paste=`cat /dev/stdin`
-echo "$to_paste" | pbcopy
-sleep 1
-curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
-</code></p>
-
-<p>Having a commandline script is all well and good, but it’s on about the same usability level as using pastebin.com: instead of switching to a browser, you switch to a terminal, but you still have to paste content and get away from you original context. This is where OS X Services come into play.</p>
-
-<p>The OS X Service menu is often neglected, but it’s very useful. There are some neat built-in services, like looking a word up in Dictionary or composing a new email with the selection. With tools like  <a href="http://www.macosxautomation.com/automator/">Automator</a> or <a href="http://wafflesoftware.net/thisservice/">ThisService</a>, creating your own service is easy. I created an Automator workflow that assumed the script was symbolically linked to <code>/usr/local/bin/pastebin</code> and called the script. You can easily add a keyboard shortcut to a Service in the System Preferences Keyboard Shortcuts preference pane.</p>
-
-<p>I cleaned up the script by adding a few command line options using the <code>getopts</code> <code>bash</code> built-in. This was pretty useful and easy to use. I’m not a very proficient <code>bash</code> scripter, but I was easily able to add what I needed, including making the ability to copy the text optional and allowing a file to be used in place of <code>stdin</code>. <a href="http://ginatrapani.org/">Gina Trapani</a>’s excellent <a href="https://github.com/ginatrapani/todo.txt-cli">todo.txt</a> script was helpful in figuring out the correct syntax.</p>
-
-<p><code>bash
-    while getopts ":cf:h" Option
-    do
-        case $Option in
-            c )
-                PASTEBIN_COPY=1
-                ;;
-            f )
-                PASTEBIN_FILE=$OPTARG
-                ;;
-            h )
-                usage
-                ;;
-        esac
-    done
-</code></p>
-
-<p>I wrapped the script and the Automator workflow and <a href="https://github.com/tupton/pastebin-cl/">added it to github</a>. You can <a href="https://github.com/tupton/pastebin-cl/blob/8ff3cdda9e0027c41416b285f2822781a0ba4b5e/pastebin.sh">view the original bash script</a> in its latest form if you’re interested.</p>
-
-<p>All this was well and good, but a couple of things bothered me. I didn’t like that <code>sleep</code> call, and I knew that the pastebin API offered a few options that I wasn’t allowing users of this script to take advantage of. So I did what any normal developer would do: I rewrote the script in python. The <a href="https://github.com/tupton/pastebin-cl/blob/d462c57542e98f23c83dc6388e1e5ebbafe04c94/pastebin.py">original version of the script</a> was just a straight “port” of the <code>bash</code> script, but I had plans for more.</p>
-
-<p>I have experience with <a href="https://github.com/tupton/python-yahoo-weather">simple python scripts</a>, but I decided I should try my luck using classes in order to wrap the pastebin API. It was really easy. The beginning of the class looked like the following.</p>
-
-<p>``` python
-    class Pastebin(object):
-        “"”A wrapper for the pastebin API”””</p>
-
-<pre><code>    pastebin_api = "http://pastebin.com/api_public.php"
-
-    def __init__(self, paste_code, paste_name=None, paste_email=None, paste_subdomain=None,
-            paste_private=False, paste_expire_date=PASTEBIN_EXPIRE_NEVER, paste_format=None):
-
-        self.set_paste_code(paste_code)
-        self.set_paste_name(paste_name)
-        self.set_paste_email(paste_email)
-        self.set_paste_subdomain(paste_subdomain)
-        self.set_paste_private(paste_private)
-        self.set_paste_expire_date(paste_expire_date)
-        self.set_paste_format(paste_format) ```
-</code></pre>
-
-<p>Then all I had to do was use the class.</p>
-
-<p><code>python
-    pastebin = Pastebin(paste_code=lines, paste_name=opts.paste_name, paste_email=opts.paste_email,
-                paste_subdomain=opts.paste_subdomain, paste_private=opts.paste_private,
-                paste_expire_date=opts.paste_expire_date, paste_format=opts.paste_format)
-    response = pastebin.paste()
-    return response
-</code></p>
-
-<p>I have no idea if getters and setters are very “pythonic,” but they make sense to me, even if I’m only using them internally for this script. I used a pretty interesting trick to build the POST data string. I put the necessary data into a dictionary, but I needed to build a proper parameter string.</p>
-
-<p><code>python
-return "&amp;".join([k + "=" + str(v) for (k, v) in params.iteritems()])
-</code></p>
-
-<p>I love the syntax used for “inline” for-loops here. The extra <code>str()</code> call was used just in case a parameter (like expiration date) was accidentally interpreted as a number.</p>
-
-<p>I updated the <a href="https://github.com/tupton/pastebin-cl/blob/master/README.md">README</a> to reflect the new options. Thankfully, only the symbolic link to <code>/usr/local/bin/pastebin</code> had to be updated in order to keep the workflow working. Using the pastebin script couldn’t be easier:</p>
-
-<ol>
-  <li><a href="https://github.com/tupton/pastebin-cl/archives/master">Download the script source</a>, extract it, and put it somewhere that makes sense, like <code>~/scripts</code>.</li>
-  <li><code>ln -s ~/scripts/pastebin-cl/pastebin.py /usr/local/bin/pastebin</code></li>
-  <li>Open the workflow in <code>automator/Paste to pastebin.com.workflow</code> and save it as a service, which should just be as easy as ⌘-S.</li>
-  <li>Open System Preferences &gt; Keyboard, then Keyboard Shortcuts, then Services. Make sure that the “Paste to pastebin.com” service is checked. Optionally, you can give it a keyboard shortcut.</li>
-  <li>Highlight some text in any OS X application and choose “Paste to pastebin.com” from the application menu’s “Services” submenu or use your keyboard shortcut. Now the pastebin URL is on you clipboard, ready to be pasted into a chat room or in a browser.</li>
-</ol>
-
-<p>Hopefully this script will be useful to developers all over. If you have any ideas about making this more portable (i.e. for use on Linux or Windows), let me know in the <a href="#respond">comments</a>.</p>
-
 ]]></content>
   </entry>
   
