@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2013-03-26T10:52:15-05:00</updated>
+  <updated>2013-03-26T10:53:27-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -290,7 +290,7 @@ syntax checker to do its job.</p>
 
 <h3 id="python">Python</h3>
 
-<p>Setting up syntastic for use with python was extremely easy. Just install <code>[pyflakes][]</code> with
+<p>Setting up syntastic for use with python was extremely easy. Just install <a href="http://pypi.python.org/pypi/pyflakes">pyflakes</a> with
 <code>pip install pyflakes</code> and set up some related options. I ignore certain errors regarding
 whitespace, indentation, and end-of-line backslashes, but those are all customizable. See the <a href="http://pep8.readthedocs.org/en/latest/intro.html#error-codes">pep8
 error code documentation</a> for an explanation of the error codes.</p>
