@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2013-03-26T10:53:27-05:00</updated>
+  <updated>2013-05-02T11:02:05-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -255,7 +255,7 @@ much anything, including features that normally show up in IDEs.</p>
 <p>I recently started using <a href="https://github.com/scrooloose/syntastic">syntastic</a>, which is a <code>vim</code> plugin that runs linters or syntax checkers
 and displays warnings and errors right in your window. IDEs like Eclipse or Xcode provide this
 syntax-checking for a couple of languages, but syntastic supports many languages and linters out of
-the box with pluggable support for nearly any language. </p>
+the box with pluggable support for nearly any language.</p>
 
 <h2 id="setup">Setup</h2>
 
