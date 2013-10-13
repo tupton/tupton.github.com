@@ -87,6 +87,103 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2012/02/dont-commit-fixme-or-todo">Don&#8217;t Commit FIXME or TODO</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-24T12:41:13-06:00" pubdate data-updated="true">February 24, 2012</time>
+        
+        &middot; <a href="/2012/02/dont-commit-fixme-or-todo">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F02%2Fdont-commit-fixme-or-todo&title=Don't%20Commit%20FIXME%20or%20TODO"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="php"><span class="line"><span class="cp">&lt;?php</span>
+</span><span class="line">
+</span><span class="line"><span class="k">function</span> <span class="nf">getObject</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nv">$object</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// TODO Do we need to validate username?</span>
+</span><span class="line">    <span class="nv">$objects</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">retrieveForUsername</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// FIXME Write `retrieveForIdAndUsername` instead of iterating here</span>
+</span><span class="line">    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$objects</span> <span class="k">as</span> <span class="nv">$o</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="nv">$o</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">()</span> <span class="o">==</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="nv">$object</span> <span class="o">=</span> <span class="nv">$o</span><span class="p">;</span>
+</span><span class="line">            <span class="k">break</span><span class="p">;</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="nv">$object</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>This shouldn’t happen. I’m not talking about the comically bad code – it’s a contrived example, but it proves the point – but about the little “notes” left by whoever committed this.</p>
+
+<p>Do we need to validate the username? Probably. Find out, and take the necessary action. If you know your codebase well, it should take about ten seconds to know the answer.</p>
+
+<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly<sup id="fnref:bad-dev"><a href="#fn:bad-dev" rel="footnote">1</a></sup>.</p>
+
+<p>Of course, use <code>TODO</code> or <code>FIXME</code> while you’re developing to keep a list of tasks that you have to finish before your feature is complete. Just don’t commit them to where other developers can see them and <em>certainly</em> don’t merge them to trunk.</p>
+
+<p>If you’re lazy with that code now, there’s no way you’re going to overcome that laziness and come back to fix it later.</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:bad-dev">
+      <p>One could argue that being aware of bad code is better than nothing, but that’s fluffy. If you’re aware of a problem, you’re probably smart enough to do something about it.<a href="#fnref:bad-dev" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2012/02/microwave-ovens-suck">Microwave Ovens Suck</a></h1>
     
     
@@ -572,83 +669,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/12/local-backups-are-great">Local Backups Are Great</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-23T21:48:47-06:00" pubdate data-updated="true">December 23, 2011</time>
-        
-        &middot; <a href="/2011/12/local-backups-are-great">&infin;</a>
-        &middot; 
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2011%2F12%2Flocal-backups-are-great&title=Local%20Backups%20are%20Great"
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I use <a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">SuperDuper!</a> to make daily backups to my local hard drive. <a href="http://www.thomasupton.com/blog/2010/12/automated-backups-with-tarsnap/">Remote backup</a> is important, but it’s always nice to have an easily-accessible way to recover from a hard drive disaster, especially when you need to fix the situation <em>quickly</em>.</p>
-
-<h2 id="your-backup-device">Your Backup Device</h2>
-
-<p>Choosing the right hard drive to use for your local backup isn’t a difficult choice, but it is an important one.  Sometimes you can find great deals on good brands (Western Digital or Seagate, to name a couple brands that I have used and liked) on <a href="http://www.newegg.com/">Newegg</a>. The requirements for a hard drive really depend on how you want to use it.</p>
-
-<p>If you want a hard drive dedicated to backup, any drive with a relatively quick speed (I would go with 7200 RPM or higher) and a size that’s at least a bit bigger than the drive you’re backing up will be a great option.</p>
-
-<p>If you want to use a hard drive for other things – to store your media or back up another drive – you’ll obviously need something bigger. I have a 1 TB drive that I have split into two volumes. One volume is a bit bigger than my MacBook Pro’s hard drive (128 GB)  and I use it to hold my backups; the other takes up the rest of the space and is used to store all of my music, movies, and photos.</p>
-
-<p>Solid state drives are another option, but I’ve found that the extra cost isn’t worth the speed benefits. I would absolutely recommend a solid state drive to use in your main computer on a daily basis – I have a 128 GB solid state drive in my MacBook Pro and it’s noticeably faster than the mechanical hard drives I’ve used in MacBooks past. However, when it comes to something like backups, where you’re mostly writing to it in a situation that isn’t time-sensitive (e.g. at night), I think mechanical drives are the best option because you can get much more storage space for much less money.</p>
-
-<h2 id="software-that-helps-you">Software That Helps You</h2>
-
-<p>I mentioned earlier that I use SuperDuper!, but there are many other backup applications out there. Some of them may fit your specific needs better. The key feature is to have an automated and <em>bootable</em> copy of your hard drive ready to go at a moment’s notice.</p>
-
-<p>I admittedly have not given Time Machine a fair shot, but that’s because I don’t have a use case for its main draw. “Going back in time” to an earlier version of a file is not something I need to do on a regular basis. And now with Lion’s Versions feature, I don’t need a whole backup just to keep recent versions of my files around.</p>
-
-<p>Another option is <a href="http://www.bombich.com/ccc_features.html">Carbon Copy Cloner</a>. It makes bootable backups and can be scheduled to back up on a daily basis. It’s free to try; donations are requested if you continue to use the product.</p>
-
-<p>I love SuperDuper! because it’s so simple. The interface tells you in plain English what is going to happen. I set up my nightly backups one time a couple years ago and the only time I ever see the app again is when I am traveling without my hard drive. When a backup fails, the application stays open to tell you what went wrong. That rarely happens though: usually an incremental backup occurs at 3am that takes less than ten minutes to complete. When it’s done, my data is safe and sound in two places.</p>
-
-<p>The successful backups are bootable, meaning that you can just choose the backup volume as the boot volume when you <a href="http://support.apple.com/kb/HT1310">hold Option after you turn your computer on</a> and restore from there. If you just want to restore certain files instead of everything, the drive is right there in Finder for you to navigate as usual.</p>
-
-<h2 id="backup-is-not-a-daunting-task">Backup Is Not a Daunting Task</h2>
-
-<p>Almost none of my “non-technical” friends (i.e. friends who do other things in their lives besides fiddle with computers) back up their computers. And yet I know that each one of those friends would be devastated if their hard drive crashed and they lost their music or photos. Local backups are the simplest way to avoid this, and it’s so simple to set up:</p>
-
-<ul>
-  <li>Buy a hard drive (7200 RPM and at least as big as the drive you want to back up) and <a href="http://www.iclarified.com/entry/index.php?enid=1075">format it using OS X’s built-in Disk Utility</a>.</li>
-  <li>Set up a <a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">backup application</a> to do daily backups of your entire disk.</li>
-</ul>
-
-<p>That’s it. Back up your data. It’s so simple and so useful.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -663,6 +683,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
     
       <li class="post">
         <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
@@ -698,10 +722,6 @@
     
       <li class="post">
         <a href="/2012/03/the-handle-pattern">The Handle Pattern</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/dont-commit-fixme-or-todo">Don&#8217;t Commit FIXME or TODO</a>
       </li>
     
   </ul>

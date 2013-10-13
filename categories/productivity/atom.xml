@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Productivity | Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/categories/productivity/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2013-10-13T18:46:32-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Remove leading whitespace]]></title>
+    <link href="http://blog.thomasupton.com/2013/10/remove-leading-whitespace"/>
+    <updated>2013-10-13T14:28:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2013/10/remove-leading-whitespace</id>
+    <content type="html"><![CDATA[<p>Sometimes it’s useful to copy some code from a file and paste it somewhere else as an example. For
+instance, I like to write code in a <a href="http://jsfiddle.net/">jsfiddle</a> and then paste a relevant subset of that
+code to a <a href="http://stackoverflow.com/">Stack Overflow</a> answer. I have also copied code from a project file to paste into
+HipChat to quickly explain something to a coworker, or to paste into a JIRA ticket as a comment.</p>
+
+<p>If you copy code from the middle of a file, there’s usually some leading whitespace on all lines
+that you do not want to preserve in the context into which you are pasting the code. The problem is
+that you don’t want to get rid of <em>all</em> leading whitespace on <em>all</em> lines; you want to keep the
+indentation intact. I usually get rid of the unwanted whitespace by manually deleting it
+if it’s only one or two lines or by pasting into a new <code>vim</code> buffer and using <code>&lt;&lt;</code> to shift the text
+over as much as desired.</p>
+
+<p>To illustrate, I have this text:</p>
+
+<p>``` javascript
+        var flatten = function(result, next_array) {
+            console.log(‘current result’, result);
+            return result.concat(next_array);
+        };</p>
+
+<pre><code>    [1, [2], [3, 4]]
+        .reduce(flatten, []); ```
+</code></pre>
+
+<p>and I want this text:</p>
+
+<p>``` javascript
+    var flatten = function(result, next_array) {
+        console.log(‘current result’, result);
+        return result.concat(next_array);
+    };</p>
+
+<pre><code>[1, [2], [3, 4]]
+    .reduce(flatten, []); ```
+</code></pre>
+
+<h2 id="remove-leading-whitespace">Remove leading whitespace</h2>
+
+<p>I knew there must be a way to remove the shortest leading whitespace from all lines
+programmatically, but I’m not familiar enough with <code>awk</code>, <code>sed</code>, or shell scripting in general to
+tackle the problem. I <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908">asked the question on Stack Overflow</a> and got a few great answers. I
+ended up accepting <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908#19332908">the single process <code>awk</code> version</a>.</p>
+
+<p>If you use OS X, the built-in <code>awk</code> will not work with the given solution. If you use
+<a href="http://brew.sh/">Hombrew</a>, fixing that is just a simple matter of <code>brew install gawk</code> and using <code>gawk</code> instead
+of <code>awk</code>.</p>
+
+<p>The given solution has a great explanation and works fine, but I made one addition. If the input is
+a single line with <em>no</em> leading whitespace, the script fails. I fixed this with <code>if (!s) s=0;</code> at
+the beginning of the <code>END</code> block.</p>
+
+<p>The final version of my command looks like this. I’ve added some comments to explain what’s going
+on.</p>
+
+<p>``` bash
+    gawk  -F ‘\S.*’ \              # The awk field separator is everything after the first non-whitespace character, inclusive
+    ‘{                              # The first block of the awk program
+        l=length($1);               # The length of the first field, the leading whitespace
+        if(l&gt;0)                     # If the length of whitespace is non-zero,
+            if(NR==1)               # and this is the first record,
+                s=l;                # make ‘s’, the number of whitespace characters, equal to its length
+        else s=s&gt;l?l:s;             # otherwise, make s the shorter of itself and the current whitespace
+        a[NR]=$0                    # Index the entire line in an array by line number
+    }                               # End of the first block of the awk program</p>
+
+<pre><code>END{                            # Start the END, printing block of the awk program
+    if(!s)s=0;                  # Make sure we always have a value for s
+    for(i=1;i&lt;=NR;i++){         # Loop over all records
+        sub("^ {"s"}","",a[i]); # Substitute 's' whitespace characters with nothing
+        print a[i];             # Print the line after substition
+    }                           # End of the loop over records
+}'                              # End of the END block of the awk program ```
+</code></pre>
+
+<p>It is worth noting that this probably only work on text with spaces for whitespace, not
+tabs or mixed whitespace.</p>
+
+<h2 id="integrate-with-an-alfred-workflow">Integrate with an Alfred workflow</h2>
+
+<p>The ability to remove the shortest leading whitespace with a shell command is great, but I really
+wanted a way to do this quickly with text on the clipboard. <a href="http://support.alfredapp.com/workflows">Alfred workflows</a> make that
+possible.</p>
+
+<p>I created a simple three step workflow with a hotkey trigger, a script action, and a clipboard
+output. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Paste-shifted-text.alfredworkflow">download it here</a> and use it with Alfred 2.</p>
+
+<p>And now you can copy code in context and paste it with no leading whitespace wherever you want!</p>
+]]></content>
+  </entry>
+  
+</feed>

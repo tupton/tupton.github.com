@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Remove leading whitespace - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="A place where Thomas Upton talks about music, code, coffee, and anything else he fancies.">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.thomasupton.com/2013/10/remove-leading-whitespace">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-332267-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://www.google.com/search?q=site%3Ablog.thomasupton.com" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.thomasupton.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Remove Leading Whitespace</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-13T14:28:00-05:00" pubdate data-updated="true">October 13, 2013</time>
+        
+        &middot; <a href="">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2013%2F10%2Fremove-leading-whitespace&title=Remove%20leading%20whitespace"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Sometimes it’s useful to copy some code from a file and paste it somewhere else as an example. For
+instance, I like to write code in a <a href="http://jsfiddle.net/">jsfiddle</a> and then paste a relevant subset of that
+code to a <a href="http://stackoverflow.com/">Stack Overflow</a> answer. I have also copied code from a project file to paste into
+HipChat to quickly explain something to a coworker, or to paste into a JIRA ticket as a comment.</p>
+
+<p>If you copy code from the middle of a file, there’s usually some leading whitespace on all lines
+that you do not want to preserve in the context into which you are pasting the code. The problem is
+that you don’t want to get rid of <em>all</em> leading whitespace on <em>all</em> lines; you want to keep the
+indentation intact. I usually get rid of the unwanted whitespace by manually deleting it
+if it’s only one or two lines or by pasting into a new <code>vim</code> buffer and using <code>&lt;&lt;</code> to shift the text
+over as much as desired.</p>
+
+<p>To illustrate, I have this text:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line">    <span class="kd">var</span> <span class="nx">flatten</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">next_array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current result&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+</span><span class="line">        <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">next_array</span><span class="p">);</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line">
+</span><span class="line">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</span><span class="line">        <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">flatten</span><span class="p">,</span> <span class="p">[]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>and I want this text:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nx">flatten</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">next_array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current result&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">next_array</span><span class="p">);</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</span><span class="line">    <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">flatten</span><span class="p">,</span> <span class="p">[]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="remove-leading-whitespace">Remove leading whitespace</h2>
+
+<p>I knew there must be a way to remove the shortest leading whitespace from all lines
+programmatically, but I’m not familiar enough with <code>awk</code>, <code>sed</code>, or shell scripting in general to
+tackle the problem. I <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908">asked the question on Stack Overflow</a> and got a few great answers. I
+ended up accepting <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908#19332908">the single process <code>awk</code> version</a>.</p>
+
+<p>If you use OS X, the built-in <code>awk</code> will not work with the given solution. If you use
+<a href="http://brew.sh/">Hombrew</a>, fixing that is just a simple matter of <code>brew install gawk</code> and using <code>gawk</code> instead
+of <code>awk</code>.</p>
+
+<p>The given solution has a great explanation and works fine, but I made one addition. If the input is
+a single line with <em>no</em> leading whitespace, the script fails. I fixed this with <code>if (!s) s=0;</code> at
+the beginning of the <code>END</code> block.</p>
+
+<p>The final version of my command looks like this. I’ve added some comments to explain what’s going
+on.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">gawk  -F <span class="s1">&#39;\\S.*&#39;</span> <span class="se">\ </span>             <span class="c"># The awk field separator is everything after the first non-whitespace character, inclusive</span>
+</span><span class="line"><span class="s1">&#39;{                              # The first block of the awk program</span>
+</span><span class="line"><span class="s1">    l=length($1);               # The length of the first field, the leading whitespace</span>
+</span><span class="line"><span class="s1">    if(l&gt;0)                     # If the length of whitespace is non-zero,</span>
+</span><span class="line"><span class="s1">        if(NR==1)               # and this is the first record,</span>
+</span><span class="line"><span class="s1">            s=l;                # make &#39;</span>s<span class="s1">&#39;, the number of whitespace characters, equal to its length</span>
+</span><span class="line"><span class="s1">    else s=s&gt;l?l:s;             # otherwise, make s the shorter of itself and the current whitespace</span>
+</span><span class="line"><span class="s1">    a[NR]=$0                    # Index the entire line in an array by line number</span>
+</span><span class="line"><span class="s1">}                               # End of the first block of the awk program</span>
+</span><span class="line">
+</span><span class="line"><span class="s1">END{                            # Start the END, printing block of the awk program</span>
+</span><span class="line"><span class="s1">    if(!s)s=0;                  # Make sure we always have a value for s</span>
+</span><span class="line"><span class="s1">    for(i=1;i&lt;=NR;i++){         # Loop over all records</span>
+</span><span class="line"><span class="s1">        sub(&quot;^ {&quot;s&quot;}&quot;,&quot;&quot;,a[i]); # Substitute &#39;</span>s<span class="s1">&#39; whitespace characters with nothing</span>
+</span><span class="line"><span class="s1">        print a[i];             # Print the line after substition</span>
+</span><span class="line"><span class="s1">    }                           # End of the loop over records</span>
+</span><span class="line"><span class="s1">}&#39;</span>                              <span class="c"># End of the END block of the awk program</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It is worth noting that this probably only work on text with spaces for whitespace, not
+tabs or mixed whitespace.</p>
+
+<h2 id="integrate-with-an-alfred-workflow">Integrate with an Alfred workflow</h2>
+
+<p>The ability to remove the shortest leading whitespace with a shell command is great, but I really
+wanted a way to do this quickly with text on the clipboard. <a href="http://support.alfredapp.com/workflows">Alfred workflows</a> make that
+possible.</p>
+
+<p>I created a simple three step workflow with a hotkey trigger, a script action, and a clipboard
+output. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Paste-shifted-text.alfredworkflow">download it here</a> and use it with Alfred 2.</p>
+
+<p>And now you can copy code in context and paste it with no leading whitespace wherever you want!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-13T14:28:00-05:00" pubdate data-updated="true">October 13, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/code/'>Code</a>, <a class='category' href='/categories/productivity/'>Productivity</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/08/batch-deleting-last-fm-scrobbles" title="Previous Post: Batch Deleting Last.fm Scrobbles">&laquo; Batch Deleting Last.fm Scrobbles</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/octopress">Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/05/syntastic">Syntastic</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/04/mint">Mint</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/03/the-handle-pattern">The Handle Pattern</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("thomasupton", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/thomasupton" class="twitter-follow-button" data-show-count="false">Follow @thomasupton</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

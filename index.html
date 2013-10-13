@@ -85,6 +85,164 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2013/10/remove-leading-whitespace">Remove Leading Whitespace</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-13T14:28:00-05:00" pubdate data-updated="true">October 13, 2013</time>
+        
+        &middot; <a href="/2013/10/remove-leading-whitespace">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2013%2F10%2Fremove-leading-whitespace&title=Remove%20leading%20whitespace"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sometimes it’s useful to copy some code from a file and paste it somewhere else as an example. For
+instance, I like to write code in a <a href="http://jsfiddle.net/">jsfiddle</a> and then paste a relevant subset of that
+code to a <a href="http://stackoverflow.com/">Stack Overflow</a> answer. I have also copied code from a project file to paste into
+HipChat to quickly explain something to a coworker, or to paste into a JIRA ticket as a comment.</p>
+
+<p>If you copy code from the middle of a file, there’s usually some leading whitespace on all lines
+that you do not want to preserve in the context into which you are pasting the code. The problem is
+that you don’t want to get rid of <em>all</em> leading whitespace on <em>all</em> lines; you want to keep the
+indentation intact. I usually get rid of the unwanted whitespace by manually deleting it
+if it’s only one or two lines or by pasting into a new <code>vim</code> buffer and using <code>&lt;&lt;</code> to shift the text
+over as much as desired.</p>
+
+<p>To illustrate, I have this text:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line">    <span class="kd">var</span> <span class="nx">flatten</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">next_array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current result&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+</span><span class="line">        <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">next_array</span><span class="p">);</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line">
+</span><span class="line">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</span><span class="line">        <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">flatten</span><span class="p">,</span> <span class="p">[]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>and I want this text:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nx">flatten</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">next_array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current result&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">next_array</span><span class="p">);</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</span><span class="line">    <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">flatten</span><span class="p">,</span> <span class="p">[]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="remove-leading-whitespace">Remove leading whitespace</h2>
+
+<p>I knew there must be a way to remove the shortest leading whitespace from all lines
+programmatically, but I’m not familiar enough with <code>awk</code>, <code>sed</code>, or shell scripting in general to
+tackle the problem. I <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908">asked the question on Stack Overflow</a> and got a few great answers. I
+ended up accepting <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908#19332908">the single process <code>awk</code> version</a>.</p>
+
+<p>If you use OS X, the built-in <code>awk</code> will not work with the given solution. If you use
+<a href="http://brew.sh/">Hombrew</a>, fixing that is just a simple matter of <code>brew install gawk</code> and using <code>gawk</code> instead
+of <code>awk</code>.</p>
+
+<p>The given solution has a great explanation and works fine, but I made one addition. If the input is
+a single line with <em>no</em> leading whitespace, the script fails. I fixed this with <code>if (!s) s=0;</code> at
+the beginning of the <code>END</code> block.</p>
+
+<p>The final version of my command looks like this. I’ve added some comments to explain what’s going
+on.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">gawk  -F <span class="s1">&#39;\\S.*&#39;</span> <span class="se">\ </span>             <span class="c"># The awk field separator is everything after the first non-whitespace character, inclusive</span>
+</span><span class="line"><span class="s1">&#39;{                              # The first block of the awk program</span>
+</span><span class="line"><span class="s1">    l=length($1);               # The length of the first field, the leading whitespace</span>
+</span><span class="line"><span class="s1">    if(l&gt;0)                     # If the length of whitespace is non-zero,</span>
+</span><span class="line"><span class="s1">        if(NR==1)               # and this is the first record,</span>
+</span><span class="line"><span class="s1">            s=l;                # make &#39;</span>s<span class="s1">&#39;, the number of whitespace characters, equal to its length</span>
+</span><span class="line"><span class="s1">    else s=s&gt;l?l:s;             # otherwise, make s the shorter of itself and the current whitespace</span>
+</span><span class="line"><span class="s1">    a[NR]=$0                    # Index the entire line in an array by line number</span>
+</span><span class="line"><span class="s1">}                               # End of the first block of the awk program</span>
+</span><span class="line">
+</span><span class="line"><span class="s1">END{                            # Start the END, printing block of the awk program</span>
+</span><span class="line"><span class="s1">    if(!s)s=0;                  # Make sure we always have a value for s</span>
+</span><span class="line"><span class="s1">    for(i=1;i&lt;=NR;i++){         # Loop over all records</span>
+</span><span class="line"><span class="s1">        sub(&quot;^ {&quot;s&quot;}&quot;,&quot;&quot;,a[i]); # Substitute &#39;</span>s<span class="s1">&#39; whitespace characters with nothing</span>
+</span><span class="line"><span class="s1">        print a[i];             # Print the line after substition</span>
+</span><span class="line"><span class="s1">    }                           # End of the loop over records</span>
+</span><span class="line"><span class="s1">}&#39;</span>                              <span class="c"># End of the END block of the awk program</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It is worth noting that this probably only work on text with spaces for whitespace, not
+tabs or mixed whitespace.</p>
+
+<h2 id="integrate-with-an-alfred-workflow">Integrate with an Alfred workflow</h2>
+
+<p>The ability to remove the shortest leading whitespace with a shell command is great, but I really
+wanted a way to do this quickly with text on the clipboard. <a href="http://support.alfredapp.com/workflows">Alfred workflows</a> make that
+possible.</p>
+
+<p>I created a simple three step workflow with a hotkey trigger, a script action, and a clipboard
+output. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Paste-shifted-text.alfredworkflow">download it here</a> and use it with Alfred 2.</p>
+
+<p>And now you can copy code in context and paste it with no leading whitespace wherever you want!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a></h1>
     
     
@@ -902,103 +1060,6 @@ track down. It’s an invaluable tool in my workflow.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/02/dont-commit-fixme-or-todo">Don&#8217;t Commit FIXME or TODO</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-24T12:41:13-06:00" pubdate data-updated="true">February 24, 2012</time>
-        
-        &middot; <a href="/2012/02/dont-commit-fixme-or-todo">&infin;</a>
-        &middot; 
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F02%2Fdont-commit-fixme-or-todo&title=Don't%20Commit%20FIXME%20or%20TODO"
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-</pre></td><td class="code"><pre><code class="php"><span class="line"><span class="cp">&lt;?php</span>
-</span><span class="line">
-</span><span class="line"><span class="k">function</span> <span class="nf">getObject</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="nv">$object</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
-</span><span class="line">
-</span><span class="line">    <span class="c1">// TODO Do we need to validate username?</span>
-</span><span class="line">    <span class="nv">$objects</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">retrieveForUsername</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line">    <span class="c1">// FIXME Write `retrieveForIdAndUsername` instead of iterating here</span>
-</span><span class="line">    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$objects</span> <span class="k">as</span> <span class="nv">$o</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="nv">$o</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">()</span> <span class="o">==</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">            <span class="nv">$object</span> <span class="o">=</span> <span class="nv">$o</span><span class="p">;</span>
-</span><span class="line">            <span class="k">break</span><span class="p">;</span>
-</span><span class="line">        <span class="p">}</span>
-</span><span class="line">    <span class="p">}</span>
-</span><span class="line">
-</span><span class="line">    <span class="k">return</span> <span class="nv">$object</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>This shouldn’t happen. I’m not talking about the comically bad code – it’s a contrived example, but it proves the point – but about the little “notes” left by whoever committed this.</p>
-
-<p>Do we need to validate the username? Probably. Find out, and take the necessary action. If you know your codebase well, it should take about ten seconds to know the answer.</p>
-
-<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly<sup id="fnref:bad-dev"><a href="#fn:bad-dev" rel="footnote">1</a></sup>.</p>
-
-<p>Of course, use <code>TODO</code> or <code>FIXME</code> while you’re developing to keep a list of tasks that you have to finish before your feature is complete. Just don’t commit them to where other developers can see them and <em>certainly</em> don’t merge them to trunk.</p>
-
-<p>If you’re lazy with that code now, there’s no way you’re going to overcome that laziness and come back to fix it later.</p>
-<div class="footnotes">
-  <ol>
-    <li id="fn:bad-dev">
-      <p>One could argue that being aware of bad code is better than nothing, but that’s fluffy. If you’re aware of a problem, you’re probably smart enough to do something about it.<a href="#fnref:bad-dev" rel="reference">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1011,6 +1072,10 @@ track down. It’s an invaluable tool in my workflow.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
     
       <li class="post">
         <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
@@ -1046,10 +1111,6 @@ track down. It’s an invaluable tool in my workflow.</p>
     
       <li class="post">
         <a href="/2012/03/the-handle-pattern">The Handle Pattern</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/02/dont-commit-fixme-or-todo">Don&#8217;t Commit FIXME or TODO</a>
       </li>
     
   </ul>

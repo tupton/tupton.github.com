@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/code/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2013-05-02T11:02:05-05:00</updated>
+  <updated>2013-10-13T18:46:32-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Remove leading whitespace]]></title>
+    <link href="http://blog.thomasupton.com/2013/10/remove-leading-whitespace"/>
+    <updated>2013-10-13T14:28:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2013/10/remove-leading-whitespace</id>
+    <content type="html"><![CDATA[<p>Sometimes it’s useful to copy some code from a file and paste it somewhere else as an example. For
+instance, I like to write code in a <a href="http://jsfiddle.net/">jsfiddle</a> and then paste a relevant subset of that
+code to a <a href="http://stackoverflow.com/">Stack Overflow</a> answer. I have also copied code from a project file to paste into
+HipChat to quickly explain something to a coworker, or to paste into a JIRA ticket as a comment.</p>
+
+<p>If you copy code from the middle of a file, there’s usually some leading whitespace on all lines
+that you do not want to preserve in the context into which you are pasting the code. The problem is
+that you don’t want to get rid of <em>all</em> leading whitespace on <em>all</em> lines; you want to keep the
+indentation intact. I usually get rid of the unwanted whitespace by manually deleting it
+if it’s only one or two lines or by pasting into a new <code>vim</code> buffer and using <code>&lt;&lt;</code> to shift the text
+over as much as desired.</p>
+
+<p>To illustrate, I have this text:</p>
+
+<p>``` javascript
+        var flatten = function(result, next_array) {
+            console.log(‘current result’, result);
+            return result.concat(next_array);
+        };</p>
+
+<pre><code>    [1, [2], [3, 4]]
+        .reduce(flatten, []); ```
+</code></pre>
+
+<p>and I want this text:</p>
+
+<p>``` javascript
+    var flatten = function(result, next_array) {
+        console.log(‘current result’, result);
+        return result.concat(next_array);
+    };</p>
+
+<pre><code>[1, [2], [3, 4]]
+    .reduce(flatten, []); ```
+</code></pre>
+
+<h2 id="remove-leading-whitespace">Remove leading whitespace</h2>
+
+<p>I knew there must be a way to remove the shortest leading whitespace from all lines
+programmatically, but I’m not familiar enough with <code>awk</code>, <code>sed</code>, or shell scripting in general to
+tackle the problem. I <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908">asked the question on Stack Overflow</a> and got a few great answers. I
+ended up accepting <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908#19332908">the single process <code>awk</code> version</a>.</p>
+
+<p>If you use OS X, the built-in <code>awk</code> will not work with the given solution. If you use
+<a href="http://brew.sh/">Hombrew</a>, fixing that is just a simple matter of <code>brew install gawk</code> and using <code>gawk</code> instead
+of <code>awk</code>.</p>
+
+<p>The given solution has a great explanation and works fine, but I made one addition. If the input is
+a single line with <em>no</em> leading whitespace, the script fails. I fixed this with <code>if (!s) s=0;</code> at
+the beginning of the <code>END</code> block.</p>
+
+<p>The final version of my command looks like this. I’ve added some comments to explain what’s going
+on.</p>
+
+<p>``` bash
+    gawk  -F ‘\S.*’ \              # The awk field separator is everything after the first non-whitespace character, inclusive
+    ‘{                              # The first block of the awk program
+        l=length($1);               # The length of the first field, the leading whitespace
+        if(l&gt;0)                     # If the length of whitespace is non-zero,
+            if(NR==1)               # and this is the first record,
+                s=l;                # make ‘s’, the number of whitespace characters, equal to its length
+        else s=s&gt;l?l:s;             # otherwise, make s the shorter of itself and the current whitespace
+        a[NR]=$0                    # Index the entire line in an array by line number
+    }                               # End of the first block of the awk program</p>
+
+<pre><code>END{                            # Start the END, printing block of the awk program
+    if(!s)s=0;                  # Make sure we always have a value for s
+    for(i=1;i&lt;=NR;i++){         # Loop over all records
+        sub("^ {"s"}","",a[i]); # Substitute 's' whitespace characters with nothing
+        print a[i];             # Print the line after substition
+    }                           # End of the loop over records
+}'                              # End of the END block of the awk program ```
+</code></pre>
+
+<p>It is worth noting that this probably only work on text with spaces for whitespace, not
+tabs or mixed whitespace.</p>
+
+<h2 id="integrate-with-an-alfred-workflow">Integrate with an Alfred workflow</h2>
+
+<p>The ability to remove the shortest leading whitespace with a shell command is great, but I really
+wanted a way to do this quickly with text on the clipboard. <a href="http://support.alfredapp.com/workflows">Alfred workflows</a> make that
+possible.</p>
+
+<p>I created a simple three step workflow with a hotkey trigger, a script action, and a clipboard
+output. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Paste-shifted-text.alfredworkflow">download it here</a> and use it with Alfred 2.</p>
+
+<p>And now you can copy code in context and paste it with no leading whitespace wherever you want!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Batch Deleting Last.fm Scrobbles]]></title>
@@ -235,135 +330,6 @@ return s; })();
 <p>Hopefully the fact that my configuration is out in the open will bring to light some useful features that I probably take for granted but you might not know about. So, go explore! Check out my <code>inputrc</code>, for example. I know that I discover new things almost every time I look at someone else’s <code>vimrc</code> or <code>bashrc</code>.</p>
 
 <p>Do you have any configuration tips or tricks? Let me know.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Automated Backups with Tarsnap]]></title>
-    <link href="http://blog.thomasupton.com/2010/12/automated-backups-with-tarsnap"/>
-    <updated>2010-12-12T20:14:08-06:00</updated>
-    <id>http://blog.thomasupton.com/2010/12/automated-backups-with-tarsnap</id>
-    <content type="html"><![CDATA[<p>I remember <a href="http://www.daemonology.net/blog/2006-09-13-encrypted-backup.html">reading</a> <a href="http://www.daemonology.net/blog/2008-11-10-tarsnap-public-beta.html">about</a> <a href="http://www.tarsnap.com/">Tarsnap</a> a couple of years ago, back when it was only an idea. I wasn’t too convinced about using a service that was in beta to back up my data, but I recently rediscovered that it had graduated to a full-blown product and signed up immediately.</p>
-
-<p>Tarsnap is an encrypted backup tool based on archives. I’m not going to go into any details about the implementation, but you can read about the <a href="http://www.tarsnap.com/crypto.html">cryptography</a>, <a href="http://www.tarsnap.com/security.html">the security</a>, or anything else about the <a href="http://www.tarsnap.com/design.html">overall design</a> of the tool on the <a href="http://www.tarsnap.com/">Tarsnap site</a>. Basically, it creates archives (hence the “tar” part of the name), encrypts them, and stores them on <a href="http://aws.amazon.com/s3/">Amazon S3</a>. The “snap” part of the name refers to the idea that backups are done in “snapshots,” which means that backups are incremental and duplicate data can be shared between archives.</p>
-
-<p>After you sign up for a Tarsnap account, put at least $5 (via Paypal) into your account, and <a href="http://www.tarsnap.com/man-tarsnap-keygen.1.html">generate a key</a>, you can begin backing up your data. You can read more about <a href="http://www.tarsnap.com/gettingstarted.html">getting started</a> and <a href="http://www.tarsnap.com/usage.html">using <code>tarsnap</code> in general</a>, but I really want to talk about automated backups with Tarsnap.</p>
-
-<h2 id="a-simple-wrapper">A Simple Wrapper</h2>
-
-<p>I found <a href="http://jonathanstreet.com/blog/setting-up-backups-with-tarsnap">a blog post by Jonathan Street</a> that detailed his automated backups, and that served as inspiration for my system. I wrote a little bash script to wrap <code>tarsnap</code> for my purposes:</p>
-
-<p><code>bash
-    #! /bin/bash
-    echo `date +%F\ %T`: Beginning back up of $2
-    /usr/local/bin/tarsnap -c -f $1-`date +%F` $2
-    echo `date +%F\ %T`: Completed back up of $2
-</code></p>
-
-<p>Calling <code>tarsnap-backup.sh  </code> tells tarsnap to create an archive  of the specified directory with the given name and the current date. I was in business.</p>
-
-<h3 id="generating-a-new-key">Generating a new key</h3>
-
-<p>An aside: Jonathan Street’s blog post mentioned creating a new key that only had permission to read and write archives. I initially did the same thing, but for reasons I’ll get into later, I wanted the ability to delete backups, too. Generating a new key was extremely easy:</p>
-
-<p><code>bash
-    $ tarsnap-keymgmt --outkeyfile /root/tarsnap-rw.key -r -w /root/tarsnap.key
-</code></p>
-
-<p>This creates a new key in <code>/root/</code> called <code>tarsnap-rw.key</code> that only has read and write permission.</p>
-
-<h2 id="automation">Automation</h2>
-
-<h3 id="newsyslog"><code>newsyslog</code></h3>
-
-<p>The simple wrapper script above was great, but if I was going to automate it, I needed those <code>echo</code> statements to go to a more permanent log file. If I was going to do daily backups of directories, I needed some sort of log management. After searching around a bit, it became clear that <code>newsyslog</code> was the way to go on OS X. Looking at the file in <code>/etc/newsyslog.conf</code> was enough to give me the basic file structure, but the <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=newsyslog&sektion;=8">man pages</a> go into a lot of detail.</p>
-
-<p>I made a configuration called <code>user.conf</code> in <code>/etc/newsyslog.d/</code> and put my tarsnap logs inside. I decided to use a distinct log for each automated backup I do, as opposed to a single tarsnap log. I still haven’t decided if this is the right way to go, but I do like being able to quickly see the result of the last backup. My <code>user.conf</code> looks like the following.</p>
-
-<pre><code>/var/log/tarsnap-backup-code.log                        640     5       1000    *       Z
-/var/log/tarsnap-backup-documents.log                   640     5       1000    *       Z
-</code></pre>
-
-<p>This configuration tells <code>newsyslog</code> to gzip, roll to a new log once the current log exceeds 1MB in size, and keep at most five old logs.</p>
-
-<h3 id="cron"><code>cron</code></h3>
-
-<p>With log rotation in place, I could create a cron job.</p>
-
-<pre><code>0 4 * * * /usr/local/bin/tarsnap-backup code ~/code &gt; /var/log/tarsnap-backup-code.log
-</code></pre>
-
-<p>This crontab schedules backups for my <code>code</code> directory at 4am daily and my <code>Documents</code> directory at 5am daily. I used <code>sudo crontabe -e</code> to create this because both <code>tarsnap</code> and my log file’s permissions require root privileges. This would have sufficed, but there was a nagging thought in the back of my head: I <a href="http://www.thomasupton.com/blog/2009/09/i-love-weather/">knew</a> that <code>launchd</code> is used in place of <code>cron</code> in OS X, and I thought this would give me a good opportunity to dive into even more options that <code>launchd</code> has to offer.</p>
-
-<h3 id="launchd"><code>launchd</code></h3>
-
-<p>Since I wanted these backups to run whenever possible, I decided to put my <code>launchd</code> backup configurations in <code>/Library/LaunchDameons</code> instead of <code>/Library/LaunchAgents</code>. LaunchDaemons are able to run without a logged-in user; this is exactly what I wanted. The <code>launchd</code> configuration for my <code>code</code> backup looks like the following:</p>
-
-<p><code>html
-    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-    &lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
-    "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-    &lt;plist version="1.0"&gt;
-    &lt;dict&gt;
-        &lt;key&gt;Label&lt;/key&gt;
-        &lt;string&gt;com.thomasupton.backup-daily-code&lt;/string&gt;
-        &lt;key&gt;ProgramArguments&lt;/key&gt;
-        &lt;array&gt;
-            &lt;string&gt;/usr/local/bin/tarsnap-backup&lt;/string&gt;
-            &lt;string&gt;code&lt;/string&gt;
-            &lt;string&gt;/Users/thomas/code&lt;/string&gt;
-        &lt;/array&gt;
-        &lt;key&gt;GroupName&lt;/key&gt;
-        &lt;string&gt;wheel&lt;/string&gt;
-        &lt;key&gt;UserName&lt;/key&gt;
-        &lt;string&gt;root&lt;/string&gt;
-        &lt;key&gt;Nice&lt;/key&gt;
-        &lt;integer&gt;1&lt;/integer&gt;
-        &lt;key&gt;StandardErrorPath&lt;/key&gt;
-        &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-        &lt;key&gt;StandardOutPath&lt;/key&gt;
-        &lt;string&gt;/var/log/tarsnap-backup-code.log&lt;/string&gt;
-        &lt;key&gt;StartCalendarInterval&lt;/key&gt;
-        &lt;dict&gt;
-            &lt;key&gt;Hour&lt;/key&gt;
-            &lt;integer&gt;5&lt;/integer&gt;
-            &lt;key&gt;Minute&lt;/key&gt;
-            &lt;integer&gt;0&lt;/integer&gt;
-        &lt;/dict&gt;
-    &lt;/dict&gt;
-    &lt;/plist&gt;
-</code></p>
-
-<p>The <code>ProgramArguments</code> section is exactly how I called the backup script from <code>cron</code>. The <code>UserName</code> and <code>GroupName</code> keys are important: they tell <code>launchd</code> to run the backup script as root, which, as I mentioned before, is necessary for using <code>tarsnap</code> and for appending to the log file. The <code>StandardErrorPath</code> and <code>StandardOutPath</code> keys tell <code>launchd</code> to redirect output to the proper log file. The <code>StartCalendarInterval</code> tells <code>launchd</code> to run this script at 5am daily.</p>
-
-<p>After registering the configuration via <code>launchctl load /Library/LaunchDaemons/com.thomasupton.backup-daily-documents.plist</code>, my automated backup system was in place.</p>
-
-<h2 id="backup-management">Backup Management</h2>
-
-<p>Since Tarsnap backs up data with the notion of “snapshots” and keeps track of blocks of data (and not archive data), keeping multiple archives of the same data doesn’t make much sense. However, running a daily backup by creating a new archive would mean that many archives would build up fast. I decided that keeping at most three previous backups of the same data would suffice. I wanted to automate this, too. This is the reason I decided not to use a read-write-only key.</p>
-
-<p>I added the following lines to my <code>tarsnap-backup.sh</code> script.</p>
-
-<p><code>bash
-    # Remove the backup from three days previous, if there is one
-    echo `date +%F\ %T`: Removing backup of $2 from `date -v-3d +%F`
-    /usr/local/bin/tarsnap -d -f $1-`date -v-3d +%F`
-    echo `date +%F\ %T`: Completed removing backup of $2 from `date -v-3d +%F`
-</code></p>
-
-<p>The key to this is the date in the archive name passed to <code>tarsnap -d</code>. <code>date -v</code> lets you add a value to the date output, so <code>-v-3d</code> outputs the date from three days previous. Now, every scheduled backup attempts to delete the archive from three days ago in addition to creating a backup for the current day. Of course, if a backup is missed, this can lead to an accumulation of old archives. This is where the log files come in handy: I can just inspect the logs every couple of days to see what successfully ran and manually prune the archive list if necessary.</p>
-
-<h3 id="large-backups">Large Backups</h3>
-
-<p>I said “if a backup is missed,” but I didn’t mention why that might occur. The answer becomes apparent when you start talking about backing up large amounts of data. My <code>~/Documents</code> folder was over 12GB, and with my terrible upload speeds, that would mean that it would take a long, long time to upload everything. Even though I was able to prune the contents of <code>~/Documents</code> down to 6.5GB, I still needed more than an hour to back it up. <code>tarsnap</code> doesn’t perform more than one archive transaction at once, so if the <code>documents</code> archive was still running when the <code>code</code> archive process began, tarsnap would cancel the latter and continue with the former, hence a backup is missed. This is also another reason that I decided to keep separate log files for each backup job. The log lines for an in-progress job aren’t interspersed with a failed attempt to start another backup job.</p>
-
-<p>The <code>documents</code> backup was still too large to have been done by the morning, and I didn’t really want to sacrifice my network connection just for the sake of a backup. Fortunately, <code>tarsnap</code> supports archive truncation. According to the <a href="http://www.tarsnap.com/man-tarsnap.1.html">man pages</a>, <code>tarsnap</code> responds to the <code>SIGQUIT</code> interrupt by truncating the archive and appending “<code>.part</code>” to the archive name. When my large backup job was still running, all I had to do was send the <code>SIGQUIT</code> signal with <code>kill -3</code> (alternatively, you could send <code>^Q</code> if you use <code>tarsnap</code> from a console and not from a scheduled job) and <code>tarsnap</code> would effectively “pause” the backup. The next time that same data is archived, <code>tarsnap</code> will recognize it and only upload new data. This works even with a different archive name, thanks to snapshots and block data.</p>
-
-<h2 id="restoring-backups">Restoring Backups</h2>
-
-<p>Tarsnap is a great service, but truly for those who know what they are doing. It took me far longer than I would like to admit to come up with a process for all of this, but it was worth it. Of course, creating backups is only one part of a complete system. The other, more important part, is restoration. Since <code>tarsnap</code> is built on <code>tar</code> and <code>libarchive</code>, this is incredibly simple. <code>tarsnap -x</code> extracts archives, and <code>tarsnap -r</code> writes a tar stream to <code>stdout</code>, which can be used to create a local tar.</p>
-
-<p>If you like the idea of easy, encrypted backups, tarsnap is a great service. It’s cheap, secure, and reliable, plus it’s fun and easy to use if you’re comfortable with UNIX-style archiving tools.</p>
 ]]></content>
   </entry>
   
