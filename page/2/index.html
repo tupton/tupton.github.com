@@ -87,6 +87,143 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2012/03/the-handle-pattern">The Handle Pattern</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-25T13:12:06-05:00" pubdate data-updated="true">March 25, 2012</time>
+        
+        &middot; <a href="/2012/03/the-handle-pattern">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F03%2Fthe-handle-pattern&title=The%20Handle%20Pattern"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nx">subscriber</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">
+</span><span class="line">    <span class="kd">var</span> <span class="nx">_listeners</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class="line">
+</span><span class="line">    <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="line">        <span class="c1">// Listen to a channel and call a callback when that channel fires</span>
+</span><span class="line">        <span class="nx">listen</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="c1">// Add the callback to the list of listeners on the given channel</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">||</span> <span class="p">[];</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">cb</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">return</span> <span class="p">{</span>
+</span><span class="line">                <span class="c1">// Return an object that can be used to remove the callback from the channel</span>
+</span><span class="line">                <span class="nx">unlisten</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">                    <span class="c1">// Remove the callback from the list of listeners on that channel</span>
+</span><span class="line">                    <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">splice</span><span class="p">(</span><span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">cb</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">
+</span><span class="line">        <span class="c1">// Manually fire events on a given channel.</span>
+</span><span class="line">        <span class="nx">publish</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">||</span> <span class="p">[];</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                <span class="nx">cb</span><span class="p">();</span>
+</span><span class="line">            <span class="p">});</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+</span><span class="line"><span class="p">})();</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">subscriber</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The update event was fired!&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="p">});</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">subscriber</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">);</span> <span class="c1">// &gt; &quot;The update event was fired!&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">h</span><span class="p">.</span><span class="nx">unlisten</span><span class="p">();</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">subscriber</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">);</span> <span class="c1">// &gt; &lt;no output&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>When you have an event-driven application, like a Javascript app that performs actions based on user interaction or based on back end “pushes” to a listening front end, you often have a central “publisher” that handles firing events when certain actions occur. It makes sense to have a static <code>listen</code> function that takes a “channel” and a callback function to call when that channel gets updated. The problem comes when you have to decide how to <em>stop</em> listening to that channel. If you go with a static <code>unlisten</code> function on the publisher with the same signature as <code>listen</code> (the channel and callback), you need to keep track of which callback is listening to which channel, and it can get messy.</p>
+
+<p>Instead, <code>listen</code> can return a <code>handle</code>, which is just an object that contains a method <code>unlisten</code> that knows exactly how to stop listening on the specific channel and with the specific callback that was given to <code>listen</code>. Then, the caller just needs to keep track of the return values of <code>listen</code> (as opposed to the <em>arguments</em> to <code>listen</code>) in order to be able to <code>unlisten</code> later.</p>
+
+<p>The <a href="http://dojotoolkit.org/">Dojo</a> <a href="http://dojotoolkit.org/reference-guide/1.7/dojo/Stateful.html">Stateful</a> interface uses this pattern to watch values on objects. If you watch a property, a callback can be fired each time that property changes. The return value of <code>watch</code> is a handle that can be used to stop watching that particular property value.</p>
+
+<p>Feel free to <a href="http://jsfiddle.net/tupton/nZKQz/">play around with this code on JSFiddle</a>.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2012/02/dont-commit-fixme-or-todo">Don&#8217;t Commit FIXME or TODO</a></h1>
     
     
@@ -619,56 +756,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/12/writing">Writing</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-25T23:19:21-06:00" pubdate data-updated="true">December 25, 2011</time>
-        
-        &middot; <a href="/2011/12/writing">&infin;</a>
-        &middot; 
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2011%2F12%2Fwriting&title=Writing"
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I recently started using <a href="http://bywordapp.com/">Byword</a> on OS X and <a href="http://www.secondgearsoftware.com/elements/">Elements</a> on iOS for my writing in general. Both apps are <a href="http://daringfireball.net/projects/markdown/">Markdown</a> editors that, in conjunction with Dropbox, let me write from nearly anywhere.</p>
-
-<p>I write my blog posts in Markdown, but the format is useful for almost any kind of writing. Any application that can read plain text can read Markdown for those times that you need to keep it simple, or you can convert to HTML for when you want or need to make it a bit more presentable.</p>
-
-<p>I love using Byword in its fullscreen and paragraph focus view. It’s a great way to minimize distractions with enough context to let you properly proofread your writing. The Markdown to HTML preview is a keyboard shortcut away, and saving to a folder in Dropbox means that I can access my files anywhere.</p>
-
-<p>Elements requires a Dropbox account to work, so I specified the same folder that I save documents from Byword into. Et voilà, I can edit or add to a blog post or any other writing on my iPhone or iPad. Elements has a great Markdown preview, too, and it’s distraction-free (from other apps) by nature of being an iOS app.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -683,6 +770,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/10/quickly-convert-unix-timestamps">Quickly convert Unix timestamps</a>
+      </li>
     
       <li class="post">
         <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
@@ -718,10 +809,6 @@
     
       <li class="post">
         <a href="/2012/04/mint">Mint</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/03/the-handle-pattern">The Handle Pattern</a>
       </li>
     
   </ul>
