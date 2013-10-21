@@ -139,17 +139,17 @@ output format. The output of the above is as follows.</p>
 <pre><code>Fri Oct 11 17:00:00 CDT 2013
 </code></pre>
 
-<p>You can use <code>xargs</code> to pipe input in. Note the <code>-J</code> option might be different on systems that are
-not OS X.</p>
+<p>You can use <code>xargs</code> to pipe input in. Note that the <code>-J</code> option might be different on systems that
+are not OS X.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nb">echo</span> -n <span class="s2">&quot;1381528800&quot;</span> | xargs -J <span class="o">{}</span> date -j -f <span class="s2">&quot;%s&quot;</span> <span class="o">{}</span> +<span class="s2">&quot;%a %b %d %T %Z %Y&quot;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Like I seem to do with a lot of my utility scripts, I added a workflow to Alfred. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Convert%20timestamp%20to%20date.alfredworkflow">get it
-here</a>. Simply invoke Alfred, type “ts” followed by a space and the timestamp you want to convert. The
-readable date will be posted as a notification (Growl or System Notifications, configurable in the
-Alfred settings) and copied to the clipboard.</p>
+here</a>. Simply invoke Alfred, type “ts” followed by a space and the timestamp you want to
+convert. The readable date will be posted as a notification (Growl or Notification Center,
+configurable in the Advanced section of the Alfred settings) and copied to the clipboard.</p>
 
 </div>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Script | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/script/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2013-10-21T15:11:04-05:00</updated>
+  <updated>2013-10-21T15:15:19-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -41,17 +41,17 @@ output format. The output of the above is as follows.</p>
 <pre><code>Fri Oct 11 17:00:00 CDT 2013
 </code></pre>
 
-<p>You can use <code>xargs</code> to pipe input in. Note the <code>-J</code> option might be different on systems that are
-not OS X.</p>
+<p>You can use <code>xargs</code> to pipe input in. Note that the <code>-J</code> option might be different on systems that
+are not OS X.</p>
 
 <p><code>bash
 echo -n "1381528800" | xargs -J {} date -j -f "%s" {} +"%a %b %d %T %Z %Y"
 </code></p>
 
 <p>Like I seem to do with a lot of my utility scripts, I added a workflow to Alfred. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Convert%20timestamp%20to%20date.alfredworkflow">get it
-here</a>. Simply invoke Alfred, type “ts” followed by a space and the timestamp you want to convert. The
-readable date will be posted as a notification (Growl or System Notifications, configurable in the
-Alfred settings) and copied to the clipboard.</p>
+here</a>. Simply invoke Alfred, type “ts” followed by a space and the timestamp you want to
+convert. The readable date will be posted as a notification (Growl or Notification Center,
+configurable in the Advanced section of the Alfred settings) and copied to the clipboard.</p>
 
 ]]></content>
   </entry>
