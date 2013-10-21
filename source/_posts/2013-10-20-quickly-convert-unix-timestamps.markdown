@@ -32,16 +32,16 @@ output format. The output of the above is as follows.
 
     Fri Oct 11 17:00:00 CDT 2013
 
-You can use `xargs` to pipe input in. Note the `-J` option might be different on systems that are
-not OS X.
+You can use `xargs` to pipe input in. Note that the `-J` option might be different on systems that
+are not OS X.
 
 ``` bash
 echo -n "1381528800" | xargs -J {} date -j -f "%s" {} +"%a %b %d %T %Z %Y"
 ```
 
 Like I seem to do with a lot of my utility scripts, I added a workflow to Alfred. You can [get it
-here][workflow]. Simply invoke Alfred, type "ts" followed by a space and the timestamp you want to convert. The
-readable date will be posted as a notification (Growl or System Notifications, configurable in the
-Alfred settings) and copied to the clipboard.
+here][workflow]. Simply invoke Alfred, type "ts" followed by a space and the timestamp you want to
+convert. The readable date will be posted as a notification (Growl or Notification Center,
+configurable in the Advanced section of the Alfred settings) and copied to the clipboard.
 
 [workflow]: https://dl.dropboxusercontent.com/u/5753691/Convert%20timestamp%20to%20date.alfredworkflow
