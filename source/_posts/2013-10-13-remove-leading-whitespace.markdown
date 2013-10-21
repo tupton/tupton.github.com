@@ -90,7 +90,7 @@ on.
     }'                              # End of the END block of the awk program
 ```
 
-It is worth noting that this probably only work on text with spaces for whitespace, not
+It is worth noting that this probably only works on text with spaces for whitespace, not
 tabs or mixed whitespace.
 
 ## Integrate with an Alfred workflow
