@@ -85,6 +85,187 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating From Pathogen to Vundle</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-11T19:41:00-06:00" pubdate data-updated="true">February 11, 2014</time>
+        
+        &middot; <a href="/2014/02/migrating-from-pathogen-to-vundle">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2014%2F02%2Fmigrating-from-pathogen-to-vundle&title=Migrating%20from%20Pathogen%20to%20Vundle"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For <a href="http://blog.thomasupton.com/2012/02/configuration/">a while now</a>, I’ve been using <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins as bundles. I thought I was making things easier for myself by <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">using <code>git</code> submodules to help organize those plugins</a>, but submodules aren’t the best method for deploying a <code>vim</code> environment in multiple places.</p>
+
+<p>Fortunately for me, other, smarter people did this same thing and decided to fix it. This <a href="http://jameslaicreative.com/moving-up-upgrading-from-pathogen-to-vundle/">blog post by James Lai</a> details moving from almost the exact same system as mine to <a href="https://github.com/gmarik/vundle">Vundle</a>, a newer and very <code>vim</code>-centric way of managing plugins. You list your plugins in your <code>vimrc</code>, you update them with <code>vim</code> (even though they are managed with <code>git</code>), and your <code>vim</code> environment is consistent everywhere.</p>
+
+<p>I just migrated from Pathogen to Vundle, and I want to document the process.</p>
+
+<p>First things first: clone Vundle into your <code>bundle/</code> directory.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git clone https://github.com/gmarik/vundle.git bundle/vundle
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The <a href="https://github.com/gmarik/Vundle.vim#quick-start">Vundle quick start guide</a> does a great job of getting you started, so if you’re just looking to use Vundle without any prior bundle management, I would start there. If you were managing your <code>vim</code> plugins with Pathogen and <code>git</code> submodules, the switch to Vundle is straightforward but requires a few more steps.</p>
+
+<p>At the top of <a href="https://github.com/tupton/vim-support/blob/master/vimrc">my <code>vimrc</code></a> I added a new Vundle-specific section and added the code from the quick start guide.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Of course</span>
+</span><span class="line"><span class="k">set</span> <span class="nb">nocompatible</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; Required Vundle setup</span>
+</span><span class="line"><span class="k">filetype</span> off
+</span><span class="line"><span class="k">set</span> <span class="nb">runtimepath</span><span class="p">+=~</span><span class="sr">/.vim/</span>bundle/vundle
+</span><span class="line"><span class="k">call</span> vundle#rc<span class="p">()</span>
+</span><span class="line">
+</span><span class="line">Bundle <span class="s1">&#39;gmarik/vundle&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Next, I wanted to add all the bundles I already use. <code>git submodule foreach</code> can actually help here.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git submodule foreach git remote -v
+</span><span class="line">Entering <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">origin  https://github.com/bling/vim-airline.git <span class="o">(</span>fetch<span class="o">)</span>
+</span><span class="line">origin  https://github.com/bling/vim-airline.git <span class="o">(</span>push<span class="o">)</span>
+</span><span class="line">Entering <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">origin  https://github.com/tpope/vim-characterize.git <span class="o">(</span>fetch<span class="o">)</span>
+</span><span class="line">origin  https://github.com/tpope/vim-characterize.git <span class="o">(</span>push<span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I then just copied the GitHub user and repository name (the path portion of the remote URL minus “.git”) and passed that to Vundle’s <code>Bundle</code> command.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Better status line</span>
+</span><span class="line">Bundle <span class="s1">&#39;bling/vim-airline&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; ga for character descriptions</span>
+</span><span class="line">Bundle <span class="s1">&#39;tpope/vim-characterize&#39;</span>
+</span><span class="line">
+</span><span class="line">[...]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Now we need to remove the existing submodules. One of the big pains of using <code>git</code> submodules is removing them when you no longer need them. This made trying out plugins harder than it needed to be, and it makes the transition to Vundle a bit more complicated.</p>
+
+<p>I reference <a href="http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule">this Stack Overflow post about removing <code>git</code> submodules</a> every time I need to remove a plugin I was just trying out without fail. The command to remember is <code>git submodule deinit</code>. You can <code>deinit</code> all submodules in a given directory all at once.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git submodule deinit bundle/
+</span><span class="line">Cleared directory <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">Submodule <span class="s1">&#39;bundle/airline&#39;</span> <span class="o">(</span>https://github.com/bling/vim-airline.git<span class="o">)</span> unregistered <span class="k">for </span>path <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">Cleared directory <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">Submodule <span class="s1">&#39;bundle/characterize&#39;</span> <span class="o">(</span>https://github.com/tpope/vim-characterize.git<span class="o">)</span> unregistered <span class="k">for </span>path <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then you need to explicitly remove all the bundles. Since Vundle is already in <code>bundle/vundle</code>, we need to remove each separate plugin bundle directory instead of blowing away the entire <code>bundle/</code> directory.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git rm bundle/airline bundle/characterize <span class="o">[</span>...<span class="o">]</span>
+</span><span class="line">rm <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">rm <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It woud be a good idea to commit your staged changes here, which at this point should just be submodule removal.</p>
+
+<p>If you were using Pathogen, don’t forget to remove any setup from your <code>vimrc</code>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Store pathogen itself in bundle/</span>
+</span><span class="line">runtime<span class="p">!</span> bundle<span class="sr">/pathogen/</span>autoload/pathogen.<span class="k">vim</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; Start it up</span>
+</span><span class="line"><span class="k">silent</span><span class="p">!</span> <span class="k">call</span> pathogen#infect<span class="p">()</span>
+</span><span class="line"><span class="k">silent</span><span class="p">!</span> <span class="k">call</span> pathogen#<span class="k">helptags</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It also helps to add <code>bundle/</code> to your <code>.gitignore</code>. Vundle now puts all plugins there, but you don’t have to manually manage them any more.. Just add <code>bundle/**</code> to your <code>vim</code> environment’s <code>.gitignore</code> file.</p>
+
+<p>Now, open up <code>vim</code> and run <code>:BundleInstall</code>. All your <code>vim</code> bundles will be cloned and managed by Vundle, and you don’t have to worry about updating submodules and running <code>git submodule foreach</code> everywhere you have a <code>vim</code> environment.</p>
+
+<p>To update and migrate any existing <code>vim</code> environments on other machines, <code>git pull</code> in the migration changes, which shouldn’t conflict as long as you were up to date to the commit before the migration. Then clone Vundle with <code>git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle</code> and install your plugins with <code>vim +BundleInstall +qall</code>.</p>
+
+<p>If you <em>were not</em> up to date to right before your migration changes, you’ll probably have to manually remove all submodules by following the instructions above and resolve some conflicts when pulling changes in. Since you’re trying to delete all of <code>bundle/</code>, this should be relatively painless: just delete <code>bundle/</code> and <code>git rebase --skip</code> any submodule update commits.</p>
+
+<p>And now you’re using Vundle! Add some new bundles into your <code>vimrc</code>, run <code>:BundleInstall</code>, and you’re up and running. I found some that I’m going to try out in <a href="https://gist.github.com/joegoggins/8482408">joegoggins’s vimrc</a> and in <a href="https://github.com/gmarik/Vundle.vim#quick-start">the Vundle setup documentation</a>.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2013/10/quickly-convert-unix-timestamps">Quickly Convert Unix Timestamps</a></h1>
     
     
@@ -899,108 +1080,6 @@ track down. It’s an invaluable tool in my workflow.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/04/mint">Mint</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-17T18:37:38-05:00" pubdate data-updated="true">April 17, 2012</time>
-        
-        &middot; <a href="/2012/04/mint">&infin;</a>
-        &middot; 
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F04%2Fmint&title=Mint"
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="http://farm8.staticflickr.com/7180/7089520649_0beff76701_o_d.png" alt="Mint" /></p>
-
-<p>I just started using <a href="http://haveamint.com/">Mint</a> to track statistics on my site. I’ve been using Google Analytics for a long time, and I will continue to do so, but it is definitely geared more towards sites trying to earn money. Mint seemed to offer a more streamlined and customizable interface for people who just want to look at stats.</p>
-
-<p>Mint is a pluggable, extensible stats system. Mint modules are known as “peppers,” and each one provides some small functionality. There is a <a href="http://www.haveamint.com/peppermill/pepper/4/default/">default pepper</a> that provides some basic stats functionality like page views, unique visitors, search terms that brought those visitors to your site, and which pages they are looking at. There are a large number of official and community peppers over at the Peppermill that offer much more functionality and statistical views.</p>
-
-<h2 id="installation">Installation</h2>
-
-<p>Installing Mint was a breeze. I just followed the simple instructions and I was good to go. If you have unfettered access to your server (via <code>ssh</code>) you should have no issues.</p>
-
-<h3 id="issues-with-modpagespeed">Issues with mod_pagespeed</h3>
-
-<p>I did run into a couple strange display issues when I went to view my Mint stats. Each pane took up the maximum width when it was opened. Even though I could view all my stats, the interface didn’t look good. After posting in the forum and fruitlessly trying to edit the Mint source code, I disabled <a href="http://code.google.com/speed/page-speed/docs/module.html"><code>mod_pagespeed</code></a> on the hunch that my code changes weren’t taking effect because <code>mod_pagespeed</code> was caching everything. All of a sudden, the Mint interface looked fine, and it turned out that my small tweaks didn’t really make much of a difference after all. I still haven’t figured out exactly why <code>mod_pagespeed</code> was causing issues, but disabling it sure did fix them. If anyone has any insight into this, please let me know.</p>
-
-<h2 id="peppers">Peppers</h2>
-
-<p>I mentioned that Mint is pluggable and extensible. In fact, that is its entire basis: every bit of functionality is provided by modular plugins called peppers. Mint comes with the default pepper that I mentioned before, but there are many more available. I use a number of them.</p>
-
-<h3 id="backuprestorebackup"><a href="http://www.haveamint.com/peppermill/pepper/5/backup_restore/">Backup/Restore</a></h3>
-
-<p>This pepper is self-explanatory: back up and restore your Mint stats. That’s it.</p>
-
-<h3 id="iphoneiphone"><a href="http://www.haveamint.com/peppermill/pepper/57/iphone/">iPhone</a></h3>
-
-<p>The default Mint interface isn’t that great for a smaller screen like the iPhone, so this pepper displays an optimized interface when you view Mint on an iPhone.</p>
-
-<h3 id="outboundoutbound"><a href="http://www.haveamint.com/peppermill/pepper/60/outbound/">Outbound</a></h3>
-
-<p>A lot of analytics apps try to show you where your visitors come from, and that information is important. You might be interested in where your visitors go next, so this pepper shows your most popular outbound links.</p>
-
-<h3 id="user-agent-007user-agent"><a href="http://www.haveamint.com/peppermill/pepper/7/user_agent_007/">User Agent 007</a></h3>
-
-<p>This cleverly-named pepper shows a breakdown of your visitors by user agent.</p>
-
-<h3 id="real-estatereal-estate"><a href="http://www.haveamint.com/peppermill/pepper/9/real_estate/">Real Estate</a></h3>
-
-<p>This one shows a breakdown of your visitors by the size of their screen.</p>
-
-<h3 id="local-searcheslocal-search"><a href="http://www.haveamint.com/peppermill/pepper/6/local_searches/">Local Searches</a></h3>
-
-<p>If your blogging software has a search mechanism, this pepper shows you what your visitors are searching for. Note that this is different than the search engine queries that bring visitors to your site that the default pepper shows. </p>
-
-<h3 id="doorbelldoorbell"><a href="http://www.haveamint.com/peppermill/pepper/45/doorbell/">Doorbell</a></h3>
-
-<p>When you’re viewing your Mint interface, the doorbell pepper provides a some audio feedback when you get a new visitor.</p>
-
-<h3 id="errorserrors"><a href="http://www.haveamint.com/peppermill/pepper/92/errors/">Errors</a></h3>
-
-<p>This pepper shows any error pages that your visitors may have seen, along with the page that was requested that caused that error.</p>
-
-<h3 id="locationslocations"><a href="http://www.haveamint.com/peppermill/pepper/29/locations/">Locations</a></h3>
-
-<p>This pepper provides a breakdown of your visitors by geographic location.</p>
-
-<h3 id="sparkssparks"><a href="http://www.haveamint.com/peppermill/pepper/67/sparks/">Sparks!</a></h3>
-
-<p>Sparklines provide a great way to view useful trends in a small space. This combined with the iPhone pepper makes checking visitor trends on the go a snap.</p>
-
-<p>I use both Google analytics and Mint on my site, but I find myself looking at Mint much, much more often. It just offers a better view into the kind of people visiting your site, especially if you’re coming from a position of trying to understand what kind of content brings them to your site in the first place. Mint comes highly recommended.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1013,6 +1092,10 @@ track down. It’s an invaluable tool in my workflow.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
+      </li>
     
       <li class="post">
         <a href="/2013/10/quickly-convert-unix-timestamps">Quickly convert Unix timestamps</a>
@@ -1050,10 +1133,6 @@ track down. It’s an invaluable tool in my workflow.</p>
         <a href="/2012/05/syntastic">Syntastic</a>
       </li>
     
-      <li class="post">
-        <a href="/2012/04/mint">Mint</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -1068,7 +1147,7 @@ track down. It’s an invaluable tool in my workflow.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Thomas Upton -
+  Copyright &copy; 2014 - Thomas Upton -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

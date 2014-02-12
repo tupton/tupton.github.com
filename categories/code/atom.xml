@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/code/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2013-10-21T15:15:19-05:00</updated>
+  <updated>2014-02-11T21:59:19-06:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -12,6 +12,116 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Migrating from Pathogen to Vundle]]></title>
+    <link href="http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle"/>
+    <updated>2014-02-11T19:41:00-06:00</updated>
+    <id>http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle</id>
+    <content type="html"><![CDATA[<p>For <a href="http://blog.thomasupton.com/2012/02/configuration/">a while now</a>, I’ve been using <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins as bundles. I thought I was making things easier for myself by <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">using <code>git</code> submodules to help organize those plugins</a>, but submodules aren’t the best method for deploying a <code>vim</code> environment in multiple places.</p>
+
+<p>Fortunately for me, other, smarter people did this same thing and decided to fix it. This <a href="http://jameslaicreative.com/moving-up-upgrading-from-pathogen-to-vundle/">blog post by James Lai</a> details moving from almost the exact same system as mine to <a href="https://github.com/gmarik/vundle">Vundle</a>, a newer and very <code>vim</code>-centric way of managing plugins. You list your plugins in your <code>vimrc</code>, you update them with <code>vim</code> (even though they are managed with <code>git</code>), and your <code>vim</code> environment is consistent everywhere.</p>
+
+<p>I just migrated from Pathogen to Vundle, and I want to document the process.</p>
+
+<p>First things first: clone Vundle into your <code>bundle/</code> directory.</p>
+
+<p><code>bash
+❯ git clone https://github.com/gmarik/vundle.git bundle/vundle
+</code></p>
+
+<p>The <a href="https://github.com/gmarik/Vundle.vim#quick-start">Vundle quick start guide</a> does a great job of getting you started, so if you’re just looking to use Vundle without any prior bundle management, I would start there. If you were managing your <code>vim</code> plugins with Pathogen and <code>git</code> submodules, the switch to Vundle is straightforward but requires a few more steps.</p>
+
+<p>At the top of <a href="https://github.com/tupton/vim-support/blob/master/vimrc">my <code>vimrc</code></a> I added a new Vundle-specific section and added the code from the quick start guide.</p>
+
+<p>``` vim
+“ Of course
+set nocompatible</p>
+
+<p>” Required Vundle setup
+filetype off
+set runtimepath+=~/.vim/bundle/vundle
+call vundle#rc()</p>
+
+<p>Bundle ‘gmarik/vundle’</p>
+
+<p>```</p>
+
+<p>Next, I wanted to add all the bundles I already use. <code>git submodule foreach</code> can actually help here.</p>
+
+<p>``` bash
+❯ git submodule foreach git remote -v
+Entering ‘bundle/airline’
+origin  https://github.com/bling/vim-airline.git (fetch)
+origin  https://github.com/bling/vim-airline.git (push)
+Entering ‘bundle/characterize’
+origin  https://github.com/tpope/vim-characterize.git (fetch)
+origin  https://github.com/tpope/vim-characterize.git (push)</p>
+
+<p>[…]
+```</p>
+
+<p>I then just copied the GitHub user and repository name (the path portion of the remote URL minus “.git”) and passed that to Vundle’s <code>Bundle</code> command.</p>
+
+<p>``` vim
+“ Better status line
+Bundle ‘bling/vim-airline’</p>
+
+<p>” ga for character descriptions
+Bundle ‘tpope/vim-characterize’</p>
+
+<p>[…]
+```</p>
+
+<p>Now we need to remove the existing submodules. One of the big pains of using <code>git</code> submodules is removing them when you no longer need them. This made trying out plugins harder than it needed to be, and it makes the transition to Vundle a bit more complicated.</p>
+
+<p>I reference <a href="http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule">this Stack Overflow post about removing <code>git</code> submodules</a> every time I need to remove a plugin I was just trying out without fail. The command to remember is <code>git submodule deinit</code>. You can <code>deinit</code> all submodules in a given directory all at once.</p>
+
+<p>``` bash
+❯ git submodule deinit bundle/
+Cleared directory ‘bundle/airline’
+Submodule ‘bundle/airline’ (https://github.com/bling/vim-airline.git) unregistered for path ‘bundle/airline’
+Cleared directory ‘bundle/characterize’
+Submodule ‘bundle/characterize’ (https://github.com/tpope/vim-characterize.git) unregistered for path ‘bundle/characterize’</p>
+
+<p>[…]
+```</p>
+
+<p>Then you need to explicitly remove all the bundles. Since Vundle is already in <code>bundle/vundle</code>, we need to remove each separate plugin bundle directory instead of blowing away the entire <code>bundle/</code> directory.</p>
+
+<p>``` bash
+❯ git rm bundle/airline bundle/characterize […]
+rm ‘bundle/airline’
+rm ‘bundle/characterize’</p>
+
+<p>[…]
+```</p>
+
+<p>It woud be a good idea to commit your staged changes here, which at this point should just be submodule removal.</p>
+
+<p>If you were using Pathogen, don’t forget to remove any setup from your <code>vimrc</code>.</p>
+
+<p>``` vim
+“ Store pathogen itself in bundle/
+runtime! bundle/pathogen/autoload/pathogen.vim</p>
+
+<p>” Start it up
+silent! call pathogen#infect()
+silent! call pathogen#helptags()
+```</p>
+
+<p>It also helps to add <code>bundle/</code> to your <code>.gitignore</code>. Vundle now puts all plugins there, but you don’t have to manually manage them any more.. Just add <code>bundle/**</code> to your <code>vim</code> environment’s <code>.gitignore</code> file.</p>
+
+<p>Now, open up <code>vim</code> and run <code>:BundleInstall</code>. All your <code>vim</code> bundles will be cloned and managed by Vundle, and you don’t have to worry about updating submodules and running <code>git submodule foreach</code> everywhere you have a <code>vim</code> environment.</p>
+
+<p>To update and migrate any existing <code>vim</code> environments on other machines, <code>git pull</code> in the migration changes, which shouldn’t conflict as long as you were up to date to the commit before the migration. Then clone Vundle with <code>git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle</code> and install your plugins with <code>vim +BundleInstall +qall</code>.</p>
+
+<p>If you <em>were not</em> up to date to right before your migration changes, you’ll probably have to manually remove all submodules by following the instructions above and resolve some conflicts when pulling changes in. Since you’re trying to delete all of <code>bundle/</code>, this should be relatively painless: just delete <code>bundle/</code> and <code>git rebase --skip</code> any submodule update commits.</p>
+
+<p>And now you’re using Vundle! Add some new bundles into your <code>vimrc</code>, run <code>:BundleInstall</code>, and you’re up and running. I found some that I’m going to try out in <a href="https://gist.github.com/joegoggins/8482408">joegoggins’s vimrc</a> and in <a href="https://github.com/gmarik/Vundle.vim#quick-start">the Vundle setup documentation</a>.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Quickly convert Unix timestamps]]></title>
@@ -292,68 +402,6 @@ was incredibly helpful. I encourage anyone who uses syntastic to do the same.</p
 
 <p>Syntastic has already helped me avoid many typos and silly errors that would ordinarily be hard to
 track down. It’s an invaluable tool in my workflow.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Handle Pattern]]></title>
-    <link href="http://blog.thomasupton.com/2012/03/the-handle-pattern"/>
-    <updated>2012-03-25T13:12:06-05:00</updated>
-    <id>http://blog.thomasupton.com/2012/03/the-handle-pattern</id>
-    <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
-
-<p>``` javascript
-var subscriber = (function() {</p>
-
-<pre><code>var _listeners = {};
-    
-var s = {
-    // Listen to a channel and call a callback when that channel fires
-    listen: function(channel, cb) {
-        // Add the callback to the list of listeners on the given channel
-        _listeners[channel] = _listeners[channel] || [];
-        _listeners[channel].push(cb);
-        
-        return {
-            // Return an object that can be used to remove the callback from the channel
-            unlisten: function() {
-                // Remove the callback from the list of listeners on that channel
-                _listeners[channel].splice(_listeners[channel].indexOf(cb), 1);
-            }
-        }
-    },
-    
-    // Manually fire events on a given channel.
-    publish: function(channel) {
-        _listeners[channel] = _listeners[channel] || [];
-        _listeners[channel].forEach(function(cb) {
-            cb();
-        });
-    }
-};
-
-return s; })();
-</code></pre>
-
-<p>var h = subscriber.listen(‘update’, function() {
-    console.log(‘The update event was fired!’);
-});</p>
-
-<p>subscriber.publish(‘update’); // &gt; “The update event was fired!”</p>
-
-<p>h.unlisten();</p>
-
-<p>subscriber.publish(‘update’); // &gt; <no output="">
-```</no></p>
-
-<p>When you have an event-driven application, like a Javascript app that performs actions based on user interaction or based on back end “pushes” to a listening front end, you often have a central “publisher” that handles firing events when certain actions occur. It makes sense to have a static <code>listen</code> function that takes a “channel” and a callback function to call when that channel gets updated. The problem comes when you have to decide how to <em>stop</em> listening to that channel. If you go with a static <code>unlisten</code> function on the publisher with the same signature as <code>listen</code> (the channel and callback), you need to keep track of which callback is listening to which channel, and it can get messy.</p>
-
-<p>Instead, <code>listen</code> can return a <code>handle</code>, which is just an object that contains a method <code>unlisten</code> that knows exactly how to stop listening on the specific channel and with the specific callback that was given to <code>listen</code>. Then, the caller just needs to keep track of the return values of <code>listen</code> (as opposed to the <em>arguments</em> to <code>listen</code>) in order to be able to <code>unlisten</code> later.</p>
-
-<p>The <a href="http://dojotoolkit.org/">Dojo</a> <a href="http://dojotoolkit.org/reference-guide/1.7/dojo/Stateful.html">Stateful</a> interface uses this pattern to watch values on objects. If you watch a property, a callback can be fired each time that property changes. The return value of <code>watch</code> is a handle that can be used to stop watching that particular property value.</p>
-
-<p>Feel free to <a href="http://jsfiddle.net/tupton/nZKQz/">play around with this code on JSFiddle</a>.</p>
-
 ]]></content>
   </entry>
   

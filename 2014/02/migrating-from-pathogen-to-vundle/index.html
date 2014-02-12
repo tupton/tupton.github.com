@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Migrating from Pathogen to Vundle - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="A place where Thomas Upton talks about music, code, coffee, and anything else he fancies.">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-332267-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://www.google.com/search?q=site%3Ablog.thomasupton.com" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.thomasupton.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Migrating From Pathogen to Vundle</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-11T19:41:00-06:00" pubdate data-updated="true">February 11, 2014</time>
+        
+        &middot; <a href="">&infin;</a>
+        &middot; 
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="http://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2014%2F02%2Fmigrating-from-pathogen-to-vundle&title=Migrating%20from%20Pathogen%20to%20Vundle"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>For <a href="http://blog.thomasupton.com/2012/02/configuration/">a while now</a>, I’ve been using <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins as bundles. I thought I was making things easier for myself by <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">using <code>git</code> submodules to help organize those plugins</a>, but submodules aren’t the best method for deploying a <code>vim</code> environment in multiple places.</p>
+
+<p>Fortunately for me, other, smarter people did this same thing and decided to fix it. This <a href="http://jameslaicreative.com/moving-up-upgrading-from-pathogen-to-vundle/">blog post by James Lai</a> details moving from almost the exact same system as mine to <a href="https://github.com/gmarik/vundle">Vundle</a>, a newer and very <code>vim</code>-centric way of managing plugins. You list your plugins in your <code>vimrc</code>, you update them with <code>vim</code> (even though they are managed with <code>git</code>), and your <code>vim</code> environment is consistent everywhere.</p>
+
+<p>I just migrated from Pathogen to Vundle, and I want to document the process.</p>
+
+<p>First things first: clone Vundle into your <code>bundle/</code> directory.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git clone https://github.com/gmarik/vundle.git bundle/vundle
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The <a href="https://github.com/gmarik/Vundle.vim#quick-start">Vundle quick start guide</a> does a great job of getting you started, so if you’re just looking to use Vundle without any prior bundle management, I would start there. If you were managing your <code>vim</code> plugins with Pathogen and <code>git</code> submodules, the switch to Vundle is straightforward but requires a few more steps.</p>
+
+<p>At the top of <a href="https://github.com/tupton/vim-support/blob/master/vimrc">my <code>vimrc</code></a> I added a new Vundle-specific section and added the code from the quick start guide.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Of course</span>
+</span><span class="line"><span class="k">set</span> <span class="nb">nocompatible</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; Required Vundle setup</span>
+</span><span class="line"><span class="k">filetype</span> off
+</span><span class="line"><span class="k">set</span> <span class="nb">runtimepath</span><span class="p">+=~</span><span class="sr">/.vim/</span>bundle/vundle
+</span><span class="line"><span class="k">call</span> vundle#rc<span class="p">()</span>
+</span><span class="line">
+</span><span class="line">Bundle <span class="s1">&#39;gmarik/vundle&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Next, I wanted to add all the bundles I already use. <code>git submodule foreach</code> can actually help here.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git submodule foreach git remote -v
+</span><span class="line">Entering <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">origin  https://github.com/bling/vim-airline.git <span class="o">(</span>fetch<span class="o">)</span>
+</span><span class="line">origin  https://github.com/bling/vim-airline.git <span class="o">(</span>push<span class="o">)</span>
+</span><span class="line">Entering <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">origin  https://github.com/tpope/vim-characterize.git <span class="o">(</span>fetch<span class="o">)</span>
+</span><span class="line">origin  https://github.com/tpope/vim-characterize.git <span class="o">(</span>push<span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I then just copied the GitHub user and repository name (the path portion of the remote URL minus “.git”) and passed that to Vundle’s <code>Bundle</code> command.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Better status line</span>
+</span><span class="line">Bundle <span class="s1">&#39;bling/vim-airline&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; ga for character descriptions</span>
+</span><span class="line">Bundle <span class="s1">&#39;tpope/vim-characterize&#39;</span>
+</span><span class="line">
+</span><span class="line">[...]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Now we need to remove the existing submodules. One of the big pains of using <code>git</code> submodules is removing them when you no longer need them. This made trying out plugins harder than it needed to be, and it makes the transition to Vundle a bit more complicated.</p>
+
+<p>I reference <a href="http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule">this Stack Overflow post about removing <code>git</code> submodules</a> every time I need to remove a plugin I was just trying out without fail. The command to remember is <code>git submodule deinit</code>. You can <code>deinit</code> all submodules in a given directory all at once.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git submodule deinit bundle/
+</span><span class="line">Cleared directory <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">Submodule <span class="s1">&#39;bundle/airline&#39;</span> <span class="o">(</span>https://github.com/bling/vim-airline.git<span class="o">)</span> unregistered <span class="k">for </span>path <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">Cleared directory <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">Submodule <span class="s1">&#39;bundle/characterize&#39;</span> <span class="o">(</span>https://github.com/tpope/vim-characterize.git<span class="o">)</span> unregistered <span class="k">for </span>path <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then you need to explicitly remove all the bundles. Since Vundle is already in <code>bundle/vundle</code>, we need to remove each separate plugin bundle directory instead of blowing away the entire <code>bundle/</code> directory.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git rm bundle/airline bundle/characterize <span class="o">[</span>...<span class="o">]</span>
+</span><span class="line">rm <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">rm <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It woud be a good idea to commit your staged changes here, which at this point should just be submodule removal.</p>
+
+<p>If you were using Pathogen, don’t forget to remove any setup from your <code>vimrc</code>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Store pathogen itself in bundle/</span>
+</span><span class="line">runtime<span class="p">!</span> bundle<span class="sr">/pathogen/</span>autoload/pathogen.<span class="k">vim</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; Start it up</span>
+</span><span class="line"><span class="k">silent</span><span class="p">!</span> <span class="k">call</span> pathogen#infect<span class="p">()</span>
+</span><span class="line"><span class="k">silent</span><span class="p">!</span> <span class="k">call</span> pathogen#<span class="k">helptags</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It also helps to add <code>bundle/</code> to your <code>.gitignore</code>. Vundle now puts all plugins there, but you don’t have to manually manage them any more.. Just add <code>bundle/**</code> to your <code>vim</code> environment’s <code>.gitignore</code> file.</p>
+
+<p>Now, open up <code>vim</code> and run <code>:BundleInstall</code>. All your <code>vim</code> bundles will be cloned and managed by Vundle, and you don’t have to worry about updating submodules and running <code>git submodule foreach</code> everywhere you have a <code>vim</code> environment.</p>
+
+<p>To update and migrate any existing <code>vim</code> environments on other machines, <code>git pull</code> in the migration changes, which shouldn’t conflict as long as you were up to date to the commit before the migration. Then clone Vundle with <code>git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle</code> and install your plugins with <code>vim +BundleInstall +qall</code>.</p>
+
+<p>If you <em>were not</em> up to date to right before your migration changes, you’ll probably have to manually remove all submodules by following the instructions above and resolve some conflicts when pulling changes in. Since you’re trying to delete all of <code>bundle/</code>, this should be relatively painless: just delete <code>bundle/</code> and <code>git rebase --skip</code> any submodule update commits.</p>
+
+<p>And now you’re using Vundle! Add some new bundles into your <code>vimrc</code>, run <code>:BundleInstall</code>, and you’re up and running. I found some that I’m going to try out in <a href="https://gist.github.com/joegoggins/8482408">joegoggins’s vimrc</a> and in <a href="https://github.com/gmarik/Vundle.vim#quick-start">the Vundle setup documentation</a>.</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-11T19:41:00-06:00" pubdate data-updated="true">February 11, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/code/'>Code</a>, <a class='category' href='/categories/howto/'>Howto</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/10/quickly-convert-unix-timestamps" title="Previous Post: Quickly convert Unix timestamps">&laquo; Quickly convert Unix timestamps</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/quickly-convert-unix-timestamps">Quickly convert Unix timestamps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/octopress">Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/05/syntastic">Syntastic</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
