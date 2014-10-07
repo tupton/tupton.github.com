@@ -24,7 +24,7 @@ I just migrated from Pathogen to Vundle, and I want to document the process.
 First things first: clone Vundle into your `bundle/` directory.
 
 ``` bash
-❯ git clone https://github.com/gmarik/vundle.git bundle/vundle
+❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
 ```
 
 The [Vundle quick start guide][vundle-qs] does a great job of getting you started, so if you're just looking to use Vundle without any prior bundle management, I would start there. If you were managing your `vim` plugins with Pathogen and `git` submodules, the switch to Vundle is straightforward but requires a few more steps.
