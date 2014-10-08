@@ -1,24 +1,1042 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[{{ site.title }}]]></title>
-  <link href="{{ site.url }}/atom.xml" rel="self"/>
-  <link href="{{ site.url }}/"/>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>{{ site.url }}/</id>
+  <title><![CDATA[Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2014-10-08T14:13:01-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
   <author>
-    <name><![CDATA[{{ site.author | strip_html }}]]></name>
-    {% if site.email %}<email><![CDATA[{{ site.email }}]]></email>{% endif %}
+    <name><![CDATA[Thomas Upton]]></name>
+    
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  {% for post in site.posts limit: 20 %}
+  
   <entry>
-    <title type="html"><![CDATA[{{ post.title | cdata_escape }}]]></title>
-    <link href="{{ site.url }}{{ post.url }}"/>
-    <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>{{ site.url }}{{ post.id }}</id>
-    <content type="html"><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape }}]]></content>
+    <title type="html"><![CDATA[Migrating from Pathogen to Vundle]]></title>
+    <link href="http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle"/>
+    <updated>2014-02-11T19:41:00-06:00</updated>
+    <id>http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle</id>
+    <content type="html"><![CDATA[<p>For <a href="http://blog.thomasupton.com/2012/02/configuration/">a while now</a>, I’ve been using <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins as bundles. I thought I was making things easier for myself by <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">using <code>git</code> submodules to help organize those plugins</a>, but submodules aren’t the best method for deploying a <code>vim</code> environment in multiple places.</p>
+
+<p>Fortunately for me, other, smarter people did this same thing and decided to fix it. This <a href="http://jameslaicreative.com/moving-up-upgrading-from-pathogen-to-vundle/">blog post by James Lai</a> details moving from almost the exact same system as mine to <a href="https://github.com/gmarik/vundle">Vundle</a>, a newer and very <code>vim</code>-centric way of managing plugins. You list your plugins in your <code>vimrc</code>, you update them with <code>vim</code> (even though they are managed with <code>git</code>), and your <code>vim</code> environment is consistent everywhere.</p>
+
+<p>I just migrated from Pathogen to Vundle, and I want to document the process.</p>
+
+<p>First things first: clone Vundle into your <code>bundle/</code> directory.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The <a href="https://github.com/gmarik/Vundle.vim#quick-start">Vundle quick start guide</a> does a great job of getting you started, so if you’re just looking to use Vundle without any prior bundle management, I would start there. If you were managing your <code>vim</code> plugins with Pathogen and <code>git</code> submodules, the switch to Vundle is straightforward but requires a few more steps.</p>
+
+<p>At the top of <a href="https://github.com/tupton/vim-support/blob/master/vimrc">my <code>vimrc</code></a> I added a new Vundle-specific section and added the code from the quick start guide.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Of course</span>
+</span><span class="line"><span class="k">set</span> <span class="nb">nocompatible</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; Required Vundle setup</span>
+</span><span class="line"><span class="k">filetype</span> off
+</span><span class="line"><span class="k">set</span> <span class="nb">runtimepath</span><span class="p">+=~</span><span class="sr">/.vim/</span>bundle/vundle
+</span><span class="line"><span class="k">call</span> vundle#rc<span class="p">()</span>
+</span><span class="line">
+</span><span class="line">Bundle <span class="s1">&#39;gmarik/vundle&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Next, I wanted to add all the bundles I already use. <code>git submodule foreach</code> can actually help here.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git submodule foreach git remote -v
+</span><span class="line">Entering <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">origin  https://github.com/bling/vim-airline.git <span class="o">(</span>fetch<span class="o">)</span>
+</span><span class="line">origin  https://github.com/bling/vim-airline.git <span class="o">(</span>push<span class="o">)</span>
+</span><span class="line">Entering <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">origin  https://github.com/tpope/vim-characterize.git <span class="o">(</span>fetch<span class="o">)</span>
+</span><span class="line">origin  https://github.com/tpope/vim-characterize.git <span class="o">(</span>push<span class="o">)</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I then just copied the GitHub user and repository name (the path portion of the remote URL minus “.git”) and passed that to Vundle’s <code>Bundle</code> command.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Better status line</span>
+</span><span class="line">Bundle <span class="s1">&#39;bling/vim-airline&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; ga for character descriptions</span>
+</span><span class="line">Bundle <span class="s1">&#39;tpope/vim-characterize&#39;</span>
+</span><span class="line">
+</span><span class="line">[...]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Now we need to remove the existing submodules. One of the big pains of using <code>git</code> submodules is removing them when you no longer need them. This made trying out plugins harder than it needed to be, and it makes the transition to Vundle a bit more complicated.</p>
+
+<p>I reference <a href="http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule">this Stack Overflow post about removing <code>git</code> submodules</a> every time I need to remove a plugin I was just trying out without fail. The command to remember is <code>git submodule deinit</code>. You can <code>deinit</code> all submodules in a given directory all at once.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git submodule deinit bundle/
+</span><span class="line">Cleared directory <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">Submodule <span class="s1">&#39;bundle/airline&#39;</span> <span class="o">(</span>https://github.com/bling/vim-airline.git<span class="o">)</span> unregistered <span class="k">for </span>path <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">Cleared directory <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">Submodule <span class="s1">&#39;bundle/characterize&#39;</span> <span class="o">(</span>https://github.com/tpope/vim-characterize.git<span class="o">)</span> unregistered <span class="k">for </span>path <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then you need to explicitly remove all the bundles. Since Vundle is already in <code>bundle/vundle</code>, we need to remove each separate plugin bundle directory instead of blowing away the entire <code>bundle/</code> directory.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">❯ git rm bundle/airline bundle/characterize <span class="o">[</span>...<span class="o">]</span>
+</span><span class="line">rm <span class="s1">&#39;bundle/airline&#39;</span>
+</span><span class="line">rm <span class="s1">&#39;bundle/characterize&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It woud be a good idea to commit your staged changes here, which at this point should just be submodule removal.</p>
+
+<p>If you were using Pathogen, don’t forget to remove any setup from your <code>vimrc</code>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Store pathogen itself in bundle/</span>
+</span><span class="line">runtime<span class="p">!</span> bundle<span class="sr">/pathogen/</span>autoload/pathogen.<span class="k">vim</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&quot; Start it up</span>
+</span><span class="line"><span class="k">silent</span><span class="p">!</span> <span class="k">call</span> pathogen#infect<span class="p">()</span>
+</span><span class="line"><span class="k">silent</span><span class="p">!</span> <span class="k">call</span> pathogen#<span class="k">helptags</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It also helps to add <code>bundle/</code> to your <code>.gitignore</code>. Vundle now puts all plugins there, but you don’t have to manually manage them any more.. Just add <code>bundle/**</code> to your <code>vim</code> environment’s <code>.gitignore</code> file.</p>
+
+<p>Now, open up <code>vim</code> and run <code>:BundleInstall</code>. All your <code>vim</code> bundles will be cloned and managed by Vundle, and you don’t have to worry about updating submodules and running <code>git submodule foreach</code> everywhere you have a <code>vim</code> environment.</p>
+
+<p>To update and migrate any existing <code>vim</code> environments on other machines, <code>git pull</code> in the migration changes, which shouldn’t conflict as long as you were up to date to the commit before the migration. Then clone Vundle with <code>git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle</code> and install your plugins with <code>vim +BundleInstall +qall</code>.</p>
+
+<p>If you <em>were not</em> up to date to right before your migration changes, you’ll probably have to manually remove all submodules by following the instructions above and resolve some conflicts when pulling changes in. Since you’re trying to delete all of <code>bundle/</code>, this should be relatively painless: just delete <code>bundle/</code> and <code>git rebase --skip</code> any submodule update commits.</p>
+
+<p>And now you’re using Vundle! Add some new bundles into your <code>vimrc</code>, run <code>:BundleInstall</code>, and you’re up and running. I found some that I’m going to try out in <a href="https://gist.github.com/joegoggins/8482408">joegoggins’s vimrc</a> and in <a href="https://github.com/gmarik/Vundle.vim#quick-start">the Vundle setup documentation</a>.</p>
+
+]]></content>
   </entry>
-  {% endfor %}
+  
+  <entry>
+    <title type="html"><![CDATA[Quickly convert Unix timestamps]]></title>
+    <link href="http://blog.thomasupton.com/2013/10/quickly-convert-unix-timestamps"/>
+    <updated>2013-10-20T10:03:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2013/10/quickly-convert-unix-timestamps</id>
+    <content type="html"><![CDATA[<p>Inevitably, when dealing with time-related data, one will come across Unix timestamps. They’re
+great; there’s no guessing the timezone or trying to parse difficult formats and they’re generally
+extremely useful.</p>
+
+<p>Except they’re not very readable to humans. I use <a href="http://www.epochconverter.com/">Epoch Converter</a> <em>a lot</em> when I’m dealing
+with time-series data, which seems to be fairly often recently. Anything involving a calendar or
+picking a time range also usually involves timestamps. I thought there must be an easier way to
+convert these into something that I can read without going to an external site and that doesn’t
+break down when I’m trying to do work with finnicky or non-existant network connection.</p>
+
+<p>There is:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">date -j -f <span class="s2">&quot;%s&quot;</span> <span class="s2">&quot;1381528800&quot;</span> +<span class="s2">&quot;%a %b %d %T %Z %Y&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>An explanation: <code>-j</code> tells <code>date</code> not to try to set the system date. <code>-f</code> describes the format of
+the input - a timestamp, of course - and the input itself follows. The string after <code>+</code> is the
+output format. The output of the above is as follows.</p>
+
+<pre><code>Fri Oct 11 17:00:00 CDT 2013
+</code></pre>
+
+<p>You can use <code>xargs</code> to pipe input in. Note that the <code>-J</code> option might be different on systems that
+are not OS X.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nb">echo</span> -n <span class="s2">&quot;1381528800&quot;</span> | xargs -J <span class="o">{}</span> date -j -f <span class="s2">&quot;%s&quot;</span> <span class="o">{}</span> +<span class="s2">&quot;%a %b %d %T %Z %Y&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Like I seem to do with a lot of my utility scripts, I added a workflow to Alfred. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Convert%20timestamp%20to%20date.alfredworkflow">get it
+here</a>. Simply invoke Alfred, type “ts” followed by a space and the timestamp you want to
+convert. The readable date will be posted as a notification (Growl or Notification Center,
+configurable in the Advanced section of the Alfred settings) and copied to the clipboard.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Remove leading whitespace]]></title>
+    <link href="http://blog.thomasupton.com/2013/10/remove-leading-whitespace"/>
+    <updated>2013-10-13T14:28:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2013/10/remove-leading-whitespace</id>
+    <content type="html"><![CDATA[<p>Sometimes it’s useful to copy some code from a file and paste it somewhere else as an example. For
+instance, I like to write code in a <a href="http://jsfiddle.net/">jsfiddle</a> and then paste a relevant subset of that
+code to a <a href="http://stackoverflow.com/">Stack Overflow</a> answer. I have also copied code from a project file to paste into
+HipChat to quickly explain something to a coworker, or to paste into a JIRA ticket as a comment.</p>
+
+<p>If you copy code from the middle of a file, there’s usually some leading whitespace on all lines
+that you do not want to preserve in the context into which you are pasting the code. The problem is
+that you don’t want to get rid of <em>all</em> leading whitespace on <em>all</em> lines; you want to keep the
+indentation intact. I usually get rid of the unwanted whitespace by manually deleting it
+if it’s only one or two lines or by pasting into a new <code>vim</code> buffer and using <code>&lt;&lt;</code> to shift the text
+over as much as desired.</p>
+
+<p>To illustrate, I have this text:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line">    <span class="kd">var</span> <span class="nx">flatten</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">next_array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current result&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+</span><span class="line">        <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">next_array</span><span class="p">);</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line">
+</span><span class="line">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</span><span class="line">        <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">flatten</span><span class="p">,</span> <span class="p">[]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>and I want this text:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nx">flatten</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">next_array</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;current result&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">next_array</span><span class="p">);</span>
+</span><span class="line"><span class="p">};</span>
+</span><span class="line">
+</span><span class="line"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</span><span class="line">    <span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">flatten</span><span class="p">,</span> <span class="p">[]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="remove-leading-whitespace">Remove leading whitespace</h2>
+
+<p>I knew there must be a way to remove the shortest leading whitespace from all lines
+programmatically, but I’m not familiar enough with <code>awk</code>, <code>sed</code>, or shell scripting in general to
+tackle the problem. I <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908">asked the question on Stack Overflow</a> and got a few great answers. I
+ended up accepting <a href="http://stackoverflow.com/questions/19328975/remove-shortest-leading-whitespace-from-all-lines/19332908#19332908">the single process <code>awk</code> version</a>.</p>
+
+<p>If you use OS X, the built-in <code>awk</code> will not work with the given solution. If you use
+<a href="http://brew.sh/">Hombrew</a>, fixing that is just a simple matter of <code>brew install gawk</code> and using <code>gawk</code> instead
+of <code>awk</code>.</p>
+
+<p>The given solution has a great explanation and works fine, but I made one addition. If the input is
+a single line with <em>no</em> leading whitespace, the script fails. I fixed this with <code>if (!s) s=0;</code> at
+the beginning of the <code>END</code> block.</p>
+
+<p>The final version of my command looks like this. I’ve added some comments to explain what’s going
+on.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">gawk  -F <span class="s1">&#39;\\S.*&#39;</span> <span class="se">\ </span>             <span class="c"># The awk field separator is everything after the first non-whitespace character, inclusive</span>
+</span><span class="line"><span class="s1">&#39;{                              # The first block of the awk program</span>
+</span><span class="line"><span class="s1">    l=length($1);               # The length of the first field, the leading whitespace</span>
+</span><span class="line"><span class="s1">    if(l&gt;0)                     # If the length of whitespace is non-zero,</span>
+</span><span class="line"><span class="s1">        if(NR==1)               # and this is the first record,</span>
+</span><span class="line"><span class="s1">            s=l;                # make &#39;</span>s<span class="s1">&#39;, the number of whitespace characters, equal to its length</span>
+</span><span class="line"><span class="s1">    else s=s&gt;l?l:s;             # otherwise, make s the shorter of itself and the current whitespace</span>
+</span><span class="line"><span class="s1">    a[NR]=$0                    # Index the entire line in an array by line number</span>
+</span><span class="line"><span class="s1">}                               # End of the first block of the awk program</span>
+</span><span class="line">
+</span><span class="line"><span class="s1">END{                            # Start the END, printing block of the awk program</span>
+</span><span class="line"><span class="s1">    if(!s)s=0;                  # Make sure we always have a value for s</span>
+</span><span class="line"><span class="s1">    for(i=1;i&lt;=NR;i++){         # Loop over all records</span>
+</span><span class="line"><span class="s1">        sub(&quot;^ {&quot;s&quot;}&quot;,&quot;&quot;,a[i]); # Substitute &#39;</span>s<span class="s1">&#39; whitespace characters with nothing</span>
+</span><span class="line"><span class="s1">        print a[i];             # Print the line after substition</span>
+</span><span class="line"><span class="s1">    }                           # End of the loop over records</span>
+</span><span class="line"><span class="s1">}&#39;</span>                              <span class="c"># End of the END block of the awk program</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It is worth noting that this probably only works on text with spaces for whitespace, not
+tabs or mixed whitespace.</p>
+
+<h2 id="integrate-with-an-alfred-workflow">Integrate with an Alfred workflow</h2>
+
+<p>The ability to remove the shortest leading whitespace with a shell command is great, but I really
+wanted a way to do this quickly with text on the clipboard. <a href="http://support.alfredapp.com/workflows">Alfred workflows</a> make that
+possible.</p>
+
+<p>I created a simple three step workflow with a hotkey trigger, a script action, and a clipboard
+output. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Paste-shifted-text.alfredworkflow">download it here</a> and use it with Alfred 2.</p>
+
+<p>And now you can copy code in context and paste it with no leading whitespace wherever you want!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Batch Deleting Last.fm Scrobbles]]></title>
+    <link href="http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles"/>
+    <updated>2012-08-12T20:06:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles</id>
+    <content type="html"><![CDATA[<p>I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use <a href="http://meloapp.com/faq/">Melo</a> to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it’s there.</p>
+
+<p>I’m not entirely sure if Melo, iTunes, or <a href="http://last.fm/">Last.fm</a> is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.</p>
+
+<p>I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn’t have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.</p>
+
+<p>That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#deletablert a.delete&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</span><span class="line"><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.</p>
+
+<p><img src="http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png" alt="Batch deleting Last.fm scrobbles." title="Last.fm Batch Delete" /></p>
+
+<p>Since <a href="http://jquery.com/">jQuery</a> is already embedded in Last.fm’s pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it’s done, I can click
+the link to the previous page and repeat.</p>
+
+<p>I don’t expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you’ve been listening to too much Carly Rae Jepsen.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Duplicate Posts In The Feed]]></title>
+    <link href="http://blog.thomasupton.com/2012/07/duplicate-posts-in-the-feed"/>
+    <updated>2012-07-26T09:23:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/07/duplicate-posts-in-the-feed</id>
+    <content type="html"><![CDATA[<p>When I first switched over to Octopress, the feed for this site was completely new. The last
+twenty or so posts showed up as new again, and it was kind of annoying.</p>
+
+<p>I realized yesterday that my site was still configured to be hosted on <a href="http://tupton.github.com">tupton.github.com</a>, so
+I switched it to <a href="http://blog.thomasupton.com">blog.thomasupton.com</a>. This must have reset the site’s feed again, causing
+recent posts to show up as unread.</p>
+
+<p>This should hopefully be the last time that happens, and hopefully it wasn’t too hard to mark all
+posts from this site as read. I apologize for any inconvenience.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress]]></title>
+    <link href="http://blog.thomasupton.com/2012/07/octopress"/>
+    <updated>2012-07-19T23:05:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/07/octopress</id>
+    <content type="html"><![CDATA[<p>This blog is now being served by <a href="http://pages.github.com/">GitHub Pages</a> (<a href="https://github.com/tupton/tupton.github.com">source</a>) by way of <a href="http://octopress.org/">Octopress</a>. I’ve
+tried to set up some redirects from the old site that should match up pretty well, but please let me
+know if something looks awry.</p>
+
+<p>There aren’t any site comments here anymore, so feel free to let me know on Twitter
+<a href="https://twitter.com/thomasupton">@thomasupton</a> or email.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reading My News]]></title>
+    <link href="http://blog.thomasupton.com/2012/07/reading-my-news"/>
+    <updated>2012-07-12T18:12:22-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/07/reading-my-news</id>
+    <content type="html"><![CDATA[<p>I’ve used Google Reader for a long time, but I’ve never been completely satisfied with using it to
+read and keep up with RSS feeds. Apps like <a href="http://flipboard.com/">Flipboard</a> on the iPad provide a better
+reading experience for traditionally “newsy” outlets – I enjoy flipping through the feeds from <em>The
+New Yorker</em>, <em>The Economist</em>, and <em>The Atlantic</em> – but following feeds where every item is of
+personal interest to me doesn’t make much sense in that context, and it’s iOS-only. I had used
+<a href="http://netnewswireapp.com/">NetNewsWire</a> a few times in the past, but I never stuck with it for some reason. It’s
+a great app, but I would constantly get distracted by that big red badge with a huge number of
+unread items in it.</p>
+
+<p>I realized that my problem wasn’t really the apps I was using. What really made reading my feeds
+imperfect – or even tedious – was the number of feeds I had and <em>how</em> I was reading them. I decided
+to revisit NetNewsWire and check out an app on iOS that I had heard great things about.</p>
+
+<h2 id="prune">Prune</h2>
+
+<p>The first key to revamping my news reading was pruning my subscriptions. I had way too many
+high-traffic feeds, and I wasn’t even reading 1% of some of them. I would go through all my feeds
+and folders and mark everything as read every few days<sup id="fnref:too-long"><a href="#fn:too-long" class="footnote">1</a></sup> just to keep up and feel like I
+wasn’t overwhelmed.</p>
+
+<p>I got rid of feeds from sites like <a href="http://www.lamebook.com/">Lamebook</a>, which is hilarious, but I don’t need to
+read every single item, and <a href="http://www.absolutepunk.net/">Absolute Punk</a>, which is a great source for music news, but I only
+want to read a very small portion of those stories. I get my fix from these sites by visiting them
+every few days, not by trying to forge through a murky river of hundreds of RSS items that I don’t
+want to read.</p>
+
+<p>I now have 26 feeds in 8 categories,<sup id="fnref:cross-link"><a href="#fn:cross-link" class="footnote">2</a></sup> down from twice that before pruning. This is
+manageable. 50+ high-traffic feeds are not. I can read the items from these feeds quickly, and I
+can finally read “all items” without becoming overwhelmed.</p>
+
+<h2 id="netnewswire-revisited-again">NetNewsWire, revisited (again)</h2>
+
+<p>I mentioned that I had used NetNewsWire before, but it never stuck. A couple of weeks ago, I saw
+<a href="http://collindonnell.com/2012/06/29/my-netnewswire-window/">this NetNewsWire setup</a> and knew I had to try it. <code>⌘-⇧-R</code> and <code>⌘-/</code> are now my favorite
+keyboard shortcuts. Refresh, and then scroll through my unread river of items. I sort
+chronologically so I read posts “in order,” but I don’t think it actually matters much at all.
+Since I have a low number of feeds, it usually only takes a few minutes to travel through these
+unread items. Any links to things I want to check out in more depth later get a quick <code>^-P</code> to send
+to Instapaper.</p>
+
+<h2 id="reeder-on-mobile">Reeder on mobile</h2>
+
+<p>I was recently on vacation without my MacBook, but I had my iPad and still wanted to keep up with my
+news and feeds. There are plenty of other times that I’m without my computer but have a chance to
+catch up on my reading. I figured (or hoped, really) that I could make the experience of reading
+news on my iPhone and iPad just as great as it is with NetNewsWire at my desk.</p>
+
+<p>I had heard great things about <a href="http://reederapp.com/">Reeder</a> on iOS, but I was skeptical that it could work for
+me. It turns out I can get nearly the same river of news setup as NetNewsWire in Reeder. Unread
+items can be sorted in chronological order, and moving to the next item is just a matter of swiping
+up.</p>
+
+<p>The end result is that I have a streamlined way to catch up on news that’s important to me as
+quickly as possible, no matter where I am. I spend less time fiddling with news items I don’t really
+care about, less time out of my day being distracted by the latest hot article,<sup id="fnref:distract"><a href="#fn:distract" class="footnote">3</a></sup> and more
+time doing what I want and need to do.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:too-long">
+      <p>I did this ritual for far too long before I realized it needed to end. Old habits die hard. <a href="#fnref:too-long" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:cross-link">
+      <p>I’ve noticed that a lot of sites and blogs I read will “cross-post” each other’s items. This sounds like it might be annoying to have to read about the same things in multiple places, but usually one of two things happens: either the cross-posting contains a bit of insightful back-and-forth on a topic, or multiple people link to a great article elsewhere that I know I need to check out. I get to follow great discussions and the cream of the hot topic crop rises to the top of my news readers. Win-win for me. <a href="#fnref:cross-link" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:distract">
+      <p>If only I could figure out how to stop checking <a href="http://stellar.io/">Stellar</a> so much. <a href="#fnref:distract" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Aeropress]]></title>
+    <link href="http://blog.thomasupton.com/2012/07/aeropress"/>
+    <updated>2012-07-01T00:07:18-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/07/aeropress</id>
+    <content type="html"><![CDATA[<p><img src="http://farm9.staticflickr.com/8161/7476327252_8acfa39cbb_z_d.jpg" alt="Aeropress" /></p>
+
+<p>I don’t think I’ll be using my Keurig much anymore.</p>
+
+<p>I’m extremely late to this party, but I only recently discovered Aerobie’s <a href="http://aerobie.com/products/aeropress.htm">Aeropress</a>
+coffee maker.  Yes, the company that created <a href="http://aerobie.com/products/pro.htm">those amazing ring-shaped flying discs</a>
+also sells a weird-looking coffee maker. This plunger-like contraption helps to brew what is
+probably the best cup of coffee I have ever tasted.</p>
+
+<p>At first glance, it’s similar to a French press, but because the coffee is forced through a paper
+filter instead of a coarser wire mesh, there is little to no sediment in the resulting liquid. The
+coffee is described as “espresso-strength,” and I drink it as an Americano by adding a volume of
+water equal to two times the amount of espresso. I’ve made Aeropress coffe with dark and lighter
+roasts, and every cup of coffee has been exquisite.</p>
+
+<p>If you enjoy coffee <em>at all</em>, I highly suggest you acquire an Aeropress as soon as possible. Once
+you taste its delicious brew, you’ll understand why. It’s inexpensive, quick, easy to clean, and
+delicious. There are no downsides.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Knowing The Rules]]></title>
+    <link href="http://blog.thomasupton.com/2012/06/knowing-the-rules"/>
+    <updated>2012-06-27T20:55:48-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/06/knowing-the-rules</id>
+    <content type="html"><![CDATA[<p>You’re likely to be more comfortable with many situations if you know the rules of the environment
+you’re in, including knowing its bounds and how flexible they are. </p>
+
+<p>It sounds so obvious when it’s printed on the page in front of you, but if you’re more familiar with
+a situation, it frees up your mind to focus on other things that you need to do or are good at.  You
+stop worrying about whether you’re within the acceptable bounds of your current situation and just
+do what you’re good at. “Apprehension” is usually just a term we use when we come across a situation
+that we don’t quite fully understand.</p>
+
+<p>Take, for example, the security lines at most American airports. If you place someone in that
+situation who has never been there before, it would most likely be very overwhelming. There are
+uniformed people with badges who don’t quite look like police, everyone is taking off their shoes,
+but not before they hand two important documents to one of the faux-police, and then you have to
+walk next to these weird doorway things but there are two kinds and one you have to pause in the
+middle and turn sideways and oh yeah you remembered to take <em>everything</em> out of your pockets before
+this, right? It’s overwhelming to someone who’s not familiar. To someone who travels often, however,
+it’s positively rote.</p>
+
+<p>Clearly, you don’t need to <a href="http://en.wikipedia.org/wiki/Outliers_(book)">spend ten thousand hours</a> going through security lines to
+become comfortable with air travel. Even one experience where you’re out of your element but aware
+of your surroundings helps to prepare you for the next time. It’s obvious that the more you know
+something, the better you are at it. But <em>so many</em> people seem to not take the time to learn the
+rules and boundaries and then continually “wing it” while being overly-anxious.</p>
+
+<p>An article I recently read about <a href="http://online.wsj.com/article/SB10001424052702303836404577474451463041994.html">how some anxiety is necessary</a> might initially seem like
+it’s a counterpoint to this, but there’s a big difference between being prepared and being
+complacent. Even that article mentions that you have to get the balance just right lest you become
+lazy. Sports are a great example here. You have to know the game you’re playing inside and out <em>and</em>
+have finely-honed fundamental skills so you can focus most or all of your thinking on strategy or on
+the dynamic parts of the game that your instincts cannnot help with.</p>
+
+<p>Even “simple” things, like how to interact in social situations, can be made easier if you think
+about the rules. It’s probably not a good idea to talk about that weird rash on your lower back, but
+it is a good idea to talk about a great beer you tried recently, or how the playoffs are going, or
+that you’re thinking about getting a dog. The basic rule there is “don’t be creepy.”</p>
+
+<p>The hard part is knowing the rules in the first place. That comes through experience, and sometimes
+a little research – Googling, asking your friends or family – beforehand comes in handy.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Syntastic]]></title>
+    <link href="http://blog.thomasupton.com/2012/05/syntastic"/>
+    <updated>2012-05-20T14:13:08-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/05/syntastic</id>
+    <content type="html"><![CDATA[<p>I love writing with <code>vim</code>, but — for many valid reasons — some people are averse to it. I think the
+steep (–ish) learning curve has something to do with it, but I think some people really don’t want
+to give up their IDE. The thing is, <code>vim</code> isn’t <em>just</em> a text editor. You can extend it to do pretty
+much anything, including features that normally show up in IDEs.</p>
+
+<p>I recently started using <a href="https://github.com/scrooloose/syntastic">syntastic</a>, which is a <code>vim</code> plugin that runs linters or syntax checkers
+and displays warnings and errors right in your window. IDEs like Eclipse or Xcode provide this
+syntax-checking for a couple of languages, but syntastic supports many languages and linters out of
+the box with pluggable support for nearly any language.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>If you use <a href="https://github.com/tpope/vim-pathogen">pathogen</a> like every sane <code>vim</code> user does, installing syntastic is just like any other
+plugin. Clone the repository or create a submodule in <code>bundle/syntastic</code> and you’re ready to go.</p>
+
+<p>I mainly work with Javascript, Python, HTML, and CSS, so that’s what I’ll talk about. It’s worth
+checking out the syntax checkers in <code>bundle/syntastic/syntax_checkers/</code>, even if you just look at
+the list of files there. You might have to dive into the files to figure out which linters are
+actually supported as it’s not clearly documented.</p>
+
+<p>Before we get to configuring individual syntax checkers, syntastic itself has a couple of
+configuration options. Syntastic has what it refers to as a “mode map”, which is basically just a
+way to configure which file types are checked. Here is the relevant config option from <a href="https://github.com/tupton/vim-support/blob/master/vimrc#L302">my
+vimrc</a>:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; On by default, turn it off for html</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_mode_map <span class="p">=</span> { <span class="s1">&#39;mode&#39;</span>: <span class="s1">&#39;active&#39;</span><span class="p">,</span>
+</span><span class="line">    \ <span class="s1">&#39;active_filetypes&#39;</span>: []<span class="p">,</span>
+</span><span class="line">    \ <span class="s1">&#39;passive_filetypes&#39;</span>: [<span class="s1">&#39;html&#39;</span>] }
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The ‘mode’ option set to active means that syntastic is on by default, so we can leave the list of
+‘active_filetypes’ empty. The ‘passive_filetypes’ names filetypes that syntastic does not attempt to
+check. I don’t check HTML files because I mainly work with templates that either can’t or won’t
+validate with most HTML syntax checkers. If templates use non-standard attributes, it’s hard for a
+syntax checker to do its job.</p>
+
+<h3 id="python">Python</h3>
+
+<p>Setting up syntastic for use with python was extremely easy. Just install <a href="http://pypi.python.org/pypi/pyflakes">pyflakes</a> with
+<code>pip install pyflakes</code> and set up some related options. I ignore certain errors regarding
+whitespace, indentation, and end-of-line backslashes, but those are all customizable. See the <a href="http://pep8.readthedocs.org/en/latest/intro.html#error-codes">pep8
+error code documentation</a> for an explanation of the error codes.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Use flake8</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_python_checkers <span class="p">=</span> [<span class="s1">&#39;flake8&#39;</span>]
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_python_flake8_args <span class="p">=</span> <span class="s1">&#39;--ignore=&quot;E501,E302,E261,E701,E241,E126,E127,E128,W801&quot;&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="javascript">Javascript</h3>
+
+<p>There are a number of Javascript linters, including <a href="http://www.jslint.com/">JS Lint</a> and Google’s <a href="https://developers.google.com/closure/utilities/">Closure
+linter</a>, but I decided to use the communtiy-driven <a href="http://www.jshint.com/">JS Hint</a>.  JS Hint can be
+configured with a jshintrc, which just is a JSON object that contains options. There are two
+categories of options: those that enforce stricter rules than the defaults and those that relax
+default checks. The <a href="http://www.jshint.com/options/">options page of the jshint website</a> does a great job of
+explaining each option. You can <a href="https://github.com/tupton/dotfiles/blob/master/jshintrc">view my jshintrc on my Github page</a>. I added a few
+“enforcing” options, but the only “relaxing” option I use is <code>sub</code>, which allows
+subscript notation when accessing properties, e.g. <code>this['domNode']</code> as well as <code>this.domNode</code>.</p>
+
+<p>You can tell syntastic to use jshint with the following config option:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Use jshint (uses ~/.jshintrc)</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_javascript_checkers <span class="p">=</span> [<span class="s1">&#39;jshint&#39;</span>]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="usage">Usage</h2>
+
+<p><img src="http://farm8.staticflickr.com/7085/7235544916_6f48ae8f45_o_d.png" alt="syntastic and underscore.js" /></p>
+
+<p>By default, syntastic runs your file through the configured filetype’s linter whenever the buffer is
+written. If there are errors, they are highlighted inline. When your cursor is on a line with an
+error, the description of the error is visible in the status line. You can use the <code>:Errors</code> command
+to open a quickfix window with a list of all errors in the file. Pressing enter on an error will
+take you to that line in the file. Syntastic uses <a href="http://vimdoc.sourceforge.net/htmldoc/sign.html">vim’s signs</a>, which means that a
+gutter with a sign appears on the left side of every line with an error on it, making it easy to
+scan the buffer for errors. You can change these symbols with some syntastic options.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Better :sign interface symbols</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_error_symbol <span class="p">=</span> <span class="s1">&#39;✗&#39;</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_warning_symbol <span class="p">=</span> <span class="s1">&#39;!&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>You can configure syntastic in many other ways, including telling it to check a buffer whenever it
+is opened. I explored the help file (<code>:help syntastic</code>) when I first started using syntastic, and it
+was incredibly helpful. I encourage anyone who uses syntastic to do the same.</p>
+
+<p>Syntastic has already helped me avoid many typos and silly errors that would ordinarily be hard to
+track down. It’s an invaluable tool in my workflow.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mint]]></title>
+    <link href="http://blog.thomasupton.com/2012/04/mint"/>
+    <updated>2012-04-17T18:37:38-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/04/mint</id>
+    <content type="html"><![CDATA[<p><img src="http://farm8.staticflickr.com/7180/7089520649_0beff76701_o_d.png" alt="Mint" /></p>
+
+<p>I just started using <a href="http://haveamint.com/">Mint</a> to track statistics on my site. I’ve been using Google Analytics for a long time, and I will continue to do so, but it is definitely geared more towards sites trying to earn money. Mint seemed to offer a more streamlined and customizable interface for people who just want to look at stats.</p>
+
+<p>Mint is a pluggable, extensible stats system. Mint modules are known as “peppers,” and each one provides some small functionality. There is a <a href="http://www.haveamint.com/peppermill/pepper/4/default/">default pepper</a> that provides some basic stats functionality like page views, unique visitors, search terms that brought those visitors to your site, and which pages they are looking at. There are a large number of official and community peppers over at the Peppermill that offer much more functionality and statistical views.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Installing Mint was a breeze. I just followed the simple instructions and I was good to go. If you have unfettered access to your server (via <code>ssh</code>) you should have no issues.</p>
+
+<h3 id="issues-with-modpagespeed">Issues with mod_pagespeed</h3>
+
+<p>I did run into a couple strange display issues when I went to view my Mint stats. Each pane took up the maximum width when it was opened. Even though I could view all my stats, the interface didn’t look good. After posting in the forum and fruitlessly trying to edit the Mint source code, I disabled <a href="http://code.google.com/speed/page-speed/docs/module.html"><code>mod_pagespeed</code></a> on the hunch that my code changes weren’t taking effect because <code>mod_pagespeed</code> was caching everything. All of a sudden, the Mint interface looked fine, and it turned out that my small tweaks didn’t really make much of a difference after all. I still haven’t figured out exactly why <code>mod_pagespeed</code> was causing issues, but disabling it sure did fix them. If anyone has any insight into this, please let me know.</p>
+
+<h2 id="peppers">Peppers</h2>
+
+<p>I mentioned that Mint is pluggable and extensible. In fact, that is its entire basis: every bit of functionality is provided by modular plugins called peppers. Mint comes with the default pepper that I mentioned before, but there are many more available. I use a number of them.</p>
+
+<h3 id="backuprestorebackup"><a href="http://www.haveamint.com/peppermill/pepper/5/backup_restore/">Backup/Restore</a></h3>
+
+<p>This pepper is self-explanatory: back up and restore your Mint stats. That’s it.</p>
+
+<h3 id="iphoneiphone"><a href="http://www.haveamint.com/peppermill/pepper/57/iphone/">iPhone</a></h3>
+
+<p>The default Mint interface isn’t that great for a smaller screen like the iPhone, so this pepper displays an optimized interface when you view Mint on an iPhone.</p>
+
+<h3 id="outboundoutbound"><a href="http://www.haveamint.com/peppermill/pepper/60/outbound/">Outbound</a></h3>
+
+<p>A lot of analytics apps try to show you where your visitors come from, and that information is important. You might be interested in where your visitors go next, so this pepper shows your most popular outbound links.</p>
+
+<h3 id="user-agent-007user-agent"><a href="http://www.haveamint.com/peppermill/pepper/7/user_agent_007/">User Agent 007</a></h3>
+
+<p>This cleverly-named pepper shows a breakdown of your visitors by user agent.</p>
+
+<h3 id="real-estatereal-estate"><a href="http://www.haveamint.com/peppermill/pepper/9/real_estate/">Real Estate</a></h3>
+
+<p>This one shows a breakdown of your visitors by the size of their screen.</p>
+
+<h3 id="local-searcheslocal-search"><a href="http://www.haveamint.com/peppermill/pepper/6/local_searches/">Local Searches</a></h3>
+
+<p>If your blogging software has a search mechanism, this pepper shows you what your visitors are searching for. Note that this is different than the search engine queries that bring visitors to your site that the default pepper shows. </p>
+
+<h3 id="doorbelldoorbell"><a href="http://www.haveamint.com/peppermill/pepper/45/doorbell/">Doorbell</a></h3>
+
+<p>When you’re viewing your Mint interface, the doorbell pepper provides a some audio feedback when you get a new visitor.</p>
+
+<h3 id="errorserrors"><a href="http://www.haveamint.com/peppermill/pepper/92/errors/">Errors</a></h3>
+
+<p>This pepper shows any error pages that your visitors may have seen, along with the page that was requested that caused that error.</p>
+
+<h3 id="locationslocations"><a href="http://www.haveamint.com/peppermill/pepper/29/locations/">Locations</a></h3>
+
+<p>This pepper provides a breakdown of your visitors by geographic location.</p>
+
+<h3 id="sparkssparks"><a href="http://www.haveamint.com/peppermill/pepper/67/sparks/">Sparks!</a></h3>
+
+<p>Sparklines provide a great way to view useful trends in a small space. This combined with the iPhone pepper makes checking visitor trends on the go a snap.</p>
+
+<p>I use both Google analytics and Mint on my site, but I find myself looking at Mint much, much more often. It just offers a better view into the kind of people visiting your site, especially if you’re coming from a position of trying to understand what kind of content brings them to your site in the first place. Mint comes highly recommended.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Handle Pattern]]></title>
+    <link href="http://blog.thomasupton.com/2012/03/the-handle-pattern"/>
+    <updated>2012-03-25T13:12:06-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/03/the-handle-pattern</id>
+    <content type="html"><![CDATA[<p>I’m not entirely sure if there’s a better name for this pattern that already exists, but I like “handle pattern” to describe this method of keeping track of and managing “subscriptions”.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nx">subscriber</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">
+</span><span class="line">    <span class="kd">var</span> <span class="nx">_listeners</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class="line">
+</span><span class="line">    <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="line">        <span class="c1">// Listen to a channel and call a callback when that channel fires</span>
+</span><span class="line">        <span class="nx">listen</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="c1">// Add the callback to the list of listeners on the given channel</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">||</span> <span class="p">[];</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">cb</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">            <span class="k">return</span> <span class="p">{</span>
+</span><span class="line">                <span class="c1">// Return an object that can be used to remove the callback from the channel</span>
+</span><span class="line">                <span class="nx">unlisten</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">                    <span class="c1">// Remove the callback from the list of listeners on that channel</span>
+</span><span class="line">                    <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">splice</span><span class="p">(</span><span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">cb</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">
+</span><span class="line">        <span class="c1">// Manually fire events on a given channel.</span>
+</span><span class="line">        <span class="nx">publish</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">]</span> <span class="o">||</span> <span class="p">[];</span>
+</span><span class="line">            <span class="nx">_listeners</span><span class="p">[</span><span class="nx">channel</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">                <span class="nx">cb</span><span class="p">();</span>
+</span><span class="line">            <span class="p">});</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">    <span class="p">};</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+</span><span class="line"><span class="p">})();</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">subscriber</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The update event was fired!&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="p">});</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">subscriber</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">);</span> <span class="c1">// &gt; &quot;The update event was fired!&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">h</span><span class="p">.</span><span class="nx">unlisten</span><span class="p">();</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">subscriber</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">);</span> <span class="c1">// &gt; &lt;no output&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>When you have an event-driven application, like a Javascript app that performs actions based on user interaction or based on back end “pushes” to a listening front end, you often have a central “publisher” that handles firing events when certain actions occur. It makes sense to have a static <code>listen</code> function that takes a “channel” and a callback function to call when that channel gets updated. The problem comes when you have to decide how to <em>stop</em> listening to that channel. If you go with a static <code>unlisten</code> function on the publisher with the same signature as <code>listen</code> (the channel and callback), you need to keep track of which callback is listening to which channel, and it can get messy.</p>
+
+<p>Instead, <code>listen</code> can return a <code>handle</code>, which is just an object that contains a method <code>unlisten</code> that knows exactly how to stop listening on the specific channel and with the specific callback that was given to <code>listen</code>. Then, the caller just needs to keep track of the return values of <code>listen</code> (as opposed to the <em>arguments</em> to <code>listen</code>) in order to be able to <code>unlisten</code> later.</p>
+
+<p>The <a href="http://dojotoolkit.org/">Dojo</a> <a href="http://dojotoolkit.org/reference-guide/1.7/dojo/Stateful.html">Stateful</a> interface uses this pattern to watch values on objects. If you watch a property, a callback can be fired each time that property changes. The return value of <code>watch</code> is a handle that can be used to stop watching that particular property value.</p>
+
+<p>Feel free to <a href="http://jsfiddle.net/tupton/nZKQz/">play around with this code on JSFiddle</a>.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Don't Commit FIXME or TODO]]></title>
+    <link href="http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo"/>
+    <updated>2012-02-24T12:41:13-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo</id>
+    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="php"><span class="line"><span class="cp">&lt;?php</span>
+</span><span class="line">
+</span><span class="line"><span class="k">function</span> <span class="nf">getObject</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nv">$object</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// TODO Do we need to validate username?</span>
+</span><span class="line">    <span class="nv">$objects</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">retrieveForUsername</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">username</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// FIXME Write `retrieveForIdAndUsername` instead of iterating here</span>
+</span><span class="line">    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$objects</span> <span class="k">as</span> <span class="nv">$o</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="nv">$o</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">()</span> <span class="o">==</span> <span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">            <span class="nv">$object</span> <span class="o">=</span> <span class="nv">$o</span><span class="p">;</span>
+</span><span class="line">            <span class="k">break</span><span class="p">;</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="nv">$object</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>This shouldn’t happen. I’m not talking about the comically bad code – it’s a contrived example, but it proves the point – but about the little “notes” left by whoever committed this.</p>
+
+<p>Do we need to validate the username? Probably. Find out, and take the necessary action. If you know your codebase well, it should take about ten seconds to know the answer.</p>
+
+<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly<sup id="fnref:bad-dev"><a href="#fn:bad-dev" class="footnote">1</a></sup>.</p>
+
+<p>Of course, use <code>TODO</code> or <code>FIXME</code> while you’re developing to keep a list of tasks that you have to finish before your feature is complete. Just don’t commit them to where other developers can see them and <em>certainly</em> don’t merge them to trunk.</p>
+
+<p>If you’re lazy with that code now, there’s no way you’re going to overcome that laziness and come back to fix it later.</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:bad-dev">
+      <p>One could argue that being aware of bad code is better than nothing, but that’s fluffy. If you’re aware of a problem, you’re probably smart enough to do something about it. <a href="#fnref:bad-dev" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Microwave Ovens Suck]]></title>
+    <link href="http://blog.thomasupton.com/2012/02/microwave-ovens-suck"/>
+    <updated>2012-02-23T18:50:14-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/02/microwave-ovens-suck</id>
+    <content type="html"><![CDATA[<p>Really. My microwave helpfully makes the numbers 1 through 6 shortcuts for running for that number of minutes, on full power. When’s the last time you needed to microwave something for <em>six whole minutes</em>?</p>
+
+<p>Most of my microwaving involves re-heating leftovers or softening things like tortillas or butter. These things don’t take minutes; they take <em>seconds</em>. And if I have something that really need to warm up over the course of one or two minutes, it certainly doesn’t need to be that long at full power. Those preset buttons are absolutely useless. I need presets for 10, 20, and 30 seconds, and maybe 90, and at power levels of 5, 7, and “hi”. Not “high”, mind you, “hi”.</p>
+
+<p>The rest of my microwaving time is spent trying to defrost frozen meat, like a chicken breast or a tilapia filet. There’s a button for this, yes, but it requires that I guess the weight of the thing I’m defrosting. I don’t own a kitchen scale, but even if I did, I sure as hell wouldn’t bust it out to figure out how to long I need to defrost my meat. Let me tell you what I’m defrosting, and then figure out how long to defrost it. Defrosting is not a new science or even science at all.</p>
+
+<p>Here’s another irksome feature: when I open the microwave door before the timer goes off, I really appreciate that it remembers how much time was left. Once eight hours have passed, though, I think it’s safe to assume that I’m no longer in need of that timer. “PRESS START” is not helpful after that long. Show me the clock again after a reasonable amount of time has passed.</p>
+
+<p>Another thing: that awful beeping sound. I know some smug person with too much time on his hands has Googled his unit’s manual and has memorized the arcane sequence of button presses required to mute the microwave, but I haven’t. Why is there not just a mute button? It’s not for lack of room: put it under my “9 “ button or in between “Defrost” and “Popcorn” (which always burns those poor defenseless kernels) or even in the place of the “Reminder” button, because I don’t keep my todo list on my microwave.</p>
+
+<p>Can someone “<a href="http://www.nest.com/">Nest</a>-ify” the microwave? I would buy one in a heartbeat.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Configuration]]></title>
+    <link href="http://blog.thomasupton.com/2012/02/configuration"/>
+    <updated>2012-02-18T20:43:38-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/02/configuration</id>
+    <content type="html"><![CDATA[<p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <code>vim</code> <a href="https://github.com/tupton/vim-support">environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
+
+<p>I use <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins. I follow the examples in <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">this great article on plugin management with Pathogen</a> to keep most of my plugins as <code>git</code> submodules. Installing my <code>vim</code> environment is just a matter of cloning the <code>git</code> repository and symlinking my <code>vimrc</code>.</p>
+
+<p>I just spent some time cleaning up and organizing my dotfiles.  I wasn’t even using my old dotfiles repository on GitHub, but I quickly rectified that. I now keep my dotfiles in <code>~/.dotfiles</code> and symlink them to <code>~</code>. There is a helper script in my <a href="https://github.com/tupton/dotfiles">dotfiles repository</a> that sets up these symlinks.</p>
+
+<p>Along with the usual <code>bashrc</code>, there are a few config files that aren’t as common. My <code>ackrc</code> defines a few convenient options and ignores directories with built artifacts in them. My (old) <code>pythonrc</code> defines a tab-completion function, although this might be outdated at this point. There’s a <code>tm_properties</code> config for <a href="http://blog.macromates.com/2011/textmate-2-0-alpha/">TextMate 2</a>.</p>
+
+<p>Hopefully the fact that my configuration is out in the open will bring to light some useful features that I probably take for granted but you might not know about. So, go explore! Check out my <code>inputrc</code>, for example. I know that I discover new things almost every time I look at someone else’s <code>vimrc</code> or <code>bashrc</code>.</p>
+
+<p>Do you have any configuration tips or tricks? Let me know.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Coffee]]></title>
+    <link href="http://blog.thomasupton.com/2012/01/coffee"/>
+    <updated>2012-01-07T14:37:42-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/01/coffee</id>
+    <content type="html"><![CDATA[<p><img src="http://farm8.staticflickr.com/7164/6654753833_ab1c242b36_z_d.jpg" alt="Coffee" /></p>
+
+<p>Like <a href="http://www.youtube.com/watch?v=OTVE5iPMKLg">most of the world</a>, I love coffee. I usually drink a cup or two a day, and sometimes more. I’m lucky enough to live close to places that sell great coffee: Whole Foods roasts their own coffee, and there are numerous local places with great beans.</p>
+
+<p>I usually make a full “batch” of coffee in a French press (or <em>сafetière</em>), but sometimes that’s too much. I know it’s considered blasphemous, but I got a Keurig single cup brewer for Christmas, and I absolutely love it. I was apprehensive about Keurig machines until I found out about refillable “K-Cups” that you could fill with your own, delicious coffee. I use the <a href="http://www.amazon.com/gp/product/B000DLB2FI/ref=as_li_ss_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=390957&creativeASIN;=B000DLB2FI">official Keurig “My K-Cup”</a>, but that requires that you replace the entire holster mechanism each time. It’s not time consuming, but it is a bit annoying.</p>
+
+<p>I discovered the <a href="http://www.amazon.com/ekobrew-Refillable-Keurig-Brewers-1-Count/dp/B0051SU0OW/ref=sr_1_1?ie=UTF8&qid;=1325967276&sr;=8-1">Ekobrew</a>, which is a filter that fits in the existing cup holster. Two of them are on their way to my house from Amazon right now.</p>
+
+<p>Regardless of how it gets there, coffee from the Keurig is (perhaps surprisingly) pleasant. It’s not the best cup of coffee, but it’s quick, easy, and clean.</p>
+
+<p>I still use the French press when I need to make a bigger batch of coffee or if I want to relax and enjoy a really great cup. I use the seemingly-ubiquitous Bodum French press and <a href="http://www.amazon.com/gp/product/B0043095WW/ref=as_li_ss_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=390957&creativeASIN;=B0043095WW">burr grinder</a> and keep the coffee warm in my <a href="http://www.amazon.com/gp/product/B00004S56U/ref=as_li_ss_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=390957&creativeASIN;=B00004S56U">Zojirushi carafe</a>. Coffee stays <em>hot</em> for hours on end, so I can make coffee in the morning and still enjoy it later in the afternoon. How I make coffee just depends on how much I need and what kind of mood I’m in.</p>
+
+<p>One last thing: I also got a small stovetop espresso maker for Christmas, and it is amazing. When I want a treat, I make myself a café Americano: a bit of espresso in a normal-sized coffee cup and filled the rest of the way with hot water. Yum!</p>
+
+<p><em>Full disclosure</em>: I’ve linked to a number of products on Amazon in this post, and most of them contain my affiliate link. I’ll get a small kickback if anything is bought via these links. I will only ever post links to products that I use and love, and that is certainly the case with everything here. I’m passionate about my coffee, and I don’t want to mislead anyone. I have not included my affiliate link to the Ekobrew refillable K-Cup because I have not received or used it at this time.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My Essential Tools]]></title>
+    <link href="http://blog.thomasupton.com/2012/01/my-essential-tools"/>
+    <updated>2012-01-05T16:16:30-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/01/my-essential-tools</id>
+    <content type="html"><![CDATA[<p>In light of some <a href="http://carpeaqua.com/2011/12/19/my-ultimate-developer-and-power-users-tool-list-for-mac-os-x-2011-edition-/">recent</a> <a href="http://collindonnell.com/blog/2012/1/4/essential-tools-2011.html">excellent</a> posts about tools that smart people use, here are my essential tools that I used in 2011.</p>
+
+<h2 id="hardware">Hardware</h2>
+
+<p>I use a 15” MacBook Pro i5 with 8 GB of RAM. It’s quick and does everything I need it to. It’s not <em>too</em> bulky, but it’s certainly bigger than my older 13” MacBook. I keep toying with the idea of a MacBook Air, but I can’t justify the cost and I don’t want to use two machines.</p>
+
+<p>I connect to an Apple LED Cinema Display when I’m at my standing desk, and I use a <a href="http://www.amazon.com/gp/product/B002MMY4WY/ref=as_li_ss_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=390957&creativeASIN;=B002MMY4WY">Logitech wireless keyboard</a> and an Apple Magic Trackpad.</p>
+
+<p>I do <a href="http://www.thomasupton.com/blog/2011/12/local-backups-are-great/">daily, local backups</a> to a smallish volume on a 1 TB hard drive. The rest of the drive holds my music, photos, and other media.</p>
+
+<h2 id="software">Software</h2>
+
+<p>I do all of my work (both professionally and on this site) on VMs in “the cloud” that I <code>ssh</code> to with <a href="http://www.iterm2.com/#/section/home">iTerm 2</a>. I love that it can copy-on-select and the customizable colors are more robust than in other terminal apps. I used the built in Terminal.app for a long time, but the latest iTerm 2 is stable and excellent.</p>
+
+<p>I also use <a href="http://ditchnet.org/httpclient/">HTTP Client</a> to test our API, as well as both Firefox and Chrome.</p>
+
+<p>When I write code, I usually use <a href="http://www.vim.org/"><code>vim</code></a>, but I’ve been testing out the recent alpha builds of <a href="http://blog.macromates.com/2011/textmate-2-0-alpha/">TextMate 2</a>.</p>
+
+<p>When I write for this website or for my own personal notes, I’ve started using <a href="http://bywordapp.com/">Byword</a> to write and preview Markdown. Its fullscreen and “paragraph focus” modes are nice touches. I’ve heard good things about <a href="http://markedapp.com/">Marked</a>, which allows Markdown previews from any app, but I haven’t used it yet.</p>
+
+<p>I’m not a huge calendar user, but I do keep track of <a href="http://www.last.fm/user/TUpton/events">shows I attend</a> and personal events on Google Calendar. I interact with my calendars with <a href="http://flexibits.com/fantastical">Fantastical</a>. Its natural language event input is pretty great and lets me add events really quickly.</p>
+
+<p>I work on and use a browser-based email client at work, but I also like to use <a href="http://sparrowmailapp.com/">Sparrow</a>. The minimal interface stays out of the way, but all my mail is available quickly. Shortcuts for reply and reply all make it easy to respond to threads. A nice little touch: Sparrow automatically picked up the fact that I had an IMAP folder called Archive in my work email and started using it when I press Delete to archive messages.</p>
+
+<p>I use <a href="http://www.alfredapp.com/">Alfred</a> all day every day. My usage statistics say I average 13.6 uses per day, but if you didn’t count weekends, holidays, or days that I don’t actually use my computer, I bet it’d be a lot higher. I <em>love</em> the clipboard management.</p>
+
+<p>I occasionally use <a href="http://getcloudapp.com/">Cloud</a> to quickly upload screenshots, but I don’t use it for much else.</p>
+
+<p>I use <a href="https://www.dropbox.com/">Dropbox</a> to manage files, share some music with friends, and back up certain documents. I also store my (encrypted) <a href="https://agilebits.com/onepassword">1Password</a> data on Dropbox so that I can access my passwords from anywhere.</p>
+
+<p><a href="http://mizage.com/#macdivvy">Divvy</a> and <a href="http://cordlessdog.com/stay/">Stay</a> are two window management tools that I use all the time. When I disconnect from my display, Stay puts my windows back to where I want them. It doesn’t quite work with Chrome, but everything else works well. Divvy lets me resize windows on a custom-sized grid. You can even define shortcuts – I use “c” for a centered window and “6” for a window taking up 60% of the right side of the screen.</p>
+
+<p>I recently started using <a href="http://www.evernote.com/">Evernote</a>, but I haven’t gotten into it just yet. I’ll have more to write about that when learn how to use it and actually start using it more. I do use <a href="http://www.evernote.com/about/download/clearly.php">Evernote’s Clearly</a> browser extension to read articles on line.</p>
+
+<p>For my musical pleasure throughout the day, I still use iTunes a lot of the time. However, <a href="http://www.rdio.com/">Rdio</a> (with <a href="http://www.rogueamoeba.com/airfoil/">Airfoil</a>) is usually how I listen to music these days. Airfoil makes it easy to listen to music in my living room via my Apple TV.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Uptonian Thoughts on Twitter]]></title>
+    <link href="http://blog.thomasupton.com/2012/01/uptonian-thoughts-on-twitter"/>
+    <updated>2012-01-04T22:50:51-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/01/uptonian-thoughts-on-twitter</id>
+    <content type="html"><![CDATA[<p>You can now follow <a href="http://twitter.com/uptonin">Uptonian Thoughts on Twitter</a>! I’m using the <a href="http://somadesign.ca/2011/lessn-shortlinks-wordpress-plugin/">Lessn Shortlinks</a> and <a href="http://ottopress.com/wordpress-plugins/simple-twitter-connect/">Simple Twitter Connect</a> Wordpress plugins to tweet my posts to @uptonin.</p>
+
+<p>I might still occasionally link to my own posts on my @thomasupton account, but all posts and articles, along with information about the site, will be available on @uptonin.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lessn]]></title>
+    <link href="http://blog.thomasupton.com/2012/01/lessn"/>
+    <updated>2012-01-04T22:37:07-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/01/lessn</id>
+    <content type="html"><![CDATA[<p>I recently installed <a href="http://shauninman.com/archive/2009/08/17/less_n">Lessn</a> and then <a href="http://lessnmore.net/">Lessn More</a> to take control of my own short links. Lessn is a very simple URL shortener that is hosted on my own domain.</p>
+
+<p>I registered <a href="http://upton.in/">upton.in</a> to serve my short links. I chose the “.in” TLD because it’s short and common. I do wish there was an “.on” TLD so I could register <em>upt.on</em>, but I like the connotation of “in”. As <a href="https://twitter.com/thomasupton/status/154218836722335745">I said on Twitter the other day</a>, it can mean “Internet, inside, come in, infinity, interesting” among other things. </p>
+
+<p>Lessn also integrates nicely with <a href="http://haveamint.com/">Mint</a>, which I recently started using. I plan to write more on that shortly.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Unplayed]]></title>
+    <link href="http://blog.thomasupton.com/2012/01/unplayed"/>
+    <updated>2012-01-02T19:23:21-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/01/unplayed</id>
+    <content type="html"><![CDATA[<p>Santa brought me <a href="http://www.amazon.com/gp/product/B002BSC54I/ref=as_li_tf_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=9325&creativeASIN;=B002BSC54I">The Legend of Zelda: Skyward Sword</a> for Christmas (thanks Mom!). I’ve enjoyed playing it, just as I’ve enjoyed playing video games for nearly my entire life.</p>
+
+<p>In recent years, however, I’ve abandoned or not fully played all of my video games. I attempted to maintain a Google Docs spreadsheet to keep track of my unplayed games, but it quickly became more neglected than the games themselves.</p>
+
+<p>I recently found out about Shaun Inman’s <a href="http://www.shauninman.com/archive/2011/04/18/unplayed"><em>Unplayed</em></a>, and it seemed perfect. It’s like a much simpler, lightweight Shelfari for video games. You can now see which games I’m playing (or not playing) at my <a href="http://www.thomasupton.com/unplayed/"><em>Unplayed</em> page</a>. For now, I’m going back to Skyloft!</p>
+
+]]></content>
+  </entry>
+  
 </feed>
