@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Design | Uptonian Thoughts]]></title>
+  <title><![CDATA[Category: design | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/design/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2014-10-07T19:27:45-05:00</updated>
+  <updated>2014-10-08T12:15:18-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -67,7 +67,7 @@
 
 <p>This is the comment loop in comments.php.</p>
 
-<p>``` php
+<p>&#8220;` php
     <?php if ($comments) : ?></p>
 
 <pre><code>    &lt;ol id="comments"&gt;
@@ -118,40 +118,40 @@
 
 <p>This is the CSS section for my comments.</p>
 
-<p>``` css
+<p>&#8220;` css
     /* Comments */
     ol#comments li .content span.number {
-    	position: relative;
-    	top: 0px;
-    	left: 0px;
-    	font-size: 10em;
-    	color: #c7c7c7;
-    	float: right;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        font-size: 10em;
+        color: #c7c7c7;
+        float: right;
     }</p>
 
 <pre><code>ol#comments li {
-	padding: 10px 0;
+    padding: 10px 0;
 }
 
 ol#comments li.blog-author {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 
 ol#comments li.alt .content {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 
 ol#comments li cite span.date a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 ol#comments li cite span.gravatar {
-	margin-top: 13px;
+    margin-top: 13px;
 }
 
 ol#comments li cite span.gravatar img {
-	padding: 3px;
-	border: 1px solid #ccc;
+    padding: 3px;
+    border: 1px solid #ccc;
 } ```
 </code></pre>
 ]]></content>

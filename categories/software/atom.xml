@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Software | Uptonian Thoughts]]></title>
+  <title><![CDATA[Category: software | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/software/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2014-10-07T19:27:45-05:00</updated>
+  <updated>2014-10-08T12:15:18-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -35,7 +35,7 @@ to revisit NetNewsWire and check out an app on iOS that I had heard great things
 
 <p>The first key to revamping my news reading was pruning my subscriptions. I had way too many
 high-traffic feeds, and I wasn’t even reading 1% of some of them. I would go through all my feeds
-and folders and mark everything as read every few days<sup id="fnref:too-long"><a href="#fn:too-long" rel="footnote">1</a></sup> just to keep up and feel like I
+and folders and mark everything as read every few days<sup id="fnref:too-long"><a href="#fn:too-long" class="footnote">1</a></sup> just to keep up and feel like I
 wasn’t overwhelmed.</p>
 
 <p>I got rid of feeds from sites like <a href="http://www.lamebook.com/">Lamebook</a>, which is hilarious, but I don’t need to
@@ -44,7 +44,7 @@ want to read a very small portion of those stories. I get my fix from these site
 every few days, not by trying to forge through a murky river of hundreds of RSS items that I don’t
 want to read.</p>
 
-<p>I now have 26 feeds in 8 categories,<sup id="fnref:cross-link"><a href="#fn:cross-link" rel="footnote">2</a></sup> down from twice that before pruning. This is
+<p>I now have 26 feeds in 8 categories,<sup id="fnref:cross-link"><a href="#fn:cross-link" class="footnote">2</a></sup> down from twice that before pruning. This is
 manageable. 50+ high-traffic feeds are not. I can read the items from these feeds quickly, and I
 can finally read “all items” without becoming overwhelmed.</p>
 
@@ -72,19 +72,19 @@ up.</p>
 
 <p>The end result is that I have a streamlined way to catch up on news that’s important to me as
 quickly as possible, no matter where I am. I spend less time fiddling with news items I don’t really
-care about, less time out of my day being distracted by the latest hot article,<sup id="fnref:distract"><a href="#fn:distract" rel="footnote">3</a></sup> and more
+care about, less time out of my day being distracted by the latest hot article,<sup id="fnref:distract"><a href="#fn:distract" class="footnote">3</a></sup> and more
 time doing what I want and need to do.</p>
 
 <div class="footnotes">
   <ol>
     <li id="fn:too-long">
-      <p>I did this ritual for far too long before I realized it needed to end. Old habits die hard.<a href="#fnref:too-long" rel="reference">&#8617;</a></p>
+      <p>I did this ritual for far too long before I realized it needed to end. Old habits die hard. <a href="#fnref:too-long" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:cross-link">
-      <p>I’ve noticed that a lot of sites and blogs I read will “cross-post” each other’s items. This sounds like it might be annoying to have to read about the same things in multiple places, but usually one of two things happens: either the cross-posting contains a bit of insightful back-and-forth on a topic, or multiple people link to a great article elsewhere that I know I need to check out. I get to follow great discussions and the cream of the hot topic crop rises to the top of my news readers. Win-win for me.<a href="#fnref:cross-link" rel="reference">&#8617;</a></p>
+      <p>I’ve noticed that a lot of sites and blogs I read will “cross-post” each other’s items. This sounds like it might be annoying to have to read about the same things in multiple places, but usually one of two things happens: either the cross-posting contains a bit of insightful back-and-forth on a topic, or multiple people link to a great article elsewhere that I know I need to check out. I get to follow great discussions and the cream of the hot topic crop rises to the top of my news readers. Win-win for me. <a href="#fnref:cross-link" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:distract">
-      <p>If only I could figure out how to stop checking <a href="http://stellar.io/">Stellar</a> so much.<a href="#fnref:distract" rel="reference">&#8617;</a></p>
+      <p>If only I could figure out how to stop checking <a href="http://stellar.io/">Stellar</a> so much. <a href="#fnref:distract" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -297,11 +297,11 @@ time doing what I want and need to do.</p>
 <p>Both Mike and I recently started using <a href="http://jumpcut.sourceforge.net/">Jumpcut</a>, a minimal clipboard manager for OS X, so I had the idea of copying the actual text that was posted to pastebin before copying the URL so both would be readily available via Jumpcut. I tried adding <code>echo "$to_paste" | pbcopy</code> before the <code>curl</code> call, but it didn’t always work. I didn’t actually find any documentation on it, but it seems that <code>pbcopy</code> does some sort of buffering so that too much text isn’t copied in quick succession. Adding a very hacky <code>sleep</code> call fixed it, so the resulting script became the following.</p>
 
 <p><code>bash
-#! /usr/bin/env bash
-to_paste=`cat /dev/stdin`
-echo "$to_paste" | pbcopy
-sleep 1
-curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
+    #! /usr/bin/env bash
+    to_paste=`cat /dev/stdin`
+    echo "$to_paste" | pbcopy
+    sleep 1
+    curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
 </code></p>
 
 <p>Having a commandline script is all well and good, but it’s on about the same usability level as using pastebin.com: instead of switching to a browser, you switch to a terminal, but you still have to paste content and get away from you original context. This is where OS X Services come into play.</p>
@@ -333,9 +333,9 @@ curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
 
 <p>I have experience with <a href="https://github.com/tupton/python-yahoo-weather">simple python scripts</a>, but I decided I should try my luck using classes in order to wrap the pastebin API. It was really easy. The beginning of the class looked like the following.</p>
 
-<p>``` python
+<p>&#8220;` python
     class Pastebin(object):
-        “"”A wrapper for the pastebin API”””</p>
+        “&#8221;”A wrapper for the pastebin API”””</p>
 
 <pre><code>    pastebin_api = "http://pastebin.com/api_public.php"
 
@@ -364,7 +364,7 @@ curl -s -X POST -d "paste_code=$1" "http://pastebin.com/api_public.php" | pbcopy
 <p>I have no idea if getters and setters are very “pythonic,” but they make sense to me, even if I’m only using them internally for this script. I used a pretty interesting trick to build the POST data string. I put the necessary data into a dictionary, but I needed to build a proper parameter string.</p>
 
 <p><code>python
-return "&amp;".join([k + "=" + str(v) for (k, v) in params.iteritems()])
+    return "&amp;".join([k + "=" + str(v) for (k, v) in params.iteritems()])
 </code></p>
 
 <p>I love the syntax used for “inline” for-loops here. The extra <code>str()</code> call was used just in case a parameter (like expiration date) was accidentally interpreted as a number.</p>

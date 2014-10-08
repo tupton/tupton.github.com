@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: security / privacy | Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/categories/security-slash-privacy/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2014-10-08T12:15:18-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Humiliation, Or How NOT To Steal A SideKick II]]></title>
+    <link href="http://blog.thomasupton.com/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii"/>
+    <updated>2006-06-07T14:37:07-05:00</updated>
+    <id>http://blog.thomasupton.com/2006/06/humiliation-or-how-not-to-steal-a-sidekick-ii</id>
+    <content type="html"><![CDATA[<p>This is sad, funny, obscene, ridiculous, and downright silly, all at the same time.</p>
+
+<p><a href="http://www.evanwashere.com/StolenSidekick/">How NOT To Steal A SideKick II</a></p>
+
+<p>I hope that the issue gets resolved soon.  Stolen tech plus whiney thieves does not a great day make.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iTunes MiniStore Update]]></title>
+    <link href="http://blog.thomasupton.com/2006/01/itunes-ministore-update"/>
+    <updated>2006-01-19T23:30:00-06:00</updated>
+    <id>http://blog.thomasupton.com/2006/01/itunes-ministore-update</id>
+    <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/third/88803714/"><img src="http://static.flickr.com/36/88803714_0f3e8ff2a8_o.jpg" alt="iTunes MiniStore" /></a></p>
+
+<p>So I’m a little late on posting this news, but Apple has changed the initial behavior of the <a href="http://docs.info.apple.com/article.html?artnum=303066">iTunes MiniStore</a> to better convey what the new feature does.</p>
+
+<p>While the MiniStore still transmits to Omniture, this change to an opt-in feature makes all the difference in the world.  Thank you, Apple.</p>
+
+<p>A quick response and the right thing… All from a “greedy” corporation.</p>
+
+<p>Previously: <a href="http://fiveuptons.com/thomas/blog/2006/01/itunes-602-mini-store-priv_113708372723751795.html">iTunes 6.0.2 Mini Store Privacy Concerns</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iTunes 6.0.2 Mini Store Privacy Concerns]]></title>
+    <link href="http://blog.thomasupton.com/2006/01/itunes-602-mini-store-privacy-concerns"/>
+    <updated>2006-01-12T11:35:00-06:00</updated>
+    <id>http://blog.thomasupton.com/2006/01/itunes-602-mini-store-privacy-concerns</id>
+    <content type="html"><![CDATA[<p><strong>UPDATE:</strong> Apple has <a href="http://thomas.fiveuptons.com/?p=60">changed the behavior of iTunes</a>.  Thank you, Apple.</p>
+
+<p><a href="http://www.flickr.com/photos/third/85834383/"><img src="http://static.flickr.com/38/85834383_485619a2e0_o.png" alt="iTmS - iTunes Mini Store" /></a></p>
+
+<p>Apple updated iTunes on Tuesday, and yesterday, pretty much the whole Apple blogosphere went off the wall talking about how Apple now infringes on basic privacy rights with a new feature called the iTunes Mini Store (iTmS?).  I decided I needed to weigh in on this whole hooplah. <a href="http://www.boingboing.net/2006/01/11/itunes_update_spies_.html">Cory Doctorow of Boing Boing</a> first alerted me to what was going on.  As usual, he was concerned for the privacy of iTunes users, and, as expected, preached the end of his Apple fanboy days if Apple phoned home about his listening habits. The <a href="http://since1968.com/article/153/itunes-is-watching">blog post that Cory linked to</a> over at <a href="http://since1968.com">since1968.com</a> was quite alarmist, but the concern was valid.  Marc Garret, the author of the blog, then <a href="http://since1968.com/article/154/itunes-update-update">posted a rebuttal</a> to all the comments on the original post.  In it, he makes some good points and debunks some ridiculous claims (“Dude, you should know that Apple is collecting the information because it couldn’t display related songs without it.” What?)</p>
+
+<p>Then, <a href="http://yro.slashdot.org/article.pl?sid=06/01/11/1619259">the story reached Slashdot</a>.  Some commenters were taken aback and angry at Apple, while others tried to make it clear that Apple was doing nothing to infringe on anybody’s rights.  Still others made it out that Apple apologists were trying to defend Apple’s evil intentions, and that if Microsoft was doing the same thing with WMP then everyone would be up in arms about the whole situation.</p>
+
+<p>This morning, <a href="http://www.theappleblog.com/">The Apple Blog</a> <a href="http://www.theappleblog.com/2006/01/11/itunes-knows-where-you-live-and-its-going-to-hunt-you-down/">weighed in on the issue</a>, and these are the points that I agree most with.</p>
+
+<p><a href="http://since1968.com/article/153/itunes-is-watching#c000084">I was one of the early commenters on the since1968 post</a>, and I maintain that if Apple does not store the information (<a href="http://www.macworld.com/weblogs/editors/2006/01/ministore/index.php">as reported by MacWorld</a>) that is sent to the Music Store then no data-mining is occuring.  This is more akin to having an RSS feed of an artist’s works displayed as you listen, or performing a search on the iTMS and retrieving the results automatically.</p>
+
+<p>However, I find it a little strange that Apple made no mention of this feature on Tuesday, and they make no reference to how the data is used in any of THREE license argreements associated with iTunes and the Music Store.  The most disconcerting aspect of this is WHERE the information is going.  <a href="http://5ives.com/">Merlin Mann</a> discovered that packets are being sent to <a href="http://2o7.net/">2o7.net</a>, a website of a known marketing company.  My question is, if Apple is not collecting information, is another company doing just that for them?  I have no problem with Apple knowing my listening habits; the Recommendations over at <a href="http://amazon.com">Amazon</a> is one of my favorite features and they are normally bang on.  I DO have an issue with the feature not being explained and it being opt-out instead of opt-in (but I suppose Amazon’s Recommendations are opt-out, too), but the fact that no data is sent when the mini store is closed not only makes sense, but goes a long way in describing Apple’s intentions.  They just want to sell more music, and I DO NOT have an issue with that.</p>
+
+<p>For the record, I turned the mini store off. This has little to do with online privacy, though.  The mini-store takes up way too much space, even on my 20” Cinema Display, and I do not want to know what albums I’m missing in an artist’s discography (I might be compelled to spend even MORE money!)  Here’s to hoping that the feature will be opt out in the next update to iTunes and that a section is added to the iTunes license agreement that explains what is going on with this data.</p>
+]]></content>
+  </entry>
+  
+</feed>

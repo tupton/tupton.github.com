@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Programming | Uptonian Thoughts]]></title>
+  <title><![CDATA[Category: programming | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/programming/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2014-10-07T19:27:45-05:00</updated>
+  <updated>2014-10-08T12:15:18-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -44,10 +44,10 @@ way to configure which file types are checked. Here is the relevant config optio
 vimrc</a>:</p>
 
 <p><code>vim
-	" On by default, turn it off for html
-	let g:syntastic_mode_map = { 'mode': 'active',
-		\ 'active_filetypes': [],
-		\ 'passive_filetypes': ['html'] }
+    " On by default, turn it off for html
+    let g:syntastic_mode_map = { 'mode': 'active',
+        \ 'active_filetypes': [],
+        \ 'passive_filetypes': ['html'] }
 </code></p>
 
 <p>The ‘mode’ option set to active means that syntastic is on by default, so we can leave the list of
@@ -83,8 +83,8 @@ subscript notation when accessing properties, e.g. <code>this['domNode']</code> 
 <p>You can tell syntastic to use jshint with the following config option:</p>
 
 <p><code>vim
-" Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['jshint']
+    " Use jshint (uses ~/.jshintrc)
+    let g:syntastic_javascript_checkers = ['jshint']
 </code></p>
 
 <h2 id="usage">Usage</h2>
@@ -119,7 +119,7 @@ track down. It’s an invaluable tool in my workflow.</p>
     <link href="http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo"/>
     <updated>2012-02-24T12:41:13-06:00</updated>
     <id>http://blog.thomasupton.com/2012/02/dont-commit-fixme-or-todo</id>
-    <content type="html"><![CDATA[<p>``` php
+    <content type="html"><![CDATA[<p>&#8220;` php
     &lt;?php</p>
 
 <pre><code>function getObject($id) {
@@ -144,7 +144,7 @@ track down. It’s an invaluable tool in my workflow.</p>
 
 <p>Do we need to validate the username? Probably. Find out, and take the necessary action. If you know your codebase well, it should take about ten seconds to know the answer.</p>
 
-<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly<sup id="fnref:bad-dev"><a href="#fn:bad-dev" rel="footnote">1</a></sup>.</p>
+<p>The <code>FIXME</code> is a bit more time-consuming, but the payoff is greater. If you leave this <code>FIXME</code>, I’m going to assume one of two things: you’re a lazy programmer, or you’re a bad programmer. You’re lazy because you can’t be bothered to write something correctly or you’re bad because you don’t know <em>how</em> to write it correctly<sup id="fnref:bad-dev"><a href="#fn:bad-dev" class="footnote">1</a></sup>.</p>
 
 <p>Of course, use <code>TODO</code> or <code>FIXME</code> while you’re developing to keep a list of tasks that you have to finish before your feature is complete. Just don’t commit them to where other developers can see them and <em>certainly</em> don’t merge them to trunk.</p>
 
@@ -152,7 +152,7 @@ track down. It’s an invaluable tool in my workflow.</p>
 <div class="footnotes">
   <ol>
     <li id="fn:bad-dev">
-      <p>One could argue that being aware of bad code is better than nothing, but that’s fluffy. If you’re aware of a problem, you’re probably smart enough to do something about it.<a href="#fnref:bad-dev" rel="reference">&#8617;</a></p>
+      <p>One could argue that being aware of bad code is better than nothing, but that’s fluffy. If you’re aware of a problem, you’re probably smart enough to do something about it. <a href="#fnref:bad-dev" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>

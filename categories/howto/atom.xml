@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Howto | Uptonian Thoughts]]></title>
+  <title><![CDATA[Category: howto | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/howto/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2014-10-07T19:27:45-05:00</updated>
+  <updated>2014-10-08T12:15:18-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -27,88 +27,87 @@
 <p>First things first: clone Vundle into your <code>bundle/</code> directory.</p>
 
 <p><code>bash
-❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
+    ❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
 </code></p>
 
 <p>The <a href="https://github.com/gmarik/Vundle.vim#quick-start">Vundle quick start guide</a> does a great job of getting you started, so if you’re just looking to use Vundle without any prior bundle management, I would start there. If you were managing your <code>vim</code> plugins with Pathogen and <code>git</code> submodules, the switch to Vundle is straightforward but requires a few more steps.</p>
 
 <p>At the top of <a href="https://github.com/tupton/vim-support/blob/master/vimrc">my <code>vimrc</code></a> I added a new Vundle-specific section and added the code from the quick start guide.</p>
 
-<p>``` vim
-“ Of course
-set nocompatible</p>
+<p>&#8220;` vim
+    “ Of course
+    set nocompatible</p>
 
-<p>” Required Vundle setup
+<pre><code>" Required Vundle setup
 filetype off
 set runtimepath+=~/.vim/bundle/vundle
-call vundle#rc()</p>
+call vundle#rc()
 
-<p>Bundle ‘gmarik/vundle’</p>
-
-<p>```</p>
+Bundle 'gmarik/vundle' ```
+</code></pre>
 
 <p>Next, I wanted to add all the bundles I already use. <code>git submodule foreach</code> can actually help here.</p>
 
-<p>``` bash
-❯ git submodule foreach git remote -v
-Entering ‘bundle/airline’
-origin  https://github.com/bling/vim-airline.git (fetch)
-origin  https://github.com/bling/vim-airline.git (push)
-Entering ‘bundle/characterize’
-origin  https://github.com/tpope/vim-characterize.git (fetch)
-origin  https://github.com/tpope/vim-characterize.git (push)</p>
+<p>&#8220;` bash
+    ❯ git submodule foreach git remote -v
+    Entering ‘bundle/airline’
+    origin  https://github.com/bling/vim-airline.git (fetch)
+    origin  https://github.com/bling/vim-airline.git (push)
+    Entering ‘bundle/characterize’
+    origin  https://github.com/tpope/vim-characterize.git (fetch)
+    origin  https://github.com/tpope/vim-characterize.git (push)</p>
 
-<p>[…]
-```</p>
+<pre><code>[...] ```
+</code></pre>
 
 <p>I then just copied the GitHub user and repository name (the path portion of the remote URL minus “.git”) and passed that to Vundle’s <code>Bundle</code> command.</p>
 
-<p>``` vim
-“ Better status line
-Bundle ‘bling/vim-airline’</p>
+<p>&#8220;` vim
+    “ Better status line
+    Bundle ‘bling/vim-airline’</p>
 
-<p>” ga for character descriptions
-Bundle ‘tpope/vim-characterize’</p>
+<pre><code>" ga for character descriptions
+Bundle 'tpope/vim-characterize'
 
-<p>[…]
-```</p>
+[...] ```
+</code></pre>
 
 <p>Now we need to remove the existing submodules. One of the big pains of using <code>git</code> submodules is removing them when you no longer need them. This made trying out plugins harder than it needed to be, and it makes the transition to Vundle a bit more complicated.</p>
 
 <p>I reference <a href="http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule">this Stack Overflow post about removing <code>git</code> submodules</a> every time I need to remove a plugin I was just trying out without fail. The command to remember is <code>git submodule deinit</code>. You can <code>deinit</code> all submodules in a given directory all at once.</p>
 
-<p>``` bash
-❯ git submodule deinit bundle/
-Cleared directory ‘bundle/airline’
-Submodule ‘bundle/airline’ (https://github.com/bling/vim-airline.git) unregistered for path ‘bundle/airline’
-Cleared directory ‘bundle/characterize’
-Submodule ‘bundle/characterize’ (https://github.com/tpope/vim-characterize.git) unregistered for path ‘bundle/characterize’</p>
+<p>&#8220;` bash
+    ❯ git submodule deinit bundle/
+    Cleared directory ‘bundle/airline’
+    Submodule ‘bundle/airline’ (https://github.com/bling/vim-airline.git) unregistered for path ‘bundle/airline’
+    Cleared directory ‘bundle/characterize’
+    Submodule ‘bundle/characterize’ (https://github.com/tpope/vim-characterize.git) unregistered for path ‘bundle/characterize’</p>
 
-<p>[…]
-```</p>
+<pre><code>[...] ```
+</code></pre>
 
 <p>Then you need to explicitly remove all the bundles. Since Vundle is already in <code>bundle/vundle</code>, we need to remove each separate plugin bundle directory instead of blowing away the entire <code>bundle/</code> directory.</p>
 
-<p>``` bash
-❯ git rm bundle/airline bundle/characterize […]
-rm ‘bundle/airline’
-rm ‘bundle/characterize’</p>
+<p>&#8220;` bash
+    ❯ git rm bundle/airline bundle/characterize […]
+    rm ‘bundle/airline’
+    rm ‘bundle/characterize’</p>
 
-<p>[…]
-```</p>
+<pre><code>[...] ```
+</code></pre>
 
 <p>It woud be a good idea to commit your staged changes here, which at this point should just be submodule removal.</p>
 
 <p>If you were using Pathogen, don’t forget to remove any setup from your <code>vimrc</code>.</p>
 
-<p>``` vim
-“ Store pathogen itself in bundle/
-runtime! bundle/pathogen/autoload/pathogen.vim</p>
+<p>&#8220;` vim
+    “ Store pathogen itself in bundle/
+    runtime! bundle/pathogen/autoload/pathogen.vim</p>
 
-<p>” Start it up
+<pre><code>" Start it up
 silent! call pathogen#infect()
-silent! call pathogen#helptags()
-```</p>
+silent! call pathogen#helptags() ```
+</code></pre>
 
 <p>It also helps to add <code>bundle/</code> to your <code>.gitignore</code>. Vundle now puts all plugins there, but you don’t have to manually manage them any more.. Just add <code>bundle/**</code> to your <code>vim</code> environment’s <code>.gitignore</code> file.</p>
 

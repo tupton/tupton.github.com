@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Script | Uptonian Thoughts]]></title>
+  <title><![CDATA[Category: script | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/script/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2014-10-07T19:27:45-05:00</updated>
+  <updated>2014-10-08T12:15:18-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -31,7 +31,7 @@ break down when I’m trying to do work with finnicky or non-existant network co
 <p>There is:</p>
 
 <p><code>bash
-date -j -f "%s" "1381528800" +"%a %b %d %T %Z %Y"
+    date -j -f "%s" "1381528800" +"%a %b %d %T %Z %Y"
 </code></p>
 
 <p>An explanation: <code>-j</code> tells <code>date</code> not to try to set the system date. <code>-f</code> describes the format of
@@ -45,7 +45,7 @@ output format. The output of the above is as follows.</p>
 are not OS X.</p>
 
 <p><code>bash
-echo -n "1381528800" | xargs -J {} date -j -f "%s" {} +"%a %b %d %T %Z %Y"
+    echo -n "1381528800" | xargs -J {} date -j -f "%s" {} +"%a %b %d %T %Z %Y"
 </code></p>
 
 <p>Like I seem to do with a lot of my utility scripts, I added a workflow to Alfred. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Convert%20timestamp%20to%20date.alfredworkflow">get it

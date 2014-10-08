@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Productivity | Uptonian Thoughts]]></title>
+  <title><![CDATA[Category: productivity | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/productivity/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2014-10-07T19:27:45-05:00</updated>
+  <updated>2014-10-08T12:15:18-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -32,7 +32,7 @@ over as much as desired.</p>
 
 <p>To illustrate, I have this text:</p>
 
-<p>``` javascript
+<p>&#8220;` javascript
         var flatten = function(result, next_array) {
             console.log(‘current result’, result);
             return result.concat(next_array);
@@ -44,7 +44,7 @@ over as much as desired.</p>
 
 <p>and I want this text:</p>
 
-<p>``` javascript
+<p>&#8220;` javascript
     var flatten = function(result, next_array) {
         console.log(‘current result’, result);
         return result.concat(next_array);
@@ -72,7 +72,7 @@ the beginning of the <code>END</code> block.</p>
 <p>The final version of my command looks like this. I’ve added some comments to explain what’s going
 on.</p>
 
-<p>``` bash
+<p>&#8220;` bash
     gawk  -F ‘\S.*’ \              # The awk field separator is everything after the first non-whitespace character, inclusive
     ‘{                              # The first block of the awk program
         l=length($1);               # The length of the first field, the leading whitespace
