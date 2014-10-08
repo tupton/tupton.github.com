@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Howto | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/howto/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2014-03-08T13:17:26-06:00</updated>
+  <updated>2014-10-07T19:27:45-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -27,7 +27,7 @@
 <p>First things first: clone Vundle into your <code>bundle/</code> directory.</p>
 
 <p><code>bash
-❯ git clone https://github.com/gmarik/vundle.git bundle/vundle
+❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
 </code></p>
 
 <p>The <a href="https://github.com/gmarik/Vundle.vim#quick-start">Vundle quick start guide</a> does a great job of getting you started, so if you’re just looking to use Vundle without any prior bundle management, I would start there. If you were managing your <code>vim</code> plugins with Pathogen and <code>git</code> submodules, the switch to Vundle is straightforward but requires a few more steps.</p>
