@@ -9,12 +9,6 @@ author: Thomas Upton
 simple_search: http://www.google.com/search?q=site%3Ablog.thomasupton.com
 description: A place where Thomas Upton talks about music, code, coffee, and anything else he fancies.
 
-# Default date format is "ordinal" (resulting in "July 22nd 2007")
-# You can customize the format as defined in
-# http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
-# Additionally, %o will give you the ordinal representation of the day
-date_format: "%B %e, %Y"
-
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
 subscribe_email:
