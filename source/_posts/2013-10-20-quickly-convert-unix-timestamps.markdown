@@ -23,7 +23,7 @@ break down when I'm trying to do work with finnicky or non-existant network conn
 There is:
 
 ``` bash
-date -j -f "%s" "1381528800" +"%a %b %d %T %Z %Y"
+    date -j -f "%s" "1381528800" +"%a %b %d %T %Z %Y"
 ```
 
 An explanation: `-j` tells `date` not to try to set the system date. `-f` describes the format of
@@ -36,7 +36,7 @@ You can use `xargs` to pipe input in. Note that the `-J` option might be differe
 are not OS X.
 
 ``` bash
-echo -n "1381528800" | xargs -J {} date -j -f "%s" {} +"%a %b %d %T %Z %Y"
+    echo -n "1381528800" | xargs -J {} date -j -f "%s" {} +"%a %b %d %T %Z %Y"
 ```
 
 Like I seem to do with a lot of my utility scripts, I added a workflow to Alfred. You can [get it

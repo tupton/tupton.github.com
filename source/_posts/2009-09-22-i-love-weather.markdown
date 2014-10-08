@@ -65,24 +65,24 @@ Open Property List Editor.app and create a new item by clicking **Add Item** in 
 [plist-dl]: http://www.thomasupton.com/wp/wp-content/uploads/2009/09/com.thomasupton.fetchweatherimage.plist
 
 ``` xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.thomasupton.fetchweatherimage</string>
-    <key>KeepAlive</key>
-    <false/>
-    <key>StartInterval</key>
-    <integer>600</integer>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/bin/bash</string>
-        <string>/Users/thomasupton/code/script/get_weather_image.sh</string>
-    </array>
-</dict>
-</plist>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.thomasupton.fetchweatherimage</string>
+        <key>KeepAlive</key>
+        <false/>
+        <key>StartInterval</key>
+        <integer>600</integer>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/bin/bash</string>
+            <string>/Users/thomasupton/code/script/get_weather_image.sh</string>
+        </array>
+    </dict>
+    </plist>
 ```
 
 What we have just created is a `launchd` item that will only start on demand every 600 seconds and run our script to grab the weather image. Save the property list to `~/Library/LaunchAgents` and give it a name like *com.thomasupton.fetchweatherimage.plist*. Open Terminal.app and type the following command to load our new `launchd` item, replacing the name of the script with the file name that you saved your property list as.

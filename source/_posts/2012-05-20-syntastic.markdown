@@ -42,10 +42,10 @@ vimrc][vimrc]:
 [vimrc]: https://github.com/tupton/vim-support/blob/master/vimrc#L302
 
 ``` vim
-	" On by default, turn it off for html
-	let g:syntastic_mode_map = { 'mode': 'active',
-		\ 'active_filetypes': [],
-		\ 'passive_filetypes': ['html'] }
+    " On by default, turn it off for html
+    let g:syntastic_mode_map = { 'mode': 'active',
+        \ 'active_filetypes': [],
+        \ 'passive_filetypes': ['html'] }
 ```
 
 The 'mode' option set to active means that syntastic is on by default, so we can leave the list of
@@ -84,8 +84,8 @@ subscript notation when accessing properties, e.g. `this['domNode']` as well as 
 You can tell syntastic to use jshint with the following config option:
 
 ``` vim
-" Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['jshint']
+    " Use jshint (uses ~/.jshintrc)
+    let g:syntastic_javascript_checkers = ['jshint']
 ```
 
 [jslint]: http://www.jslint.com/

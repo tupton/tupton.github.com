@@ -82,36 +82,36 @@ This is the CSS section for my comments.
 ``` css
     /* Comments */
     ol#comments li .content span.number {
-    	position: relative;
-    	top: 0px;
-    	left: 0px;
-    	font-size: 10em;
-    	color: #c7c7c7;
-    	float: right;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        font-size: 10em;
+        color: #c7c7c7;
+        float: right;
     }
 
     ol#comments li {
-    	padding: 10px 0;
+        padding: 10px 0;
     }
 
     ol#comments li.blog-author {
-    	background-color: #ddd;
+        background-color: #ddd;
     }
 
     ol#comments li.alt .content {
-    	background-color: #ddd;
+        background-color: #ddd;
     }
 
     ol#comments li cite span.date a {
-    	text-decoration: none;
+        text-decoration: none;
     }
 
     ol#comments li cite span.gravatar {
-    	margin-top: 13px;
+        margin-top: 13px;
     }
 
     ol#comments li cite span.gravatar img {
-    	padding: 3px;
-    	border: 1px solid #ccc;
+        padding: 3px;
+        border: 1px solid #ccc;
     }
 ```

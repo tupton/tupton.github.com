@@ -24,7 +24,7 @@ I just migrated from Pathogen to Vundle, and I want to document the process.
 First things first: clone Vundle into your `bundle/` directory.
 
 ``` bash
-❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
+    ❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
 ```
 
 The [Vundle quick start guide][vundle-qs] does a great job of getting you started, so if you're just looking to use Vundle without any prior bundle management, I would start there. If you were managing your `vim` plugins with Pathogen and `git` submodules, the switch to Vundle is straightforward but requires a few more steps.
@@ -34,16 +34,15 @@ The [Vundle quick start guide][vundle-qs] does a great job of getting you starte
 At the top of [my `vimrc`][my-vimrc] I added a new Vundle-specific section and added the code from the quick start guide.
 
 ``` vim
-" Of course
-set nocompatible
+    " Of course
+    set nocompatible
 
-" Required Vundle setup
-filetype off
-set runtimepath+=~/.vim/bundle/vundle
-call vundle#rc()
+    " Required Vundle setup
+    filetype off
+    set runtimepath+=~/.vim/bundle/vundle
+    call vundle#rc()
 
-Bundle 'gmarik/vundle'
-
+    Bundle 'gmarik/vundle'
 ```
 
 [my-vimrc]: https://github.com/tupton/vim-support/blob/master/vimrc
@@ -51,27 +50,27 @@ Bundle 'gmarik/vundle'
 Next, I wanted to add all the bundles I already use. `git submodule foreach` can actually help here.
 
 ``` bash
-❯ git submodule foreach git remote -v
-Entering 'bundle/airline'
-origin  https://github.com/bling/vim-airline.git (fetch)
-origin  https://github.com/bling/vim-airline.git (push)
-Entering 'bundle/characterize'
-origin  https://github.com/tpope/vim-characterize.git (fetch)
-origin  https://github.com/tpope/vim-characterize.git (push)
+    ❯ git submodule foreach git remote -v
+    Entering 'bundle/airline'
+    origin  https://github.com/bling/vim-airline.git (fetch)
+    origin  https://github.com/bling/vim-airline.git (push)
+    Entering 'bundle/characterize'
+    origin  https://github.com/tpope/vim-characterize.git (fetch)
+    origin  https://github.com/tpope/vim-characterize.git (push)
 
-[...]
+    [...]
 ```
 
 I then just copied the GitHub user and repository name (the path portion of the remote URL minus ".git") and passed that to Vundle's `Bundle` command.
 
 ``` vim
-" Better status line
-Bundle 'bling/vim-airline'
+    " Better status line
+    Bundle 'bling/vim-airline'
 
-" ga for character descriptions
-Bundle 'tpope/vim-characterize'
+    " ga for character descriptions
+    Bundle 'tpope/vim-characterize'
 
-[...]
+    [...]
 ```
 
 Now we need to remove the existing submodules. One of the big pains of using `git` submodules is removing them when you no longer need them. This made trying out plugins harder than it needed to be, and it makes the transition to Vundle a bit more complicated.
@@ -81,23 +80,23 @@ I reference [this Stack Overflow post about removing `git` submodules][so-remove
 [so-remove-git-submodule]: http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule
 
 ``` bash
-❯ git submodule deinit bundle/
-Cleared directory 'bundle/airline'
-Submodule 'bundle/airline' (https://github.com/bling/vim-airline.git) unregistered for path 'bundle/airline'
-Cleared directory 'bundle/characterize'
-Submodule 'bundle/characterize' (https://github.com/tpope/vim-characterize.git) unregistered for path 'bundle/characterize'
+    ❯ git submodule deinit bundle/
+    Cleared directory 'bundle/airline'
+    Submodule 'bundle/airline' (https://github.com/bling/vim-airline.git) unregistered for path 'bundle/airline'
+    Cleared directory 'bundle/characterize'
+    Submodule 'bundle/characterize' (https://github.com/tpope/vim-characterize.git) unregistered for path 'bundle/characterize'
 
-[...]
+    [...]
 ```
 
 Then you need to explicitly remove all the bundles. Since Vundle is already in `bundle/vundle`, we need to remove each separate plugin bundle directory instead of blowing away the entire `bundle/` directory.
 
 ``` bash
-❯ git rm bundle/airline bundle/characterize [...]
-rm 'bundle/airline'
-rm 'bundle/characterize'
+    ❯ git rm bundle/airline bundle/characterize [...]
+    rm 'bundle/airline'
+    rm 'bundle/characterize'
 
-[...]
+    [...]
 ```
 
 It woud be a good idea to commit your staged changes here, which at this point should just be submodule removal.
@@ -105,12 +104,12 @@ It woud be a good idea to commit your staged changes here, which at this point s
 If you were using Pathogen, don't forget to remove any setup from your `vimrc`.
 
 ``` vim
-" Store pathogen itself in bundle/
-runtime! bundle/pathogen/autoload/pathogen.vim
+    " Store pathogen itself in bundle/
+    runtime! bundle/pathogen/autoload/pathogen.vim
 
-" Start it up
-silent! call pathogen#infect()
-silent! call pathogen#helptags()
+    " Start it up
+    silent! call pathogen#infect()
+    silent! call pathogen#helptags()
 ```
 
 It also helps to add `bundle/` to your `.gitignore`. Vundle now puts all plugins there, but you don't have to manually manage them any more.. Just add `bundle/**` to your `vim` environment's `.gitignore` file.
