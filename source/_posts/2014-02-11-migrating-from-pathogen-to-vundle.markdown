@@ -3,6 +3,7 @@ layout: post
 title: "Migrating from Pathogen to Vundle"
 date: 2014-02-11 19:41
 comments: true
+description: How to move your vim plugins from Pathogen submodules to Vundle.
 categories:
  - Howto
  - Code
