@@ -88,6 +88,216 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2008/04/blog-comment-design">Blog Comment Design</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2008-04-24T16:24:47-05:00'><span class='date'>April 24, 2008</span></time>
+        
+        &middot; <a href="/2008/04/blog-comment-design">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2008%2F04%2Fblog-comment-design&title=Blog%20Comment%20Design&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I updated my blog comments from the <a href="http://warpspire.com/hemingway">Hemingway</a> default to a more iconic design.</p>
+
+<p>A <a href="http://css-tricks.com/better-ordered-lists-using-simple-php-and-css/">post about blog comments</a> that I saw a few weeks ago inspired me to use the “big number” idea for my own comments.</p>
+
+<p>I also enabled <a href="http://en.gravatar.com/">Gravatars</a> and have highlighted my own comments when I make them. I have posted the comment loop and the relevant comment CSS in case anyone else wants to use this idea.</p>
+
+<p>This is the comment loop in comments.php.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+</pre></td><td class="code"><pre><code class="php"><span class="line"><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$comments</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    &lt;ol id=&quot;comments&quot;&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">foreach</span> <span class="p">(</span><span class="nv">$comments</span> <span class="k">as</span> <span class="nv">$comment</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">        &lt;li id=&quot;comment-</span><span class="cp">&lt;?php</span> <span class="nx">comment_ID</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x">&quot; class=&quot;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">get_comment_author_email</span><span class="p">()</span> <span class="o">==</span> <span class="nx">get_the_author_email</span><span class="p">()</span> <span class="o">?</span> <span class="s1">&#39; blog-author&#39;</span> <span class="o">:</span> <span class="nv">$oddcomment</span> <span class="cp">?&gt;</span><span class="x">&quot;&gt;</span>
+</span><span class="line"><span class="x">            &lt;cite&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;author&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="nx">comment_author_link</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x">&lt;/span&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;date&quot;&gt;&lt;a href=&quot;#comment-</span><span class="cp">&lt;?php</span> <span class="nx">comment_ID</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x">&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="nx">comment_date</span><span class="p">(</span> <span class="nv">$hemingway</span><span class="o">-&gt;</span><span class="na">date_format</span><span class="p">()</span> <span class="o">.</span> <span class="s1">&#39;.y&#39;</span> <span class="p">)</span> <span class="cp">?&gt;</span><span class="x"> / </span><span class="cp">&lt;?php</span> <span class="nx">comment_date</span><span class="p">(</span><span class="s1">&#39;H.i&#39;</span><span class="p">)</span> <span class="cp">?&gt;</span><span class="x">&lt;/a&gt;&lt;/span&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;gravatar&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">get_avatar</span><span class="p">(</span> <span class="nv">$comment</span><span class="p">,</span> <span class="nv">$size</span> <span class="o">=</span> <span class="s1">&#39;80&#39;</span><span class="p">);</span> <span class="cp">?&gt;</span><span class="x">&lt;/span&gt;</span>
+</span><span class="line"><span class="x">            &lt;/cite&gt;</span>
+</span><span class="line"><span class="x">            &lt;div class=&quot;content&quot;&gt;</span>
+</span><span class="line"><span class="x">                &lt;span class=&quot;number&quot;&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$i</span> <span class="cp">?&gt;</span><span class="x">&lt;/span&gt;</span>
+</span><span class="line"><span class="x">                </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$comment</span><span class="o">-&gt;</span><span class="na">comment_approved</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">                &lt;em&gt;Your comment is awaiting moderation.&lt;/em&gt;</span>
+</span><span class="line"><span class="x">                </span><span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">                </span><span class="cp">&lt;?php</span> <span class="nx">comment_text</span><span class="p">()</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">            &lt;/div&gt;</span>
+</span><span class="line"><span class="x">            &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</span>
+</span><span class="line"><span class="x">        &lt;/li&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x">        </span><span class="cp">&lt;?php</span> <span class="nv">$i</span><span class="o">++</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="cm">/* Changes every other comment to a different class */</span>
+</span><span class="line">        <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;alt&#39;</span> <span class="o">==</span> <span class="nv">$oddcomment</span><span class="p">)</span> <span class="nv">$oddcomment</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class="line">        <span class="k">else</span> <span class="nv">$oddcomment</span> <span class="o">=</span> <span class="s1">&#39;alt&#39;</span><span class="p">;</span>
+</span><span class="line">    <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    </span><span class="cp">&lt;?php</span> <span class="k">endforeach</span><span class="p">;</span> <span class="cm">/* end for each comment */</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line">
+</span><span class="line"><span class="x">    &lt;/ol&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x"> </span><span class="cp">&lt;?php</span> <span class="k">else</span> <span class="o">:</span> <span class="c1">// this is displayed if there are no comments so far ?&gt;</span>
+</span><span class="line">
+</span><span class="line">  <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;open&#39;</span> <span class="o">==</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">comment_status</span><span class="p">)</span> <span class="o">:</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="x">        &lt;!-- If comments are open, but there are no comments. --&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="x">     </span><span class="cp">&lt;?php</span> <span class="k">else</span> <span class="o">:</span> <span class="c1">// comments are closed ?&gt;</span>
+</span><span class="line">        <span class="o">&lt;!--</span> <span class="k">If</span> <span class="nx">comments</span> <span class="nx">are</span> <span class="nx">closed</span><span class="o">.</span> <span class="o">--&gt;</span>
+</span><span class="line">        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;nocomments&quot;</span><span class="o">&gt;</span><span class="nx">Comments</span> <span class="nx">are</span> <span class="nx">closed</span><span class="o">.&lt;/</span><span class="nx">p</span><span class="o">&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span><span class="line"><span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>This is the CSS section for my comments.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="c">/* Comments */</span>
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nc">.content</span> <span class="nt">span</span><span class="nc">.number</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+</span><span class="line">    <span class="k">top</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+</span><span class="line">    <span class="k">left</span><span class="o">:</span> <span class="m">0px</span><span class="p">;</span>
+</span><span class="line">    <span class="k">font-size</span><span class="o">:</span> <span class="m">10em</span><span class="p">;</span>
+</span><span class="line">    <span class="k">color</span><span class="o">:</span> <span class="m">#c7c7c7</span><span class="p">;</span>
+</span><span class="line">    <span class="k">float</span><span class="o">:</span> <span class="k">right</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">padding</span><span class="o">:</span> <span class="m">10px</span> <span class="m">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span><span class="nc">.blog-author</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">background-color</span><span class="o">:</span> <span class="m">#ddd</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span><span class="nc">.alt</span> <span class="nc">.content</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">background-color</span><span class="o">:</span> <span class="m">#ddd</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nt">cite</span> <span class="nt">span</span><span class="nc">.date</span> <span class="nt">a</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nt">cite</span> <span class="nt">span</span><span class="nc">.gravatar</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">margin-top</span><span class="o">:</span> <span class="m">13px</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">ol</span><span class="nf">#comments</span> <span class="nt">li</span> <span class="nt">cite</span> <span class="nt">span</span><span class="nc">.gravatar</span> <span class="nt">img</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">padding</span><span class="o">:</span> <span class="m">3px</span><span class="p">;</span>
+</span><span class="line">    <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#ccc</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2008/04/yahoo-weather-feeds-with-python">Yahoo! Weather Feeds With Python</a></h1>
     
     
@@ -694,46 +904,6 @@ if fields[0] == "\n":
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/04/virginia-tech-2007-04-16">Virginia Tech, 2007-04-16</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2007-04-16T22:06:55-05:00'><span class='date'>April 16, 2007</span></time>
-        
-        &middot; <a href="/2007/04/virginia-tech-2007-04-16">&infin;</a>
-        &middot; 
-
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2007%2F04%2Fvirginia-tech-2007-04-16&title=Virginia%20Tech%2C%202007-04-16&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The reasons behind today’s incidents will almost certainly never be known.</p>
-
-<p>What will be known and remembered is that Virginia Tech’s students, faculty, and staff are now forever changed.  Let today’s events serve as an explicit reminder of the tragedy that is able to be wreaked upon us, but also let us stand strong, let us never forget the fallen, and let us show our Hokie Pride through all we do, forever and ever.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
   
     <a class="prev" href="/page/7">&larr; Older</a>
@@ -749,6 +919,10 @@ if fields[0] == "\n":
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
+      </li>
     
       <li class="post">
         <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
@@ -784,10 +958,6 @@ if fields[0] == "\n":
     
       <li class="post">
         <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/05/syntastic">Syntastic</a>
       </li>
     
   </ul>

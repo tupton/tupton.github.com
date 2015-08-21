@@ -86,6 +86,113 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-20T20:25:07-05:00'><span class='date'>August 20, 2015</span></time>
+        
+        &middot; <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2015%2F08%2Finstalling-and-using-the-latest-zsh-on-travis-ci&title=Installing%20the%20Latest%20ZSH%20on%20Travis%20CI&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently thought it might be a good idea to start using <a href="https://travis-ci.org/">Travis CI</a> to run builds of my personal repositories on a regular basis. A lot of my repositories are pet projects, but that doesn’t mean that I don’t depend on them on a daily basis.</p>
+
+<p>That couldn’t be more true of <a href="https://github.com/tupton/dotfiles">my dotfiles</a>. My <a href="https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/zsh/zshrc"><code>zshrc</code></a> and my <a href="https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/vim/vimrc"><code>vimrc</code></a> get exercised tens if not hundreds of times per day. Sometimes I’ll make a change to test out something new, verify that it doesn’t blow up, commit it, and move on. That’s probably not the best way to do things, but I figure that I’ll never start using the new hotness if I don’t jump in and start using it right away. Usually this works out well and I’ve simply added a new tool to my repertoire, but it can potentially break my environment in subtle ways. Continuous integration can help with that: if I commit a breaking change, I can get an email when the “build” breaks. I’ll immediately know which commit broke something without having to resort to <code>git blame</code> or something similar.</p>
+
+<p>Travis CI offers a fantastic free service, but I haven’t really had a chance to use it yet<sup id="fnref:travis-vs-jenkins"><a href="#fn:travis-vs-jenkins" class="footnote">1</a></sup>. I figured that setting up CI for my small dotfiles repository would be a great way to learn a tool that many open source projects use today.</p>
+
+<p>There was one huge hurdle: I use <code>zsh</code>, and most of my dotfile setup scripts are written in <code>zsh</code>, but the <a href="http://docs.travis-ci.com/user/ci-environment/">Travis environment</a> only comes with the <code>bash</code> shell installed<sup id="fnref:default-shell"><a href="#fn:default-shell" class="footnote">2</a></sup>.</p>
+
+<p>Some <a href="https://github.com/zsh-users/antigen/blob/7860ce7aecdbed8fd8ff75472ac59c52c2ac9a7e/.travis.yml#L32">existing open</a> <a href="https://github.com/Tarrasch/zsh-bd/blob/e56411daa979996297295515422b618e7419f8fb/.travis.yml#L5">source projects</a> use Travis with <code>zsh</code>, but they all use the legacy environment that still allows <code>sudo</code>, not the <a href="http://docs.travis-ci.com/user/migrating-from-legacy/">newer container-based environment</a>. The <a href="http://docs.travis-ci.com/user/apt/">apt addon</a> can help install packages in containers, but the latest version of <code>zsh</code> on Ubuntu 12.04 is 4.3.17. <code>zsh</code> 5 is a requirement for most modern usages, so that’s a non-starter. I thought that someone would have come across this already and solved it, and maybe they have, but I couldn’t easily find a solution.</p>
+
+<p>We need to build and install <code>zsh</code>, and we need to do it without <code>sudo</code>. <code>build-essential</code> is already available on the Travis CI virtual machines, and we could use the aforementioned apt addon if it wasn’t.</p>
+
+<p>After much <a href="https://travis-ci.org/tupton/dotfiles/builds">trial and error</a>, I finally got a Travis config that makes sure a recent version of <code>zsh</code> is set up before running the build. I chose to do this in the <code>before_install</code> step because that <a href="http://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle">seems to be where additional dependencies should be installed</a>, but I suppose it could be done anywhere in the build lifecycle before <code>script</code> runs the actual tests.</p>
+
+<p>The full Travis config follows, but the <code>before_install</code> step is what really matters:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sh</span>
+</span><span class="line"><span class="l-Scalar-Plain">addons</span><span class="p-Indicator">:</span>
+</span><span class="line">  <span class="l-Scalar-Plain">apt</span><span class="p-Indicator">:</span>
+</span><span class="line">    <span class="l-Scalar-Plain">packages</span><span class="p-Indicator">:</span>
+</span><span class="line">    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">build-essential</span>
+</span><span class="line"><span class="l-Scalar-Plain">before_install</span><span class="p-Indicator">:</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">export LOCAL=&quot;$(mktemp --directory --tmpdir=${TMPDIR:/tmp} local.bin.XXXXXX)&quot;</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cd zsh-5.0.7</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">./configure --prefix=$LOCAL</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">make</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">make install</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cd -</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">export PATH=&quot;$LOCAL/bin:$PATH&quot;</span>
+</span><span class="line"><span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">make test</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>First, we make a temporary directory to install <code>zsh</code> to. Remember, no <code>sudo</code> means no access to <code>/usr/bin/local</code>, so we need to choose a safe location to install.</p>
+
+<p>Next, we download the latest version of <code>zsh</code>. If you want to use a different mirror or download an archive with a different compression, you just need to change this line to handle that and the rest should work. If you change the version, make sure to update the following line that changes directories to the archive you just decompressed.</p>
+
+<p>Then we build <code>zsh</code>: configure with the prefix set to the directory we created earlier, then <code>make</code> it and <code>make install</code> it to the prefixed directory.</p>
+
+<p>Finally, we <code>cd</code> back to the directory we were in – these build lifecycle steps are run in series so we need to hop back to the directory we were in before building <code>zsh</code> – and, more importantly, we add the temporary directory to the beginning of our path so that <code>zsh</code> can be found.</p>
+
+<p>These <code>before_install</code> steps could probably be extracted into a script, but I wanted to go with the simplest Travis config with the least overhead to get up and running with <code>zsh</code>. Now, when the test script runs, <code>zsh</code> is available and we can check our scripts for errors!</p>
+
+<p>I look forward to exploring more of what is possible with Travis. On my horizon: using <a href="https://github.com/Kuniwak/vint"><code>vint</code></a> to lint my vimrc and writing tests for the majority of my private repositories that don’t currently have any verification.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:travis-vs-jenkins">
+      <p>We use Jenkins at work, which is a blessing and a curse. Mostly the latter, but the sheer number of plugins available coupled with the fact that I work with some awesome people who know Jenkins better than I ever will makes it ok. <a href="#fnref:travis-vs-jenkins" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:default-shell">
+      <p>Really, it comes with whatever shell is default for the operating system that Jenkins VMs use. Since <a href="http://docs.travis-ci.com/user/ci-environment/#Virtualization-environments">they run Ubuntu 12.04</a>, that means that <code>bash</code> is available but <code>zsh</code> is not. It seems like Travis didn’t set out to explicitly support shell-based projects, but because their machines are (mostly) Linux, that comes for “free” if you know how to configure things. <a href="#fnref:default-shell" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating From Pathogen to Vundle</a></h1>
     
     
@@ -883,144 +990,6 @@ a little research – Googling, asking your friends or family – beforehand com
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/05/syntastic">Syntastic</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-05-20T14:13:08-05:00'><span class='date'>May 20, 2012</span></time>
-        
-        &middot; <a href="/2012/05/syntastic">&infin;</a>
-        &middot; 
-
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F05%2Fsyntastic&title=Syntastic&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I love writing with <code>vim</code>, but — for many valid reasons — some people are averse to it. I think the
-steep (–ish) learning curve has something to do with it, but I think some people really don’t want
-to give up their IDE. The thing is, <code>vim</code> isn’t <em>just</em> a text editor. You can extend it to do pretty
-much anything, including features that normally show up in IDEs.</p>
-
-<p>I recently started using <a href="https://github.com/scrooloose/syntastic">syntastic</a>, which is a <code>vim</code> plugin that runs linters or syntax checkers
-and displays warnings and errors right in your window. IDEs like Eclipse or Xcode provide this
-syntax-checking for a couple of languages, but syntastic supports many languages and linters out of
-the box with pluggable support for nearly any language.</p>
-
-<h2 id="setup">Setup</h2>
-
-<p>If you use <a href="https://github.com/tpope/vim-pathogen">pathogen</a> like every sane <code>vim</code> user does, installing syntastic is just like any other
-plugin. Clone the repository or create a submodule in <code>bundle/syntastic</code> and you’re ready to go.</p>
-
-<p>I mainly work with Javascript, Python, HTML, and CSS, so that’s what I’ll talk about. It’s worth
-checking out the syntax checkers in <code>bundle/syntastic/syntax_checkers/</code>, even if you just look at
-the list of files there. You might have to dive into the files to figure out which linters are
-actually supported as it’s not clearly documented.</p>
-
-<p>Before we get to configuring individual syntax checkers, syntastic itself has a couple of
-configuration options. Syntastic has what it refers to as a “mode map”, which is basically just a
-way to configure which file types are checked. Here is the relevant config option from <a href="https://github.com/tupton/vim-support/blob/master/vimrc#L302">my
-vimrc</a>:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; On by default, turn it off for html</span>
-</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_mode_map <span class="p">=</span> { <span class="s1">&#39;mode&#39;</span>: <span class="s1">&#39;active&#39;</span><span class="p">,</span>
-</span><span class="line">    \ <span class="s1">&#39;active_filetypes&#39;</span>: []<span class="p">,</span>
-</span><span class="line">    \ <span class="s1">&#39;passive_filetypes&#39;</span>: [<span class="s1">&#39;html&#39;</span>] }
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The ‘mode’ option set to active means that syntastic is on by default, so we can leave the list of
-‘active_filetypes’ empty. The ‘passive_filetypes’ names filetypes that syntastic does not attempt to
-check. I don’t check HTML files because I mainly work with templates that either can’t or won’t
-validate with most HTML syntax checkers. If templates use non-standard attributes, it’s hard for a
-syntax checker to do its job.</p>
-
-<h3 id="python">Python</h3>
-
-<p>Setting up syntastic for use with python was extremely easy. Just install <a href="http://pypi.python.org/pypi/pyflakes">pyflakes</a> with
-<code>pip install pyflakes</code> and set up some related options. I ignore certain errors regarding
-whitespace, indentation, and end-of-line backslashes, but those are all customizable. See the <a href="http://pep8.readthedocs.org/en/latest/intro.html#error-codes">pep8
-error code documentation</a> for an explanation of the error codes.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Use flake8</span>
-</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_python_checkers <span class="p">=</span> [<span class="s1">&#39;flake8&#39;</span>]
-</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_python_flake8_args <span class="p">=</span> <span class="s1">&#39;--ignore=&quot;E501,E302,E261,E701,E241,E126,E127,E128,W801&quot;&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="javascript">Javascript</h3>
-
-<p>There are a number of Javascript linters, including <a href="http://www.jslint.com/">JS Lint</a> and Google’s <a href="https://developers.google.com/closure/utilities/">Closure
-linter</a>, but I decided to use the communtiy-driven <a href="http://www.jshint.com/">JS Hint</a>.  JS Hint can be
-configured with a jshintrc, which just is a JSON object that contains options. There are two
-categories of options: those that enforce stricter rules than the defaults and those that relax
-default checks. The <a href="http://www.jshint.com/options/">options page of the jshint website</a> does a great job of
-explaining each option. You can <a href="https://github.com/tupton/dotfiles/blob/master/jshintrc">view my jshintrc on my Github page</a>. I added a few
-“enforcing” options, but the only “relaxing” option I use is <code>sub</code>, which allows
-subscript notation when accessing properties, e.g. <code>this['domNode']</code> as well as <code>this.domNode</code>.</p>
-
-<p>You can tell syntastic to use jshint with the following config option:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Use jshint (uses ~/.jshintrc)</span>
-</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_javascript_checkers <span class="p">=</span> [<span class="s1">&#39;jshint&#39;</span>]
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="usage">Usage</h2>
-
-<p><img src="http://farm8.staticflickr.com/7085/7235544916_6f48ae8f45_o_d.png" alt="syntastic and underscore.js" /></p>
-
-<p>By default, syntastic runs your file through the configured filetype’s linter whenever the buffer is
-written. If there are errors, they are highlighted inline. When your cursor is on a line with an
-error, the description of the error is visible in the status line. You can use the <code>:Errors</code> command
-to open a quickfix window with a list of all errors in the file. Pressing enter on an error will
-take you to that line in the file. Syntastic uses <a href="http://vimdoc.sourceforge.net/htmldoc/sign.html">vim’s signs</a>, which means that a
-gutter with a sign appears on the left side of every line with an error on it, making it easy to
-scan the buffer for errors. You can change these symbols with some syntastic options.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Better :sign interface symbols</span>
-</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_error_symbol <span class="p">=</span> <span class="s1">&#39;✗&#39;</span>
-</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_warning_symbol <span class="p">=</span> <span class="s1">&#39;!&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>You can configure syntastic in many other ways, including telling it to check a buffer whenever it
-is opened. I explored the help file (<code>:help syntastic</code>) when I first started using syntastic, and it
-was incredibly helpful. I encourage anyone who uses syntastic to do the same.</p>
-
-<p>Syntastic has already helped me avoid many typos and silly errors that would ordinarily be hard to
-track down. It’s an invaluable tool in my workflow.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
   
     <a class="prev" href="/page/2">&larr; Older</a>
@@ -1034,6 +1003,10 @@ track down. It’s an invaluable tool in my workflow.</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
+      </li>
     
       <li class="post">
         <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
@@ -1069,10 +1042,6 @@ track down. It’s an invaluable tool in my workflow.</p>
     
       <li class="post">
         <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/05/syntastic">Syntastic</a>
       </li>
     
   </ul>

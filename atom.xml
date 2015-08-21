@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2015-06-14T17:46:53-05:00</updated>
+  <updated>2015-08-21T11:41:41-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing the Latest ZSH on Travis CI]]></title>
+    <link href="http://blog.thomasupton.com/2015/08/installing-and-using-the-latest-zsh-on-travis-ci"/>
+    <updated>2015-08-20T20:25:07-05:00</updated>
+    <id>http://blog.thomasupton.com/2015/08/installing-and-using-the-latest-zsh-on-travis-ci</id>
+    <content type="html"><![CDATA[<p>I recently thought it might be a good idea to start using <a href="https://travis-ci.org/">Travis CI</a> to run builds of my personal repositories on a regular basis. A lot of my repositories are pet projects, but that doesn’t mean that I don’t depend on them on a daily basis.</p>
+
+<p>That couldn’t be more true of <a href="https://github.com/tupton/dotfiles">my dotfiles</a>. My <a href="https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/zsh/zshrc"><code>zshrc</code></a> and my <a href="https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/vim/vimrc"><code>vimrc</code></a> get exercised tens if not hundreds of times per day. Sometimes I’ll make a change to test out something new, verify that it doesn’t blow up, commit it, and move on. That’s probably not the best way to do things, but I figure that I’ll never start using the new hotness if I don’t jump in and start using it right away. Usually this works out well and I’ve simply added a new tool to my repertoire, but it can potentially break my environment in subtle ways. Continuous integration can help with that: if I commit a breaking change, I can get an email when the “build” breaks. I’ll immediately know which commit broke something without having to resort to <code>git blame</code> or something similar.</p>
+
+<p>Travis CI offers a fantastic free service, but I haven’t really had a chance to use it yet<sup id="fnref:travis-vs-jenkins"><a href="#fn:travis-vs-jenkins" class="footnote">1</a></sup>. I figured that setting up CI for my small dotfiles repository would be a great way to learn a tool that many open source projects use today.</p>
+
+<p>There was one huge hurdle: I use <code>zsh</code>, and most of my dotfile setup scripts are written in <code>zsh</code>, but the <a href="http://docs.travis-ci.com/user/ci-environment/">Travis environment</a> only comes with the <code>bash</code> shell installed<sup id="fnref:default-shell"><a href="#fn:default-shell" class="footnote">2</a></sup>.</p>
+
+<p>Some <a href="https://github.com/zsh-users/antigen/blob/7860ce7aecdbed8fd8ff75472ac59c52c2ac9a7e/.travis.yml#L32">existing open</a> <a href="https://github.com/Tarrasch/zsh-bd/blob/e56411daa979996297295515422b618e7419f8fb/.travis.yml#L5">source projects</a> use Travis with <code>zsh</code>, but they all use the legacy environment that still allows <code>sudo</code>, not the <a href="http://docs.travis-ci.com/user/migrating-from-legacy/">newer container-based environment</a>. The <a href="http://docs.travis-ci.com/user/apt/">apt addon</a> can help install packages in containers, but the latest version of <code>zsh</code> on Ubuntu 12.04 is 4.3.17. <code>zsh</code> 5 is a requirement for most modern usages, so that’s a non-starter. I thought that someone would have come across this already and solved it, and maybe they have, but I couldn’t easily find a solution.</p>
+
+<p>We need to build and install <code>zsh</code>, and we need to do it without <code>sudo</code>. <code>build-essential</code> is already available on the Travis CI virtual machines, and we could use the aforementioned apt addon if it wasn’t.</p>
+
+<p>After much <a href="https://travis-ci.org/tupton/dotfiles/builds">trial and error</a>, I finally got a Travis config that makes sure a recent version of <code>zsh</code> is set up before running the build. I chose to do this in the <code>before_install</code> step because that <a href="http://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle">seems to be where additional dependencies should be installed</a>, but I suppose it could be done anywhere in the build lifecycle before <code>script</code> runs the actual tests.</p>
+
+<p>The full Travis config follows, but the <code>before_install</code> step is what really matters:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sh</span>
+</span><span class="line"><span class="l-Scalar-Plain">addons</span><span class="p-Indicator">:</span>
+</span><span class="line">  <span class="l-Scalar-Plain">apt</span><span class="p-Indicator">:</span>
+</span><span class="line">    <span class="l-Scalar-Plain">packages</span><span class="p-Indicator">:</span>
+</span><span class="line">    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">build-essential</span>
+</span><span class="line"><span class="l-Scalar-Plain">before_install</span><span class="p-Indicator">:</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">export LOCAL=&quot;$(mktemp --directory --tmpdir=${TMPDIR:/tmp} local.bin.XXXXXX)&quot;</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cd zsh-5.0.7</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">./configure --prefix=$LOCAL</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">make</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">make install</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cd -</span>
+</span><span class="line"><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">export PATH=&quot;$LOCAL/bin:$PATH&quot;</span>
+</span><span class="line"><span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">make test</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>First, we make a temporary directory to install <code>zsh</code> to. Remember, no <code>sudo</code> means no access to <code>/usr/bin/local</code>, so we need to choose a safe location to install.</p>
+
+<p>Next, we download the latest version of <code>zsh</code>. If you want to use a different mirror or download an archive with a different compression, you just need to change this line to handle that and the rest should work. If you change the version, make sure to update the following line that changes directories to the archive you just decompressed.</p>
+
+<p>Then we build <code>zsh</code>: configure with the prefix set to the directory we created earlier, then <code>make</code> it and <code>make install</code> it to the prefixed directory.</p>
+
+<p>Finally, we <code>cd</code> back to the directory we were in – these build lifecycle steps are run in series so we need to hop back to the directory we were in before building <code>zsh</code> – and, more importantly, we add the temporary directory to the beginning of our path so that <code>zsh</code> can be found.</p>
+
+<p>These <code>before_install</code> steps could probably be extracted into a script, but I wanted to go with the simplest Travis config with the least overhead to get up and running with <code>zsh</code>. Now, when the test script runs, <code>zsh</code> is available and we can check our scripts for errors!</p>
+
+<p>I look forward to exploring more of what is possible with Travis. On my horizon: using <a href="https://github.com/Kuniwak/vint"><code>vint</code></a> to lint my vimrc and writing tests for the majority of my private repositories that don’t currently have any verification.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:travis-vs-jenkins">
+      <p>We use Jenkins at work, which is a blessing and a curse. Mostly the latter, but the sheer number of plugins available coupled with the fact that I work with some awesome people who know Jenkins better than I ever will makes it ok. <a href="#fnref:travis-vs-jenkins" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:default-shell">
+      <p>Really, it comes with whatever shell is default for the operating system that Jenkins VMs use. Since <a href="http://docs.travis-ci.com/user/ci-environment/#Virtualization-environments">they run Ubuntu 12.04</a>, that means that <code>bash</code> is available but <code>zsh</code> is not. It seems like Travis didn’t set out to explicitly support shell-based projects, but because their machines are (mostly) Linux, that comes for “free” if you know how to configure things. <a href="#fnref:default-shell" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Migrating from Pathogen to Vundle]]></title>
@@ -1021,20 +1099,6 @@ track down. It’s an invaluable tool in my workflow.</p>
 <p>I registered <a href="http://upton.in/">upton.in</a> to serve my short links. I chose the “.in” TLD because it’s short and common. I do wish there was an “.on” TLD so I could register <em>upt.on</em>, but I like the connotation of “in”. As <a href="https://twitter.com/thomasupton/status/154218836722335745">I said on Twitter the other day</a>, it can mean “Internet, inside, come in, infinity, interesting” among other things. </p>
 
 <p>Lessn also integrates nicely with <a href="http://haveamint.com/">Mint</a>, which I recently started using. I plan to write more on that shortly.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Unplayed]]></title>
-    <link href="http://blog.thomasupton.com/2012/01/unplayed"/>
-    <updated>2012-01-02T19:23:21-06:00</updated>
-    <id>http://blog.thomasupton.com/2012/01/unplayed</id>
-    <content type="html"><![CDATA[<p>Santa brought me <a href="http://www.amazon.com/gp/product/B002BSC54I/ref=as_li_tf_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=9325&creativeASIN;=B002BSC54I">The Legend of Zelda: Skyward Sword</a> for Christmas (thanks Mom!). I’ve enjoyed playing it, just as I’ve enjoyed playing video games for nearly my entire life.</p>
-
-<p>In recent years, however, I’ve abandoned or not fully played all of my video games. I attempted to maintain a Google Docs spreadsheet to keep track of my unplayed games, but it quickly became more neglected than the games themselves.</p>
-
-<p>I recently found out about Shaun Inman’s <a href="http://www.shauninman.com/archive/2011/04/18/unplayed"><em>Unplayed</em></a>, and it seemed perfect. It’s like a much simpler, lightweight Shelfari for video games. You can now see which games I’m playing (or not playing) at my <a href="http://www.thomasupton.com/unplayed/"><em>Unplayed</em> page</a>. For now, I’m going back to Skyloft!</p>
 
 ]]></content>
   </entry>

@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://blog.thomasupton.com/2015/08/installing-and-using-the-latest-zsh-on-travis-ci</loc>
+    
+    <lastmod>2015-08-20T20:25:07-05:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle</loc>
     
     <lastmod>2014-02-11T19:41:00-06:00</lastmod>
@@ -1277,14 +1285,14 @@
   
   <url>
     <loc>http://blog.thomasupton.com/blog/archives/</loc>
-    <lastmod>2015-06-14T17:46:53-05:00</lastmod>
+    <lastmod>2015-08-21T11:41:41-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.thomasupton.com/</loc>
-    <lastmod>2015-06-14T17:46:53-05:00</lastmod>
+    <lastmod>2015-08-21T11:41:41-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
