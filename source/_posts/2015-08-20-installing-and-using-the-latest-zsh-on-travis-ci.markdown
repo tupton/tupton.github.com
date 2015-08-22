@@ -18,11 +18,11 @@ That couldn't be more true of [my dotfiles][df]. My [`zshrc`][zshrc] and my [`vi
   [zshrc]: https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/zsh/zshrc
   [vimrc]: https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/vim/vimrc
 
-Travis CI offers a fantastic free service, but I haven't really had a chance to use it yet[^travis-vs-jenkins]. I figured that setting up CI for my small dotfiles repository would be a great way to learn a tool that many open source projects use today.
+Travis CI offers a fantastic free service, but I haven't really had a chance to use it yet.[^travis-vs-jenkins] I figured that setting up CI for my small dotfiles repository would be a great way to learn a tool that many open source projects use today.
 
   [^travis-vs-jenkins]: We use Jenkins at work, which is a blessing and a curse. Mostly the latter, but the sheer number of plugins available coupled with the fact that I work with some awesome people who know Jenkins better than I ever will makes it ok.
 
-There was one huge hurdle: I use `zsh`, and most of my dotfile setup scripts are written in `zsh`, but the [Travis environment][travis-env] only comes with the `bash` shell installed[^default-shell].
+There was one huge hurdle: I use `zsh`, and most of my dotfile setup scripts are written in `zsh`, but the [Travis environment][travis-env] only comes with the `bash` shell installed.[^default-shell]
 
   [travis-env]: http://docs.travis-ci.com/user/ci-environment/
 
