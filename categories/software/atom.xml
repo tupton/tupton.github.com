@@ -4,7 +4,7 @@
   <title><![CDATA[Category: software | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/software/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2015-08-22T15:43:25-05:00</updated>
+  <updated>2015-09-01T17:55:21-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -70,7 +70,7 @@ script: make test
       <p>We use Jenkins at work, which is a blessing and a curse. Mostly the latter, but the sheer number of plugins available coupled with the fact that I work with some awesome people who know Jenkins better than I ever will makes it ok. <a href="#fnref:travis-vs-jenkins" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:default-shell">
-      <p>Really, it comes with whatever shell is default for the operating system that Jenkins VMs use. Since <a href="http://docs.travis-ci.com/user/ci-environment/#Virtualization-environments">they run Ubuntu 12.04</a>, that means that <code>bash</code> is available but <code>zsh</code> is not. It seems like Travis didn’t set out to explicitly support shell-based projects, but because their machines are (mostly) Linux, that comes for “free” if you know how to configure things. <a href="#fnref:default-shell" class="reversefootnote">&#8617;</a></p>
+      <p>Really, it comes with whatever shell is default for the operating system that Travis VMs use. Since <a href="http://docs.travis-ci.com/user/ci-environment/#Virtualization-environments">they run Ubuntu 12.04</a>, that means that <code>bash</code> is available but <code>zsh</code> is not. It seems like Travis didn’t set out to explicitly support shell-based projects, but because their machines are (mostly) Linux, that comes for “free” if you know how to configure things. <a href="#fnref:default-shell" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
