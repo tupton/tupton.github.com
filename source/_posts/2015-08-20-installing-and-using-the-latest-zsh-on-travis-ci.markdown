@@ -26,7 +26,7 @@ There was one huge hurdle: I use `zsh`, and most of my dotfile setup scripts are
 
   [travis-env]: http://docs.travis-ci.com/user/ci-environment/
 
-  [^default-shell]: Really, it comes with whatever shell is default for the operating system that Jenkins VMs use. Since [they run Ubuntu 12.04][travis-virt-env], that means that `bash` is available but `zsh` is not. It seems like Travis didn't set out to explicitly support shell-based projects, but because their machines are (mostly) Linux, that comes for "free" if you know how to configure things.
+  [^default-shell]: Really, it comes with whatever shell is default for the operating system that Travis VMs use. Since [they run Ubuntu 12.04][travis-virt-env], that means that `bash` is available but `zsh` is not. It seems like Travis didn't set out to explicitly support shell-based projects, but because their machines are (mostly) Linux, that comes for "free" if you know how to configure things.
 
   [travis-virt-env]: http://docs.travis-ci.com/user/ci-environment/#Virtualization-environments
 
