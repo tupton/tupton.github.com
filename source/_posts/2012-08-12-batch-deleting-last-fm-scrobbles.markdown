@@ -31,10 +31,28 @@ quickly delete a page of scrobbles. I still have to manually get to each page, b
 much easier.
 
 ``` javascript
-    jQuery('#deletablert a.delete').each(function(_, a) {
-        a.click();
-    });
+jQuery('#deletablert a.delete').each(function(_, a) {
+    a.click();
+});
 ```
+
+-----
+
+*UPDATE 2015-10-08*:
+
+Since the new Last.fm redesign recently went live after being in beta for a while, it looks like the selector in the above code needs to change. Thanks to [@jayholler][], the code should now be:
+
+``` javascript
+jQuery('.chartlist button.chartlist-delete-button').each(function(_, b) {
+    b.click();
+});
+```
+
+  [@jayholler]: https://twitter.com/jayholler/status/652226890338439168
+
+I am leaving the old code up for posterity and just in case the old site is still accessible somewehere.
+
+-----
 
 I just open up the console with `⌘-⌥-I`, paste in that snippet of code, and hit enter. Here is what
 it looks like in action.
