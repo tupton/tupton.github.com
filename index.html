@@ -642,6 +642,24 @@ much easier.</p>
 </span><span class="line"><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<hr />
+
+<p><em>UPDATE 2015-10-08</em>:</p>
+
+<p>Since the new Last.fm redesign recently went live after being in beta for a while, it looks like the selector in the above code needs to change. Thanks to <a href="https://twitter.com/jayholler/status/652226890338439168">@jayholler</a>, the code should now be:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;.chartlist button.chartlist-delete-button&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">b</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+</span><span class="line"><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I am leaving the old code up for posterity and just in case the old site is still accessible somewehere.</p>
+
+<hr />
+
 <p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
 it looks like in action.</p>
 

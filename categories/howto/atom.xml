@@ -4,7 +4,7 @@
   <title><![CDATA[Category: howto | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/howto/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2015-09-08T12:23:25-05:00</updated>
+  <updated>2015-10-08T23:34:00-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -209,10 +209,26 @@ quickly delete a page of scrobbles. I still have to manually get to each page, b
 much easier.</p>
 
 <p><code>javascript
-    jQuery('#deletablert a.delete').each(function(_, a) {
-        a.click();
-    });
+jQuery('#deletablert a.delete').each(function(_, a) {
+    a.click();
+});
 </code></p>
+
+<hr />
+
+<p><em>UPDATE 2015-10-08</em>:</p>
+
+<p>Since the new Last.fm redesign recently went live after being in beta for a while, it looks like the selector in the above code needs to change. Thanks to <a href="https://twitter.com/jayholler/status/652226890338439168">@jayholler</a>, the code should now be:</p>
+
+<p><code>javascript
+jQuery('.chartlist button.chartlist-delete-button').each(function(_, b) {
+    b.click();
+});
+</code></p>
+
+<p>I am leaving the old code up for posterity and just in case the old site is still accessible somewehere.</p>
+
+<hr />
 
 <p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
 it looks like in action.</p>
