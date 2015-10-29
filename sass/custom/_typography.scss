@@ -1,1 +1,7 @@
 $heading-font-family: "PT Sans", "Helvetica Neue", Arial, sans-serif;
+
+sup, sub {
+    padding: 0 3px 3px 1px;
+}
+
+sup { top: -.5em; }
