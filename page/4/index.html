@@ -88,6 +88,193 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2010/12/pastebin-from-the-commandline">Pastebin From the Command-line</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-12-11T14:42:56-06:00'><span class='date'>December 11, 2010</span></time>
+        
+        &middot; <a href="/2010/12/pastebin-from-the-commandline">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2010%2F12%2Fpastebin-from-the-commandline&title=Pastebin%20From%20The%20Command-line&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://pastebin.com/">Pastebin.com</a> is a utility for sharing snippets of text with anyone. The service is simple: go to <a href="http://pastebin.com/">pastebin.com</a>, paste your text, click submit, and share the link. It’s useful for sharing time-saving snippets with you team, or for an impromptu, informal code review of changes that for one reason or another haven’t been committed yet (e.g. a design decision for which the author wants early feedback.)</p>
+
+<blockquote>
+  <p><em>10:56:55 AM</em> <strong>Mike Bulman</strong>: im gonna try to find one, but if it doesn’t exist im gonna write:  a service/app for osx that will post whatevers on the clipboard to pastebin and give you a url</p>
+</blockquote>
+
+<p>A couple of days ago, my friend <a href="http://twitter.com/#!/mikebulman">Mike</a> suggested that he wanted a utility that would make it easy to post to pastebin without having to break your workflow and go to the site. I thought “that sounds fun,” and went to work that evening.</p>
+
+<p>Pastebin has a <a href="http://pastebin.com/api.php">simple RPC API</a> for posting content, and it’s perfect for <code>curl</code>. The very first version of the pastebin script was this simple <code>curl</code> script.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /usr/bin/env bash</span>
+</span><span class="line">curl -s -X POST -d <span class="s2">&quot;paste_code=$1&quot;</span> <span class="s2">&quot;http://pastebin.com/api_public.php&quot;</span> | pbcopy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><code>paste_code</code> is the POST parameter that the pastebin API expects to contain pasted content, so we just POST that to the public API page. The output of a successful pastebin API call is the URL for the paste, so we pipe that to OS X’s clipboard for easy pasting. Right from the beginning, this is clearly an OS X-specific script, but I don’t think it would be that hard to interact with the Linux system clipboard via <code>xclip</code>.</p>
+
+<p>Making this work for text from <code>stdin</code> instead of as an argument was easy, too.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /usr/bin/env bash</span>
+</span><span class="line"><span class="nv">to_paste</span><span class="o">=</span><span class="sb">`</span>cat /dev/stdin<span class="sb">`</span>
+</span><span class="line">curl -s -X POST -d <span class="s2">&quot;paste_code=$to_paste&quot;</span> <span class="s2">&quot;http://pastebin.com/api_public.php&quot;</span> | pbcopy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Both Mike and I recently started using <a href="http://jumpcut.sourceforge.net/">Jumpcut</a>, a minimal clipboard manager for OS X, so I had the idea of copying the actual text that was posted to pastebin before copying the URL so both would be readily available via Jumpcut. I tried adding <code>echo "$to_paste" | pbcopy</code> before the <code>curl</code> call, but it didn’t always work. I didn’t actually find any documentation on it, but it seems that <code>pbcopy</code> does some sort of buffering so that too much text isn’t copied in quick succession. Adding a very hacky <code>sleep</code> call fixed it, so the resulting script became the following.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /usr/bin/env bash</span>
+</span><span class="line"><span class="nv">to_paste</span><span class="o">=</span><span class="sb">`</span>cat /dev/stdin<span class="sb">`</span>
+</span><span class="line"><span class="nb">echo</span> <span class="s2">&quot;$to_paste&quot;</span> | pbcopy
+</span><span class="line">sleep 1
+</span><span class="line">curl -s -X POST -d <span class="s2">&quot;paste_code=$1&quot;</span> <span class="s2">&quot;http://pastebin.com/api_public.php&quot;</span> | pbcopy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Having a commandline script is all well and good, but it’s on about the same usability level as using pastebin.com: instead of switching to a browser, you switch to a terminal, but you still have to paste content and get away from you original context. This is where OS X Services come into play.</p>
+
+<p>The OS X Service menu is often neglected, but it’s very useful. There are some neat built-in services, like looking a word up in Dictionary or composing a new email with the selection. With tools like  <a href="http://www.macosxautomation.com/automator/">Automator</a> or <a href="http://wafflesoftware.net/thisservice/">ThisService</a>, creating your own service is easy. I created an Automator workflow that assumed the script was symbolically linked to <code>/usr/local/bin/pastebin</code> and called the script. You can easily add a keyboard shortcut to a Service in the System Preferences Keyboard Shortcuts preference pane.</p>
+
+<p>I cleaned up the script by adding a few command line options using the <code>getopts</code> <code>bash</code> built-in. This was pretty useful and easy to use. I’m not a very proficient <code>bash</code> scripter, but I was easily able to add what I needed, including making the ability to copy the text optional and allowing a file to be used in place of <code>stdin</code>. <a href="http://ginatrapani.org/">Gina Trapani</a>’s excellent <a href="https://github.com/ginatrapani/todo.txt-cli">todo.txt</a> script was helpful in figuring out the correct syntax.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="k">while </span><span class="nb">getopts</span> <span class="s2">&quot;:cf:h&quot;</span> Option
+</span><span class="line"><span class="k">do</span>
+</span><span class="line"><span class="k">    case</span> <span class="nv">$Option</span> in
+</span><span class="line">        c <span class="o">)</span>
+</span><span class="line">            <span class="nv">PASTEBIN_COPY</span><span class="o">=</span>1
+</span><span class="line">            ;;
+</span><span class="line">        f <span class="o">)</span>
+</span><span class="line">            <span class="nv">PASTEBIN_FILE</span><span class="o">=</span><span class="nv">$OPTARG</span>
+</span><span class="line">            ;;
+</span><span class="line">        h <span class="o">)</span>
+</span><span class="line">            usage
+</span><span class="line">            ;;
+</span><span class="line">    <span class="k">esac</span>
+</span><span class="line"><span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I wrapped the script and the Automator workflow and <a href="https://github.com/tupton/pastebin-cl/">added it to github</a>. You can <a href="https://github.com/tupton/pastebin-cl/blob/8ff3cdda9e0027c41416b285f2822781a0ba4b5e/pastebin.sh">view the original bash script</a> in its latest form if you’re interested.</p>
+
+<p>All this was well and good, but a couple of things bothered me. I didn’t like that <code>sleep</code> call, and I knew that the pastebin API offered a few options that I wasn’t allowing users of this script to take advantage of. So I did what any normal developer would do: I rewrote the script in python. The <a href="https://github.com/tupton/pastebin-cl/blob/d462c57542e98f23c83dc6388e1e5ebbafe04c94/pastebin.py">original version of the script</a> was just a straight “port” of the <code>bash</code> script, but I had plans for more.</p>
+
+<p>I have experience with <a href="https://github.com/tupton/python-yahoo-weather">simple python scripts</a>, but I decided I should try my luck using classes in order to wrap the pastebin API. It was really easy. The beginning of the class looked like the following.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Pastebin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class="line">    <span class="sd">&quot;&quot;&quot;A wrapper for the pastebin API&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line">    <span class="n">pastebin_api</span> <span class="o">=</span> <span class="s">&quot;http://pastebin.com/api_public.php&quot;</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paste_code</span><span class="p">,</span> <span class="n">paste_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">paste_email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">paste_subdomain</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+</span><span class="line">            <span class="n">paste_private</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">paste_expire_date</span><span class="o">=</span><span class="n">PASTEBIN_EXPIRE_NEVER</span><span class="p">,</span> <span class="n">paste_format</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</span><span class="line">
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_code</span><span class="p">(</span><span class="n">paste_code</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_name</span><span class="p">(</span><span class="n">paste_name</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_email</span><span class="p">(</span><span class="n">paste_email</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_subdomain</span><span class="p">(</span><span class="n">paste_subdomain</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_private</span><span class="p">(</span><span class="n">paste_private</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_expire_date</span><span class="p">(</span><span class="n">paste_expire_date</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_format</span><span class="p">(</span><span class="n">paste_format</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then all I had to do was use the class.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">pastebin</span> <span class="o">=</span> <span class="n">Pastebin</span><span class="p">(</span><span class="n">paste_code</span><span class="o">=</span><span class="n">lines</span><span class="p">,</span> <span class="n">paste_name</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_name</span><span class="p">,</span> <span class="n">paste_email</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_email</span><span class="p">,</span>
+</span><span class="line">            <span class="n">paste_subdomain</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_subdomain</span><span class="p">,</span> <span class="n">paste_private</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_private</span><span class="p">,</span>
+</span><span class="line">            <span class="n">paste_expire_date</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_expire_date</span><span class="p">,</span> <span class="n">paste_format</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_format</span><span class="p">)</span>
+</span><span class="line"><span class="n">response</span> <span class="o">=</span> <span class="n">pastebin</span><span class="o">.</span><span class="n">paste</span><span class="p">()</span>
+</span><span class="line"><span class="k">return</span> <span class="n">response</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I have no idea if getters and setters are very “pythonic,” but they make sense to me, even if I’m only using them internally for this script. I used a pretty interesting trick to build the POST data string. I put the necessary data into a dictionary, but I needed to build a proper parameter string.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">return</span> <span class="s">&quot;&amp;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">k</span> <span class="o">+</span> <span class="s">&quot;=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I love the syntax used for “inline” for-loops here. The extra <code>str()</code> call was used just in case a parameter (like expiration date) was accidentally interpreted as a number.</p>
+
+<p>I updated the <a href="https://github.com/tupton/pastebin-cl/blob/master/README.md">README</a> to reflect the new options. Thankfully, only the symbolic link to <code>/usr/local/bin/pastebin</code> had to be updated in order to keep the workflow working. Using the pastebin script couldn’t be easier:</p>
+
+<ol>
+  <li><a href="https://github.com/tupton/pastebin-cl/archives/master">Download the script source</a>, extract it, and put it somewhere that makes sense, like <code>~/scripts</code>.</li>
+  <li><code>ln -s ~/scripts/pastebin-cl/pastebin.py /usr/local/bin/pastebin</code></li>
+  <li>Open the workflow in <code>automator/Paste to pastebin.com.workflow</code> and save it as a service, which should just be as easy as ⌘-S.</li>
+  <li>Open System Preferences &gt; Keyboard, then Keyboard Shortcuts, then Services. Make sure that the “Paste to pastebin.com” service is checked. Optionally, you can give it a keyboard shortcut.</li>
+  <li>Highlight some text in any OS X application and choose “Paste to pastebin.com” from the application menu’s “Services” submenu or use your keyboard shortcut. Now the pastebin URL is on you clipboard, ready to be pasted into a chat room or in a browser.</li>
+</ol>
+
+<p>Hopefully this script will be useful to developers all over. If you have any ideas about making this more portable (i.e. for use on Linux or Windows), let me know in the <a href="#respond">comments</a>.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2010/11/instapaper">Instapaper</a></h1>
     
     
@@ -577,76 +764,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/12/the-year-in-music-e28094-honorable-mentions">The Year in Music — Honorable Mentions, Part One</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2009-12-21T00:00:58-06:00'><span class='date'>December 21, 2009</span></time>
-        
-        &middot; <a href="/2009/12/the-year-in-music-e28094-honorable-mentions">&infin;</a>
-        &middot; 
-
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2009%2F12%2Fthe-year-in-music-e28094-honorable-mentions&title=The%20Year%20In%20Music%20%E2%80%94%20Honorable%20Mentions%2C%20Part%20One&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Many <a href="http://pitchfork.com/features/staff-lists/7744-the-top-50-albums-of-2009/">outstanding</a> <a href="http://www.spin.com/gallery/40-best-albums-2009">end-of-year</a> top album lists have been out there for a few weeks. I took it upon myself to come up with a list of my favorite music of the past year. 2009 was such a great year for music, and it was tough for me to come up with a list of just ten albums to share. </p>
-
-<p>There were many great releases that didn’t make my own cut, and I want to highlight them here. Here’s part one of my list.</p>
-
-<p><img src="http://www.thomasupton.com/images/album/john-frusciante_the-empyrean_2009.jpg" alt="The Empyrean by John Frusciante" /></p>
-
-<h3 id="the-empyrean-by-john-frusciantehttpwwwlastfmmusicjohnfrusciante"><a href="http://www.last.fm/music/John+Frusciante">The Empyrean by John Frusciante</a></h3>
-
-<p>I knew I had hit come upon something special from the moment I heard its nine minute opener, <em>Before the Beginning</em>, but it was Frusciante’s cover of Tim Buckley’s <em>Song to the Siren</em> that made me fall in love with <em>The Empyrean</em>. Other highlights include the cheesy synthesized drums, groovy bassline, and ooh-ing chorus line of <em>Dark/Light</em> and Frusciate’s warbled but earnest vocals on <em>Enough of Me</em>.</p>
-
-<p><img src="http://www.thomasupton.com/images/album/the-antlers_hospice_2009.jpg" alt="Hospice by The Antlers" /></p>
-
-<h3 id="hospice-by-the-antlershttpwwwlastfmmusictheantlershospice"><a href="http://www.last.fm/music/The+Antlers/Hospice">Hospice by The Antlers</a></h3>
-
-<p>I haven’t had a chance to listen to any of Peter Silberman’s solo work (also released under the name The Antlers), but if the full-band concept album <em>Hospice</em> is any indication, I need to get right on that. This album contains some of the saddest lyrics that I have ever heard, but, paired with some excellent song-writing, that’s a good thing.</p>
-
-<p><img src="http://www.thomasupton.com/images/album/august-burns-red_constellations_2009.jpg" alt="Constellations by August Burns Red" /></p>
-
-<h3 id="constellations-by-august-burns-redhttpwwwlastfmmusicaugustburnsredconstellations"><a href="http://www.last.fm/music/August+Burns+Red/Constellations">Constellations by August Burns Red</a></h3>
-
-<p>Matt Greiner’s drumming skills are the first thing that strike you when opener <em>Thirty and Seven</em> first pounds through your head. Of course, every member of this band is a talented musician, as showcased on such standout tracks as <em>Ocean of Apathy</em> and <em>Meddler</em>. I must have listened to this album a thousand times while on my way to work over the summer, and it got me pumped every single day.</p>
-
-<p><img src="http://www.thomasupton.com/images/album/the-dear-hunter_life-and-death_2009.jpg" alt="Act III: Life and Death by The Dear Hunter" /></p>
-
-<h3 id="act-iii-life-and-death-by-the-dear-hunterhttpwwwlastfmmusicthedearhunter"><a href="http://www.last.fm/music/The+Dear+Hunter">Act III: Life and Death by The Dear Hunter</a></h3>
-
-<p>Part three of a continuing saga, <em>Life and Death</em> sees The Dear Hunter’s mixture of baroque pop and progressive rock flesh out into something even more grandiose than the previous two chapters. I only found out about Casey Crescenzo’s project a few weeks before the release of this album, but I quickly caught up on Acts I and II. This album has such an epic feeling, and that’s something that they bring to their live show, too. When I saw them in Raleigh, they opened with a rendition of <em>Writing on a Wall</em> that was indistinguishable from the album version, and later had The Fall of Troy vocalist and guitarist Thomas Erak join them for <em>Red Hands</em> (a track from Act II).</p>
-
-<p><img src="http://www.thomasupton.com/images/album/the-fall-of-troy_in-the-unlikely-event_2009.jpg" alt="In the Unlikely Event by The Fall of Troy" /></p>
-
-<h3 id="in-the-unlikely-event-by-the-fall-of-troyhttpwwwlastfmmusicthefalloftroyintheunlikelyevent"><a href="http://www.last.fm/music/The+Fall+of+Troy/In+the+Unlikely+Event">In the Unlikely Event by The Fall of Troy</a></h3>
-
-<p>The Fall of Troy have one of the most intense and insane live shows around. Vocalist and guitarist Thomas Erak seems to enter his own world on stage, and you can’t help but be sucked into it. <em>In the Unlikely Event</em> does a pretty good job of capturing that energy. There are few more sections of clean vocals on this album than on previous efforts, and one can certainly detect an overall effort to broaden the group’s musical horizons. <em>Panic Attack!</em> and slower-than-usual <em>Webs</em> are two favorites.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
   
     <a class="prev" href="/page/5">&larr; Older</a>
@@ -662,6 +779,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/01/my-favorite-albums-of-2015">My Favorite Albums of 2015</a>
+      </li>
     
       <li class="post">
         <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
@@ -699,10 +820,6 @@
         <a href="/2012/07/aeropress">Aeropress</a>
       </li>
     
-      <li class="post">
-        <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -716,7 +833,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Thomas Upton -
+  Copyright &copy; 2016 - Thomas Upton -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

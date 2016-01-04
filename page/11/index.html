@@ -88,6 +88,67 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2006/02/gmail-saved-searches-improvements">Gmail Saved Searches Improvements</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2006-02-02T02:07:00-06:00'><span class='date'>February  2, 2006</span></time>
+        
+        &middot; <a href="/2006/02/gmail-saved-searches-improvements">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2006%2F02%2Fgmail-saved-searches-improvements&title=Gmail%20Saved%20Searches%20Improvements&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Persistent.info’s <a href="http://persistent.info/archives/2005/03/01/gmail-searches">Gmail Saved Searches</a> (<a href="http://persistent.info/greasemonkey/gmail.user.js">right click to install</a>) is an amazing <a href="http://greasemonkey.mozdev.org/">Greasemonkey</a> script.  It allows you to set up searches that live constantly (via a cookie) in Gmail’s sidebar, and, with the latest version, lets you save your recent searches.  This script also comes with three default searches, including a search for last week’s email.  The thing is, it’s not really a search for Last Week; it just looks at email received in the last seven days.</p>
+
+<p>I decided to fix that.  The following function is close to the end of the script, and my code changes are in emboldened red.</p>
+
+<pre><code>PersistentSearch.prototype.getRunnableQuery = function() {
+  var query = this.query;
+  if (this.isSearchModifier()) {
+    query = query.substring(2);
+  }
+  var today = new Date();
+  var yesterday = new Date(today.getTime() - ONE_DAY);
+  var oneWeekAgo = new Date(today.getTime() - (today.getDay() &lt;span class="warning"&gt;+ 7&lt;/span&gt;) * ONE_DAY);
+  &lt;span class="warning"&gt;var lastSunday = new Date(today.getTime() - (today.getDay() - 1) * ONE_DAY)&lt;/span&gt;;
+  query = query.replace(/:today/g, ":" + getDateString(today));
+  query = query.replace(/:yesterday/g, ":" + getDateString(yesterday));
+  query = query.replace(/:oneweekago/g, ":" + getDateString(oneWeekAgo) &lt;span class="warning"&gt;+ " before:" +
+  getDateString(lastSunday))&lt;/span&gt;;
+  return query;
+}
+</code></pre>
+
+<p>Since Sunday is “0” in the JS Date object, all I had to do was take (today+7) away from the (current time * ONE_DAY) in order to get the earliest Sunday, and take (today-1) from the (current time * ONE_DAY) in order to get this past Sunday.  The extra “1” is there because the <code>before:</code> search operator is exclusive, unlike the <code>after:</code> operator.  All that was left was to modify the inserted search string.  Now, the Last Week search returns all email between the past two Sundays.</p>
+
+<p>The new script is available <a href="http://fiveuptons.com/thomas/gm">here</a> (<a href="http://fiveuptons.com/thomas/gm/gmailsavedsearches.user.js">right click to install</a>.)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2006/01/instant-messaging-and-accessibility">Instant Messaging and Accessibility</a></h1>
     
     
@@ -499,63 +560,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2006/01/ipod-navigation">iPod Navigation</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2006-01-06T20:47:00-06:00'><span class='date'>January  6, 2006</span></time>
-        
-        &middot; <a href="/2006/01/ipod-navigation">&infin;</a>
-        &middot; 
-
-
-<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
- style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
- src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2006%2F01%2Fipod-navigation&title=iPod%20Navigation&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
-></iframe>
-
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Sucks.</p>
-
-<p>Sure, Apple’s money-maker has been praised the world over for both hardware design and ease of use, but that doesn’t mean that I don’t have a few suggestions.</p>
-
-<p>My music library is over 12000 songs large, and growing.  I have over 300 separate artists, and almost 800 albums.  Getting to what I want to listen on a small screen with no alphanumerics is a feat that I am so happy that Apple spent some time making easy.  However, the system is far from perfect.  Here is a list of three features I want to see in the future regarding iPod navigation.</p>
-
-<h3 id="album-art-based-navigation-in-both-artist-and-album-categories">Album art-based navigation in both Artist and Album categories</h3>
-
-<p>This is sorely needed.  With the newest iPods able to play video, it should be relatively easy to transfer that nifty photo navigation system to album art.  Put the album title in the title bar at the top of the screen, and have a generic placeholder image for albums that don’t have album art, and we could really have portable jukeboxes!</p>
-
-<h3 id="descending-sort">Descending Sort</h3>
-
-<p>Just put an option at the top of every screen to re-sort in ascending or descending order.  Please.</p>
-
-<h3 id="better-playlist-navigation">Better Playlist Navigation</h3>
-
-<p>The current way of navigating playlists is horrific for playlists longer than about twenty songs.  My Recently Added and Genre-based playlists are totally useless on the iPod.  What about giving options for a multi-line display, showing artist and album in addition to track name, on the iPod?  Sure, there would be less items on the small screen, but that is a fair tradeoff for the benefit of being able to actually use large playlists. There is one thing that I do think that Apple got one hundred percent right, and that is the ability of the click wheel to navigate large lists efficiently.</p>
-
-<p>I am sure that I will come up with something else as the issues that are associated with large music libraries surface during my use of my iPod.  I know that Apple will probably never see this, but here’s to hoping!</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
   
     <a class="prev" href="/page/12">&larr; Older</a>
@@ -571,6 +575,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/01/my-favorite-albums-of-2015">My Favorite Albums of 2015</a>
+      </li>
     
       <li class="post">
         <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
@@ -608,10 +616,6 @@
         <a href="/2012/07/aeropress">Aeropress</a>
       </li>
     
-      <li class="post">
-        <a href="/2012/06/knowing-the-rules">Knowing The Rules</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -625,7 +629,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Thomas Upton -
+  Copyright &copy; 2016 - Thomas Upton -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

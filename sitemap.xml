@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://blog.thomasupton.com/2016/01/my-favorite-albums-of-2015</loc>
+    
+    <lastmod>2016-01-04T12:22:28-06:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.thomasupton.com/2015/08/installing-and-using-the-latest-zsh-on-travis-ci</loc>
     
     <lastmod>2015-08-20T20:25:07-05:00</lastmod>
@@ -1285,14 +1293,14 @@
   
   <url>
     <loc>http://blog.thomasupton.com/blog/archives/</loc>
-    <lastmod>2015-11-03T14:13:42-06:00</lastmod>
+    <lastmod>2016-01-04T12:39:07-06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.thomasupton.com/</loc>
-    <lastmod>2015-11-03T14:13:42-06:00</lastmod>
+    <lastmod>2016-01-04T12:39:07-06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
