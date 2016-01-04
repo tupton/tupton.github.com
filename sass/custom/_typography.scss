@@ -4,4 +4,10 @@ sup, sub {
     padding: 0 3px 3px 1px;
 }
 
-sup { top: -.5em; }
+sup {
+    top: -.5em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
