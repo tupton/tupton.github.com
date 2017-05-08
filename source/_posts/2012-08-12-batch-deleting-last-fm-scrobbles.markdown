@@ -30,11 +30,19 @@ That got old before I had even deleted ten scrobbles. I figured out a way to pro
 quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
 much easier.
 
+-----
+
+*UPDATE 2017-05-08*:
+
+Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN!):
+
 ``` javascript
-jQuery('#deletablert a.delete').each(function(_, a) {
-    a.click();
+jQuery('.chartlist button.dropdown-menu-clickable-item[type="submit"]').each(_, c) {
+    c.click();
 });
 ```
+
+Again, I'll leave the old code up for posterity.
 
 -----
 
@@ -53,6 +61,12 @@ jQuery('.chartlist button.chartlist-delete-button').each(function(_, b) {
 I am leaving the old code up for posterity and just in case the old site is still accessible somewehere.
 
 -----
+
+``` javascript
+jQuery('#deletablert a.delete').each(function(_, a) {
+    a.click();
+});
+```
 
 I just open up the console with `⌘-⌥-I`, paste in that snippet of code, and hit enter. Here is what
 it looks like in action.
