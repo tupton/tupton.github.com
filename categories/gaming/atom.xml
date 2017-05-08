@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: gaming | Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/categories/gaming/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2017-05-08T11:59:43-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Unplayed]]></title>
+    <link href="http://blog.thomasupton.com/2012/01/unplayed"/>
+    <updated>2012-01-02T19:23:21-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/01/unplayed</id>
+    <content type="html"><![CDATA[<p>Santa brought me <a href="http://www.amazon.com/gp/product/B002BSC54I/ref=as_li_tf_tl?ie=UTF8&tag;=thomupto-20&linkCode;=as2&camp;=1789&creative;=9325&creativeASIN;=B002BSC54I">The Legend of Zelda: Skyward Sword</a> for Christmas (thanks Mom!). I’ve enjoyed playing it, just as I’ve enjoyed playing video games for nearly my entire life.</p>
+
+<p>In recent years, however, I’ve abandoned or not fully played all of my video games. I attempted to maintain a Google Docs spreadsheet to keep track of my unplayed games, but it quickly became more neglected than the games themselves.</p>
+
+<p>I recently found out about Shaun Inman’s <a href="http://www.shauninman.com/archive/2011/04/18/unplayed"><em>Unplayed</em></a>, and it seemed perfect. It’s like a much simpler, lightweight Shelfari for video games. You can now see which games I’m playing (or not playing) at my <a href="http://www.thomasupton.com/unplayed/"><em>Unplayed</em> page</a>. For now, I’m going back to Skyloft!</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Syntastic - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="A place where Thomas Upton talks about music, code, coffee, and anything else he fancies.">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.thomasupton.com/2012/05/syntastic">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-332267-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://www.google.com/search?q=site%3Ablog.thomasupton.com" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.thomasupton.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Syntastic</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-05-20T14:13:08-05:00'><span class='date'>May 20, 2012</span></time>
+        
+        &middot; <a href="">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F05%2Fsyntastic&title=Syntastic&description=Syntastic"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I love writing with <code>vim</code>, but — for many valid reasons — some people are averse to it. I think the
+steep (–ish) learning curve has something to do with it, but I think some people really don’t want
+to give up their IDE. The thing is, <code>vim</code> isn’t <em>just</em> a text editor. You can extend it to do pretty
+much anything, including features that normally show up in IDEs.</p>
+
+<p>I recently started using <a href="https://github.com/scrooloose/syntastic">syntastic</a>, which is a <code>vim</code> plugin that runs linters or syntax checkers
+and displays warnings and errors right in your window. IDEs like Eclipse or Xcode provide this
+syntax-checking for a couple of languages, but syntastic supports many languages and linters out of
+the box with pluggable support for nearly any language.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>If you use <a href="https://github.com/tpope/vim-pathogen">pathogen</a> like every sane <code>vim</code> user does, installing syntastic is just like any other
+plugin. Clone the repository or create a submodule in <code>bundle/syntastic</code> and you’re ready to go.</p>
+
+<p>I mainly work with Javascript, Python, HTML, and CSS, so that’s what I’ll talk about. It’s worth
+checking out the syntax checkers in <code>bundle/syntastic/syntax_checkers/</code>, even if you just look at
+the list of files there. You might have to dive into the files to figure out which linters are
+actually supported as it’s not clearly documented.</p>
+
+<p>Before we get to configuring individual syntax checkers, syntastic itself has a couple of
+configuration options. Syntastic has what it refers to as a “mode map”, which is basically just a
+way to configure which file types are checked. Here is the relevant config option from <a href="https://github.com/tupton/vim-support/blob/master/vimrc#L302">my
+vimrc</a>:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; On by default, turn it off for html</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_mode_map <span class="p">=</span> { <span class="s1">&#39;mode&#39;</span>: <span class="s1">&#39;active&#39;</span><span class="p">,</span>
+</span><span class="line">    \ <span class="s1">&#39;active_filetypes&#39;</span>: []<span class="p">,</span>
+</span><span class="line">    \ <span class="s1">&#39;passive_filetypes&#39;</span>: [<span class="s1">&#39;html&#39;</span>] }
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The ‘mode’ option set to active means that syntastic is on by default, so we can leave the list of
+‘active_filetypes’ empty. The ‘passive_filetypes’ names filetypes that syntastic does not attempt to
+check. I don’t check HTML files because I mainly work with templates that either can’t or won’t
+validate with most HTML syntax checkers. If templates use non-standard attributes, it’s hard for a
+syntax checker to do its job.</p>
+
+<h3 id="python">Python</h3>
+
+<p>Setting up syntastic for use with python was extremely easy. Just install <a href="http://pypi.python.org/pypi/pyflakes">pyflakes</a> with
+<code>pip install pyflakes</code> and set up some related options. I ignore certain errors regarding
+whitespace, indentation, and end-of-line backslashes, but those are all customizable. See the <a href="http://pep8.readthedocs.org/en/latest/intro.html#error-codes">pep8
+error code documentation</a> for an explanation of the error codes.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Use flake8</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_python_checkers <span class="p">=</span> [<span class="s1">&#39;flake8&#39;</span>]
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_python_flake8_args <span class="p">=</span> <span class="s1">&#39;--ignore=&quot;E501,E302,E261,E701,E241,E126,E127,E128,W801&quot;&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="javascript">Javascript</h3>
+
+<p>There are a number of Javascript linters, including <a href="http://www.jslint.com/">JS Lint</a> and Google’s <a href="https://developers.google.com/closure/utilities/">Closure
+linter</a>, but I decided to use the communtiy-driven <a href="http://www.jshint.com/">JS Hint</a>.  JS Hint can be
+configured with a jshintrc, which just is a JSON object that contains options. There are two
+categories of options: those that enforce stricter rules than the defaults and those that relax
+default checks. The <a href="http://www.jshint.com/options/">options page of the jshint website</a> does a great job of
+explaining each option. You can <a href="https://github.com/tupton/dotfiles/blob/master/jshintrc">view my jshintrc on my Github page</a>. I added a few
+“enforcing” options, but the only “relaxing” option I use is <code>sub</code>, which allows
+subscript notation when accessing properties, e.g. <code>this['domNode']</code> as well as <code>this.domNode</code>.</p>
+
+<p>You can tell syntastic to use jshint with the following config option:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Use jshint (uses ~/.jshintrc)</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_javascript_checkers <span class="p">=</span> [<span class="s1">&#39;jshint&#39;</span>]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="usage">Usage</h2>
+
+<p><img src="http://farm8.staticflickr.com/7085/7235544916_6f48ae8f45_o_d.png" alt="syntastic and underscore.js" /></p>
+
+<p>By default, syntastic runs your file through the configured filetype’s linter whenever the buffer is
+written. If there are errors, they are highlighted inline. When your cursor is on a line with an
+error, the description of the error is visible in the status line. You can use the <code>:Errors</code> command
+to open a quickfix window with a list of all errors in the file. Pressing enter on an error will
+take you to that line in the file. Syntastic uses <a href="http://vimdoc.sourceforge.net/htmldoc/sign.html">vim’s signs</a>, which means that a
+gutter with a sign appears on the left side of every line with an error on it, making it easy to
+scan the buffer for errors. You can change these symbols with some syntastic options.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="vim"><span class="line"><span class="c">&quot; Better :sign interface symbols</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_error_symbol <span class="p">=</span> <span class="s1">&#39;✗&#39;</span>
+</span><span class="line"><span class="k">let</span> <span class="k">g</span>:syntastic_warning_symbol <span class="p">=</span> <span class="s1">&#39;!&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>You can configure syntastic in many other ways, including telling it to check a buffer whenever it
+is opened. I explored the help file (<code>:help syntastic</code>) when I first started using syntastic, and it
+was incredibly helpful. I encourage anyone who uses syntastic to do the same.</p>
+
+<p>Syntastic has already helped me avoid many typos and silly errors that would ordinarily be hard to
+track down. It’s an invaluable tool in my workflow.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2012-05-20T14:13:08-05:00'><span class='date'>May 20, 2012</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/code/'>code</a>, <a class='category' href='/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/04/mint" title="Previous Post: Mint">&laquo; Mint</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/06/knowing-the-rules" title="Next Post: Knowing The Rules">Knowing The Rules &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/01/my-favorite-albums-of-2015">My Favorite Albums of 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/quickly-convert-unix-timestamps">Quickly convert Unix timestamps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/octopress">Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

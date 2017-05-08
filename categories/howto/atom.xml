@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: howto | Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/categories/howto/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2017-05-08T11:59:43-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing the Latest ZSH on Travis CI]]></title>
+    <link href="http://blog.thomasupton.com/2015/08/installing-and-using-the-latest-zsh-on-travis-ci"/>
+    <updated>2015-08-20T20:25:07-05:00</updated>
+    <id>http://blog.thomasupton.com/2015/08/installing-and-using-the-latest-zsh-on-travis-ci</id>
+    <content type="html"><![CDATA[<p>I recently thought it might be a good idea to start using <a href="https://travis-ci.org/">Travis CI</a> to run builds of my personal repositories on a regular basis. A lot of my repositories are pet projects, but that doesn’t mean that I don’t depend on them on a daily basis.</p>
+
+<p>That couldn’t be more true of <a href="https://github.com/tupton/dotfiles">my dotfiles</a>. My <a href="https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/zsh/zshrc"><code>zshrc</code></a> and my <a href="https://github.com/tupton/dotfiles/blob/a5597784778bca973188300b8fff40f9688b2cf5/vim/vimrc"><code>vimrc</code></a> get exercised tens if not hundreds of times per day. Sometimes I’ll make a change to test out something new, verify that it doesn’t blow up, commit it, and move on. That’s probably not the best way to do things, but I figure that I’ll never start using the new hotness if I don’t jump in and start using it right away. Usually this works out well and I’ve simply added a new tool to my repertoire, but it can potentially break my environment in subtle ways. Continuous integration can help with that: if I commit a breaking change, I can get an email when the “build” breaks. I’ll immediately know which commit broke something without having to resort to <code>git blame</code> or something similar.</p>
+
+<p>Travis CI offers a fantastic free service, but I haven’t really had a chance to use it yet.<sup id="fnref:travis-vs-jenkins"><a href="#fn:travis-vs-jenkins" class="footnote">1</a></sup> I figured that setting up CI for my small dotfiles repository would be a great way to learn a tool that many open source projects use today.</p>
+
+<p>There was one huge hurdle: I use <code>zsh</code>, and most of my dotfile setup scripts are written in <code>zsh</code>, but the <a href="http://docs.travis-ci.com/user/ci-environment/">Travis environment</a> only comes with the <code>bash</code> shell installed.<sup id="fnref:default-shell"><a href="#fn:default-shell" class="footnote">2</a></sup></p>
+
+<p>Some <a href="https://github.com/zsh-users/antigen/blob/7860ce7aecdbed8fd8ff75472ac59c52c2ac9a7e/.travis.yml#L32">existing open</a> <a href="https://github.com/Tarrasch/zsh-bd/blob/e56411daa979996297295515422b618e7419f8fb/.travis.yml#L5">source projects</a> use Travis with <code>zsh</code>, but they all use the legacy environment that still allows <code>sudo</code>, not the <a href="http://docs.travis-ci.com/user/migrating-from-legacy/">newer container-based environment</a>. The <a href="http://docs.travis-ci.com/user/apt/">apt addon</a> can help install packages in containers, but the latest version of <code>zsh</code> on Ubuntu 12.04 is 4.3.17. <code>zsh</code> 5 is a requirement for most modern usages, so that’s a non-starter. I thought that someone would have come across this already and solved it, and maybe they have, but I couldn’t easily find a solution.</p>
+
+<p>We need to build and install <code>zsh</code>, and we need to do it without <code>sudo</code>. <code>build-essential</code> is already available on the Travis CI virtual machines, and we could use the aforementioned apt addon if it wasn’t.</p>
+
+<p>After much <a href="https://travis-ci.org/tupton/dotfiles/builds">trial and error</a>, I finally got a Travis config that makes sure a recent version of <code>zsh</code> is set up before running the build. I chose to do this in the <code>before_install</code> step because that <a href="http://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle">seems to be where additional dependencies should be installed</a>, but I suppose it could be done anywhere in the build lifecycle before <code>script</code> runs the actual tests.</p>
+
+<p>The full Travis config follows, but the <code>before_install</code> step is what really matters:</p>
+
+<p><code>yaml
+language: sh
+addons:
+  apt:
+    packages:
+    - build-essential
+before_install:
+- export LOCAL="$(mktemp --directory --tmpdir=${TMPDIR:/tmp} local.bin.XXXXXX)"
+- curl -L http://downloads.sourceforge.net/zsh/zsh-5.0.7.tar.gz | tar zx
+- cd zsh-5.0.7
+- ./configure --prefix=$LOCAL
+- make
+- make install
+- cd -
+- export PATH="$LOCAL/bin:$PATH"
+script: make test
+</code></p>
+
+<p>First, we make a temporary directory to install <code>zsh</code> to. Remember, no <code>sudo</code> means no access to <code>/usr/bin/local</code>, so we need to choose a safe location to install.</p>
+
+<p>Next, we download the latest version of <code>zsh</code>. If you want to use a different mirror or download an archive with a different compression, you just need to change this line to handle that and the rest should work. If you change the version, make sure to update the following line that changes directories to the archive you just decompressed.</p>
+
+<p>Then we build <code>zsh</code>: configure with the prefix set to the directory we created earlier, then <code>make</code> it and <code>make install</code> it to the prefixed directory.</p>
+
+<p>Finally, we <code>cd</code> back to the directory we were in – these build lifecycle steps are run in series so we need to hop back to the directory we were in before building <code>zsh</code> – and, more importantly, we add the temporary directory to the beginning of our path so that <code>zsh</code> can be found.</p>
+
+<p>These <code>before_install</code> steps could probably be extracted into a script, but I wanted to go with the simplest Travis config with the least overhead to get up and running with <code>zsh</code>. Now, when the test script runs, <code>zsh</code> is available and we can check our scripts for errors!</p>
+
+<p>I look forward to exploring more of what is possible with Travis. On my horizon: using <a href="https://github.com/Kuniwak/vint"><code>vint</code></a> to lint my vimrc and writing tests for the majority of my private repositories that don’t currently have any verification.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:travis-vs-jenkins">
+      <p>We use Jenkins at work, which is a blessing and a curse. Mostly the latter, but the sheer number of plugins available coupled with the fact that I work with some awesome people who know Jenkins better than I ever will makes it ok. <a href="#fnref:travis-vs-jenkins" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:default-shell">
+      <p>Really, it comes with whatever shell is default for the operating system that Travis VMs use. Since <a href="http://docs.travis-ci.com/user/ci-environment/#Virtualization-environments">they run Ubuntu 12.04</a>, that means that <code>bash</code> is available but <code>zsh</code> is not. It seems like Travis didn’t set out to explicitly support shell-based projects, but because their machines are (mostly) Linux, that comes for “free” if you know how to configure things. <a href="#fnref:default-shell" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Migrating from Pathogen to Vundle]]></title>
+    <link href="http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle"/>
+    <updated>2014-02-11T19:41:00-06:00</updated>
+    <id>http://blog.thomasupton.com/2014/02/migrating-from-pathogen-to-vundle</id>
+    <content type="html"><![CDATA[<p>For <a href="http://blog.thomasupton.com/2012/02/configuration/">a while now</a>, I’ve been using <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins as bundles. I thought I was making things easier for myself by <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">using <code>git</code> submodules to help organize those plugins</a>, but submodules aren’t the best method for deploying a <code>vim</code> environment in multiple places.</p>
+
+<p>Fortunately for me, other, smarter people did this same thing and decided to fix it. This <a href="http://jameslaicreative.com/moving-up-upgrading-from-pathogen-to-vundle/">blog post by James Lai</a> details moving from almost the exact same system as mine to <a href="https://github.com/gmarik/vundle">Vundle</a>, a newer and very <code>vim</code>-centric way of managing plugins. You list your plugins in your <code>vimrc</code>, you update them with <code>vim</code> (even though they are managed with <code>git</code>), and your <code>vim</code> environment is consistent everywhere.</p>
+
+<p>I just migrated from Pathogen to Vundle, and I want to document the process.</p>
+
+<p>First things first: clone Vundle into your <code>bundle/</code> directory.</p>
+
+<p><code>bash
+    ❯ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim
+</code></p>
+
+<p>The <a href="https://github.com/gmarik/Vundle.vim#quick-start">Vundle quick start guide</a> does a great job of getting you started, so if you’re just looking to use Vundle without any prior bundle management, I would start there. If you were managing your <code>vim</code> plugins with Pathogen and <code>git</code> submodules, the switch to Vundle is straightforward but requires a few more steps.</p>
+
+<p>At the top of <a href="https://github.com/tupton/vim-support/blob/master/vimrc">my <code>vimrc</code></a> I added a new Vundle-specific section and added the code from the quick start guide.</p>
+
+<p>&#8220;` vim
+    “ Of course
+    set nocompatible</p>
+
+<pre><code>" Required Vundle setup
+filetype off
+set runtimepath+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle 'gmarik/vundle' ```
+</code></pre>
+
+<p>Next, I wanted to add all the bundles I already use. <code>git submodule foreach</code> can actually help here.</p>
+
+<p>&#8220;` bash
+    ❯ git submodule foreach git remote -v
+    Entering ‘bundle/airline’
+    origin  https://github.com/bling/vim-airline.git (fetch)
+    origin  https://github.com/bling/vim-airline.git (push)
+    Entering ‘bundle/characterize’
+    origin  https://github.com/tpope/vim-characterize.git (fetch)
+    origin  https://github.com/tpope/vim-characterize.git (push)</p>
+
+<pre><code>[...] ```
+</code></pre>
+
+<p>I then just copied the GitHub user and repository name (the path portion of the remote URL minus “.git”) and passed that to Vundle’s <code>Bundle</code> command.</p>
+
+<p>&#8220;` vim
+    “ Better status line
+    Bundle ‘bling/vim-airline’</p>
+
+<pre><code>" ga for character descriptions
+Bundle 'tpope/vim-characterize'
+
+[...] ```
+</code></pre>
+
+<p>Now we need to remove the existing submodules. One of the big pains of using <code>git</code> submodules is removing them when you no longer need them. This made trying out plugins harder than it needed to be, and it makes the transition to Vundle a bit more complicated.</p>
+
+<p>I reference <a href="http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule">this Stack Overflow post about removing <code>git</code> submodules</a> every time I need to remove a plugin I was just trying out without fail. The command to remember is <code>git submodule deinit</code>. You can <code>deinit</code> all submodules in a given directory all at once.</p>
+
+<p>&#8220;` bash
+    ❯ git submodule deinit bundle/
+    Cleared directory ‘bundle/airline’
+    Submodule ‘bundle/airline’ (https://github.com/bling/vim-airline.git) unregistered for path ‘bundle/airline’
+    Cleared directory ‘bundle/characterize’
+    Submodule ‘bundle/characterize’ (https://github.com/tpope/vim-characterize.git) unregistered for path ‘bundle/characterize’</p>
+
+<pre><code>[...] ```
+</code></pre>
+
+<p>Then you need to explicitly remove all the bundles. Since Vundle is already in <code>bundle/vundle</code>, we need to remove each separate plugin bundle directory instead of blowing away the entire <code>bundle/</code> directory.</p>
+
+<p>&#8220;` bash
+    ❯ git rm bundle/airline bundle/characterize […]
+    rm ‘bundle/airline’
+    rm ‘bundle/characterize’</p>
+
+<pre><code>[...] ```
+</code></pre>
+
+<p>It woud be a good idea to commit your staged changes here, which at this point should just be submodule removal.</p>
+
+<p>If you were using Pathogen, don’t forget to remove any setup from your <code>vimrc</code>.</p>
+
+<p>&#8220;` vim
+    “ Store pathogen itself in bundle/
+    runtime! bundle/pathogen/autoload/pathogen.vim</p>
+
+<pre><code>" Start it up
+silent! call pathogen#infect()
+silent! call pathogen#helptags() ```
+</code></pre>
+
+<p>It also helps to add <code>bundle/</code> to your <code>.gitignore</code>. Vundle now puts all plugins there, but you don’t have to manually manage them any more.. Just add <code>bundle/**</code> to your <code>vim</code> environment’s <code>.gitignore</code> file.</p>
+
+<p>Now, open up <code>vim</code> and run <code>:BundleInstall</code>. All your <code>vim</code> bundles will be cloned and managed by Vundle, and you don’t have to worry about updating submodules and running <code>git submodule foreach</code> everywhere you have a <code>vim</code> environment.</p>
+
+<p>To update and migrate any existing <code>vim</code> environments on other machines, <code>git pull</code> in the migration changes, which shouldn’t conflict as long as you were up to date to the commit before the migration. Then clone Vundle with <code>git clone https://github.com/gmarik/Vundle.vim.git bundle/vundle</code> and install your plugins with <code>vim +BundleInstall +qall</code>.</p>
+
+<p>If you <em>were not</em> up to date to right before your migration changes, you’ll probably have to manually remove all submodules by following the instructions above and resolve some conflicts when pulling changes in. Since you’re trying to delete all of <code>bundle/</code>, this should be relatively painless: just delete <code>bundle/</code> and <code>git rebase --skip</code> any submodule update commits.</p>
+
+<p>And now you’re using Vundle! Add some new bundles into your <code>vimrc</code>, run <code>:BundleInstall</code>, and you’re up and running. I found some that I’m going to try out in <a href="https://gist.github.com/joegoggins/8482408">joegoggins’s vimrc</a> and in <a href="https://github.com/gmarik/Vundle.vim#quick-start">the Vundle setup documentation</a>.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Batch Deleting Last.fm Scrobbles]]></title>
+    <link href="http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles"/>
+    <updated>2012-08-12T20:06:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/08/batch-deleting-last-fm-scrobbles</id>
+    <content type="html"><![CDATA[<p>I recently came home from a trip and synced my iPhone in iTunes in an attempt to scrobble the music
+that I listened to on that trip. I use <a href="http://meloapp.com/faq/">Melo</a> to scrobble tracks played in iTunes, and it usually
+works quite well because I never know it’s there.</p>
+
+<p>I’m not entirely sure if Melo, iTunes, or <a href="http://last.fm/">Last.fm</a> is to blame, but I ended up with a large amount of
+scrobbles from a repeated handful of songs. I have over 75,000 tracks scrobbled in Last.fm, but I
+use their recommendations and like to look at my stats, so artificially inflating my scrobble
+count with three artists was extremely undesirable.</p>
+
+<p>I had 59 pages of unwanted scrobbles; I needed to quickly delete nearly 3000 scrobbles. Last.fm
+doesn’t have a way to batch delete (or otherwise manage) your scrobble tracks, so I manually clicked
+all the delete links on the first page.</p>
+
+<p>That got old before I had even deleted ten scrobbles. I figured out a way to programmatically and
+quickly delete a page of scrobbles. I still have to manually get to each page, but this makes it
+much easier.</p>
+
+<hr />
+
+<p><em>UPDATE 2017-05-08</em>:</p>
+
+<p>Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN!):</p>
+
+<p><code>javascript
+jQuery('.chartlist button.dropdown-menu-clickable-item[type="submit"]').each(_, c) {
+    c.click();
+});
+</code></p>
+
+<p>Again, I’ll leave the old code up for posterity.</p>
+
+<hr />
+
+<p><em>UPDATE 2015-10-08</em>:</p>
+
+<p>Since the new Last.fm redesign recently went live after being in beta for a while, it looks like the selector in the above code needs to change. Thanks to <a href="https://twitter.com/jayholler/status/652226890338439168">@jayholler</a>, the code should now be:</p>
+
+<p><code>javascript
+jQuery('.chartlist button.chartlist-delete-button').each(function(_, b) {
+    b.click();
+});
+</code></p>
+
+<p>I am leaving the old code up for posterity and just in case the old site is still accessible somewehere.</p>
+
+<hr />
+
+<p><code>javascript
+jQuery('#deletablert a.delete').each(function(_, a) {
+    a.click();
+});
+</code></p>
+
+<p>I just open up the console with <code>⌘-⌥-I</code>, paste in that snippet of code, and hit enter. Here is what
+it looks like in action.</p>
+
+<p><img src="http://farm9.staticflickr.com/8282/7770297078_73fafc7541_o_d.png" alt="Batch deleting Last.fm scrobbles." title="Last.fm Batch Delete" /></p>
+
+<p>Since <a href="http://jquery.com/">jQuery</a> is already embedded in Last.fm’s pages, I just select all the delete links and
+emit a click on each one. The entire page is deleted in a few seconds. When it’s done, I can click
+the link to the previous page and repeat.</p>
+
+<p>I don’t expect this will be very useful to anyone but myself for the next ten minutes, but it could
+come in handy in case you’ve been listening to too much Carly Rae Jepsen.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Configuration]]></title>
+    <link href="http://blog.thomasupton.com/2012/02/configuration"/>
+    <updated>2012-02-18T20:43:38-06:00</updated>
+    <id>http://blog.thomasupton.com/2012/02/configuration</id>
+    <content type="html"><![CDATA[<p>Starting a fresh environment on a new system isn’t a very common or regular task, but when you do, it comes in handy to have a quick and easy way to do it. To help with this, I keep my <code>vim</code> <a href="https://github.com/tupton/vim-support">environment</a> and my <a href="https://github.com/tupton/dotfiles">environment dot files</a> in version control on Github.</p>
+
+<p>I use <a href="https://github.com/tpope/vim-pathogen">Pathogen</a> to manage my <code>vim</code> plugins. I follow the examples in <a href="http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/">this great article on plugin management with Pathogen</a> to keep most of my plugins as <code>git</code> submodules. Installing my <code>vim</code> environment is just a matter of cloning the <code>git</code> repository and symlinking my <code>vimrc</code>.</p>
+
+<p>I just spent some time cleaning up and organizing my dotfiles.  I wasn’t even using my old dotfiles repository on GitHub, but I quickly rectified that. I now keep my dotfiles in <code>~/.dotfiles</code> and symlink them to <code>~</code>. There is a helper script in my <a href="https://github.com/tupton/dotfiles">dotfiles repository</a> that sets up these symlinks.</p>
+
+<p>Along with the usual <code>bashrc</code>, there are a few config files that aren’t as common. My <code>ackrc</code> defines a few convenient options and ignores directories with built artifacts in them. My (old) <code>pythonrc</code> defines a tab-completion function, although this might be outdated at this point. There’s a <code>tm_properties</code> config for <a href="http://blog.macromates.com/2011/textmate-2-0-alpha/">TextMate 2</a>.</p>
+
+<p>Hopefully the fact that my configuration is out in the open will bring to light some useful features that I probably take for granted but you might not know about. So, go explore! Check out my <code>inputrc</code>, for example. I know that I discover new things almost every time I look at someone else’s <code>vimrc</code> or <code>bashrc</code>.</p>
+
+<p>Do you have any configuration tips or tricks? Let me know.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Local Backups are Great]]></title>
+    <link href="http://blog.thomasupton.com/2011/12/local-backups-are-great"/>
+    <updated>2011-12-23T21:48:47-06:00</updated>
+    <id>http://blog.thomasupton.com/2011/12/local-backups-are-great</id>
+    <content type="html"><![CDATA[<p>I use <a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">SuperDuper!</a> to make daily backups to my local hard drive. <a href="http://www.thomasupton.com/blog/2010/12/automated-backups-with-tarsnap/">Remote backup</a> is important, but it’s always nice to have an easily-accessible way to recover from a hard drive disaster, especially when you need to fix the situation <em>quickly</em>.</p>
+
+<h2 id="your-backup-device">Your Backup Device</h2>
+
+<p>Choosing the right hard drive to use for your local backup isn’t a difficult choice, but it is an important one.  Sometimes you can find great deals on good brands (Western Digital or Seagate, to name a couple brands that I have used and liked) on <a href="http://www.newegg.com/">Newegg</a>. The requirements for a hard drive really depend on how you want to use it.</p>
+
+<p>If you want a hard drive dedicated to backup, any drive with a relatively quick speed (I would go with 7200 RPM or higher) and a size that’s at least a bit bigger than the drive you’re backing up will be a great option.</p>
+
+<p>If you want to use a hard drive for other things – to store your media or back up another drive – you’ll obviously need something bigger. I have a 1 TB drive that I have split into two volumes. One volume is a bit bigger than my MacBook Pro’s hard drive (128 GB)  and I use it to hold my backups; the other takes up the rest of the space and is used to store all of my music, movies, and photos.</p>
+
+<p>Solid state drives are another option, but I’ve found that the extra cost isn’t worth the speed benefits. I would absolutely recommend a solid state drive to use in your main computer on a daily basis – I have a 128 GB solid state drive in my MacBook Pro and it’s noticeably faster than the mechanical hard drives I’ve used in MacBooks past. However, when it comes to something like backups, where you’re mostly writing to it in a situation that isn’t time-sensitive (e.g. at night), I think mechanical drives are the best option because you can get much more storage space for much less money.</p>
+
+<h2 id="software-that-helps-you">Software That Helps You</h2>
+
+<p>I mentioned earlier that I use SuperDuper!, but there are many other backup applications out there. Some of them may fit your specific needs better. The key feature is to have an automated and <em>bootable</em> copy of your hard drive ready to go at a moment’s notice.</p>
+
+<p>I admittedly have not given Time Machine a fair shot, but that’s because I don’t have a use case for its main draw. “Going back in time” to an earlier version of a file is not something I need to do on a regular basis. And now with Lion’s Versions feature, I don’t need a whole backup just to keep recent versions of my files around.</p>
+
+<p>Another option is <a href="http://www.bombich.com/ccc_features.html">Carbon Copy Cloner</a>. It makes bootable backups and can be scheduled to back up on a daily basis. It’s free to try; donations are requested if you continue to use the product.</p>
+
+<p>I love SuperDuper! because it’s so simple. The interface tells you in plain English what is going to happen. I set up my nightly backups one time a couple years ago and the only time I ever see the app again is when I am traveling without my hard drive. When a backup fails, the application stays open to tell you what went wrong. That rarely happens though: usually an incremental backup occurs at 3am that takes less than ten minutes to complete. When it’s done, my data is safe and sound in two places.</p>
+
+<p>The successful backups are bootable, meaning that you can just choose the backup volume as the boot volume when you <a href="http://support.apple.com/kb/HT1310">hold Option after you turn your computer on</a> and restore from there. If you just want to restore certain files instead of everything, the drive is right there in Finder for you to navigate as usual.</p>
+
+<h2 id="backup-is-not-a-daunting-task">Backup Is Not a Daunting Task</h2>
+
+<p>Almost none of my “non-technical” friends (i.e. friends who do other things in their lives besides fiddle with computers) back up their computers. And yet I know that each one of those friends would be devastated if their hard drive crashed and they lost their music or photos. Local backups are the simplest way to avoid this, and it’s so simple to set up:</p>
+
+<ul>
+  <li>Buy a hard drive (7200 RPM and at least as big as the drive you want to back up) and <a href="http://www.iclarified.com/entry/index.php?enid=1075">format it using OS X’s built-in Disk Utility</a>.</li>
+  <li>Set up a <a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">backup application</a> to do daily backups of your entire disk.</li>
+</ul>
+
+<p>That’s it. Back up your data. It’s so simple and so useful.</p>
+]]></content>
+  </entry>
+  
+</feed>

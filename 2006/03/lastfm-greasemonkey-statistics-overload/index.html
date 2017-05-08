@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Last.fm + Greasemonkey = Statistics Overload - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="A place where Thomas Upton talks about music, code, coffee, and anything else he fancies.">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.thomasupton.com/2006/03/lastfm-greasemonkey-statistics-overload">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-332267-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://www.google.com/search?q=site%3Ablog.thomasupton.com" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.thomasupton.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Last.fm + Greasemonkey = Statistics Overload</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2006-03-07T20:49:00-06:00'><span class='date'>March  7, 2006</span></time>
+        
+        &middot; <a href="">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2006%2F03%2Flastfm-greasemonkey-statistics-overload&title=Last.fm%20%2B%20Greasemonkey%20%3D%20Statistics%20Overload&description=Last.fm%20%2B%20Greasemonkey%20%3D%20Statistics%20Overload"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.flickr.com/photos/third/109460996/"><img src="http://static.flickr.com/38/109460996_12e240678b_o.png" alt="Last.fm GM Scripts In Action" /></a></p>
+
+<p><a href="http://last.fm/">Last.fm</a>, what would I be without you?  A man with a lot more hard drive space, that’s for sure.  The amount of music I have come across because of this amazing social service is staggering.  The official iTunes count is 13837 items, 35.8 days, 56.23GB.  And, thanks to Last.fm, <a href="http://last.fm/user/tupton/">I can track how much of that I actually listen to and enjoy</a>.</p>
+
+<p>That’s the thing.  I can see my charts, and I can see my top artists.  It’s awesome.   It’s not as awesome as some people think it could be, though.  With the help of the increasingly awesome / useful Firefox extension <a href="http://greasemonkey.mozdev.org/">Greasemonkey</a>, I now have access to so many music and listening stats that I could spend hours looking at them… Not that I do that.  The image at the top of the post show’s my <a href="http://www.last.fm/user/aupton/">father’s profile</a> with all the userscripty goodness attached.  Here are the Last.fm Greasemonkey scripts that I use.</p>
+
+<p><a href="http://thomas.fiveuptons.com/gm/">Last.fm Prettifier</a> (<a href="http://www.fiveuptons.com/thomas/gm/lastfmprettifier.user.js">Right-click to install</a>)
+First up, we have my own concoction.  This script changes the links in Last.fm charts to block elements so that they take up the whole row and makes them Audioscrobbler Red (#D20039) on hover.  It’s a simple change, but it’s effective, especially with a wide screen.</p>
+
+<p><a href="http://userscripts.org/scripts/show/2365">Last.fm Percentages</a>
+This displays a percentage next to the number in all Last.fm charts.  It’s useful to see how big a chunk a certain band can take up in terms of your listening habits.  I changed the color to a more neutral grey.  My wish for this script:  Make the weekly percentages out of the total number of songs played that week, not the total number of songs played in the profile.  Also, if there was a way to extend the chart rows to always accomodate this new information, that’d be great.  Sometimes the percentages bleed over into the white of the page when the chart is too narrow.  Shouldn’t there be a way to fix this?</p>
+
+<p><a href="http://userscripts.org/scripts/show/2252">Last.fm User Statistics</a>
+This script inserts a daily / weekly / monthly average of tracks played beneath your total stats on the left side.  I modified this script to change the format of the data.  I’m averaging 68.9 tracks a day after seven months of tracking.  That includes the iPod tracks, too.  I have a life.</p>
+
+<p><a href="http://userscripts.org/scripts/show/3009">Highlight Same Artists</a>
+This awesome script highlights Top 50 artists on other profiles that you share with that particular user.  I changed the CSS to make the highlighted artists AS red and  bold so they stand out a lot more.</p>
+
+<p><a href="http://userscripts.org/scripts/show/1982">Last.fm Chart Changes</a>
+This absolutely incredible script tracks (via a <a href="http://lastfm.indiegigs.co.uk/">server-side script</a>) changes to your charts from week to week.  The relative position to last week is shown to the left of the artist, and appropriate notifications are made for new and stagnant artists.  This script is unbelievable.  Good work, <a href="http://indiegigs.co.uk/">Mr. Wilkinson</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2006-03-07T20:49:00-06:00'><span class='date'>March  7, 2006</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/code/'>code</a>, <a class='category' href='/categories/software/'>software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2006/03/geek-tool" title="Previous Post: Geek Tool">&laquo; Geek Tool</a>
+      
+      
+        <a class="basic-alignment right" href="/2006/03/from-blogger-to-wordpress" title="Next Post: From Blogger To Wordpress">From Blogger To Wordpress &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/01/my-favorite-albums-of-2015">My Favorite Albums of 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/quickly-convert-unix-timestamps">Quickly convert Unix timestamps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/octopress">Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

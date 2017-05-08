@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="A place where Thomas Upton talks about music, code, coffee, and anything else he fancies.">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.thomasupton.com/page/4/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-332267-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://www.google.com/search?q=site%3Ablog.thomasupton.com" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.thomasupton.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  <div class="pagination">
+  
+    <a class="prev" href="/page/5">&larr; Older</a>
+  
+  
+  <a class="next" href="/page/3">Newer &rarr;</a>
+  
+</div>
+
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/12/pastebin-from-the-commandline">Pastebin From the Command-line</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-12-11T14:42:56-06:00'><span class='date'>December 11, 2010</span></time>
+        
+        &middot; <a href="/2010/12/pastebin-from-the-commandline">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2010%2F12%2Fpastebin-from-the-commandline&title=Pastebin%20From%20The%20Command-line&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://pastebin.com/">Pastebin.com</a> is a utility for sharing snippets of text with anyone. The service is simple: go to <a href="http://pastebin.com/">pastebin.com</a>, paste your text, click submit, and share the link. It’s useful for sharing time-saving snippets with you team, or for an impromptu, informal code review of changes that for one reason or another haven’t been committed yet (e.g. a design decision for which the author wants early feedback.)</p>
+
+<blockquote>
+  <p><em>10:56:55 AM</em> <strong>Mike Bulman</strong>: im gonna try to find one, but if it doesn’t exist im gonna write:  a service/app for osx that will post whatevers on the clipboard to pastebin and give you a url</p>
+</blockquote>
+
+<p>A couple of days ago, my friend <a href="http://twitter.com/#!/mikebulman">Mike</a> suggested that he wanted a utility that would make it easy to post to pastebin without having to break your workflow and go to the site. I thought “that sounds fun,” and went to work that evening.</p>
+
+<p>Pastebin has a <a href="http://pastebin.com/api.php">simple RPC API</a> for posting content, and it’s perfect for <code>curl</code>. The very first version of the pastebin script was this simple <code>curl</code> script.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /usr/bin/env bash</span>
+</span><span class="line">curl -s -X POST -d <span class="s2">&quot;paste_code=$1&quot;</span> <span class="s2">&quot;http://pastebin.com/api_public.php&quot;</span> <span class="p">|</span> pbcopy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><code>paste_code</code> is the POST parameter that the pastebin API expects to contain pasted content, so we just POST that to the public API page. The output of a successful pastebin API call is the URL for the paste, so we pipe that to OS X’s clipboard for easy pasting. Right from the beginning, this is clearly an OS X-specific script, but I don’t think it would be that hard to interact with the Linux system clipboard via <code>xclip</code>.</p>
+
+<p>Making this work for text from <code>stdin</code> instead of as an argument was easy, too.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /usr/bin/env bash</span>
+</span><span class="line"><span class="nv">to_paste</span><span class="o">=</span><span class="sb">`</span>cat /dev/stdin<span class="sb">`</span>
+</span><span class="line">curl -s -X POST -d <span class="s2">&quot;paste_code=$to_paste&quot;</span> <span class="s2">&quot;http://pastebin.com/api_public.php&quot;</span> <span class="p">|</span> pbcopy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Both Mike and I recently started using <a href="http://jumpcut.sourceforge.net/">Jumpcut</a>, a minimal clipboard manager for OS X, so I had the idea of copying the actual text that was posted to pastebin before copying the URL so both would be readily available via Jumpcut. I tried adding <code>echo "$to_paste" | pbcopy</code> before the <code>curl</code> call, but it didn’t always work. I didn’t actually find any documentation on it, but it seems that <code>pbcopy</code> does some sort of buffering so that too much text isn’t copied in quick succession. Adding a very hacky <code>sleep</code> call fixed it, so the resulting script became the following.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /usr/bin/env bash</span>
+</span><span class="line"><span class="nv">to_paste</span><span class="o">=</span><span class="sb">`</span>cat /dev/stdin<span class="sb">`</span>
+</span><span class="line"><span class="nb">echo</span> <span class="s2">&quot;$to_paste&quot;</span> <span class="p">|</span> pbcopy
+</span><span class="line">sleep 1
+</span><span class="line">curl -s -X POST -d <span class="s2">&quot;paste_code=$1&quot;</span> <span class="s2">&quot;http://pastebin.com/api_public.php&quot;</span> <span class="p">|</span> pbcopy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Having a commandline script is all well and good, but it’s on about the same usability level as using pastebin.com: instead of switching to a browser, you switch to a terminal, but you still have to paste content and get away from you original context. This is where OS X Services come into play.</p>
+
+<p>The OS X Service menu is often neglected, but it’s very useful. There are some neat built-in services, like looking a word up in Dictionary or composing a new email with the selection. With tools like  <a href="http://www.macosxautomation.com/automator/">Automator</a> or <a href="http://wafflesoftware.net/thisservice/">ThisService</a>, creating your own service is easy. I created an Automator workflow that assumed the script was symbolically linked to <code>/usr/local/bin/pastebin</code> and called the script. You can easily add a keyboard shortcut to a Service in the System Preferences Keyboard Shortcuts preference pane.</p>
+
+<p>I cleaned up the script by adding a few command line options using the <code>getopts</code> <code>bash</code> built-in. This was pretty useful and easy to use. I’m not a very proficient <code>bash</code> scripter, but I was easily able to add what I needed, including making the ability to copy the text optional and allowing a file to be used in place of <code>stdin</code>. <a href="http://ginatrapani.org/">Gina Trapani</a>’s excellent <a href="https://github.com/ginatrapani/todo.txt-cli">todo.txt</a> script was helpful in figuring out the correct syntax.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="k">while</span> <span class="nb">getopts</span> <span class="s2">&quot;:cf:h&quot;</span> Option
+</span><span class="line"><span class="k">do</span>
+</span><span class="line">    <span class="k">case</span> <span class="nv">$Option</span> in
+</span><span class="line">        c <span class="o">)</span>
+</span><span class="line">            <span class="nv">PASTEBIN_COPY</span><span class="o">=</span>1
+</span><span class="line">            <span class="p">;;</span>
+</span><span class="line">        f <span class="o">)</span>
+</span><span class="line">            <span class="nv">PASTEBIN_FILE</span><span class="o">=</span><span class="nv">$OPTARG</span>
+</span><span class="line">            <span class="p">;;</span>
+</span><span class="line">        h <span class="o">)</span>
+</span><span class="line">            usage
+</span><span class="line">            <span class="p">;;</span>
+</span><span class="line">    <span class="k">esac</span>
+</span><span class="line"><span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I wrapped the script and the Automator workflow and <a href="https://github.com/tupton/pastebin-cl/">added it to github</a>. You can <a href="https://github.com/tupton/pastebin-cl/blob/8ff3cdda9e0027c41416b285f2822781a0ba4b5e/pastebin.sh">view the original bash script</a> in its latest form if you’re interested.</p>
+
+<p>All this was well and good, but a couple of things bothered me. I didn’t like that <code>sleep</code> call, and I knew that the pastebin API offered a few options that I wasn’t allowing users of this script to take advantage of. So I did what any normal developer would do: I rewrote the script in python. The <a href="https://github.com/tupton/pastebin-cl/blob/d462c57542e98f23c83dc6388e1e5ebbafe04c94/pastebin.py">original version of the script</a> was just a straight “port” of the <code>bash</code> script, but I had plans for more.</p>
+
+<p>I have experience with <a href="https://github.com/tupton/python-yahoo-weather">simple python scripts</a>, but I decided I should try my luck using classes in order to wrap the pastebin API. It was really easy. The beginning of the class looked like the following.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Pastebin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class="line">    <span class="sd">&quot;&quot;&quot;A wrapper for the pastebin API&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line">    <span class="n">pastebin_api</span> <span class="o">=</span> <span class="s">&quot;http://pastebin.com/api_public.php&quot;</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paste_code</span><span class="p">,</span> <span class="n">paste_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">paste_email</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">paste_subdomain</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+</span><span class="line">            <span class="n">paste_private</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">paste_expire_date</span><span class="o">=</span><span class="n">PASTEBIN_EXPIRE_NEVER</span><span class="p">,</span> <span class="n">paste_format</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</span><span class="line">
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_code</span><span class="p">(</span><span class="n">paste_code</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_name</span><span class="p">(</span><span class="n">paste_name</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_email</span><span class="p">(</span><span class="n">paste_email</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_subdomain</span><span class="p">(</span><span class="n">paste_subdomain</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_private</span><span class="p">(</span><span class="n">paste_private</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_expire_date</span><span class="p">(</span><span class="n">paste_expire_date</span><span class="p">)</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">set_paste_format</span><span class="p">(</span><span class="n">paste_format</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then all I had to do was use the class.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">pastebin</span> <span class="o">=</span> <span class="n">Pastebin</span><span class="p">(</span><span class="n">paste_code</span><span class="o">=</span><span class="n">lines</span><span class="p">,</span> <span class="n">paste_name</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_name</span><span class="p">,</span> <span class="n">paste_email</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_email</span><span class="p">,</span>
+</span><span class="line">            <span class="n">paste_subdomain</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_subdomain</span><span class="p">,</span> <span class="n">paste_private</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_private</span><span class="p">,</span>
+</span><span class="line">            <span class="n">paste_expire_date</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_expire_date</span><span class="p">,</span> <span class="n">paste_format</span><span class="o">=</span><span class="n">opts</span><span class="o">.</span><span class="n">paste_format</span><span class="p">)</span>
+</span><span class="line"><span class="n">response</span> <span class="o">=</span> <span class="n">pastebin</span><span class="o">.</span><span class="n">paste</span><span class="p">()</span>
+</span><span class="line"><span class="k">return</span> <span class="n">response</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I have no idea if getters and setters are very “pythonic,” but they make sense to me, even if I’m only using them internally for this script. I used a pretty interesting trick to build the POST data string. I put the necessary data into a dictionary, but I needed to build a proper parameter string.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">return</span> <span class="s">&quot;&amp;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">k</span> <span class="o">+</span> <span class="s">&quot;=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()])</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I love the syntax used for “inline” for-loops here. The extra <code>str()</code> call was used just in case a parameter (like expiration date) was accidentally interpreted as a number.</p>
+
+<p>I updated the <a href="https://github.com/tupton/pastebin-cl/blob/master/README.md">README</a> to reflect the new options. Thankfully, only the symbolic link to <code>/usr/local/bin/pastebin</code> had to be updated in order to keep the workflow working. Using the pastebin script couldn’t be easier:</p>
+
+<ol>
+  <li><a href="https://github.com/tupton/pastebin-cl/archives/master">Download the script source</a>, extract it, and put it somewhere that makes sense, like <code>~/scripts</code>.</li>
+  <li><code>ln -s ~/scripts/pastebin-cl/pastebin.py /usr/local/bin/pastebin</code></li>
+  <li>Open the workflow in <code>automator/Paste to pastebin.com.workflow</code> and save it as a service, which should just be as easy as ⌘-S.</li>
+  <li>Open System Preferences &gt; Keyboard, then Keyboard Shortcuts, then Services. Make sure that the “Paste to pastebin.com” service is checked. Optionally, you can give it a keyboard shortcut.</li>
+  <li>Highlight some text in any OS X application and choose “Paste to pastebin.com” from the application menu’s “Services” submenu or use your keyboard shortcut. Now the pastebin URL is on you clipboard, ready to be pasted into a chat room or in a browser.</li>
+</ol>
+
+<p>Hopefully this script will be useful to developers all over. If you have any ideas about making this more portable (i.e. for use on Linux or Windows), let me know in the <a href="#respond">comments</a>.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/11/instapaper">Instapaper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-11-28T16:10:05-06:00'><span class='date'>November 28, 2010</span></time>
+        
+        &middot; <a href="/2010/11/instapaper">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2010%2F11%2Finstapaper&title=Instapaper&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/wp/wp-content/uploads/2010/11/instapaper.png" alt="Instapaper for iOS article view" /></p>
+
+<p>Countless times, I have come across a piece of <a href="http://kottke.org/tag/New%20Yorker">long-form writing</a> that I just don’t have time to read at that moment. I used to just keep the link in question open in a tab for days and never actually get around to reading it. Sometimes I would <a href="http://delicious.com/third">bookmark it using Delicious</a>, which helped me get back to the site with the article but did nothing to encourage me to read.</p>
+
+<p>I recently started using <a href="http://www.instapaper.com/">Instapaper</a>, a neat service from <a href="http://www.marco.org/">Marco Arment</a> that helps one save articles and other web pages for reading later. In addition to bookmarking articles with the incredibly simple Read Later bookmarklet, Instapaper can extract text from articles and remove cruft like navigation and ads from the content you’re interested in. These tools are available on the <a href="http://www.instapaper.com/extras">Instapaper Extras</a> page. Now, with a simple click, articles are saved to a list where you can easily access either the original site or just the article text.</p>
+
+<p>There are a bunch of other helpful extras, too. Kindle users can download a compatible file that contains their articles, complete with sections and a table of contents. There are tons of apps with Instapaper support for OS X, Windows, iOS, and Android. I use the <a href="http://itunes.apple.com/us/app/instapaper/id288545208?mt=8">Instapaper iOS</a> app on both my iPad and my iPhone. It’s great for catching up on my reading while traveling without an internet connection. The latest version offers a great progress indicator and the ability to <a href="http://blog.instapaper.com/post/1538890633">automatically switch to dark mode</a> based on the sunset times in your location.</p>
+
+<p>Instapaper offers cool options for people who publish content, too. There’s a <a href="http://www.instapaper.com/bodytext">public settings page</a> for the text parser so people can tweak how Instapaper extracts text from articles on sites that have lots of ads or extraneous content. Publishers can <a href="http://www.instapaper.com/publishers">explicitly tell Instapaper which elements to use</a> as the title and text by adding <code>instapaper_title</code> and <code>instapaper_body</code> classes to those elements, respectively. I have added the appropriate classes to articles on this site.</p>
+
+<p><img src="http://www.thomasupton.com/wp/wp-content/uploads/2010/11/instapaper-blog.png" alt="Instapaper on Uptonian Thoughts" /></p>
+
+<p>There’s also a “Read Later” button that I have added to each of the articles on this site. If you’re logged in to Instapaper, you can quickly save the current article with just one click.</p>
+
+<p>Marco Arment <a href="http://blog.instapaper.com/">actively updates and writes about the Instapaper service</a>, and I look forward to seeing what’s to come for this excellent tool.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/09/the-last-year-in-music-e28094-the-rest">The (Last) Year in Music — the Rest</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-09-18T23:54:09-05:00'><span class='date'>September 18, 2010</span></time>
+        
+        &middot; <a href="/2010/09/the-last-year-in-music-e28094-the-rest">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2010%2F09%2Fthe-last-year-in-music-e28094-the-rest&title=The%20(Last)%20Year%20In%20Music%20%E2%80%94%20The%20Rest&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I suck at writing, and I suck even more at writing often.</p>
+
+<p>Here’s the rest of the list of my favorite music from 2009:</p>
+
+<ul>
+  <li><em>Number four</em>: <strong>The Great Misdirect by Between The Buried And Me</strong></li>
+</ul>
+
+<p><img src="http://www.thomasupton.com/images/album/between-the-buried-and-me_the-great-misdirect_2009.jpg" alt="The Great Misdirect by Between The Buried And Me" /></p>
+
+<p>Incredible work from the always-reliable technical metal group. This is an album for serious guitar and bass aficionados; the talent on display here is profound.</p>
+
+<ul>
+  <li><em>Number three</em>: <strong>Crack The Skye by Mastodon</strong></li>
+</ul>
+
+<p><img src="http://www.thomasupton.com/images/album/mastodon_crack-the-skye_2009.jpg" alt="Crack The Skye by Mastodon" /></p>
+
+<p>A concept album about a paraplegic who gets involved with Russian ghosts told with typical Mastodon intensity, complete with a pretty awesome Rush tribute.</p>
+
+<ul>
+  <li><em>Number two</em>: <strong>Beggars by Thrice</strong></li>
+</ul>
+
+<p><img src="http://www.thomasupton.com/images/album/thrice_beggars_2009.jpg" alt="Beggars by Thrice" /></p>
+
+<p>Probably my favorite band, Thrice turns yet another new page in the book of their ever-changing styles. Beggars is groovy and filled with Dustin Kensrue’s typical lyrical thoughtfulness.</p>
+
+<ul>
+  <li><em>Number one</em>: <strong>Daisy by Brand New</strong></li>
+</ul>
+
+<p><img src="http://www.thomasupton.com/images/album/brand-new_daisy_2009.jpg" alt="Daisy by Brand New" /></p>
+
+<p>Brand New brings an intensity to a genre that (rightly) gets accused of being stale. Seeing these guys perform songs from both Daisy and Your Favorite Weapon live is an incredible sight.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/05/the-year-in-music-e28093-number-five-i-and-love-and-you-by-the-avett-brothers">The Year in Music — Number Five: I and Love and You by the Avett Brothers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-15T15:06:15-05:00'><span class='date'>May 15, 2010</span></time>
+        
+        &middot; <a href="/2010/05/the-year-in-music-e28093-number-five-i-and-love-and-you-by-the-avett-brothers">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2010%2F05%2Fthe-year-in-music-e28093-number-five-i-and-love-and-you-by-the-avett-brothers&title=The%20Year%20In%20Music%20%E2%80%94%20Number%20Five%3A%20I%20And%20Love%20And%20You%20by%20The%20Avett%20Brothers&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/images/album/the-avett-brothers_i-and-love-and-you_2009.png" alt="I And Love And You by The Avett Brothers" /></p>
+
+<p>I first heard <a href="http://www.last.fm/music/The+Avett+Brothers/">The Avett Brothers</a> on a mix CD that a friend and I were listening to in the car. <em>Talk on Indolence</em> came on, and we both looked at each other in amazement. I begged him to find out from the friend who made the mix who these guys were and if they had any more music.</p>
+
+<p>The Avett Brothers have come a long way since then. They have steadily become better musicians and singers, and they have reached a certain level of mainstream fame (cf. their <a href="http://www.youtube.com/watch?v=K3H5BhWQij8">appearance on Letterman</a>.) <em><a href="http://www.last.fm/music/The%2520Avett%2520Brothers/I%2520And%2520Love%2520And%2520You">I And Love And You</a></em> represents both a pinnacle of achievement for the North Carolina trio and an indication that they are not quite finished sharing their music with the world.</p>
+
+<p>One thing that is immediately noticeable is a focus on richer songs filled with more and varied instruments than before. The piano is featured fairly heavily. The production of this album is excellent; each song feels full and finished, which is not something that one usually thought of when listening to previous efforts. One other thing to note is the prominence of drums in most of the songs: this is somewhat unusual for a band that does not have a permanent drummer. The trio take turns drumming when they play live, and it works very well.</p>
+
+<p><em><a href="http://www.last.fm/music/The+Avett+Brothers/_/I+And+Love+And+You">I And Love And You</a></em> is a great opening track, full of dynamic and great piano playing. The track perfectly encompasses the whirlwind rise that the band has experienced over the past year or so. <em>The Perfect Space</em> is another lush piano track, with a great transition to a pop-piano-rock feel in the second half of the song.</p>
+
+<p>A track that showcases the drums that I mentioned above is the aptly-named <em>Kick Drum Heart</em>. Very catchy, very poppy, and very good.</p>
+
+<p>One of my favorite tracks on the album is <em>Slight Figure Of Speech</em>. It evokes the jangley pop of the sixties while still managing to sound fresh. I was lucky enough to hear a live version of this track in Austin last October, and it sounded great.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/the-year-in-music-e28094-number-six-the-pariah-the-parrot-the-delusion-by-dredg">The Year in Music — Number Six: The Pariah, the Parrot, the Delusion by Dredg</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-02-13T19:04:16-06:00'><span class='date'>February 13, 2010</span></time>
+        
+        &middot; <a href="/2010/02/the-year-in-music-e28094-number-six-the-pariah-the-parrot-the-delusion-by-dredg">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2010%2F02%2Fthe-year-in-music-e28094-number-six-the-pariah-the-parrot-the-delusion-by-dredg&title=The%20Year%20In%20Music%20%E2%80%94%20Number%20Six%3A%20The%20Pariah%2C%20The%20Parrot%2C%20The%20Delusion%20by%20Dredg&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/images/album/dredg_the-pariah-the-parrot-the-delusion_2009.jpg" alt="The Pariah, The Parrot, The Delusion by Dredg" /></p>
+
+<p>It’s incredible, but I had never heard of <a href="http://www.last.fm/music/dredg">Dredg</a> before this album. I was seriously missing out, but I am so glad that I found this album. Inspired by Salman Rushdie’s <em><a href="http://www.guardian.co.uk/books/1999/oct/16/salmanrushdie">Imagine There Is No Heaven: A Letter To The Six Billionth Citizen</a></em>, the album is an eclectic mix of experimental and art rock. Every song brings something to the table, but the entire album is marked by impeccable production and great musicianship.</p>
+
+<p>A large number of tracks comprise the album; some shorter instrumentals and breaks intersperse longer, more traditional songs. <em>Drunk Slide</em> is the first of these, and even though it’s less than ninety seconds long, it is still a worthy listen. <em>Ireland</em>, the track that immediately follows, is one of the highlights of the album. It’s one of those tracks that makes you want to sing along, even if you don’t know the words. That quickly becomes a theme of the record.</p>
+
+<p>There are so many eclectic styles of music on this record that it’s hard to sum it up. The album is definitely meant to be listened to as a whole, but that doesn’t mean that each song doesn’t stand on its own. Take <em>Mourning This Morning</em>, for instance. The peppy palm-muted guitar that plays throughout the song almost makes you want to dance. The preceding track, <em>I Don’t Know</em> is a poppy little rock groove, and a couple tracks later comes <em>Long Days And Vague Clues</em>, a song that could be straight out of a seventies spy flick.</p>
+
+<p><em>Pariah</em> certainly requires the listener’s attention, but it is well worth every moment.</p>
+
+<p>Dredg dedicated the album to <a href="http://www.last.fm/music/Deftones">Deftones</a> bassist Chi Cheng, who was left in a coma after a horrific car accident in November 2008.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/the-year-in-music-e28094-number-seven-axe-to-fall-by-converge">The Year in Music — Number Seven: Axe to Fall by Converge</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-02-06T12:01:10-06:00'><span class='date'>February  6, 2010</span></time>
+        
+        &middot; <a href="/2010/02/the-year-in-music-e28094-number-seven-axe-to-fall-by-converge">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2010%2F02%2Fthe-year-in-music-e28094-number-seven-axe-to-fall-by-converge&title=The%20Year%20In%20Music%20%E2%80%94%20Number%20Seven%3A%20Axe%20To%20Fall%20by%20Converge&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/images/album/converge_axe-to-fall_2009.jpg" alt="Axe To Fall by Converge" /></p>
+
+<p>No one ever said that <em><a href="http://www.last.fm/music/Converge">Converge</a></em> wasn’t intense, but <em>Axe To Fall</em> hits you right in the face from the very first measure. If opener <em>Dark Horse</em> is a frantic mashing together of everywhere you expected <em>Converge</em> to evolve to, the next track throws all that away. <em>Reap What You Sow</em> still maintains that manic pace, but throws in synths and an absolutely ridiculous guitar solo. Like, straight out of Kirk Hammet’s curly locks guitar solo. If you aren’t out of breath by the time you’ve finished listening to the first two tracks, then you didn’t listen closely enough. I’m not sure that <em>Converge</em> could play this album live from start to finish because I’m not sure any human beings could keep up such a relentless onslaught.</p>
+
+<p>The title track brings back some of that chaotic Converge riffage that we all remember from <em>Jane Doe</em>, but then <em>Effigy</em> shoves even more synthy goodness down your throat.</p>
+
+<p><em>Axe</em> is evidence that Converge is evolving, and their direction could not be more pointed. They have obviously always been talented musicians, but it’s almost like it took this long for the band to realize that they could showcase their diversity and musical maturity with no fear.</p>
+
+<p>The most remarkable parts of this album come at the end. The final two tracks are such a radical departure from the chaos of the rest of the album. <em>Cruel Bloom</em> is almost a sort of weird Tom Waits tribute, if Tom Waits were in to haunting your nightmares. The slow pace is a change, but you can still feel the intensity that the band projects. I’m not sure if that’s because of the residue from the rest of the album, but this song certainly stands on its own.</p>
+
+<p>Closer <em><a href="http://www.youtube.com/watch?v=YojThNUSpkw">Wretched World</a></em> is a work of art. I know that a lot of Converge fans won’t want to hear this one at a show, but no one can deny the emotion that this song evokes. A lot of Jacob Bannon’s lyrics come from a heartbroken point of view, but this song manages to wrap some of the saddest lyrics in such beautiful music. I would love to hear more from this side of Converge.</p>
+
+<p>When it’s over, <em>Axe To Fall</em> is Converge’s strongest effort to date. I don’t think they’ll be playing on your local radio station any time soon, but this album is strong enough to please fans of old while perhaps opening some new eyes to this quartet’s music.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/the-year-in-music-e28094-number-eight-the-satanic-satanist-by-portugal-the-man">The Year in Music — Number Eight: The Satanic Satanist by Portugal. The Man</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-12-26T00:58:57-06:00'><span class='date'>December 26, 2009</span></time>
+        
+        &middot; <a href="/2009/12/the-year-in-music-e28094-number-eight-the-satanic-satanist-by-portugal-the-man">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2009%2F12%2Fthe-year-in-music-e28094-number-eight-the-satanic-satanist-by-portugal-the-man&title=The%20Year%20In%20Music%20%E2%80%94%20Number%20Eight%3A%20The%20Satanic%20Satanist%20by%20Portugal.%20The%20Man&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/images/album/portugal-the-man_the-satanic-satanist_2009.jpg" alt="The Satanic Satanist by Portugal. The Man" /></p>
+
+<p>I have a bone to pick with <em>Portugal. The Man</em>. The <a href="http://www.vinylcollective.com/2009/08/06/po-portugal-the-man-the-satanic-satanist-lp-german-import/">European LP</a> comes packaged in a beautiful and intricate piece of folded and cut cardboard. The <a href="http://portugaltheman.merchnow.com/products/104165">US version</a> is just a gatefold. I pre-ordered <em><a href="http://www.last.fm/music/Portugal.+The+Man/The+Satanic+Satanist">The Satanic Satanist</a></em> on vinyl in support of the band, and now I wish I had the “cool version.” Fortunately, the packaging of an album has no bearing on the quality of the music inside. (But seriously, I covet that artwork.)</p>
+
+<p><em>Satanist</em> is one of those pop rock albums that goes just far enough into left field to pique your interest with every song but stays mainstream enough to make it a hit at any party you host. I was singing along with this album before I even knew the words. The Beatles influences abound here, but where that might be an insult to some (or even many) bands, Portugal. The Man knows how to use their idols for inspiration and not for source material.</p>
+
+<p><em>Lovers in Love</em> remains my favorite track on <em>Satanist</em> even though there are ten other contenders for the top spot on this eleven track album. Something about John Gourley’s falsetto and the fast-paced wah-guitar and bongos of the chorus just really hits me in the right way. The entire album has this groove to it that mandates that you listen to it as a whole. The cohesion of the songwriting and the musicianship is uncanny. I made mention of the “singability” of this album earlier, but I must repeat it again because it’s so important. You’ll be singing along to <em>Lovers</em>, <em>Everyone is Golden</em>, and <em>The Home</em> before you’ve finished listening to those songs for the first time. I think that’s a sign of a band that really understands the art of songwriting, and these guys certainly aren’t afraid to show off their talent.</p>
+
+<p>It’s been a long time coming, but I think <em>Portugal. The Man</em> is about to become something big. The quintet has already recorded a follow-up to <em>Satanist</em> to be released this coming spring, but this album already goes a long way towards convincing the world that punctuation <em>in medias res</em> is cool again.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/the-year-in-music-e28094-number-nine-desperate-living-by-horse-the-band">The Year in Music — Number Nine: Desperate Living by HORSE the Band</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-12-26T00:26:33-06:00'><span class='date'>December 26, 2009</span></time>
+        
+        &middot; <a href="/2009/12/the-year-in-music-e28094-number-nine-desperate-living-by-horse-the-band">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2009%2F12%2Fthe-year-in-music-e28094-number-nine-desperate-living-by-horse-the-band&title=The%20Year%20In%20Music%20%E2%80%94%20Number%20Nine%3A%20Desperate%20Living%20by%20HORSE%20the%20Band&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/images/album/horse-the-band_desperate-living_2009.jpg" alt="Desperate Living by HORSE the Band" /></p>
+
+<p>It might be considered rash to place an album that you have been listening to for less than two weeks in your top ten list of best albums of the year, but I don’t think choosing <em><a href="http://www.last.fm/music/HORSE+the+band/Desperate+Living">Desperate Living</a></em> as my number nine album is a decision I’ll regret. HORSE the Band is certainly not a mainstream band (their chiptune beats and hardcore tendencies mixed with Nathan Winneke’s bizarre lyrics is not a combination that everyone can get into), but this is great music with a huge sense of originality.</p>
+
+<p>The first track I heard from <em>Desperate Living</em> was <em><a href="http://www.youtube.com/watch?v=RF_v7ek5o-s">Shapeshift</a></em>. What starts out as a moody and ethereal track soon crashes into blast beats and screams, which soon transforms into this sort of alt-rock breakdown, which is then interrupted by what can only be described as the soundtrack to a Game Boy game from 1993. It only gets weirder from here, and this is only one track! <em>Xiu Xiu</em> frontman Jamie Stewart makes an angelic contribution to the song’s outro, which is somewhat unusual for a <em>HORSE</em> track.</p>
+
+<p>The album is filled with pitch-shifted tones that remind you of the warped soundtracks from bad VHS transfers and some of the most intricate guitar and drum work out there. If that’s not a mind-bender, I don’t know what is. Here’s the thing: it all sounds amazing. Every single track keeps you on your toes and gets you to alter all of your expectations. I must have listened to this album more than ten times already, and I hear something new every time.</p>
+
+<p><em>Desperate Living</em> is certainly a step forward for <em>HORSE the Band</em> in terms of sound and songwriting, but there is still that familiar “Nintendo-core” vibe and wacky humor that longtime fans have come to expect. Take the end of of the title track for instance: The words “I’m a plumber, but what I plumb is the fruit of infinity. I’m deeper than infinity, so infinite, I look infinity look like a four” are spoken with no explanation whatsoever. And there’s that bit about dinosaurs in the aforementioned <em>Shapeshift</em>. And the nearly-comical synth breakdowns on <em>The Failure of All Things</em>. And they fact that they named a song after themselves. And the album’s cover artwork.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/the-year-in-music-merriweather">The Year in Music — Number Ten: Merriweather Post Pavillion by Animal Collective</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-12-22T21:07:27-06:00'><span class='date'>December 22, 2009</span></time>
+        
+        &middot; <a href="/2009/12/the-year-in-music-merriweather">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2009%2F12%2Fthe-year-in-music-merriweather&title=The%20Year%20In%20Music%20%E2%80%94%20Number%20Ten%3A%20Merriweather%20Post%20Pavillion%20by%20Animal%20Collective&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://www.thomasupton.com/images/album/animal-collective_merriweather-post-pavillion_2009.jpg" alt="Merriweather Post Pavillion by Animal Collective" /></p>
+
+<p><em>My Girls</em> is an incredible song. You should stop reading this review and go <a href="http://www.youtube.com/watch?v=zol2MJf6XNE">watch the video right now</a>. Make sure it’s in HD.</p>
+
+<p>Animal Collective is less of a band and more of a, well, collective. The lineup shifts regularly, and every album is a new adventure. <em><a href="http://www.last.fm/music/Animal+Collective">Merriweather Post Pavillion</a></em> is, however, the group’s crowning achievement. Their eighth studio album contains some of the most accessible and focused songs they have written, but still maintains that familiar (if “familiar” is even a term that can be used to describe their sound) neo-psychedelic pop rock that we have come to love over the past few years.</p>
+
+<p>The airy intro of <em>In the Flowers</em> gives way to hand claps and bouncy beats and serves as the perfect intro to the aforementioned <em>My Girls</em>. Every song on the album has a distinct feel to it yet still manages to sound just like an Animal Collective album should. It’s interesting that I would be reviewing this album now, almost exactly one year since I first listened to it. Its uplifting melodies and beats stand in stark contrast to the dark and cold nights that I associate with listening to the album. This is a summer album, through and through. It should be listened to in a car with no top or while lying on a blanket in a green field. Case in point: <em>Summertime Clothes</em>. I dare you not to start bopping your head to this song.</p>
+
+<p>Towards the end of the album, we are all invited to slow down on the track <em>No More Runnin</em>. This easy-going lullaby quickly gives way to one of the quirkiest and poppiest tracks on the album. Closer <em>Brother Sport</em> will have you humming the melody for days and even weeks after the song has stopped playing.</p>
+
+<p><em>Merriweather</em> is some of Animal Collective’s best produced and most cohesive work to date, and all that extra effort definitely pays off. Just be careful that you don’t spend too long staring at that mesmerizing album art.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/the-year-in-music-e28094-honorable-mentions-part-two">The Year in Music — Honorable Mentions, Part Two</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-12-21T23:42:17-06:00'><span class='date'>December 21, 2009</span></time>
+        
+        &middot; <a href="/2009/12/the-year-in-music-e28094-honorable-mentions-part-two">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2009%2F12%2Fthe-year-in-music-e28094-honorable-mentions-part-two&title=The%20Year%20In%20Music%20%E2%80%94%20Honorable%20Mentions%2C%20Part%20Two&description=A%20blog%20post%20on%20Uptonian%20Thoughts."
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Part two of my list of great albums that didn’t quite make my top ten list continues. You can find <a href="http://www.thomasupton.com/blog/2009/12/the-year-in-music-%e2%80%94-honorable-mentions/">part one here</a>.</p>
+
+<p><img src="http://www.thomasupton.com/images/album/fever-ray_fever-ray_2009.jpg" alt="Fever Ray by Fever Ray" /></p>
+
+<h3 id="fever-ray-by-fever-rayhttpwwwlastfmmusicfeverrayfeverray"><a href="http://www.last.fm/music/Fever+Ray/Fever+Ray">Fever Ray by Fever Ray</a></h3>
+
+<p>Karin Dreijer Andersson has a prolific musical history. She has collaborated on numerous tracks by fellow Scandinavians Röyksopp, and The Knife’s <em>Heartbeats</em> has been covered numerous times. Her debut solo album doesn’t stray too far from the pitch-shifted multi-tonal vocals that give The Knife such a distinctive sound; <em>Fever Ray</em> is marked by sparse beats and deep lyrics.</p>
+
+<p><img src="http://www.thomasupton.com/images/album/florence-+the-machine_lungs_2009.jpg" alt="Lungs by Florence + The Machine" /></p>
+
+<h3 id="lungs-by-florence--the-machinehttpwwwlastfmmusicflorence2b252b2bthe2bmachinelungs"><a href="http://www.last.fm/music/Florence%2B%252B%2BThe%2BMachine/Lungs">Lungs by Florence + The Machine</a></h3>
+
+<p>This is pop music, through and through. But it’s well-written, uplifting, and magical pop music. Florence Welch has an imposing voice, and she uses it to great effect. <em>Kiss with a Fist</em>, the first single, is a spunky tune about a couple that are a little too close, but it’s not even the strong point of the album. Opener <em>Dog Days are Over</em> just makes you want to sing along until your neighbors yell at you, and if <em>Drumming</em> doesn’t get your toes tapping, there’s something amiss.</p>
+
+<p><img src="http://www.thomasupton.com/images/album/bat-for-lashes_two-suns_2009.jpg" alt="Two Suns by Bat for Lashes" /></p>
+
+<h3 id="two-suns-by-bat-for-lasheshttpwwwlastfmmusicbatforlashestwosuns"><a href="http://www.last.fm/music/Bat+for+Lashes/Two+Suns">Two Suns by Bat for Lashes</a></h3>
+
+<p>Natasha Khan has one of those voices that makes you stop and really listen. At once airy and prominent, the songwriting on <em>Two Suns</em> complements her voice perfectly. Leadoff single <em>Daniel</em> has been playing nearly every day since I found out about this album. I only recently found out about Bat for Lashes, but I am already hooked.</p>
+
+<p><img src="http://www.thomasupton.com/images/album/fuck-buttons_tarot-sport_2009.jpg" alt="Tarot Sport by Fuck Buttons" /></p>
+
+<h3 id="tarot-sport-by-fuck-buttonshttpwwwlastfmmusicfuckbuttons"><a href="http://www.last.fm/music/Fuck+Buttons">Tarot Sport by Fuck Buttons</a></h3>
+
+<p><em>Tarot Sport</em> is the perfect album to listen to while you’re doing something else. That’s not an insult to the album; on the contrary, the droning noise rock and minimalist beats make this a favorite programming album. There’s more substance to the songs on <em>Tarot Sport</em> than on their previous album <em>Street Horrrsing</em>, but I’ll leave it to you to decide whether that makes this band more mainstream.</p>
+
+<p><img src="http://www.thomasupton.com/images/album/gallows_grey-britain_2009.jpg" alt="Grey Britain by Gallows" /></p>
+
+<h3 id="grey-britain-by-gallowshttpwwwlastfmmusicgallows"><a href="http://www.last.fm/music/Gallows">Grey Britain by Gallows</a></h3>
+
+<p>Gallows is bringing back good old punk rock, and they don’t care if you want it or not. Vocalist Frank Turner spits and sneers at you through every one of the brutal tracks on this album. Even the acoustic act one of <em>The Vulture</em> gets you pumped for the inevitable: Gallows knows how to rock. This is a band I’d love to see live.</p>
+
+<p><img src="http://www.thomasupton.com/images/album/the-number-twelve-looks-like-you_worse-than-alone_2009.jpg" alt="Worse Than Alone by The Number Twelve Looks Like You" /></p>
+
+<h3 id="worse-than-alone-by-the-number-twelve-looks-like-youhttpwwwlastfmmusicthenumbertwelvelookslikeyouworsethanalone"><a href="http://www.last.fm/music/The+Number+Twelve+Looks+Like+You/Worse+Than+Alone">Worse Than Alone by The Number Twelve Looks Like You</a></h3>
+
+<p>The Number Twelve Looks Like You seems to be one of the most overlooked bands in recent memory. I never hear anyone talk about them, yet they have outdone themselves musically album after album, and they continue to be a group whose releases I really look forward to. Unfortunately, the band broke up in November. The most technical of mathcore dominates <em>Worse Than Alone</em>, with time signature shifts, key changes, and varying tempos galore, this album requires your full attention. What a parting gift for their fans.</p>
+
+<p><img src="http://www.thomasupton.com/images/album/them-crooked-vultures_them-crooked-vultures_2009.jpg" alt="The Crooked Vultures by Them Crooked Vultures" /></p>
+
+<h3 id="them-crooked-vultures-by-them-crooked-vultureshttpwwwlastfmmusicthemcrookedvulturesthemcrookedvultures"><a href="http://www.last.fm/music/Them+Crooked+Vultures/Them+Crooked+Vultures">Them Crooked Vultures by Them Crooked Vultures</a></h3>
+
+<p>I had the immense pleasure to see Mssrs. Homme, Grohl, and Jones in Austin, TX at the Austin City Limits music festival in October. No one knew any of their songs, but everyone knew that they were listening to something special. And who should expect anything less from this trio? The pounding tempo change at the end of <em>No One Loves Me And Neither Do I</em> leaves you in awe, and, if for no other reason, see them live for the intro to <em>Elephants</em>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+  
+    <a class="prev" href="/page/5">&larr; Older</a>
+  
+  
+  <a class="next" href="/page/3">Newer &rarr;</a>
+  
+</div>
+
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/01/my-favorite-albums-of-2015">My Favorite Albums of 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/quickly-convert-unix-timestamps">Quickly convert Unix timestamps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/octopress">Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: script | Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/categories/script/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2017-05-08T11:59:43-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Quickly convert Unix timestamps]]></title>
+    <link href="http://blog.thomasupton.com/2013/10/quickly-convert-unix-timestamps"/>
+    <updated>2013-10-20T10:03:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2013/10/quickly-convert-unix-timestamps</id>
+    <content type="html"><![CDATA[<p>Inevitably, when dealing with time-related data, one will come across Unix timestamps. They’re
+great; there’s no guessing the timezone or trying to parse difficult formats and they’re generally
+extremely useful.</p>
+
+<p>Except they’re not very readable to humans. I use <a href="http://www.epochconverter.com/">Epoch Converter</a> <em>a lot</em> when I’m dealing
+with time-series data, which seems to be fairly often recently. Anything involving a calendar or
+picking a time range also usually involves timestamps. I thought there must be an easier way to
+convert these into something that I can read without going to an external site and that doesn’t
+break down when I’m trying to do work with finnicky or non-existant network connection.</p>
+
+<p>There is:</p>
+
+<p><code>bash
+    date -j -f "%s" "1381528800" +"%a %b %d %T %Z %Y"
+</code></p>
+
+<p>An explanation: <code>-j</code> tells <code>date</code> not to try to set the system date. <code>-f</code> describes the format of
+the input - a timestamp, of course - and the input itself follows. The string after <code>+</code> is the
+output format. The output of the above is as follows.</p>
+
+<pre><code>Fri Oct 11 17:00:00 CDT 2013
+</code></pre>
+
+<p>You can use <code>xargs</code> to pipe input in. Note that the <code>-J</code> option might be different on systems that
+are not OS X.</p>
+
+<p><code>bash
+    echo -n "1381528800" | xargs -J {} date -j -f "%s" {} +"%a %b %d %T %Z %Y"
+</code></p>
+
+<p>Like I seem to do with a lot of my utility scripts, I added a workflow to Alfred. You can <a href="https://dl.dropboxusercontent.com/u/5753691/Convert%20timestamp%20to%20date.alfredworkflow">get it
+here</a>. Simply invoke Alfred, type “ts” followed by a space and the timestamp you want to
+convert. The readable date will be posted as a notification (Growl or Notification Center,
+configurable in the Advanced section of the Alfred settings) and copied to the clipboard.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

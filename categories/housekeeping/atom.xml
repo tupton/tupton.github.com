@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: housekeeping | Uptonian Thoughts]]></title>
+  <link href="http://blog.thomasupton.com/categories/housekeeping/atom.xml" rel="self"/>
+  <link href="http://blog.thomasupton.com/"/>
+  <updated>2017-05-08T11:59:43-05:00</updated>
+  <id>http://blog.thomasupton.com/</id>
+  <author>
+    <name><![CDATA[Thomas Upton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Duplicate Posts In The Feed]]></title>
+    <link href="http://blog.thomasupton.com/2012/07/duplicate-posts-in-the-feed"/>
+    <updated>2012-07-26T09:23:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/07/duplicate-posts-in-the-feed</id>
+    <content type="html"><![CDATA[<p>When I first switched over to Octopress, the feed for this site was completely new. The last
+twenty or so posts showed up as new again, and it was kind of annoying.</p>
+
+<p>I realized yesterday that my site was still configured to be hosted on <a href="http://tupton.github.com">tupton.github.com</a>, so
+I switched it to <a href="http://blog.thomasupton.com">blog.thomasupton.com</a>. This must have reset the site’s feed again, causing
+recent posts to show up as unread.</p>
+
+<p>This should hopefully be the last time that happens, and hopefully it wasn’t too hard to mark all
+posts from this site as read. I apologize for any inconvenience.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress]]></title>
+    <link href="http://blog.thomasupton.com/2012/07/octopress"/>
+    <updated>2012-07-19T23:05:00-05:00</updated>
+    <id>http://blog.thomasupton.com/2012/07/octopress</id>
+    <content type="html"><![CDATA[<p>This blog is now being served by <a href="http://pages.github.com/">GitHub Pages</a> (<a href="https://github.com/tupton/tupton.github.com">source</a>) by way of <a href="http://octopress.org/">Octopress</a>. I’ve
+tried to set up some redirects from the old site that should match up pretty well, but please let me
+know if something looks awry.</p>
+
+<p>There aren’t any site comments here anymore, so feel free to let me know on Twitter
+<a href="https://twitter.com/thomasupton">@thomasupton</a> or email.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

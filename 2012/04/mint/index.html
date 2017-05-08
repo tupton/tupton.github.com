@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Mint - Uptonian Thoughts</title>
+  <meta name="author" content="Thomas Upton">
+
+  
+  <meta name="description" content="A place where Thomas Upton talks about music, code, coffee, and anything else he fancies.">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.thomasupton.com/2012/04/mint">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Uptonian Thoughts" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-332267-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Uptonian Thoughts</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://www.google.com/search?q=site%3Ablog.thomasupton.com" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.thomasupton.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Mint</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-04-17T18:37:38-05:00'><span class='date'>April 17, 2012</span></time>
+        
+        &middot; <a href="">&infin;</a>
+        &middot; 
+
+
+<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0"
+ style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;"
+ src="https://www.instapaper.com/e2?url=http://blog.thomasupton.com%2F%2F2012%2F04%2Fmint&title=Mint&description=Mint"
+></iframe>
+
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="http://farm8.staticflickr.com/7180/7089520649_0beff76701_o_d.png" alt="Mint" /></p>
+
+<p>I just started using <a href="http://haveamint.com/">Mint</a> to track statistics on my site. I’ve been using Google Analytics for a long time, and I will continue to do so, but it is definitely geared more towards sites trying to earn money. Mint seemed to offer a more streamlined and customizable interface for people who just want to look at stats.</p>
+
+<p>Mint is a pluggable, extensible stats system. Mint modules are known as “peppers,” and each one provides some small functionality. There is a <a href="http://www.haveamint.com/peppermill/pepper/4/default/">default pepper</a> that provides some basic stats functionality like page views, unique visitors, search terms that brought those visitors to your site, and which pages they are looking at. There are a large number of official and community peppers over at the Peppermill that offer much more functionality and statistical views.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Installing Mint was a breeze. I just followed the simple instructions and I was good to go. If you have unfettered access to your server (via <code>ssh</code>) you should have no issues.</p>
+
+<h3 id="issues-with-modpagespeed">Issues with mod_pagespeed</h3>
+
+<p>I did run into a couple strange display issues when I went to view my Mint stats. Each pane took up the maximum width when it was opened. Even though I could view all my stats, the interface didn’t look good. After posting in the forum and fruitlessly trying to edit the Mint source code, I disabled <a href="http://code.google.com/speed/page-speed/docs/module.html"><code>mod_pagespeed</code></a> on the hunch that my code changes weren’t taking effect because <code>mod_pagespeed</code> was caching everything. All of a sudden, the Mint interface looked fine, and it turned out that my small tweaks didn’t really make much of a difference after all. I still haven’t figured out exactly why <code>mod_pagespeed</code> was causing issues, but disabling it sure did fix them. If anyone has any insight into this, please let me know.</p>
+
+<h2 id="peppers">Peppers</h2>
+
+<p>I mentioned that Mint is pluggable and extensible. In fact, that is its entire basis: every bit of functionality is provided by modular plugins called peppers. Mint comes with the default pepper that I mentioned before, but there are many more available. I use a number of them.</p>
+
+<h3 id="backuprestorebackup"><a href="http://www.haveamint.com/peppermill/pepper/5/backup_restore/">Backup/Restore</a></h3>
+
+<p>This pepper is self-explanatory: back up and restore your Mint stats. That’s it.</p>
+
+<h3 id="iphoneiphone"><a href="http://www.haveamint.com/peppermill/pepper/57/iphone/">iPhone</a></h3>
+
+<p>The default Mint interface isn’t that great for a smaller screen like the iPhone, so this pepper displays an optimized interface when you view Mint on an iPhone.</p>
+
+<h3 id="outboundoutbound"><a href="http://www.haveamint.com/peppermill/pepper/60/outbound/">Outbound</a></h3>
+
+<p>A lot of analytics apps try to show you where your visitors come from, and that information is important. You might be interested in where your visitors go next, so this pepper shows your most popular outbound links.</p>
+
+<h3 id="user-agent-007user-agent"><a href="http://www.haveamint.com/peppermill/pepper/7/user_agent_007/">User Agent 007</a></h3>
+
+<p>This cleverly-named pepper shows a breakdown of your visitors by user agent.</p>
+
+<h3 id="real-estatereal-estate"><a href="http://www.haveamint.com/peppermill/pepper/9/real_estate/">Real Estate</a></h3>
+
+<p>This one shows a breakdown of your visitors by the size of their screen.</p>
+
+<h3 id="local-searcheslocal-search"><a href="http://www.haveamint.com/peppermill/pepper/6/local_searches/">Local Searches</a></h3>
+
+<p>If your blogging software has a search mechanism, this pepper shows you what your visitors are searching for. Note that this is different than the search engine queries that bring visitors to your site that the default pepper shows. </p>
+
+<h3 id="doorbelldoorbell"><a href="http://www.haveamint.com/peppermill/pepper/45/doorbell/">Doorbell</a></h3>
+
+<p>When you’re viewing your Mint interface, the doorbell pepper provides a some audio feedback when you get a new visitor.</p>
+
+<h3 id="errorserrors"><a href="http://www.haveamint.com/peppermill/pepper/92/errors/">Errors</a></h3>
+
+<p>This pepper shows any error pages that your visitors may have seen, along with the page that was requested that caused that error.</p>
+
+<h3 id="locationslocations"><a href="http://www.haveamint.com/peppermill/pepper/29/locations/">Locations</a></h3>
+
+<p>This pepper provides a breakdown of your visitors by geographic location.</p>
+
+<h3 id="sparkssparks"><a href="http://www.haveamint.com/peppermill/pepper/67/sparks/">Sparks!</a></h3>
+
+<p>Sparklines provide a great way to view useful trends in a small space. This combined with the iPhone pepper makes checking visitor trends on the go a snap.</p>
+
+<p>I use both Google analytics and Mint on my site, but I find myself looking at Mint much, much more often. It just offers a better view into the kind of people visiting your site, especially if you’re coming from a position of trying to understand what kind of content brings them to your site in the first place. Mint comes highly recommended.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Thomas Upton</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2012-04-17T18:37:38-05:00'><span class='date'>April 17, 2012</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/webapps/'>webapps</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/03/the-handle-pattern" title="Previous Post: The Handle Pattern">&laquo; The Handle Pattern</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/05/syntastic" title="Next Post: Syntastic">Syntastic &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2016/01/my-favorite-albums-of-2015">My Favorite Albums of 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2015/08/installing-and-using-the-latest-zsh-on-travis-ci">Installing the Latest ZSH on Travis CI</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/migrating-from-pathogen-to-vundle">Migrating from Pathogen to Vundle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/quickly-convert-unix-timestamps">Quickly convert Unix timestamps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/remove-leading-whitespace">Remove leading whitespace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/08/batch-deleting-last-fm-scrobbles">Batch Deleting Last.fm Scrobbles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/duplicate-posts-in-the-feed">Duplicate Posts In The Feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/octopress">Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/reading-my-news">Reading My News</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/07/aeropress">Aeropress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Thomas Upton -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
