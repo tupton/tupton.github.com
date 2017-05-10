@@ -4,7 +4,7 @@
   <title><![CDATA[Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2017-05-08T11:59:43-05:00</updated>
+  <updated>2017-05-09T19:24:22-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -619,14 +619,14 @@ much easier.</p>
 
 <hr />
 
-<p><em>UPDATE 2017-05-08</em>:</p>
+<p><em>UPDATE 2017-05-09</em>:</p>
 
-<p>Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN!):</p>
+<p>Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN and Slype!):</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;.chartlist button.dropdown-menu-clickable-item[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;.chartlist button.dropdown-menu-clickable-item[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="line">    <span class="nx">c</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
 </span><span class="line"><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>

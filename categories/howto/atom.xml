@@ -4,7 +4,7 @@
   <title><![CDATA[Category: howto | Uptonian Thoughts]]></title>
   <link href="http://blog.thomasupton.com/categories/howto/atom.xml" rel="self"/>
   <link href="http://blog.thomasupton.com/"/>
-  <updated>2017-05-08T11:59:43-05:00</updated>
+  <updated>2017-05-09T19:24:22-05:00</updated>
   <id>http://blog.thomasupton.com/</id>
   <author>
     <name><![CDATA[Thomas Upton]]></name>
@@ -210,12 +210,12 @@ much easier.</p>
 
 <hr />
 
-<p><em>UPDATE 2017-05-08</em>:</p>
+<p><em>UPDATE 2017-05-09</em>:</p>
 
-<p>Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN!):</p>
+<p>Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN and Slype!):</p>
 
 <p><code>javascript
-jQuery('.chartlist button.dropdown-menu-clickable-item[type="submit"]').each(_, c) {
+jQuery('.chartlist button.dropdown-menu-clickable-item[type="submit"]').each(function(_, c) {
     c.click();
 });
 </code></p>
