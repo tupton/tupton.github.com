@@ -32,12 +32,12 @@ much easier.
 
 -----
 
-*UPDATE 2017-05-08*:
+*UPDATE 2017-05-09*:
 
-Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN!):
+Thanks to a reader, I was informed that the site design has changed yet again, requiring a new selector for the delete button. The new code should now be as follows (thanks AN and Slype!):
 
 ``` javascript
-jQuery('.chartlist button.dropdown-menu-clickable-item[type="submit"]').each(_, c) {
+jQuery('.chartlist button.dropdown-menu-clickable-item[type="submit"]').each(function(_, c) {
     c.click();
 });
 ```
